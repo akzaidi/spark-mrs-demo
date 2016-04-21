@@ -1,12 +1,33 @@
-# Apache Spark
+# Apache Spark - todo
 
-## Getting Started
+The core of Apache Spark consists of four components:
+
+1. [Spark SQL](http://spark.apache.org/sql/)
+2. [Spark Streaming](http://spark.apache.org/streaming/)
+3. [MLlib - Machine Learning Library](http://spark.apache.org/mllib/)
+4. [GraphX - Graphical Computing Library](http://spark.apache.org/graphx/)
+
+The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: [Berkeley Data Analytics Stack](https://amplab.cs.berkeley.edu/software/)
+
+## Distributed Programming Abstractions
+
+A Spark program consists of two programs, a driver program and a worker program. The driver programs run on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine).
+
+## RDDs
+RDDs, short for Resilient Distributed Datasets
+
+## DataFrames
+
+## MLlib
 
 ## Spark APIs
 
 ### Scala
 
-### PySpark
+### [PySpark](https://spark.apache.org/docs/latest/api/python/index.html)
+
+The [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) API might be the most commonly used API, due to Python's ubiquity in data science. It is perhaps second in maturity to the Scala API, and when working with DataFrames, provides nearly the same performance as what you would get when writing Scala.
 
 ### SparkR
 
+The SparkR API provides two things: a package called SparkR for creating the necessary abstractions in your R session to access Spark's functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this [quickstart](https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start). The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from an environment of your choice.

@@ -1,21 +1,27 @@
 # Introduction
 
-This book is organized into modules, each of which provide a motivated example of doing data science with R and Spark. The modules are based on notes I created while learning how to make machine learning models scalable, focusing on the tools provided by [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), [Azure HDInsight](https://azure.microsoft.com/en-us/documentation/services/hdinsight/), and [Spark](http://spark.apache.org/docs/latest/). 
+This book is organized into modules, each of which provide a motivated example of doing data science with R and Spark. The modules are based on notes I created while learning how to make scalable machine learning pipelines, focusing on the tools provided by [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), [Azure HDInsight](https://azure.microsoft.com/en-us/documentation/services/hdinsight/), and [Spark](http://spark.apache.org/docs/latest/). 
 
 ## Why R?
 [R](https://www.r-project.org/) is a tool of choice for many data scientists. The abundance of available packages for statistical modeling, visualization, and machine learning, coupled with the deep interactivity baked into it's very foundation, push it to the top of the stack for off-the-shelf languages for data science. Unfortunately, in order to maintain the level of interactivity R provides, it must sacrifice on performance relative to low-level, statically typed languages, which makes it inherantly difficult for R to scale, and inhibits it's adoption in enterprise. 
 
 ## Microsoft R Server FTW
-Microsoft R Server (formerly known as Revolution R Enterprise) was developed to tackle R's scalability challenges and increase the adoption of the R project in industry. The MRS distribution includes R packages designed for scalability, exposing new parallel external memory algorithms that interact with data residing in disk or distributed data stores, and a brand new highly optimized columnar data object, called xdf (short for eXternal Data Frame), that is chunked and especially amenable for parallelization.
+Microsoft R Server (formerly known as Revolution R Enterprise) was developed to tackle R's scalability challenges and increase the adoption of the R project in industry. The MRS distribution includes R packages designed specifically for scalability, exposing new parallel external memory algorithms that interact with data residing in disk or distributed data stores, and a new highly optimized columnar data object, called xdf (short for eXternal Data Frame), that is chunked and especially amenable for parallelization.
 
-A a data scientist's coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment! 
+A data scientist's coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment! 
 
 ## Apache Spark
-Just like it's predecessor, Spark was designed to tackle scalability. Realzing that memory was costing....
+Developed at the [AMPLab](https://amplab.cs.berkeley.edu/) at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore's law for CPUs, so creating commodity computers were not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a rate that is comparable to the growth of data. 
+
+While Hadoop revolutionized computing by reintroducing distributed computing through the MapReduce framework, and distributed storage through HDFS, Spark spurred the revolution further by utilizing memory for in-data sharing during interactive Map Reduce jobs. Spark can be 10 - 100 orders of magnitude faster than traditional Map Reduce.
 
 ## SparkR
+Spark has a number of [APIs](http://spark.apache.org/docs/latest/api.html), allowing you to write code in your favorite language to be executed in Spark. The most popular APIs for Spark are Scala and Python. 
+
+The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package.
 
 ## Azure HDInsight
+[todo] add overview of azure HDInsight...
 
 ## Prerequisites - What You'll Need
 
@@ -25,4 +31,4 @@ While much of the material in these notes will generalize to other implementatio
 * A terminal emulator with openSSH or bash, e.g., bash on Linux, Mac Terminal, iTerm2, Putty, or Cygwin/MobaXterm
 * PowerBI Desktop
 * Azure Storage explorer
-* Visual Studio 2015 [for optional Hive component, RTVS is optional]
+* Visual Studio 2015
