@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="ingestion.html">
-<link rel="next" href="references.html">
+<link rel="prev" href="provisioning-instructions.html">
+<link rel="next" href="starting-your-machine-learning-pipeline.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -185,76 +185,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="starting-your-machine-learning-pipeline" class="section level1">
-<h1><span class="header-section-number">Chapter 7</span> Starting Your Machine Learning Pipeline</h1>
-<p>The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.</p>
-<p>In Spark, you’ll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You’ll use this constructor to create new RDDs or DataFrames.</p>
-<div id="finding-the-sparkr-library" class="section level2">
-<h2><span class="header-section-number">7.1</span> Finding the SparkR Library</h2>
-<p>In order to create a Spark Context from your RStudio Server environment, you’ll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. A system variable called “SPARK_HOME” has been set that points to the Spark installation directory, and in it you’ll find subdirectories, “R/lib”, containing the SparkR library.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>))</code></pre></div>
-<pre><code>## [1] &quot;SparkR&quot;     &quot;sparkr.zip&quot;</code></pre>
-<p>To add the SparkR library to your library paths, use the <code>.libPaths</code> function to include the directory in the search path for R’s library tree. The library paths could also be changed from in the <code>Rprofile</code>, either for the user or system wide. See the help on <code>?StartUp</code> for more details on R’s startup mechanism.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">.libPaths</span>(<span class="kw">c</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>), <span class="kw">.libPaths</span>()))</code></pre></div>
+<div id="ingestion" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Ingesting Data into Azure Blob Storage - todo</h1>
+<p>Azure HDInsight utilizes low-cost Blob storage as it’s data store. Through a Hadoop distributed file system (HDFS) interface, the full set of components in HDInsight can operate directly on structured or unstructured data in Blob storage. The storage accounts containing your blob storage is separated from your compute environment, allowing you to delete your HDInsight cluster for computation without losing your data, or pointing multiple compute systems to the same data store.</p>
+<div id="azcopy" class="section level2">
+<h2><span class="header-section-number">6.1</span> AzCopy</h2>
 </div>
-<div id="creating-a-spark-context" class="section level2">
-<h2><span class="header-section-number">7.2</span> Creating a Spark Context</h2>
-<p>To create a SparkContext, you should use the <code>spark.init</code> function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext using the <code>sparkRSQL.init</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SparkR)
-
-sparkEnvir &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">spark.executor.instance =</span> <span class="st">&#39;10&#39;</span>,
-                   <span class="dt">spark.yarn.executor.memoryOverhead =</span> <span class="st">&#39;8000&#39;</span>)
-
-sc &lt;-<span class="st"> </span><span class="kw">sparkR.init</span>(
-  <span class="dt">sparkEnvir =</span> sparkEnvir,
-  <span class="dt">sparkPackages =</span> <span class="st">&quot;com.databricks:spark-csv_2.10:1.3.0&quot;</span>
-)
-
-sqlContext &lt;-<span class="st"> </span><span class="kw">sparkRSQL.init</span>(sc)</code></pre></div>
-<p>We added the <code>sparkPackages</code> argument and set it to the value of <code>spark-csv</code> package provided by databricks. This will allow us to read csv objects into Spark DataFrames. Databricks are a prominent vendor for Spark, and are developers of many Spark packages (think of them as the RStudio of the Spark ecosystem).</p>
-<p>After you are done using your Spark session, you can terminate your backend to Spark by running <code>sparkR.stop()</code>.</p>
-</div>
-<div id="creating-dataframes" class="section level2">
-<h2><span class="header-section-number">7.3</span> Creating DataFrames</h2>
-<p>Using our <code>sqlContext</code> variable, we can create DataFrames from local R data.frames, from Hive tables, or from other data sources. You could create a Spark DataFrame from a local R data.frame using the <code>createDataFrame</code> function,</p>
-<div id="from-local-r-data.frames" class="section level3">
-<h3><span class="header-section-number">7.3.1</span> From Local R data.frames</h3>
-<p>Creating Spark DataFrames from local R data.frames might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node’s memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and will scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it’ll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.</p>
-<p>We’ll import data from the nycflight13 package into a Spark DataFrame, and use it’s data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
-df &lt;-<span class="st"> </span><span class="kw">createDataFrame</span>(sqlContext, nycflights13::flights)
-jfk_flights &lt;-<span class="st"> </span><span class="kw">filter</span>(flights, flights$origin ==<span class="st"> &quot;JFK&quot;</span>)
-<span class="co"># Group the flights by destination and aggregate by the number of flights</span>
-dest_flights &lt;-<span class="st"> </span><span class="kw">agg</span>(<span class="kw">group_by</span>(jfk_flights, jfk_flights$dest), <span class="dt">count =</span> <span class="kw">n</span>(jfk_flights$dest))
-<span class="co"># Now sort by the `count` column and print the first few rows</span>
-<span class="kw">head</span>(<span class="kw">arrange</span>(dest_flights, <span class="kw">desc</span>(dest_flights$count)))</code></pre></div>
-<p>This same analysis could be streamlined using the <code>%&gt;%</code> operator exposed by the magrittr package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
-dest_flights &lt;-<span class="st"> </span><span class="kw">filter</span>(flights, flights$origin ==<span class="st"> &quot;JFK&quot;</span>) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(flights$dest) %&gt;%<span class="st"> </span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span> <span class="kw">n</span>(flights$dest))
-dest_flights %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dest_flights$count)) %&gt;%<span class="st"> </span>head</code></pre></div>
-</div>
-<div id="creating-dataframes-from-csv-files" class="section level3">
-<h3><span class="header-section-number">7.3.2</span> Creating DataFrames from CSV Files</h3>
-<p>Since we imported the spark-csv package, we can import CSV files into DataFrames. We will be using the full airlines dataset, which I assume you have already ingested into Blob storage by following the steps in Section <a href="ingestion.html#ingestion">6</a>.</p>
-<p>We have saved in our data_dir a couple of data directories (virtually, everything in Azure Storage is a simple blob!). Let’s see what we have in our directory using the <code>rxHadoopListFiles</code> command, which is simply a wrapper to hadoop shell command <code>hadoop fs -ls</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dir &lt;-<span class="st"> &quot;/user/RevoShare/alizaidi&quot;</span>
-<span class="kw">rxHadoopListFiles</span>(data_dir)</code></pre></div>
-<p>Taking a look at the individual directories, we can see how many files there are for the Airlines directory and Weather directory</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)
-<span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
+<div id="azure-storage-explorer" class="section level2">
+<h2><span class="header-section-number">6.2</span> Azure Storage Explorer</h2>
 
 </div>
 </div>
-</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="ingestion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="provisioning-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="starting-your-machine-learning-pipeline.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -281,7 +232,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-spark-context.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-provisioning-instructions.Rmd",
 "text": null
 },
 "download": null,

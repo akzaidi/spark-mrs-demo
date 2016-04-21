@@ -9,6 +9,14 @@ The core of Apache Spark consists of four components:
 
 The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: [Berkeley Data Analytics Stack](https://amplab.cs.berkeley.edu/software/)
 
+## Functional Programming and Lazy Evaluation {#lazyevalfp}
+
+In functional programming, all constructs are functions, and all computations are evaluated as function calls (higher-order functions being functions that call upon other functions, think of it as function composition). Pure functional languages (such as Haskell), aim to achieve purity in their evaluation, and therefore rarely change-state or mutate objects, and don't cause any side-effects.
+
+Scala, which composes ~80% of the code in Spark, has full support for functional programming. Although not a pure functional progrmaming langauge like Haskell, it is actually a hybrid of object oriented languages like Java and functional languages like Haskell. 
+
+Lazy evaluation allows you defer evaluation of a function until it is necessary. This makes it easy to create higher order functions, and then optimize their computation by only evaluation what is necessary. This is particularly useful for data science, where one is often manipulating large amounts of data, filtering through the noise to find the signal, which is where you would want most of your computation to focus on.
+
 ## Distributed Programming Abstractions
 
 A Spark program consists of two programs, a driver program and a worker program. The driver programs run on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine).
@@ -30,4 +38,4 @@ The [PySpark](https://spark.apache.org/docs/latest/api/python/index.html) API mi
 
 ### SparkR
 
-The SparkR API provides two things: a package called SparkR for creating the necessary abstractions in your R session to access Spark's functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this [quickstart](https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start). The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from an environment of your choice.
+The SparkR API provides two ways of interacting with Spark through R: a package called SparkR for creating the necessary abstractions in your R session to access Spark's functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this [quickstart](https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start). The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from any R environment of your choice.

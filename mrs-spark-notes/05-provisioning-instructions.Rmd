@@ -1,3 +1,5 @@
+# (PART) Provisioning and Ingesting Data {-}
+
 # Provisioning Instructions
 
 This module provides a walkthrough of how to provision a Spark cluster on Azure HDInsight Premium with Microsoft R Server, and how to add an edge node with RStudio Server.
@@ -22,3 +24,12 @@ I have summarized the steps here to help you get started quickly:
 For packages you only need to run on the edge node, you can continue using `install.packages`. For packages you need installed on the edge node as well as all the worker nodes, you'll need to use a [script action](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-get-started/#install-r-packages)
 
 ### todo - install packages demo
+
+# Ingesting Data into Azure Blob Storage - todo {#ingestion}
+
+Azure HDInsight utilizes low-cost Blob storage as it's data store. Through a Hadoop distributed file system (HDFS) interface, the full set of components in HDInsight can operate directly on structured or unstructured data in Blob storage. The storage accounts containing your blob storage is separated from your compute environment, allowing you to delete your HDInsight cluster for computation without losing your data, or pointing multiple compute systems to the same data store.
+
+## AzCopy
+
+## Azure Storage Explorer
+

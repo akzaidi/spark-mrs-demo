@@ -1,3 +1,5 @@
+# (PART) Overview {-}
+
 # Introduction
 
 This book is organized into modules, each of which provide a motivated example of doing data science with R and Spark. The modules are based on notes I created while learning how to make scalable machine learning pipelines, focusing on the tools provided by [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), [Azure HDInsight](https://azure.microsoft.com/en-us/documentation/services/hdinsight/), and [Spark](http://spark.apache.org/docs/latest/). 
@@ -32,3 +34,5 @@ While much of the material in these notes will generalize to other implementatio
 * PowerBI Desktop
 * Azure Storage explorer
 * Visual Studio 2015
+
+These notes will be most useful to those that have been programming with R, have a solid knowledge of statistics and machine learning, but have limited exposure to Spark. I don't assume any Spark background for these notes, and try to explain the Spark concepts from the ground up. I also do not presume that you have used the Microsoft R Server implementation of R, or have used the RevoScaleR package that MRS ships with.
