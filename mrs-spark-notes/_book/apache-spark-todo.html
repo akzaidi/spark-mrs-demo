@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="introduction.html">
+<link rel="next" href="microsoft-r-server-todo.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -172,49 +172,42 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</h1>
-<h4 class="author"><em>Ali Zaidi, Machine Learning and Data Science, Microsoft</em></h4>
-<h4 class="date"><em>2016-04-21</em></h4>
+<div id="apache-spark---todo" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Apache Spark - todo</h1>
+<p>The core of Apache Spark consists of four components:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://spark.apache.org/sql/">Spark SQL</a></li>
+<li><a href="http://spark.apache.org/streaming/">Spark Streaming</a></li>
+<li><a href="http://spark.apache.org/mllib/">MLlib - Machine Learning Library</a></li>
+<li><a href="http://spark.apache.org/graphx/">GraphX - Graphical Computing Library</a></li>
+</ol>
+<p>The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: <a href="https://amplab.cs.berkeley.edu/software/">Berkeley Data Analytics Stack</a></p>
+<div id="distributed-programming-abstractions" class="section level2">
+<h2><span class="header-section-number">3.1</span> Distributed Programming Abstractions</h2>
+<p>A Spark program consists of two programs, a driver program and a worker program. The driver programs run on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine).</p>
 </div>
-<div id="abstract" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Abstract</h1>
-<div id="scalable-machine-learning-with-microsoft-r-server-and-spark" class="section level2">
-<h2><span class="header-section-number">1.1</span> Scalable Machine Learning with Microsoft R Server and Spark</h2>
-<p>This collection of notes in progress will help you get started on using Microsoft R Server and Spark with the Azure HDInsight platform.</p>
+<div id="rdds" class="section level2">
+<h2><span class="header-section-number">3.2</span> RDDs</h2>
+<p>RDDs, short for Resilient Distributed Datasets</p>
 </div>
-<div id="useful-resources" class="section level2">
-<h2><span class="header-section-number">1.2</span> Useful Resources</h2>
-<p>There are a number of useful resources on Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.</p>
-<div id="spark" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Spark</h3>
-<ul>
-<li><a href="http://spark.apache.org/docs/latest/index.html">Spark Documentation Home Page</a></li>
-<li><a href="http://people.csail.mit.edu/matei/papers/2010/hotcloud_spark.pdf">The Founding Paper</a></li>
-<li><a href="https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf">Origination of RDDs</a></li>
-<li><a href="http://arxiv.org/pdf/1505.06807.pdf">MLlib – Machine Learning in Spark</a></li>
-<li><a href="https://spark.apache.org/docs/latest/programming-guide.html">Spark Programming Guide</a></li>
-<li><a href="http://spark-packages.org/">Spark Packages</a></li>
-<li><a href="https://spark-summit.org/east-2016/schedule/">Spark Summit</a></li>
-<li><a href="https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details">Jacek Laskowski - Mastering Apache Spark</a></li>
-<li></li>
-</ul>
+<div id="dataframes" class="section level2">
+<h2><span class="header-section-number">3.3</span> DataFrames</h2>
 </div>
-<div id="microsoft-r-server" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Microsoft R Server</h3>
-<ul>
-<li><a href="https://www.microsoft.com/en-us/server-cloud/products/r-server/">Landing Page for R Server</a></li>
-<li><a href="https://packages.revolutionanalytics.com/doc/8.0.0/">Documentation</a></li>
-<li></li>
-</ul>
+<div id="mllib" class="section level2">
+<h2><span class="header-section-number">3.4</span> MLlib</h2>
 </div>
-<div id="azure-hdinsight" class="section level3">
-<h3><span class="header-section-number">1.2.3</span> Azure HDInsight</h3>
-<ul>
-<li><a href="https://azure.microsoft.com/en-us/documentation/services/hdinsight/">HDInsight Documentation Home Page</a></li>
-<li><a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-apache-spark-machine-learning-mllib-ipython/">Machine Learning with HDInsight Spark</a></li>
-<li><a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-overview/">R Server on HDInsight</a></li>
-</ul>
+<div id="spark-apis" class="section level2">
+<h2><span class="header-section-number">3.5</span> Spark APIs</h2>
+<div id="scala" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Scala</h3>
+</div>
+<div id="pyspark" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></h3>
+<p>The <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a> API might be the most commonly used API, due to Python’s ubiquity in data science. It is perhaps second in maturity to the Scala API, and when working with DataFrames, provides nearly the same performance as what you would get when writing Scala.</p>
+</div>
+<div id="sparkr-1" class="section level3">
+<h3><span class="header-section-number">3.5.3</span> SparkR</h3>
+<p>The SparkR API provides two things: a package called SparkR for creating the necessary abstractions in your R session to access Spark’s functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this <a href="https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start">quickstart</a>. The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from an environment of your choice.</p>
 
 </div>
 </div>
@@ -224,8 +217,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="microsoft-r-server-todo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -252,7 +245,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-spark.Rmd",
 "text": null
 },
 "download": null,
