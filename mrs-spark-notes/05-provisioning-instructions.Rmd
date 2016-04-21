@@ -1,0 +1,24 @@
+# Provisioning Instructions
+
+This module provides a walkthrough of how to provision a Spark cluster on Azure HDInsight Premium with Microsoft R Server, and how to add an edge node with RStudio Server.
+
+## Provision Cluster from Azure Portal
+
+The [Azure documentation](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-overview/) page provides details on how to provision a Spark cluster with Microsoft R Server.
+
+The first steps are outlined here: [Get started using R Server on HDInsight (preview)](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-get-started/)
+
+I have summarized the steps here to help you get started quickly:
+
+* Login to [portal.azure.com](ms.portal.azure.com) with your Azure subscription
+* New -> Data + Analytics -> HDInsight
+* Choose Premium cluster: R Server on Spark
+* Create an sshkey, using putty or openSSH, and include the public key in the credentials tab
+* [Install RStudio Server on the Edge Node](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-install-r-studio/)
+* Tunnel into your RStudio Server instance, and start your ML pipeline!
+
+## Installing Packages
+
+For packages you only need to run on the edge node, you can continue using `install.packages`. For packages you need installed on the edge node as well as all the worker nodes, you'll need to use a [script action](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-get-started/#install-r-packages)
+
+### todo - install packages demo
