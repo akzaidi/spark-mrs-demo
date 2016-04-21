@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
+  <meta name="generator" content="bookdown 0.0.65 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  
+  <meta name="twitter:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  
+
+<meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
+
+<meta name="date" content="2016-04-21">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="provisioning-instructions.html">
+<link rel="next" href="references.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>1.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>1.2</b> Useful Resources</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>1.2.1</b> Spark</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>1.2.2</b> Microsoft R Server</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>1.2.3</b> Azure HDInsight</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>2.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>2.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>2.4</b> SparkR</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>2.5</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>2.6</b> Prerequisites - What You’ll Need</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>3</b> Apache Spark - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>3.1</b> Distributed Programming Abstractions</a></li>
+<li class="chapter" data-level="3.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>3.2</b> RDDs</a></li>
+<li class="chapter" data-level="3.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>3.3</b> DataFrames</a></li>
+<li class="chapter" data-level="3.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>3.4</b> MLlib</a></li>
+<li class="chapter" data-level="3.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>3.5</b> Spark APIs</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>3.5.1</b> Scala</a></li>
+<li class="chapter" data-level="3.5.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>3.5.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
+<li class="chapter" data-level="3.5.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>3.5.3</b> SparkR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>4</b> Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="4.1" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>4.1</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="4.2" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>4.2</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="4.3" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>4.3</b> Compute Contexts</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>5</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
+<li class="chapter" data-level="5.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>5.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
+<li class="chapter" data-level="5.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>5.2</b> Dashboards for Management</a></li>
+<li class="chapter" data-level="5.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>5.3</b> Jupyter and RStudio Server</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>6</b> Provisioning Instructions</a><ul>
+<li class="chapter" data-level="6.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>6.1</b> Provision Cluster from Azure Portal</a></li>
+<li class="chapter" data-level="6.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>6.2</b> Installing Packages</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>6.2.1</b> todo - install packages demo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>7</b> Starting Your Machine Learning Pipeline</a><ul>
+<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-sparkr-library-in-microsoft-r-server"><i class="fa fa-check"></i><b>7.1</b> Finding SparkR Library in Microsoft R Server</a></li>
+<li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.2</b> Creating a Spark Context</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="starting-your-machine-learning-pipeline" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Starting Your Machine Learning Pipeline</h1>
+<p>The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.</p>
+<p>In Spark, you’ll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You’ll use this constructor to create new RDDs or DataFrames.</p>
+<div id="finding-sparkr-library-in-microsoft-r-server" class="section level2">
+<h2><span class="header-section-number">7.1</span> Finding SparkR Library in Microsoft R Server</h2>
+<p>In order to create a Spark Context from your RStudio Server environment, you’ll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. A system variable called “SPARK_HOME” has been set that points to the Spark installation directory, and in it you’ll find subdirectories, “R/lib”, containing the SparkR library.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">list.files</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>))
+<span class="kw">.libPaths</span>(<span class="kw">c</span>(<span class="kw">file.path</span>(<span class="kw">Sys.getenv</span>(<span class="st">&quot;SPARK_HOME&quot;</span>), <span class="st">&quot;R&quot;</span>, <span class="st">&quot;lib&quot;</span>), <span class="kw">.libPaths</span>()))</code></pre></div>
+</div>
+<div id="creating-a-spark-context" class="section level2">
+<h2><span class="header-section-number">7.2</span> Creating a Spark Context</h2>
+<p>To create a SparkContext, you should use the <code>spark.init</code> function and pass in options for the environment parameters, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># specify memory environment variables</span>
+sparkEnvir &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">spark.executor.instance =</span> <span class="st">&#39;10&#39;</span>,
+                   <span class="dt">spark.yarn.executor.memoryOverhead =</span> <span class="st">&#39;8000&#39;</span>)
+
+sc &lt;-<span class="st"> </span><span class="kw">sparkR.init</span>(
+  <span class="dt">sparkEnvir =</span> sparkEnvir,
+  <span class="dt">sparkPackages =</span> <span class="st">&quot;com.databricks:spark-csv_2.10:1.3.0&quot;</span>
+)
+
+sqlContext &lt;-<span class="st"> </span><span class="kw">sparkRSQL.init</span>(sc)</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="provisioning-instructions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-spark-context.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+This is a set of notes on Microsoft R Server and Spark with HDInsight.

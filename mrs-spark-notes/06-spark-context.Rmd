@@ -1,0 +1,41 @@
+# Starting Your Machine Learning Pipeline
+
+The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.
+
+In Spark, you'll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You'll use this constructor to create new RDDs or DataFrames. 
+
+## Finding the SparkR Library
+
+In order to create a Spark Context from your RStudio Server environment, you'll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. A system variable called "SPARK_HOME" has been set that points to the Spark installation directory, and in it you'll find subdirectories, "R/lib", containing the SparkR library. 
+
+
+```{r-spark-lib-ls}
+list.files(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"))
+
+```
+
+To add the SparkR library to your library paths, use the `.libPaths` function to include the directory in the search path for R's library tree. The library paths could also be changed from teh `Rprofile` site, either for the user or system wide. See the help on `?StartUp` for more details on R's startup mechanism.
+
+```{r-sparkr-lib, eval = FALSE}
+.libPaths(c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"), .libPaths()))
+
+```
+
+
+## Creating a Spark Context
+
+To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext. 
+
+```{r-spark-context, eval = FALSE}
+# specify memory environment variables
+sparkEnvir <- list(spark.executor.instance = '10',
+                   spark.yarn.executor.memoryOverhead = '8000')
+
+sc <- sparkR.init(
+  sparkEnvir = sparkEnvir,
+  sparkPackages = "com.databricks:spark-csv_2.10:1.3.0"
+)
+
+sqlContext <- sparkRSQL.init(sc)
+```
+
