@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.65 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
   <meta property="og:type" content="book" />
@@ -101,55 +101,68 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>1.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>1.2</b> Useful Resources</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>1.2.1</b> Spark</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>1.2.2</b> Microsoft R Server</a></li>
-<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>1.2.3</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>0.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>0.2</b> Useful Resources</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>0.2.1</b> Spark</a></li>
+<li class="chapter" data-level="0.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>0.2.2</b> Microsoft R Server</a></li>
+<li class="chapter" data-level="0.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>0.2.3</b> Azure HDInsight</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>2.2</b> Microsoft R Server FTW</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>2.3</b> Apache Spark</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>2.4</b> SparkR</a></li>
-<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>2.5</b> Azure HDInsight</a></li>
-<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>2.6</b> Prerequisites - What You’ll Need</a></li>
+<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>3</b> Apache Spark - todo</a><ul>
-<li class="chapter" data-level="3.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>3.1</b> Distributed Programming Abstractions</a></li>
-<li class="chapter" data-level="3.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>3.2</b> RDDs</a></li>
-<li class="chapter" data-level="3.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>3.3</b> DataFrames</a></li>
-<li class="chapter" data-level="3.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>3.4</b> MLlib</a></li>
-<li class="chapter" data-level="3.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>3.5</b> Spark APIs</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>3.5.1</b> Scala</a></li>
-<li class="chapter" data-level="3.5.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>3.5.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
-<li class="chapter" data-level="3.5.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>3.5.3</b> SparkR</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>4</b> Microsoft R Server - todo</a><ul>
-<li class="chapter" data-level="4.1" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>4.1</b> PEMA Algorithms and the RevoScaleR Package</a></li>
-<li class="chapter" data-level="4.2" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>4.2</b> eXternal Data Frames (XDFs)</a></li>
-<li class="chapter" data-level="4.3" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>4.3</b> Compute Contexts</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>5</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
-<li class="chapter" data-level="5.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>5.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
-<li class="chapter" data-level="5.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>5.2</b> Dashboards for Management</a></li>
-<li class="chapter" data-level="5.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>5.3</b> Jupyter and RStudio Server</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>6</b> Provisioning Instructions</a><ul>
-<li class="chapter" data-level="6.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>6.1</b> Provision Cluster from Azure Portal</a></li>
-<li class="chapter" data-level="6.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>6.2</b> Installing Packages</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>6.2.1</b> todo - install packages demo</a></li>
+<li class="chapter" data-level="2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>2</b> Apache Spark - todo</a><ul>
+<li class="chapter" data-level="2.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
+<li class="chapter" data-level="2.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>2.2</b> Distributed Programming Abstractions</a></li>
+<li class="chapter" data-level="2.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>2.3</b> RDDs</a></li>
+<li class="chapter" data-level="2.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>2.4</b> DataFrames</a></li>
+<li class="chapter" data-level="2.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>2.5</b> MLlib</a></li>
+<li class="chapter" data-level="2.6" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>2.6</b> Spark APIs</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>2.6.1</b> Scala</a></li>
+<li class="chapter" data-level="2.6.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>2.6.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
+<li class="chapter" data-level="2.6.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>2.6.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
+<li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
+<li class="chapter" data-level="4.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>4.2</b> Dashboards for Management</a></li>
+<li class="chapter" data-level="4.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>4.3</b> Jupyter and RStudio Server</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="chapter" data-level="5" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>5</b> Provisioning Instructions</a><ul>
+<li class="chapter" data-level="5.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>5.1</b> Provision Cluster from Azure Portal</a></li>
+<li class="chapter" data-level="5.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>5.2.1</b> todo - install packages demo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ingestion.html"><a href="ingestion.html"><i class="fa fa-check"></i><b>6</b> Ingesting Data into Azure Blob Storage - todo</a><ul>
+<li class="chapter" data-level="6.1" data-path="ingestion.html"><a href="ingestion.html#azcopy"><i class="fa fa-check"></i><b>6.1</b> AzCopy</a></li>
+<li class="chapter" data-level="6.2" data-path="ingestion.html"><a href="ingestion.html#azure-storage-explorer"><i class="fa fa-check"></i><b>6.2</b> Azure Storage Explorer</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
 <li class="chapter" data-level="7" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>7</b> Starting Your Machine Learning Pipeline</a><ul>
-<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-sparkr-library-in-microsoft-r-server"><i class="fa fa-check"></i><b>7.1</b> Finding SparkR Library in Microsoft R Server</a></li>
+<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>7.1</b> Finding the SparkR Library</a></li>
 <li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.2</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="7.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>7.3</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>7.3.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="7.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>7.3.2</b> Creating DataFrames from CSV Files</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -177,17 +190,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h4 class="author"><em>Ali Zaidi, Machine Learning and Data Science, Microsoft</em></h4>
 <h4 class="date"><em>2016-04-21</em></h4>
 </div>
-<div id="abstract" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Abstract</h1>
+<div id="abstract" class="section level1 unnumbered">
+<h1>Abstract</h1>
 <div id="scalable-machine-learning-with-microsoft-r-server-and-spark" class="section level2">
-<h2><span class="header-section-number">1.1</span> Scalable Machine Learning with Microsoft R Server and Spark</h2>
+<h2><span class="header-section-number">0.1</span> Scalable Machine Learning with Microsoft R Server and Spark</h2>
 <p>This collection of notes in progress will help you get started on using Microsoft R Server and Spark with the Azure HDInsight platform.</p>
 </div>
 <div id="useful-resources" class="section level2">
-<h2><span class="header-section-number">1.2</span> Useful Resources</h2>
+<h2><span class="header-section-number">0.2</span> Useful Resources</h2>
 <p>There are a number of useful resources on Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.</p>
 <div id="spark" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Spark</h3>
+<h3><span class="header-section-number">0.2.1</span> Spark</h3>
 <ul>
 <li><a href="http://spark.apache.org/docs/latest/index.html">Spark Documentation Home Page</a></li>
 <li><a href="http://people.csail.mit.edu/matei/papers/2010/hotcloud_spark.pdf">The Founding Paper</a></li>
@@ -201,7 +214,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="microsoft-r-server" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Microsoft R Server</h3>
+<h3><span class="header-section-number">0.2.2</span> Microsoft R Server</h3>
 <ul>
 <li><a href="https://www.microsoft.com/en-us/server-cloud/products/r-server/">Landing Page for R Server</a></li>
 <li><a href="https://packages.revolutionanalytics.com/doc/8.0.0/">Documentation</a></li>
@@ -209,7 +222,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 <div id="azure-hdinsight" class="section level3">
-<h3><span class="header-section-number">1.2.3</span> Azure HDInsight</h3>
+<h3><span class="header-section-number">0.2.3</span> Azure HDInsight</h3>
 <ul>
 <li><a href="https://azure.microsoft.com/en-us/documentation/services/hdinsight/">HDInsight Documentation Home Page</a></li>
 <li><a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-apache-spark-machine-learning-mllib-ipython/">Machine Learning with HDInsight Spark</a></li>
@@ -219,6 +232,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 </div>
 </div>
+
+
+
             </section>
 
           </div>

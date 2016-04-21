@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.65 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
   <meta property="og:type" content="book" />
@@ -34,7 +34,7 @@
   
   
 <link rel="prev" href="introduction.html">
-<link rel="next" href="microsoft-r-server-todo.html">
+<link rel="next" href="r-microsoft-r-server-todo.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -101,55 +101,68 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Abstract</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>1.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>1.2</b> Useful Resources</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>1.2.1</b> Spark</a></li>
-<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>1.2.2</b> Microsoft R Server</a></li>
-<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>1.2.3</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>0.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>0.2</b> Useful Resources</a><ul>
+<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>0.2.1</b> Spark</a></li>
+<li class="chapter" data-level="0.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>0.2.2</b> Microsoft R Server</a></li>
+<li class="chapter" data-level="0.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>0.2.3</b> Azure HDInsight</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>2.1</b> Why R?</a></li>
-<li class="chapter" data-level="2.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>2.2</b> Microsoft R Server FTW</a></li>
-<li class="chapter" data-level="2.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>2.3</b> Apache Spark</a></li>
-<li class="chapter" data-level="2.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>2.4</b> SparkR</a></li>
-<li class="chapter" data-level="2.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>2.5</b> Azure HDInsight</a></li>
-<li class="chapter" data-level="2.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>2.6</b> Prerequisites - What You’ll Need</a></li>
+<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>3</b> Apache Spark - todo</a><ul>
-<li class="chapter" data-level="3.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>3.1</b> Distributed Programming Abstractions</a></li>
-<li class="chapter" data-level="3.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>3.2</b> RDDs</a></li>
-<li class="chapter" data-level="3.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>3.3</b> DataFrames</a></li>
-<li class="chapter" data-level="3.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>3.4</b> MLlib</a></li>
-<li class="chapter" data-level="3.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>3.5</b> Spark APIs</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>3.5.1</b> Scala</a></li>
-<li class="chapter" data-level="3.5.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>3.5.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
-<li class="chapter" data-level="3.5.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>3.5.3</b> SparkR</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>4</b> Microsoft R Server - todo</a><ul>
-<li class="chapter" data-level="4.1" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>4.1</b> PEMA Algorithms and the RevoScaleR Package</a></li>
-<li class="chapter" data-level="4.2" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>4.2</b> eXternal Data Frames (XDFs)</a></li>
-<li class="chapter" data-level="4.3" data-path="microsoft-r-server-todo.html"><a href="microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>4.3</b> Compute Contexts</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>5</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
-<li class="chapter" data-level="5.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>5.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
-<li class="chapter" data-level="5.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>5.2</b> Dashboards for Management</a></li>
-<li class="chapter" data-level="5.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>5.3</b> Jupyter and RStudio Server</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>6</b> Provisioning Instructions</a><ul>
-<li class="chapter" data-level="6.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>6.1</b> Provision Cluster from Azure Portal</a></li>
-<li class="chapter" data-level="6.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>6.2</b> Installing Packages</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>6.2.1</b> todo - install packages demo</a></li>
+<li class="chapter" data-level="2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>2</b> Apache Spark - todo</a><ul>
+<li class="chapter" data-level="2.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
+<li class="chapter" data-level="2.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>2.2</b> Distributed Programming Abstractions</a></li>
+<li class="chapter" data-level="2.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>2.3</b> RDDs</a></li>
+<li class="chapter" data-level="2.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>2.4</b> DataFrames</a></li>
+<li class="chapter" data-level="2.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>2.5</b> MLlib</a></li>
+<li class="chapter" data-level="2.6" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>2.6</b> Spark APIs</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>2.6.1</b> Scala</a></li>
+<li class="chapter" data-level="2.6.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>2.6.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
+<li class="chapter" data-level="2.6.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>2.6.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
+<li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
+<li class="chapter" data-level="4.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>4.2</b> Dashboards for Management</a></li>
+<li class="chapter" data-level="4.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>4.3</b> Jupyter and RStudio Server</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="chapter" data-level="5" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>5</b> Provisioning Instructions</a><ul>
+<li class="chapter" data-level="5.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>5.1</b> Provision Cluster from Azure Portal</a></li>
+<li class="chapter" data-level="5.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>5.2.1</b> todo - install packages demo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ingestion.html"><a href="ingestion.html"><i class="fa fa-check"></i><b>6</b> Ingesting Data into Azure Blob Storage - todo</a><ul>
+<li class="chapter" data-level="6.1" data-path="ingestion.html"><a href="ingestion.html#azcopy"><i class="fa fa-check"></i><b>6.1</b> AzCopy</a></li>
+<li class="chapter" data-level="6.2" data-path="ingestion.html"><a href="ingestion.html#azure-storage-explorer"><i class="fa fa-check"></i><b>6.2</b> Azure Storage Explorer</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
 <li class="chapter" data-level="7" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>7</b> Starting Your Machine Learning Pipeline</a><ul>
-<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-sparkr-library-in-microsoft-r-server"><i class="fa fa-check"></i><b>7.1</b> Finding SparkR Library in Microsoft R Server</a></li>
+<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>7.1</b> Finding the SparkR Library</a></li>
 <li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.2</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="7.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>7.3</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>7.3.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="7.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>7.3.2</b> Creating DataFrames from CSV Files</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
 <li class="divider"></li>
@@ -173,7 +186,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="apache-spark---todo" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Apache Spark - todo</h1>
+<h1><span class="header-section-number">Chapter 2</span> Apache Spark - todo</h1>
 <p>The core of Apache Spark consists of four components:</p>
 <ol style="list-style-type: decimal">
 <li><a href="http://spark.apache.org/sql/">Spark SQL</a></li>
@@ -182,32 +195,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="http://spark.apache.org/graphx/">GraphX - Graphical Computing Library</a></li>
 </ol>
 <p>The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: <a href="https://amplab.cs.berkeley.edu/software/">Berkeley Data Analytics Stack</a></p>
+<div id="lazyevalfp" class="section level2">
+<h2><span class="header-section-number">2.1</span> Functional Programming and Lazy Evaluation</h2>
+<p>In functional programming, all constructs are functions, and all computations are evaluated as function calls (higher-order functions being functions that call upon other functions, think of it as function composition). Pure functional languages (such as Haskell), aim to achieve purity in their evaluation, and therefore rarely change-state or mutate objects, and don’t cause any side-effects.</p>
+<p>Scala, which composes ~80% of the code in Spark, has full support for functional programming. Although not a pure functional progrmaming langauge like Haskell, it is actually a hybrid of object oriented languages like Java and functional languages like Haskell.</p>
+<p>Lazy evaluation allows you defer evaluation of a function until it is necessary. This makes it easy to create higher order functions, and then optimize their computation by only evaluation what is necessary. This is particularly useful for data science, where one is often manipulating large amounts of data, filtering through the noise to find the signal, which is where you would want most of your computation to focus on.</p>
+</div>
 <div id="distributed-programming-abstractions" class="section level2">
-<h2><span class="header-section-number">3.1</span> Distributed Programming Abstractions</h2>
+<h2><span class="header-section-number">2.2</span> Distributed Programming Abstractions</h2>
 <p>A Spark program consists of two programs, a driver program and a worker program. The driver programs run on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine).</p>
 </div>
 <div id="rdds" class="section level2">
-<h2><span class="header-section-number">3.2</span> RDDs</h2>
+<h2><span class="header-section-number">2.3</span> RDDs</h2>
 <p>RDDs, short for Resilient Distributed Datasets</p>
 </div>
 <div id="dataframes" class="section level2">
-<h2><span class="header-section-number">3.3</span> DataFrames</h2>
+<h2><span class="header-section-number">2.4</span> DataFrames</h2>
 </div>
 <div id="mllib" class="section level2">
-<h2><span class="header-section-number">3.4</span> MLlib</h2>
+<h2><span class="header-section-number">2.5</span> MLlib</h2>
 </div>
 <div id="spark-apis" class="section level2">
-<h2><span class="header-section-number">3.5</span> Spark APIs</h2>
+<h2><span class="header-section-number">2.6</span> Spark APIs</h2>
 <div id="scala" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Scala</h3>
+<h3><span class="header-section-number">2.6.1</span> Scala</h3>
 </div>
 <div id="pyspark" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></h3>
+<h3><span class="header-section-number">2.6.2</span> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></h3>
 <p>The <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a> API might be the most commonly used API, due to Python’s ubiquity in data science. It is perhaps second in maturity to the Scala API, and when working with DataFrames, provides nearly the same performance as what you would get when writing Scala.</p>
 </div>
 <div id="sparkr-1" class="section level3">
-<h3><span class="header-section-number">3.5.3</span> SparkR</h3>
-<p>The SparkR API provides two things: a package called SparkR for creating the necessary abstractions in your R session to access Spark’s functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this <a href="https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start">quickstart</a>. The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from an environment of your choice.</p>
+<h3><span class="header-section-number">2.6.3</span> SparkR</h3>
+<p>The SparkR API provides two ways of interacting with Spark through R: a package called SparkR for creating the necessary abstractions in your R session to access Spark’s functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this <a href="https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start">quickstart</a>. The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from any R environment of your choice.</p>
 
 </div>
 </div>
@@ -218,7 +237,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="microsoft-r-server-todo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="r-microsoft-r-server-todo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

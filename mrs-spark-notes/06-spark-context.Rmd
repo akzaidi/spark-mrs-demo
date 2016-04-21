@@ -1,8 +1,21 @@
+# (PART) Data Manipulation and Data Aggregation {-}
+
+
 # Starting Your Machine Learning Pipeline
+
+## todo
++ sparkR operations very slow here
++ might have to do with knitR starting new context, need to check on how to close out sparkR session before reknitting
++ no console output from rxHadoop shell wrappers, need to sink and show if want to see output
 
 The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.
 
 In Spark, you'll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You'll use this constructor to create new RDDs or DataFrames. 
+
+```{r-lib, echo = FALSE}
+.libPaths(c("/home/alizaidi/R/x86_64-pc-linux-gnu-library/3.2", "/usr/lib64/MRO-for-MRS-8.0.3/R-3.2.2/lib/R/library", "/usr/hdp/2.4.1.1-3/spark/R/lib"))
+```
+
 
 ## Finding the SparkR Library
 
@@ -24,10 +37,11 @@ To add the SparkR library to your library paths, use the `.libPaths` function to
 
 ## Creating a Spark Context
 
-To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext. 
+To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext using the `sparkRSQL.init` function. 
 
 ```{r-spark-context, eval = FALSE}
-# specify memory environment variables
+library(SparkR)
+
 sparkEnvir <- list(spark.executor.instance = '10',
                    spark.yarn.executor.memoryOverhead = '8000')
 
@@ -43,4 +57,56 @@ We added the `sparkPackages` argument and set it to the value of `spark-csv` pac
 
 After you are done using your Spark session, you can terminate your backend to Spark by running `sparkR.stop()`.
 
+## Creating DataFrames
+
+Using our `sqlContext` variable, we can create DataFrames from local R data.frames, from Hive tables, or from other data sources. You could create a Spark DataFrame from a local R data.frame using the `createDataFrame` function, 
+
+### From Local R data.frames
+
+Creating Spark DataFrames from local R data.frames might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node's memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and will scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it'll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.
+
+We'll import data from the nycflight13 package into a Spark DataFrame, and use it's data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK
+
+```{r-rdftosparkdf, eval = FALSE}
+library(nycflights13)
+df <- createDataFrame(sqlContext, nycflights13::flights)
+jfk_flights <- filter(flights, flights$origin == "JFK")
+# Group the flights by destination and aggregate by the number of flights
+dest_flights <- agg(group_by(jfk_flights, jfk_flights$dest), count = n(jfk_flights$dest))
+# Now sort by the `count` column and print the first few rows
+head(arrange(dest_flights, desc(dest_flights$count)))
+
+```
+
+This same analysis could be streamlined using the `%>%` operator exposed by the magrittr package:
+
+```{r-spark-magrittr, eval = FALSE}
+library(magrittr)
+dest_flights <- filter(flights, flights$origin == "JFK") %>% 
+  group_by(flights$dest) %>% 
+  summarize(count = n(flights$dest))
+dest_flights %>% arrange(desc(dest_flights$count)) %>% head
+
+
+```
+
+### Creating DataFrames from CSV Files
+
+Since we imported the spark-csv package, we can import CSV files into DataFrames. We will be using the full airlines dataset, which I assume you have already ingested into Blob storage by following the steps in Section \@ref(ingestion).
+
+We have saved in our data_dir a couple of data directories (virtually, everything in Azure Storage is a simple blob!). Let's see what we have in our directory using the `rxHadoopListFiles` command, which is simply a wrapper to hadoop shell command `hadoop fs -ls`
+
+```{r-data-dir}
+data_dir <- "/user/RevoShare/alizaidi"
+rxHadoopListFiles(data_dir)
+
+```
+
+Taking a look at the individual directories, we can see how many files there are for the Airlines directory and Weather directory
+
+```{r-air-weather}
+rxHadoopCommand("fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head")
+rxHadoopCommand("fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head")
+
+```
 
