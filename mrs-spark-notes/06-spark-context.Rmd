@@ -14,7 +14,7 @@ list.files(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"))
 
 ```
 
-To add the SparkR library to your library paths, use the `.libPaths` function to include the directory in the search path for R's library tree. The library paths could also be changed from teh `Rprofile` site, either for the user or system wide. See the help on `?StartUp` for more details on R's startup mechanism.
+To add the SparkR library to your library paths, use the `.libPaths` function to include the directory in the search path for R's library tree. The library paths could also be changed from in the `Rprofile`, either for the user or system wide. See the help on `?StartUp` for more details on R's startup mechanism.
 
 ```{r-sparkr-lib, eval = FALSE}
 .libPaths(c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"), .libPaths()))
@@ -24,7 +24,7 @@ To add the SparkR library to your library paths, use the `.libPaths` function to
 
 ## Creating a Spark Context
 
-To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext. 
+To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext. 
 
 ```{r-spark-context, eval = FALSE}
 # specify memory environment variables
@@ -38,4 +38,9 @@ sc <- sparkR.init(
 
 sqlContext <- sparkRSQL.init(sc)
 ```
+
+We added the `sparkPackages` argument and set it to the value of `spark-csv` package provided by databricks. This will allow us to read csv objects into Spark DataFrames. Databricks are a prominent vendor for Spark, and are developers of many Spark packages (think of them as the RStudio of the Spark ecosystem). 
+
+After you are done using your Spark session, you can terminate your backend to Spark by running `sparkR.stop()`.
+
 
