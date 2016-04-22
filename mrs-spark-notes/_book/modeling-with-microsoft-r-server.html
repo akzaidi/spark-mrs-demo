@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
+  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  
+  <meta name="twitter:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  
+
+<meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
+
+<meta name="date" content="2016-04-22">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html">
+<link rel="next" href="placeholder.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="chapter" data-level="1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>1</b> Apache Spark - todo</a></li>
+<li class="chapter" data-level="2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>2</b> R &amp; Microsoft R Server - todo</a></li>
+<li class="chapter" data-level="3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>3</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a></li>
+<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
+<li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
+<li class="chapter" data-level="4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>4</b> Modeling with Microsoft R Server</a><ul>
+<li class="chapter" data-level="4.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>4.1</b> Import CSV to XDF</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>5</b> Placeholder</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modeling-with-microsoft-r-server" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Modeling with Microsoft R Server</h1>
+<div id="import-csv-to-xdf" class="section level2">
+<h2><span class="header-section-number">4.1</span> Import CSV to XDF</h2>
+<p>To take full advantage of the PEMA algorithms provided by MRS, we will import the merged data, currently saved as csv in blob storage, into an xdf.</p>
+<p>We first have some housekeeping items to take care. We need to specify the spark compute context for the <code>RevoScaleR</code> package to properly utlize the Spark cluster. Saving a text file to HDFS creates blocks of the data and saves them in separate directories, and also saves an additional directory entitled “_SUCCESS&quot; to indicate the import operation was successful. We need to remove this file before importing to xdf, as it has no value for the final data.</p>
+<p>Further, in order to make sure the MRS modeling functions respect the data types of the columns in our merged dataset, we need to provide it with some column metadata. This can be provided with the <code>colInfo</code> argument inside of <code>rxImport</code>.</p>
+<p>Lastly, we need to provide MRS with pointers to the HDFS store we will be saving our XDF to.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxOptions</span>(<span class="dt">fileSystem =</span> <span class="kw">RxHdfsFileSystem</span>())
+
+dataDir &lt;-<span class="st"> &quot;/user/RevoShare/alizaidi/delayDataLarge&quot;</span>
+
+if(<span class="kw">rxOptions</span>()$hdfsHost ==<span class="st"> &quot;default&quot;</span>) {
+ fullDataDir &lt;-<span class="st"> </span>dataDir
+} else {
+ fullDataDir &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">rxOptions</span>()$hdfsHost, dataDir)
+}  
+
+computeContext &lt;-<span class="st"> </span><span class="kw">RxSpark</span>(<span class="dt">consoleOutput =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># there&#39;s a folder called SUCCESS_ that we need to delete manually</span>
+file_to_delete &lt;-<span class="st"> </span><span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;JoinAirWeatherDelay&quot;</span>, <span class="st">&quot;_SUCCESS&quot;</span>)
+delete_command &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;fs -rm&quot;</span>, file_to_delete)
+<span class="kw">rxHadoopCommand</span>(delete_command)
+
+
+colInfo &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="dt">ArrDel15 =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">Year =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">Month =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">DayofMonth =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">DayOfWeek =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">Carrier =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">OriginAirportID =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">DestAirportID =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;factor&quot;</span>),
+  <span class="dt">RelativeHumidityOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">AltimeterOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">DryBulbCelsiusOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">WindSpeedOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">VisibilityOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">DewPointCelsiusOrigin =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">RelativeHumidityDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">AltimeterDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">DryBulbCelsiusDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">WindSpeedDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">VisibilityDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">DewPointCelsiusDest =</span> <span class="kw">list</span>(<span class="dt">type=</span><span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">CRSDepTime =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">CRSArrTime =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">DepDelay =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&quot;numeric&quot;</span>),
+  <span class="dt">ArrDelay =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&quot;numeric&quot;</span>)
+)
+
+myNameNode &lt;-<span class="st"> &quot;default&quot;</span>
+myPort &lt;-<span class="st"> </span><span class="dv">0</span>
+hdfsFS &lt;-<span class="st"> </span><span class="kw">RxHdfsFileSystem</span>(<span class="dt">hostName =</span> myNameNode, 
+                           <span class="dt">port =</span> myPort)
+
+joined_txt &lt;-<span class="st"> </span><span class="kw">RxTextData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;JoinAirWeatherDelay&quot;</span>),
+                           <span class="dt">colInfo =</span> colInfo,
+                           <span class="dt">fileSystem =</span> hdfsFS)
+
+dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
+                      <span class="dt">fileSystem =</span> hdfsFS)
+
+
+
+<span class="kw">rxImport</span>(<span class="dt">inData =</span> joined_txt, dest_xdf, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Now that we have imported our data to an XDF, we can get some information about the variables:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
+                      <span class="dt">fileSystem =</span> hdfsFS)
+<span class="kw">rxGetInfo</span>(dest_xdf, <span class="dt">getVarInfo =</span> T)</code></pre></div>
+<pre><code>## ======  ed00-mrs-sp (Master HPA Process) has started run at Fri Apr 22 04:14:07 2016  ====== 
+## ======  ed00-mrs-sp (Master HPA Process) has completed run at Fri Apr 22 04:14:25 2016  ======</code></pre>
+<pre><code>## File name: /user/RevoShare/alizaidi/delayDataLarge/joinedAirWeatherXdf 
+## Number of composite data files: 80 
+## Number of observations: 148619655 
+## Number of variables: 22 
+## Number of blocks: 320 
+## Compression type: zlib 
+## Variable information: 
+## Var 1: ArrDel15, Type: numeric, Low/High: (0.0000, 1.0000)
+## Var 2: Year
+##        26 factor levels: 1990 1992 1994 1997 1999 ... 2005 2008 2010 2011 2012
+## Var 3: Month
+##        12 factor levels: 3 8 9 2 5 ... 11 6 12 7 10
+## Var 4: DayofMonth
+##        31 factor levels: 11 23 9 26 4 ... 12 8 27 25 22
+## Var 5: DayOfWeek
+##        7 factor levels: 7 5 3 2 4 1 6
+## Var 6: Carrier
+##        30 factor levels: US UA DL NW DH ... PA (1) KH HA PS VX
+## Var 7: OriginAirportID
+##        374 factor levels: 10821 13930 11057 13230 11433 ... 10559 13341 14314 11931 10558
+## Var 8: DestAirportID
+##        378 factor levels: 10135 10136 10140 10146 10155 ... 10559 11931 10894 14475 12899
+## Var 9: CRSDepTime, Type: numeric, Low/High: (0.0000, 24.0000)
+## Var 10: CRSArrTime, Type: numeric, Low/High: (0.0000, 2400.0000)
+## Var 11: RelativeHumidityOrigin, Type: numeric, Low/High: (0.0000, 100.0000)
+## Var 12: AltimeterOrigin, Type: numeric, Low/High: (28.1700, 31.1600)
+## Var 13: DryBulbCelsiusOrigin, Type: numeric, Low/High: (-46.1000, 47.2000)
+## Var 14: WindSpeedOrigin, Type: numeric, Low/High: (0.0000, 81.0000)
+## Var 15: VisibilityOrigin, Type: numeric, Low/High: (0.0000, 88.0000)
+## Var 16: DewPointCelsiusOrigin, Type: numeric, Low/High: (-41.7000, 29.0000)
+## Var 17: RelativeHumidityDest, Type: numeric, Low/High: (0.0000, 100.0000)
+## Var 18: AltimeterDest, Type: numeric, Low/High: (28.1700, 31.1600)
+## Var 19: DryBulbCelsiusDest, Type: numeric, Low/High: (-46.1000, 53.9000)
+## Var 20: WindSpeedDest, Type: numeric, Low/High: (0.0000, 63.0000)
+## Var 21: VisibilityDest, Type: numeric, Low/High: (0.0000, 88.0000)
+## Var 22: DewPointCelsiusDest, Type: numeric, Low/High: (-43.0000, 29.0000)</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="placeholder.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-modeling-mrs.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

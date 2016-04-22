@@ -20,7 +20,7 @@ This collection of notes in progress will help you get started with using Micros
 ## Useful Resources {-}
 There are a number of useful resources for Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.
 
-todo: this should probably got into the .bib file instead, and use cross-reference.
+todo: this should probably got into the .bib file instead, and use citations.
 
 ### Spark {-}
 + [Spark Documentation Home Page](http://spark.apache.org/docs/latest/index.html)
