@@ -139,11 +139,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>2.6.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
-<li class="chapter" data-level="3.2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
-<li class="chapter" data-level="3.3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
-<li class="chapter" data-level="3.4" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="rserver.html"><a href="rserver.html#computecontext"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
 <li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
@@ -179,6 +179,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
 <li class="chapter" data-level="9" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>9</b> Modeling with Microsoft R Server</a><ul>
 <li class="chapter" data-level="9.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>9.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="9.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>9.2</b> Splitting XDF into Train and Test Tests</a></li>
+<li class="chapter" data-level="9.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>9.3</b> Training Binary Classification Models</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>9.3.1</b> Logistic Regression Models</a></li>
+<li class="chapter" data-level="9.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>9.3.2</b> Tree and Ensemble Classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>9.4</b> Testing Models</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
@@ -241,7 +247,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="versioning" class="section level2">
 <h2><span class="header-section-number">1.7</span> Versioning</h2>
-<p>We will be using HDInsight 3.4, which is runnign HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3.</p>
+<p>We will be using HDInsight 3.4, which is running HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3. The HDInsight cluster consists of 4 worker nodes, two head nodes, and an edge node. Each node conists of 8 cores, and 28 GB of RAM.</p>
 
 </div>
 </div>

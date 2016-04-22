@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html">
-<link rel="next" href="placeholder.html">
+<link rel="prev" href="data-manipulation-with-sparkr.html">
+<link rel="next" href="references.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,6 +49,11 @@
 
 
 
+<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.5/d3.min.js"></script>
+<script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
+<script src="libs/dimple-2.1.6/dimple.min.js"></script>
+<script src="libs/dimple-binding-0.1/dimple.js"></script>
 
 
 <style type="text/css">
@@ -104,18 +109,84 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
-<li class="part"><b><a href="#">Overview</a></b></li>
-<li class="chapter" data-level="1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>1</b> Apache Spark - todo</a></li>
-<li class="chapter" data-level="2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>2</b> R &amp; Microsoft R Server - todo</a></li>
-<li class="chapter" data-level="3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>3</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a></li>
-<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
-<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
-<li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
-<li class="chapter" data-level="4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>4</b> Modeling with Microsoft R Server</a><ul>
-<li class="chapter" data-level="4.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>4.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i>Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i>Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i>Microsoft R Server</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i>Azure HDInsight</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>5</b> Placeholder</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.7</b> Versioning</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>2</b> Apache Spark - todo</a><ul>
+<li class="chapter" data-level="2.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
+<li class="chapter" data-level="2.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>2.2</b> Distributed Programming Abstractions</a></li>
+<li class="chapter" data-level="2.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#rdds"><i class="fa fa-check"></i><b>2.3</b> RDDs</a></li>
+<li class="chapter" data-level="2.4" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#dataframes"><i class="fa fa-check"></i><b>2.4</b> DataFrames</a></li>
+<li class="chapter" data-level="2.5" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#mllib"><i class="fa fa-check"></i><b>2.5</b> MLlib</a></li>
+<li class="chapter" data-level="2.6" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#spark-apis"><i class="fa fa-check"></i><b>2.6</b> Spark APIs</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#scala"><i class="fa fa-check"></i><b>2.6.1</b> Scala</a></li>
+<li class="chapter" data-level="2.6.2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#pyspark"><i class="fa fa-check"></i><b>2.6.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
+<li class="chapter" data-level="2.6.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>2.6.3</b> SparkR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="rserver.html"><a href="rserver.html#computecontext"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
+<li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
+<li class="chapter" data-level="4.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>4.2</b> Dashboards for Management</a></li>
+<li class="chapter" data-level="4.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>4.3</b> Jupyter and RStudio Server</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="chapter" data-level="5" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>5</b> Provisioning Instructions</a><ul>
+<li class="chapter" data-level="5.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>5.1</b> Provision Cluster from Azure Portal</a></li>
+<li class="chapter" data-level="5.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>5.2.1</b> todo - install packages demo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ingestion.html"><a href="ingestion.html"><i class="fa fa-check"></i><b>6</b> Ingesting Data into Azure Blob Storage - todo</a><ul>
+<li class="chapter" data-level="6.1" data-path="ingestion.html"><a href="ingestion.html#azcopy"><i class="fa fa-check"></i><b>6.1</b> AzCopy</a></li>
+<li class="chapter" data-level="6.2" data-path="ingestion.html"><a href="ingestion.html#azure-storage-explorer"><i class="fa fa-check"></i><b>6.2</b> Azure Storage Explorer</a></li>
+</ul></li>
+<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
+<li class="chapter" data-level="7" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>7</b> Starting Your Machine Learning Pipeline</a><ul>
+<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#todo"><i class="fa fa-check"></i><b>7.1</b> todo</a></li>
+<li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>7.2</b> Finding the SparkR Library</a></li>
+<li class="chapter" data-level="7.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.3</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="7.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>7.4</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>7.4.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="7.4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>7.4.2</b> Creating DataFrames from CSV Files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>8</b> Data Manipulation with SparkR</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>8.1</b> Data Aggregations</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>8.1.1</b> Merging Data</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
+<li class="chapter" data-level="9" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>9</b> Modeling with Microsoft R Server</a><ul>
+<li class="chapter" data-level="9.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>9.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="9.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>9.2</b> Splitting XDF into Train and Test Tests</a></li>
+<li class="chapter" data-level="9.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>9.3</b> Training Binary Classification Models</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>9.3.1</b> Logistic Regression Models</a></li>
+<li class="chapter" data-level="9.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>9.3.2</b> Tree and Ensemble Classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>9.4</b> Testing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -137,9 +208,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="modeling-with-microsoft-r-server" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Modeling with Microsoft R Server</h1>
+<h1><span class="header-section-number">Chapter 9</span> Modeling with Microsoft R Server</h1>
 <div id="import-csv-to-xdf" class="section level2">
-<h2><span class="header-section-number">4.1</span> Import CSV to XDF</h2>
+<h2><span class="header-section-number">9.1</span> Import CSV to XDF</h2>
 <p>To take full advantage of the PEMA algorithms provided by MRS, we will import the merged data, currently saved as csv in blob storage, into an xdf.</p>
 <p>We first have some housekeeping items to take care. We need to specify the spark compute context for the <code>RevoScaleR</code> package to properly utlize the Spark cluster. Saving a text file to HDFS creates blocks of the data and saves them in separate directories, and also saves an additional directory entitled “_SUCCESS&quot; to indicate the import operation was successful. We need to remove this file before importing to xdf, as it has no value for the final data.</p>
 <p>Further, in order to make sure the MRS modeling functions respect the data types of the columns in our merged dataset, we need to provide it with some column metadata. This can be provided with the <code>colInfo</code> argument inside of <code>rxImport</code>.</p>
@@ -205,11 +276,10 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
 
 <span class="kw">rxImport</span>(<span class="dt">inData =</span> joined_txt, dest_xdf, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Now that we have imported our data to an XDF, we can get some information about the variables:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
-                      <span class="dt">fileSystem =</span> hdfsFS)
-<span class="kw">rxGetInfo</span>(dest_xdf, <span class="dt">getVarInfo =</span> T)</code></pre></div>
-<pre><code>## ======  ed00-mrs-sp (Master HPA Process) has started run at Fri Apr 22 04:14:07 2016  ====== 
-## ======  ed00-mrs-sp (Master HPA Process) has completed run at Fri Apr 22 04:14:25 2016  ======</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxGetInfo</span>(<span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
+                      <span class="dt">fileSystem =</span> hdfsFS), <span class="dt">getVarInfo =</span> T, <span class="dt">numRows =</span> <span class="dv">2</span>)</code></pre></div>
+<pre><code>## ======  ed00-mrs-sp (Master HPA Process) has started run at Fri Apr 22 04:44:16 2016  ====== 
+## ======  ed00-mrs-sp (Master HPA Process) has completed run at Fri Apr 22 04:44:44 2016  ======</code></pre>
 <pre><code>## File name: /user/RevoShare/alizaidi/delayDataLarge/joinedAirWeatherXdf 
 ## Number of composite data files: 80 
 ## Number of observations: 148619655 
@@ -245,7 +315,755 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
 ## Var 19: DryBulbCelsiusDest, Type: numeric, Low/High: (-46.1000, 53.9000)
 ## Var 20: WindSpeedDest, Type: numeric, Low/High: (0.0000, 63.0000)
 ## Var 21: VisibilityDest, Type: numeric, Low/High: (0.0000, 88.0000)
-## Var 22: DewPointCelsiusDest, Type: numeric, Low/High: (-43.0000, 29.0000)</code></pre>
+## Var 22: DewPointCelsiusDest, Type: numeric, Low/High: (-43.0000, 29.0000)
+## Data (2 rows starting with row 1):
+##   ArrDel15 Year Month DayofMonth DayOfWeek Carrier OriginAirportID
+## 1        0 1990     3         11         7      US           10821
+## 2        1 1992     8         23         7      UA           13930
+##   DestAirportID CRSDepTime CRSArrTime RelativeHumidityOrigin
+## 1         10135         10       1056                     NA
+## 2         10135          6        928                     NA
+##   AltimeterOrigin DryBulbCelsiusOrigin WindSpeedOrigin VisibilityOrigin
+## 1              NA                   NA              NA               NA
+## 2              NA                   NA              NA               NA
+##   DewPointCelsiusOrigin RelativeHumidityDest AltimeterDest
+## 1                    NA                   NA            NA
+## 2                    NA                   NA            NA
+##   DryBulbCelsiusDest WindSpeedDest VisibilityDest DewPointCelsiusDest
+## 1                 NA            NA             NA                  NA
+## 2                 NA            NA             NA                  NA</code></pre>
+</div>
+<div id="splitting-xdf-into-train-and-test-tests" class="section level2">
+<h2><span class="header-section-number">9.2</span> Splitting XDF into Train and Test Tests</h2>
+<p>Prior to estimating our predictive models, we need to split our dataset into a training set, which we’ll use for estimation, and a test set that we’ll use for validating our results.</p>
+<p>Since we have time series data (data ordered by time), we will split our data by time. We’ll use the data prior to 2012 for training, and the data in 2012 for testing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainDS &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>( <span class="kw">file.path</span>(dataDir, <span class="st">&quot;finalDataTrain&quot;</span> ),
+                      <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxDataStep</span>( <span class="dt">inData =</span> dest_xdf, <span class="dt">outFile =</span> trainDS,
+            <span class="dt">rowSelection =</span> ( Year !=<span class="st"> </span><span class="dv">2012</span> ), <span class="dt">overwrite =</span> T )
+
+testDS &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>( <span class="kw">file.path</span>(dataDir, <span class="st">&quot;finalDataTest&quot;</span> ),
+                     <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxDataStep</span>( <span class="dt">inData =</span> dest_xdf, <span class="dt">outFile =</span> testDS,
+            <span class="dt">rowSelection =</span> ( Year ==<span class="st"> </span><span class="dv">2012</span> ), <span class="dt">overwrite =</span> T )</code></pre></div>
+</div>
+<div id="training-binary-classification-models" class="section level2">
+<h2><span class="header-section-number">9.3</span> Training Binary Classification Models</h2>
+<p>Now that we have our train and test sets, we can estimate our predictive model. Let’s try to predict the probability that a flight will be delayed as a function of other variables.</p>
+<div id="logistic-regression-models" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Logistic Regression Models</h3>
+<p>RevoScaleR provides a highly optimized logistic regression model based on the Iteratively Reweighted Least Squares (IRLS) algorithm, which can be called using the <code>rxLogit</code> function. The <code>rxLogit</code> function looks nearly identical to the standard logistic regression function provided by the <code>glm</code> function in the base <code>stats</code> package, taking a formula as it’s first argument, and the data as it’s second argument.</p>
+<p>We create a handy function <code>make_formula</code> for creating formula objects based on the variables in the <code>all_vars</code> argument of the function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make_formula &lt;-<span class="st"> </span>function(resp_var,
+                         vars_exclude,
+                         all_vars) {
+  
+  features &lt;-<span class="st"> </span>all_vars[!(all_vars %in%<span class="st"> </span><span class="kw">c</span>(resp_var, vars_exclude))]
+  form &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(resp_var, <span class="kw">paste0</span>(features, <span class="dt">collapse =</span> <span class="st">&quot; + &quot;</span>),
+                           <span class="dt">sep  =</span> <span class="st">&quot; ~ &quot;</span>))
+  
+  <span class="kw">return</span>(form)
+}
+
+data_names &lt;-<span class="st"> </span><span class="kw">rxGetVarNames</span>(trainDS)
+
+form &lt;-<span class="st"> </span><span class="kw">make_formula</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;DepDelay&quot;</span>, <span class="st">&quot;ArrDelay&quot;</span>), data_names)
+
+<span class="kw">system.time</span>(logitModel &lt;-<span class="st"> </span><span class="kw">rxLogit</span>(form, <span class="dt">data =</span> trainDS))
+ <span class="co">#   user  system elapsed </span>
+ <span class="co"># 15.916  17.068 302.806 </span>
+
+base::<span class="kw">summary</span>(logitModel)</code></pre></div>
+</div>
+<div id="tree-and-ensemble-classifiers" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Tree and Ensemble Classifiers</h3>
+<p>Training the logistic regression model on the full training set took about five minutes. Logistic regression models are frequently used for classification problems due to their interpability and extensibility. However, without adequeate feature engineering, logistic regression models tend to lack the expressiveness and predictive power of ensemble methods, such as boosted trees, or random forests.</p>
+<p>Using the same methodology as above, we could estimate decision trees and decision forests (random forests) just as easily with the same formula:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(dTreeModel &lt;-<span class="st"> </span><span class="kw">rxDTree</span>(form, <span class="dt">data =</span> trainDS,
+                                  <span class="dt">maxDepth =</span> <span class="dv">6</span>, <span class="dt">pruneCp =</span> <span class="st">&quot;auto&quot;</span>))
+  <span class="co">#   user   system  elapsed </span>
+  <span class="co"># 29.088   67.940 1265.633</span></code></pre></div>
+</div>
+</div>
+<div id="testing-models" class="section level2">
+<h2><span class="header-section-number">9.4</span> Testing Models</h2>
+<p>Now that we have estimated our models, we can calculate valuation metrics for them by scoring on the test/held-out set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;testModels.RData&quot;</span>)
+
+treePredict &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(dataDir, <span class="st">&quot;treePredict&quot;</span>),
+                         <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">system.time</span>(<span class="kw">rxPredict</span>(dTreeModel, <span class="dt">data =</span> testDS, <span class="dt">outData =</span> treePredict, 
+                      <span class="dt">extraVarsToWrite =</span> <span class="kw">c</span>(<span class="st">&quot;ArrDel15&quot;</span>), <span class="dt">overwrite =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<pre><code>## Rows Read: 20577, Total Rows Processed: 20577, Total Chunk Time: 2.625 seconds
+## Rows Read: 20524, Total Rows Processed: 41101, Total Chunk Time: 4.197 seconds
+## Rows Read: 20487, Total Rows Processed: 61588, Total Chunk Time: 0.048 seconds
+## Rows Read: 14729, Total Rows Processed: 76317, Total Chunk Time: 0.047 seconds
+## Rows Read: 20509, Total Rows Processed: 96826, Total Chunk Time: 0.447 seconds
+## Rows Read: 20455, Total Rows Processed: 117281, Total Chunk Time: 0.041 seconds
+## Rows Read: 20623, Total Rows Processed: 137904, Total Chunk Time: 0.042 seconds
+## Rows Read: 14643, Total Rows Processed: 152547, Total Chunk Time: 0.048 seconds
+## Rows Read: 20513, Total Rows Processed: 173060, Total Chunk Time: 0.514 seconds
+## Rows Read: 20587, Total Rows Processed: 193647, Total Chunk Time: 0.042 seconds
+## Rows Read: 20583, Total Rows Processed: 214230, Total Chunk Time: 0.042 seconds
+## Rows Read: 14622, Total Rows Processed: 228852, Total Chunk Time: 0.041 seconds
+## Rows Read: 20532, Total Rows Processed: 249384, Total Chunk Time: 0.377 seconds
+## Rows Read: 20500, Total Rows Processed: 269884, Total Chunk Time: 0.040 seconds
+## Rows Read: 20609, Total Rows Processed: 290493, Total Chunk Time: 0.039 seconds
+## Rows Read: 14703, Total Rows Processed: 305196, Total Chunk Time: 0.039 seconds
+## Rows Read: 20573, Total Rows Processed: 325769, Total Chunk Time: 0.355 seconds
+## Rows Read: 20516, Total Rows Processed: 346285, Total Chunk Time: 0.043 seconds
+## Rows Read: 20584, Total Rows Processed: 366869, Total Chunk Time: 0.042 seconds
+## Rows Read: 14682, Total Rows Processed: 381551, Total Chunk Time: 0.046 seconds
+## Rows Read: 20569, Total Rows Processed: 402120, Total Chunk Time: 0.369 seconds
+## Rows Read: 20514, Total Rows Processed: 422634, Total Chunk Time: 0.044 seconds
+## Rows Read: 20588, Total Rows Processed: 443222, Total Chunk Time: 0.042 seconds
+## Rows Read: 14649, Total Rows Processed: 457871, Total Chunk Time: 0.041 seconds
+## Rows Read: 20520, Total Rows Processed: 478391, Total Chunk Time: 0.377 seconds
+## Rows Read: 20495, Total Rows Processed: 498886, Total Chunk Time: 0.045 seconds
+## Rows Read: 20651, Total Rows Processed: 519537, Total Chunk Time: 0.044 seconds
+## Rows Read: 14678, Total Rows Processed: 534215, Total Chunk Time: 0.045 seconds
+## Rows Read: 20525, Total Rows Processed: 554740, Total Chunk Time: 0.370 seconds
+## Rows Read: 20535, Total Rows Processed: 575275, Total Chunk Time: 0.040 seconds
+## Rows Read: 20575, Total Rows Processed: 595850, Total Chunk Time: 0.041 seconds
+## Rows Read: 14686, Total Rows Processed: 610536, Total Chunk Time: 0.039 seconds
+## Rows Read: 20585, Total Rows Processed: 631121, Total Chunk Time: 0.324 seconds
+## Rows Read: 20456, Total Rows Processed: 651577, Total Chunk Time: 0.043 seconds
+## Rows Read: 20564, Total Rows Processed: 672141, Total Chunk Time: 0.042 seconds
+## Rows Read: 14710, Total Rows Processed: 686851, Total Chunk Time: 0.042 seconds
+## Rows Read: 20561, Total Rows Processed: 707412, Total Chunk Time: 0.404 seconds
+## Rows Read: 20506, Total Rows Processed: 727918, Total Chunk Time: 0.042 seconds
+## Rows Read: 20560, Total Rows Processed: 748478, Total Chunk Time: 0.041 seconds
+## Rows Read: 14680, Total Rows Processed: 763158, Total Chunk Time: 0.049 seconds
+## Rows Read: 20451, Total Rows Processed: 783609, Total Chunk Time: 0.411 seconds
+## Rows Read: 20605, Total Rows Processed: 804214, Total Chunk Time: 0.041 seconds
+## Rows Read: 20533, Total Rows Processed: 824747, Total Chunk Time: 0.038 seconds
+## Rows Read: 14678, Total Rows Processed: 839425, Total Chunk Time: 0.042 seconds
+## Rows Read: 20543, Total Rows Processed: 859968, Total Chunk Time: 0.373 seconds
+## Rows Read: 20446, Total Rows Processed: 880414, Total Chunk Time: 0.041 seconds
+## Rows Read: 20573, Total Rows Processed: 900987, Total Chunk Time: 0.040 seconds
+## Rows Read: 14665, Total Rows Processed: 915652, Total Chunk Time: 0.040 seconds
+## Rows Read: 20523, Total Rows Processed: 936175, Total Chunk Time: 0.409 seconds
+## Rows Read: 20523, Total Rows Processed: 956698, Total Chunk Time: 0.041 seconds
+## Rows Read: 20543, Total Rows Processed: 977241, Total Chunk Time: 0.040 seconds
+## Rows Read: 14628, Total Rows Processed: 991869, Total Chunk Time: 0.054 seconds
+## Rows Read: 20489, Total Rows Processed: 1012358, Total Chunk Time: 0.407 seconds
+## Rows Read: 20521, Total Rows Processed: 1032879, Total Chunk Time: 0.044 seconds
+## Rows Read: 20542, Total Rows Processed: 1053421, Total Chunk Time: 0.043 seconds
+## Rows Read: 14690, Total Rows Processed: 1068111, Total Chunk Time: 0.042 seconds
+## Rows Read: 20514, Total Rows Processed: 1088625, Total Chunk Time: 0.330 seconds
+## Rows Read: 20501, Total Rows Processed: 1109126, Total Chunk Time: 0.043 seconds
+## Rows Read: 20565, Total Rows Processed: 1129691, Total Chunk Time: 0.041 seconds
+## Rows Read: 14654, Total Rows Processed: 1144345, Total Chunk Time: 0.041 seconds
+## Rows Read: 20549, Total Rows Processed: 1164894, Total Chunk Time: 0.349 seconds
+## Rows Read: 20465, Total Rows Processed: 1185359, Total Chunk Time: 0.040 seconds
+## Rows Read: 20527, Total Rows Processed: 1205886, Total Chunk Time: 0.037 seconds
+## Rows Read: 14646, Total Rows Processed: 1220532, Total Chunk Time: 0.038 seconds
+## Rows Read: 20510, Total Rows Processed: 1241042, Total Chunk Time: 0.422 seconds
+## Rows Read: 20576, Total Rows Processed: 1261618, Total Chunk Time: 0.042 seconds
+## Rows Read: 20392, Total Rows Processed: 1282010, Total Chunk Time: 0.042 seconds
+## Rows Read: 14688, Total Rows Processed: 1296698, Total Chunk Time: 0.040 seconds
+## Rows Read: 20511, Total Rows Processed: 1317209, Total Chunk Time: 0.418 seconds
+## Rows Read: 20520, Total Rows Processed: 1337729, Total Chunk Time: 0.042 seconds
+## Rows Read: 20428, Total Rows Processed: 1358157, Total Chunk Time: 0.041 seconds
+## Rows Read: 14674, Total Rows Processed: 1372831, Total Chunk Time: 0.041 seconds
+## Rows Read: 20410, Total Rows Processed: 1393241, Total Chunk Time: 0.985 seconds
+## Rows Read: 20448, Total Rows Processed: 1413689, Total Chunk Time: 0.042 seconds
+## Rows Read: 20614, Total Rows Processed: 1434303, Total Chunk Time: 0.041 seconds
+## Rows Read: 14668, Total Rows Processed: 1448971, Total Chunk Time: 0.039 seconds
+## Rows Read: 20440, Total Rows Processed: 1469411, Total Chunk Time: 0.396 seconds
+## Rows Read: 20558, Total Rows Processed: 1489969, Total Chunk Time: 0.037 seconds
+## Rows Read: 20481, Total Rows Processed: 1510450, Total Chunk Time: 0.038 seconds
+## Rows Read: 14652, Total Rows Processed: 1525102, Total Chunk Time: 0.038 seconds
+## Rows Read: 20498, Total Rows Processed: 1545600, Total Chunk Time: 0.670 seconds
+## Rows Read: 20597, Total Rows Processed: 1566197, Total Chunk Time: 0.038 seconds
+## Rows Read: 20500, Total Rows Processed: 1586697, Total Chunk Time: 0.039 seconds
+## Rows Read: 14590, Total Rows Processed: 1601287, Total Chunk Time: 0.038 seconds
+## Rows Read: 20563, Total Rows Processed: 1621850, Total Chunk Time: 0.564 seconds
+## Rows Read: 20468, Total Rows Processed: 1642318, Total Chunk Time: 0.042 seconds
+## Rows Read: 20504, Total Rows Processed: 1662822, Total Chunk Time: 0.042 seconds
+## Rows Read: 14647, Total Rows Processed: 1677469, Total Chunk Time: 0.042 seconds
+## Rows Read: 20545, Total Rows Processed: 1698014, Total Chunk Time: 0.350 seconds
+## Rows Read: 20521, Total Rows Processed: 1718535, Total Chunk Time: 0.041 seconds
+## Rows Read: 20413, Total Rows Processed: 1738948, Total Chunk Time: 0.044 seconds
+## Rows Read: 14748, Total Rows Processed: 1753696, Total Chunk Time: 0.040 seconds
+## Rows Read: 20503, Total Rows Processed: 1774199, Total Chunk Time: 0.442 seconds
+## Rows Read: 20683, Total Rows Processed: 1794882, Total Chunk Time: 0.038 seconds
+## Rows Read: 20372, Total Rows Processed: 1815254, Total Chunk Time: 0.038 seconds
+## Rows Read: 14649, Total Rows Processed: 1829903, Total Chunk Time: 0.038 seconds
+## Rows Read: 20478, Total Rows Processed: 1850381, Total Chunk Time: 0.440 seconds
+## Rows Read: 20533, Total Rows Processed: 1870914, Total Chunk Time: 0.039 seconds
+## Rows Read: 20581, Total Rows Processed: 1891495, Total Chunk Time: 0.037 seconds
+## Rows Read: 14662, Total Rows Processed: 1906157, Total Chunk Time: 0.037 seconds
+## Rows Read: 20475, Total Rows Processed: 1926632, Total Chunk Time: 0.502 seconds
+## Rows Read: 20514, Total Rows Processed: 1947146, Total Chunk Time: 0.037 seconds
+## Rows Read: 20556, Total Rows Processed: 1967702, Total Chunk Time: 0.038 seconds
+## Rows Read: 14698, Total Rows Processed: 1982400, Total Chunk Time: 0.037 seconds
+## Rows Read: 20581, Total Rows Processed: 2002981, Total Chunk Time: 0.387 seconds
+## Rows Read: 20490, Total Rows Processed: 2023471, Total Chunk Time: 0.043 seconds
+## Rows Read: 20546, Total Rows Processed: 2044017, Total Chunk Time: 0.040 seconds
+## Rows Read: 14635, Total Rows Processed: 2058652, Total Chunk Time: 0.040 seconds
+## Rows Read: 20462, Total Rows Processed: 2079114, Total Chunk Time: 0.329 seconds
+## Rows Read: 20599, Total Rows Processed: 2099713, Total Chunk Time: 0.041 seconds
+## Rows Read: 20516, Total Rows Processed: 2120229, Total Chunk Time: 0.041 seconds
+## Rows Read: 14618, Total Rows Processed: 2134847, Total Chunk Time: 0.040 seconds
+## Rows Read: 20602, Total Rows Processed: 2155449, Total Chunk Time: 0.339 seconds
+## Rows Read: 20582, Total Rows Processed: 2176031, Total Chunk Time: 0.040 seconds
+## Rows Read: 20383, Total Rows Processed: 2196414, Total Chunk Time: 0.039 seconds
+## Rows Read: 14681, Total Rows Processed: 2211095, Total Chunk Time: 0.039 seconds
+## Rows Read: 20561, Total Rows Processed: 2231656, Total Chunk Time: 0.426 seconds
+## Rows Read: 20513, Total Rows Processed: 2252169, Total Chunk Time: 0.041 seconds
+## Rows Read: 20515, Total Rows Processed: 2272684, Total Chunk Time: 0.041 seconds
+## Rows Read: 14641, Total Rows Processed: 2287325, Total Chunk Time: 0.041 seconds
+## Rows Read: 20501, Total Rows Processed: 2307826, Total Chunk Time: 0.413 seconds
+## Rows Read: 20510, Total Rows Processed: 2328336, Total Chunk Time: 0.041 seconds
+## Rows Read: 20608, Total Rows Processed: 2348944, Total Chunk Time: 0.037 seconds
+## Rows Read: 14594, Total Rows Processed: 2363538, Total Chunk Time: 0.040 seconds
+## Rows Read: 20485, Total Rows Processed: 2384023, Total Chunk Time: 0.415 seconds
+## Rows Read: 20523, Total Rows Processed: 2404546, Total Chunk Time: 0.039 seconds
+## Rows Read: 20526, Total Rows Processed: 2425072, Total Chunk Time: 0.053 seconds
+## Rows Read: 14626, Total Rows Processed: 2439698, Total Chunk Time: 0.045 seconds
+## Rows Read: 20549, Total Rows Processed: 2460247, Total Chunk Time: 0.410 seconds
+## Rows Read: 20427, Total Rows Processed: 2480674, Total Chunk Time: 0.042 seconds
+## Rows Read: 20594, Total Rows Processed: 2501268, Total Chunk Time: 0.037 seconds
+## Rows Read: 14637, Total Rows Processed: 2515905, Total Chunk Time: 0.038 seconds
+## Rows Read: 20498, Total Rows Processed: 2536403, Total Chunk Time: 0.338 seconds
+## Rows Read: 20505, Total Rows Processed: 2556908, Total Chunk Time: 0.042 seconds
+## Rows Read: 20444, Total Rows Processed: 2577352, Total Chunk Time: 0.042 seconds
+## Rows Read: 14686, Total Rows Processed: 2592038, Total Chunk Time: 0.041 seconds
+## Rows Read: 20534, Total Rows Processed: 2612572, Total Chunk Time: 0.409 seconds
+## Rows Read: 20404, Total Rows Processed: 2632976, Total Chunk Time: 0.040 seconds
+## Rows Read: 20496, Total Rows Processed: 2653472, Total Chunk Time: 0.039 seconds
+## Rows Read: 14685, Total Rows Processed: 2668157, Total Chunk Time: 0.037 seconds
+## Rows Read: 20582, Total Rows Processed: 2688739, Total Chunk Time: 0.323 seconds
+## Rows Read: 20414, Total Rows Processed: 2709153, Total Chunk Time: 0.044 seconds
+## Rows Read: 20562, Total Rows Processed: 2729715, Total Chunk Time: 0.045 seconds
+## Rows Read: 14598, Total Rows Processed: 2744313, Total Chunk Time: 0.046 seconds
+## Rows Read: 20432, Total Rows Processed: 2764745, Total Chunk Time: 0.387 seconds
+## Rows Read: 20467, Total Rows Processed: 2785212, Total Chunk Time: 0.040 seconds
+## Rows Read: 20623, Total Rows Processed: 2805835, Total Chunk Time: 0.040 seconds
+## Rows Read: 14636, Total Rows Processed: 2820471, Total Chunk Time: 0.040 seconds
+## Rows Read: 20462, Total Rows Processed: 2840933, Total Chunk Time: 1.003 seconds
+## Rows Read: 20517, Total Rows Processed: 2861450, Total Chunk Time: 0.053 seconds
+## Rows Read: 20419, Total Rows Processed: 2881869, Total Chunk Time: 0.058 seconds
+## Rows Read: 14688, Total Rows Processed: 2896557, Total Chunk Time: 0.039 seconds
+## Rows Read: 20451, Total Rows Processed: 2917008, Total Chunk Time: 0.388 seconds
+## Rows Read: 20546, Total Rows Processed: 2937554, Total Chunk Time: 0.040 seconds
+## Rows Read: 20457, Total Rows Processed: 2958011, Total Chunk Time: 0.040 seconds
+## Rows Read: 14651, Total Rows Processed: 2972662, Total Chunk Time: 0.041 seconds
+## Rows Read: 20502, Total Rows Processed: 2993164, Total Chunk Time: 0.338 seconds
+## Rows Read: 20460, Total Rows Processed: 3013624, Total Chunk Time: 0.047 seconds
+## Rows Read: 20477, Total Rows Processed: 3034101, Total Chunk Time: 0.045 seconds
+## Rows Read: 14654, Total Rows Processed: 3048755, Total Chunk Time: 0.041 seconds
+## Rows Read: 20441, Total Rows Processed: 3069196, Total Chunk Time: 0.664 seconds
+## Rows Read: 20479, Total Rows Processed: 3089675, Total Chunk Time: 0.041 seconds
+## Rows Read: 20585, Total Rows Processed: 3110260, Total Chunk Time: 0.040 seconds
+## Rows Read: 14603, Total Rows Processed: 3124863, Total Chunk Time: 0.040 seconds
+## Rows Read: 20452, Total Rows Processed: 3145315, Total Chunk Time: 0.357 seconds
+## Rows Read: 20463, Total Rows Processed: 3165778, Total Chunk Time: 0.039 seconds
+## Rows Read: 20570, Total Rows Processed: 3186348, Total Chunk Time: 0.039 seconds
+## Rows Read: 14622, Total Rows Processed: 3200970, Total Chunk Time: 0.039 seconds
+## Rows Read: 20543, Total Rows Processed: 3221513, Total Chunk Time: 0.376 seconds
+## Rows Read: 20478, Total Rows Processed: 3241991, Total Chunk Time: 0.038 seconds
+## Rows Read: 20462, Total Rows Processed: 3262453, Total Chunk Time: 0.038 seconds
+## Rows Read: 14622, Total Rows Processed: 3277075, Total Chunk Time: 0.037 seconds
+## Rows Read: 20470, Total Rows Processed: 3297545, Total Chunk Time: 0.345 seconds
+## Rows Read: 20517, Total Rows Processed: 3318062, Total Chunk Time: 0.041 seconds
+## Rows Read: 20497, Total Rows Processed: 3338559, Total Chunk Time: 0.043 seconds
+## Rows Read: 14656, Total Rows Processed: 3353215, Total Chunk Time: 0.040 seconds
+## Rows Read: 20446, Total Rows Processed: 3373661, Total Chunk Time: 0.359 seconds
+## Rows Read: 20508, Total Rows Processed: 3394169, Total Chunk Time: 0.042 seconds
+## Rows Read: 20485, Total Rows Processed: 3414654, Total Chunk Time: 0.042 seconds
+## Rows Read: 14667, Total Rows Processed: 3429321, Total Chunk Time: 0.041 seconds
+## Rows Read: 20461, Total Rows Processed: 3449782, Total Chunk Time: 0.351 seconds
+## Rows Read: 20573, Total Rows Processed: 3470355, Total Chunk Time: 0.043 seconds
+## Rows Read: 20482, Total Rows Processed: 3490837, Total Chunk Time: 0.041 seconds
+## Rows Read: 14610, Total Rows Processed: 3505447, Total Chunk Time: 0.040 seconds
+## Rows Read: 20546, Total Rows Processed: 3525993, Total Chunk Time: 0.309 seconds
+## Rows Read: 20562, Total Rows Processed: 3546555, Total Chunk Time: 0.040 seconds
+## Rows Read: 20464, Total Rows Processed: 3567019, Total Chunk Time: 0.038 seconds
+## Rows Read: 14558, Total Rows Processed: 3581577, Total Chunk Time: 0.038 seconds
+## Rows Read: 20512, Total Rows Processed: 3602089, Total Chunk Time: 0.330 seconds
+## Rows Read: 20444, Total Rows Processed: 3622533, Total Chunk Time: 0.041 seconds
+## Rows Read: 20452, Total Rows Processed: 3642985, Total Chunk Time: 0.044 seconds
+## Rows Read: 14697, Total Rows Processed: 3657682, Total Chunk Time: 0.042 seconds
+## Rows Read: 20501, Total Rows Processed: 3678183, Total Chunk Time: 0.408 seconds
+## Rows Read: 20526, Total Rows Processed: 3698709, Total Chunk Time: 0.041 seconds
+## Rows Read: 20543, Total Rows Processed: 3719252, Total Chunk Time: 0.040 seconds
+## Rows Read: 14620, Total Rows Processed: 3733872, Total Chunk Time: 0.039 seconds
+## Rows Read: 20489, Total Rows Processed: 3754361, Total Chunk Time: 0.425 seconds
+## Rows Read: 20596, Total Rows Processed: 3774957, Total Chunk Time: 0.043 seconds
+## Rows Read: 20469, Total Rows Processed: 3795426, Total Chunk Time: 0.041 seconds
+## Rows Read: 14657, Total Rows Processed: 3810083, Total Chunk Time: 0.041 seconds
+## Rows Read: 20469, Total Rows Processed: 3830552, Total Chunk Time: 0.366 seconds
+## Rows Read: 20502, Total Rows Processed: 3851054, Total Chunk Time: 0.040 seconds
+## Rows Read: 20524, Total Rows Processed: 3871578, Total Chunk Time: 0.041 seconds
+## Rows Read: 14694, Total Rows Processed: 3886272, Total Chunk Time: 0.039 seconds
+## Rows Read: 20503, Total Rows Processed: 3906775, Total Chunk Time: 0.375 seconds
+## Rows Read: 20474, Total Rows Processed: 3927249, Total Chunk Time: 0.045 seconds
+## Rows Read: 20573, Total Rows Processed: 3947822, Total Chunk Time: 0.043 seconds
+## Rows Read: 14637, Total Rows Processed: 3962459, Total Chunk Time: 0.039 seconds
+## Rows Read: 20566, Total Rows Processed: 3983025, Total Chunk Time: 0.380 seconds
+## Rows Read: 20441, Total Rows Processed: 4003466, Total Chunk Time: 0.046 seconds
+## Rows Read: 20457, Total Rows Processed: 4023923, Total Chunk Time: 0.040 seconds
+## Rows Read: 14706, Total Rows Processed: 4038629, Total Chunk Time: 0.040 seconds
+## Rows Read: 20459, Total Rows Processed: 4059088, Total Chunk Time: 0.353 seconds
+## Rows Read: 20431, Total Rows Processed: 4079519, Total Chunk Time: 0.047 seconds
+## Rows Read: 20576, Total Rows Processed: 4100095, Total Chunk Time: 0.046 seconds
+## Rows Read: 14680, Total Rows Processed: 4114775, Total Chunk Time: 0.039 seconds
+## Rows Read: 20398, Total Rows Processed: 4135173, Total Chunk Time: 0.470 seconds
+## Rows Read: 20496, Total Rows Processed: 4155669, Total Chunk Time: 0.040 seconds
+## Rows Read: 20517, Total Rows Processed: 4176186, Total Chunk Time: 0.045 seconds
+## Rows Read: 14696, Total Rows Processed: 4190882, Total Chunk Time: 0.042 seconds
+## Rows Read: 20512, Total Rows Processed: 4211394, Total Chunk Time: 0.452 seconds
+## Rows Read: 20466, Total Rows Processed: 4231860, Total Chunk Time: 0.041 seconds
+## Rows Read: 20475, Total Rows Processed: 4252335, Total Chunk Time: 0.039 seconds
+## Rows Read: 14678, Total Rows Processed: 4267013, Total Chunk Time: 0.039 seconds
+## Rows Read: 20550, Total Rows Processed: 4287563, Total Chunk Time: 0.850 seconds
+## Rows Read: 20479, Total Rows Processed: 4308042, Total Chunk Time: 0.044 seconds
+## Rows Read: 20505, Total Rows Processed: 4328547, Total Chunk Time: 0.043 seconds
+## Rows Read: 14669, Total Rows Processed: 4343216, Total Chunk Time: 0.040 seconds
+## Rows Read: 20470, Total Rows Processed: 4363686, Total Chunk Time: 0.406 seconds
+## Rows Read: 20486, Total Rows Processed: 4384172, Total Chunk Time: 0.040 seconds
+## Rows Read: 20511, Total Rows Processed: 4404683, Total Chunk Time: 0.039 seconds
+## Rows Read: 14714, Total Rows Processed: 4419397, Total Chunk Time: 0.039 seconds
+## Rows Read: 20599, Total Rows Processed: 4439996, Total Chunk Time: 0.458 seconds
+## Rows Read: 20501, Total Rows Processed: 4460497, Total Chunk Time: 0.040 seconds
+## Rows Read: 20479, Total Rows Processed: 4480976, Total Chunk Time: 0.040 seconds
+## Rows Read: 14666, Total Rows Processed: 4495642, Total Chunk Time: 0.040 seconds
+## Rows Read: 20540, Total Rows Processed: 4516182, Total Chunk Time: 0.369 seconds
+## Rows Read: 20514, Total Rows Processed: 4536696, Total Chunk Time: 0.043 seconds
+## Rows Read: 20555, Total Rows Processed: 4557251, Total Chunk Time: 0.041 seconds
+## Rows Read: 14687, Total Rows Processed: 4571938, Total Chunk Time: 0.042 seconds
+## Rows Read: 20529, Total Rows Processed: 4592467, Total Chunk Time: 0.332 seconds
+## Rows Read: 20502, Total Rows Processed: 4612969, Total Chunk Time: 0.048 seconds
+## Rows Read: 20628, Total Rows Processed: 4633597, Total Chunk Time: 0.044 seconds
+## Rows Read: 14652, Total Rows Processed: 4648249, Total Chunk Time: 0.042 seconds
+## Rows Read: 20561, Total Rows Processed: 4668810, Total Chunk Time: 0.270 seconds
+## Rows Read: 20461, Total Rows Processed: 4689271, Total Chunk Time: 0.041 seconds
+## Rows Read: 20577, Total Rows Processed: 4709848, Total Chunk Time: 0.041 seconds
+## Rows Read: 14677, Total Rows Processed: 4724525, Total Chunk Time: 0.041 seconds
+## Rows Read: 20501, Total Rows Processed: 4745026, Total Chunk Time: 0.601 seconds
+## Rows Read: 20534, Total Rows Processed: 4765560, Total Chunk Time: 0.043 seconds
+## Rows Read: 20551, Total Rows Processed: 4786111, Total Chunk Time: 0.042 seconds
+## Rows Read: 14707, Total Rows Processed: 4800818, Total Chunk Time: 0.042 seconds
+## Rows Read: 20572, Total Rows Processed: 4821390, Total Chunk Time: 0.315 seconds
+## Rows Read: 20409, Total Rows Processed: 4841799, Total Chunk Time: 0.046 seconds
+## Rows Read: 20578, Total Rows Processed: 4862377, Total Chunk Time: 0.044 seconds
+## Rows Read: 14695, Total Rows Processed: 4877072, Total Chunk Time: 0.043 seconds
+## Rows Read: 20500, Total Rows Processed: 4897572, Total Chunk Time: 0.621 seconds
+## Rows Read: 20577, Total Rows Processed: 4918149, Total Chunk Time: 0.041 seconds
+## Rows Read: 20487, Total Rows Processed: 4938636, Total Chunk Time: 0.040 seconds
+## Rows Read: 14719, Total Rows Processed: 4953355, Total Chunk Time: 0.039 seconds
+## Rows Read: 20523, Total Rows Processed: 4973878, Total Chunk Time: 0.320 seconds
+## Rows Read: 20520, Total Rows Processed: 4994398, Total Chunk Time: 0.042 seconds
+## Rows Read: 20442, Total Rows Processed: 5014840, Total Chunk Time: 0.042 seconds
+## Rows Read: 14749, Total Rows Processed: 5029589, Total Chunk Time: 0.042 seconds
+## Rows Read: 20483, Total Rows Processed: 5050072, Total Chunk Time: 0.550 seconds
+## Rows Read: 20539, Total Rows Processed: 5070611, Total Chunk Time: 0.044 seconds
+## Rows Read: 20484, Total Rows Processed: 5091095, Total Chunk Time: 0.041 seconds
+## Rows Read: 14709, Total Rows Processed: 5105804, Total Chunk Time: 0.041 seconds
+## Rows Read: 20568, Total Rows Processed: 5126372, Total Chunk Time: 0.576 seconds
+## Rows Read: 20510, Total Rows Processed: 5146882, Total Chunk Time: 0.044 seconds
+## Rows Read: 20522, Total Rows Processed: 5167404, Total Chunk Time: 0.044 seconds
+## Rows Read: 14676, Total Rows Processed: 5182080, Total Chunk Time: 0.044 seconds
+## Rows Read: 20456, Total Rows Processed: 5202536, Total Chunk Time: 0.344 seconds
+## Rows Read: 20565, Total Rows Processed: 5223101, Total Chunk Time: 0.045 seconds
+## Rows Read: 20536, Total Rows Processed: 5243637, Total Chunk Time: 0.045 seconds
+## Rows Read: 14675, Total Rows Processed: 5258312, Total Chunk Time: 0.045 seconds
+## Rows Read: 20454, Total Rows Processed: 5278766, Total Chunk Time: 0.370 seconds
+## Rows Read: 20536, Total Rows Processed: 5299302, Total Chunk Time: 0.043 seconds
+## Rows Read: 20536, Total Rows Processed: 5319838, Total Chunk Time: 0.043 seconds
+## Rows Read: 14690, Total Rows Processed: 5334528, Total Chunk Time: 0.042 seconds
+## Rows Read: 20538, Total Rows Processed: 5355066, Total Chunk Time: 0.351 seconds
+## Rows Read: 20455, Total Rows Processed: 5375521, Total Chunk Time: 0.042 seconds
+## Rows Read: 20553, Total Rows Processed: 5396074, Total Chunk Time: 0.041 seconds
+## Rows Read: 14626, Total Rows Processed: 5410700, Total Chunk Time: 0.041 seconds
+## Rows Read: 20513, Total Rows Processed: 5431213, Total Chunk Time: 0.423 seconds
+## Rows Read: 20447, Total Rows Processed: 5451660, Total Chunk Time: 0.047 seconds
+## Rows Read: 20480, Total Rows Processed: 5472140, Total Chunk Time: 0.045 seconds
+## Rows Read: 14663, Total Rows Processed: 5486803, Total Chunk Time: 0.045 seconds
+## Rows Read: 20481, Total Rows Processed: 5507284, Total Chunk Time: 0.386 seconds
+## Rows Read: 20471, Total Rows Processed: 5527755, Total Chunk Time: 0.041 seconds
+## Rows Read: 20462, Total Rows Processed: 5548217, Total Chunk Time: 0.041 seconds
+## Rows Read: 14735, Total Rows Processed: 5562952, Total Chunk Time: 0.043 seconds
+## Rows Read: 20398, Total Rows Processed: 5583350, Total Chunk Time: 0.718 seconds
+## Rows Read: 20458, Total Rows Processed: 5603808, Total Chunk Time: 0.038 seconds
+## Rows Read: 20644, Total Rows Processed: 5624452, Total Chunk Time: 0.038 seconds
+## Rows Read: 14686, Total Rows Processed: 5639138, Total Chunk Time: 0.038 seconds
+## Rows Read: 20541, Total Rows Processed: 5659679, Total Chunk Time: 0.459 seconds
+## Rows Read: 20462, Total Rows Processed: 5680141, Total Chunk Time: 0.038 seconds
+## Rows Read: 20508, Total Rows Processed: 5700649, Total Chunk Time: 0.037 seconds
+## Rows Read: 14695, Total Rows Processed: 5715344, Total Chunk Time: 0.037 seconds
+## Rows Read: 20432, Total Rows Processed: 5735776, Total Chunk Time: 1.305 seconds
+## Rows Read: 20512, Total Rows Processed: 5756288, Total Chunk Time: 0.041 seconds
+## Rows Read: 20556, Total Rows Processed: 5776844, Total Chunk Time: 0.042 seconds
+## Rows Read: 14700, Total Rows Processed: 5791544, Total Chunk Time: 0.048 seconds
+## Rows Read: 20536, Total Rows Processed: 5812080, Total Chunk Time: 0.600 seconds
+## Rows Read: 20490, Total Rows Processed: 5832570, Total Chunk Time: 0.047 seconds
+## Rows Read: 20605, Total Rows Processed: 5853175, Total Chunk Time: 0.040 seconds
+## Rows Read: 14617, Total Rows Processed: 5867792, Total Chunk Time: 0.040 seconds
+## Rows Read: 20494, Total Rows Processed: 5888286, Total Chunk Time: 0.318 seconds
+## Rows Read: 20573, Total Rows Processed: 5908859, Total Chunk Time: 0.041 seconds
+## Rows Read: 20502, Total Rows Processed: 5929361, Total Chunk Time: 0.041 seconds
+## Rows Read: 14718, Total Rows Processed: 5944079, Total Chunk Time: 0.041 seconds
+## Rows Read: 20501, Total Rows Processed: 5964580, Total Chunk Time: 0.351 seconds
+## Rows Read: 20500, Total Rows Processed: 5985080, Total Chunk Time: 0.041 seconds
+## Rows Read: 20610, Total Rows Processed: 6005690, Total Chunk Time: 0.041 seconds
+## Rows Read: 14721, Total Rows Processed: 6020411, Total Chunk Time: 0.041 seconds
+## Rows Read: 20527, Total Rows Processed: 6040938, Total Chunk Time: 0.345 seconds
+## Rows Read: 20594, Total Rows Processed: 6061532, Total Chunk Time: 0.043 seconds
+## Rows Read: 20555, Total Rows Processed: 6082087, Total Chunk Time: 0.041 seconds
+## Rows Read: 14675, Total Rows Processed: 6096762, Total Chunk Time: 0.041 seconds</code></pre>
+<pre><code>##    user  system elapsed 
+##   0.128   0.020  59.788</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># user  system elapsed </span>
+<span class="co"># 13.436   3.616 142.326</span>
+
+
+logitPredict &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(dataDir, <span class="st">&quot;logitPredict&quot;</span>),
+                          <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxPredict</span>(logitModel, <span class="dt">data =</span> testDS, <span class="dt">outData =</span> logitPredict,
+          <span class="dt">extraVarsToWrite =</span> <span class="kw">c</span>(<span class="st">&quot;ArrDel15&quot;</span>),
+          <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## Rows Read: 20577, Total Rows Processed: 20577, Total Chunk Time: 2.461 seconds
+## Rows Read: 20524, Total Rows Processed: 41101, Total Chunk Time: 2.789 seconds
+## Rows Read: 20487, Total Rows Processed: 61588, Total Chunk Time: 0.027 seconds
+## Rows Read: 14729, Total Rows Processed: 76317, Total Chunk Time: 0.022 seconds
+## Rows Read: 20509, Total Rows Processed: 96826, Total Chunk Time: 0.586 seconds
+## Rows Read: 20455, Total Rows Processed: 117281, Total Chunk Time: 0.028 seconds
+## Rows Read: 20623, Total Rows Processed: 137904, Total Chunk Time: 0.028 seconds
+## Rows Read: 14643, Total Rows Processed: 152547, Total Chunk Time: 0.024 seconds
+## Rows Read: 20513, Total Rows Processed: 173060, Total Chunk Time: 0.309 seconds
+## Rows Read: 20587, Total Rows Processed: 193647, Total Chunk Time: 0.031 seconds
+## Rows Read: 20583, Total Rows Processed: 214230, Total Chunk Time: 0.027 seconds
+## Rows Read: 14622, Total Rows Processed: 228852, Total Chunk Time: 0.024 seconds
+## Rows Read: 20532, Total Rows Processed: 249384, Total Chunk Time: 0.340 seconds
+## Rows Read: 20500, Total Rows Processed: 269884, Total Chunk Time: 0.027 seconds
+## Rows Read: 20609, Total Rows Processed: 290493, Total Chunk Time: 0.029 seconds
+## Rows Read: 14703, Total Rows Processed: 305196, Total Chunk Time: 0.027 seconds
+## Rows Read: 20573, Total Rows Processed: 325769, Total Chunk Time: 0.428 seconds
+## Rows Read: 20516, Total Rows Processed: 346285, Total Chunk Time: 0.028 seconds
+## Rows Read: 20584, Total Rows Processed: 366869, Total Chunk Time: 0.026 seconds
+## Rows Read: 14682, Total Rows Processed: 381551, Total Chunk Time: 0.023 seconds
+## Rows Read: 20569, Total Rows Processed: 402120, Total Chunk Time: 0.343 seconds
+## Rows Read: 20514, Total Rows Processed: 422634, Total Chunk Time: 0.028 seconds
+## Rows Read: 20588, Total Rows Processed: 443222, Total Chunk Time: 0.027 seconds
+## Rows Read: 14649, Total Rows Processed: 457871, Total Chunk Time: 0.023 seconds
+## Rows Read: 20520, Total Rows Processed: 478391, Total Chunk Time: 0.341 seconds
+## Rows Read: 20495, Total Rows Processed: 498886, Total Chunk Time: 0.028 seconds
+## Rows Read: 20651, Total Rows Processed: 519537, Total Chunk Time: 0.026 seconds
+## Rows Read: 14678, Total Rows Processed: 534215, Total Chunk Time: 0.022 seconds
+## Rows Read: 20525, Total Rows Processed: 554740, Total Chunk Time: 0.291 seconds
+## Rows Read: 20535, Total Rows Processed: 575275, Total Chunk Time: 0.028 seconds
+## Rows Read: 20575, Total Rows Processed: 595850, Total Chunk Time: 0.029 seconds
+## Rows Read: 14686, Total Rows Processed: 610536, Total Chunk Time: 0.024 seconds
+## Rows Read: 20585, Total Rows Processed: 631121, Total Chunk Time: 0.384 seconds
+## Rows Read: 20456, Total Rows Processed: 651577, Total Chunk Time: 0.028 seconds
+## Rows Read: 20564, Total Rows Processed: 672141, Total Chunk Time: 0.029 seconds
+## Rows Read: 14710, Total Rows Processed: 686851, Total Chunk Time: 0.025 seconds
+## Rows Read: 20561, Total Rows Processed: 707412, Total Chunk Time: 0.310 seconds
+## Rows Read: 20506, Total Rows Processed: 727918, Total Chunk Time: 0.031 seconds
+## Rows Read: 20560, Total Rows Processed: 748478, Total Chunk Time: 0.026 seconds
+## Rows Read: 14680, Total Rows Processed: 763158, Total Chunk Time: 0.024 seconds
+## Rows Read: 20451, Total Rows Processed: 783609, Total Chunk Time: 0.323 seconds
+## Rows Read: 20605, Total Rows Processed: 804214, Total Chunk Time: 0.033 seconds
+## Rows Read: 20533, Total Rows Processed: 824747, Total Chunk Time: 0.028 seconds
+## Rows Read: 14678, Total Rows Processed: 839425, Total Chunk Time: 0.025 seconds
+## Rows Read: 20543, Total Rows Processed: 859968, Total Chunk Time: 0.344 seconds
+## Rows Read: 20446, Total Rows Processed: 880414, Total Chunk Time: 0.028 seconds
+## Rows Read: 20573, Total Rows Processed: 900987, Total Chunk Time: 0.027 seconds
+## Rows Read: 14665, Total Rows Processed: 915652, Total Chunk Time: 0.025 seconds
+## Rows Read: 20523, Total Rows Processed: 936175, Total Chunk Time: 0.380 seconds
+## Rows Read: 20523, Total Rows Processed: 956698, Total Chunk Time: 0.032 seconds
+## Rows Read: 20543, Total Rows Processed: 977241, Total Chunk Time: 0.030 seconds
+## Rows Read: 14628, Total Rows Processed: 991869, Total Chunk Time: 0.026 seconds
+## Rows Read: 20489, Total Rows Processed: 1012358, Total Chunk Time: 0.358 seconds
+## Rows Read: 20521, Total Rows Processed: 1032879, Total Chunk Time: 0.033 seconds
+## Rows Read: 20542, Total Rows Processed: 1053421, Total Chunk Time: 0.029 seconds
+## Rows Read: 14690, Total Rows Processed: 1068111, Total Chunk Time: 0.024 seconds
+## Rows Read: 20514, Total Rows Processed: 1088625, Total Chunk Time: 0.379 seconds
+## Rows Read: 20501, Total Rows Processed: 1109126, Total Chunk Time: 0.029 seconds
+## Rows Read: 20565, Total Rows Processed: 1129691, Total Chunk Time: 0.027 seconds
+## Rows Read: 14654, Total Rows Processed: 1144345, Total Chunk Time: 0.023 seconds
+## Rows Read: 20549, Total Rows Processed: 1164894, Total Chunk Time: 0.482 seconds
+## Rows Read: 20465, Total Rows Processed: 1185359, Total Chunk Time: 0.034 seconds
+## Rows Read: 20527, Total Rows Processed: 1205886, Total Chunk Time: 0.030 seconds
+## Rows Read: 14646, Total Rows Processed: 1220532, Total Chunk Time: 0.029 seconds
+## Rows Read: 20510, Total Rows Processed: 1241042, Total Chunk Time: 0.479 seconds
+## Rows Read: 20576, Total Rows Processed: 1261618, Total Chunk Time: 0.027 seconds
+## Rows Read: 20392, Total Rows Processed: 1282010, Total Chunk Time: 0.026 seconds
+## Rows Read: 14688, Total Rows Processed: 1296698, Total Chunk Time: 0.023 seconds
+## Rows Read: 20511, Total Rows Processed: 1317209, Total Chunk Time: 0.591 seconds
+## Rows Read: 20520, Total Rows Processed: 1337729, Total Chunk Time: 0.028 seconds
+## Rows Read: 20428, Total Rows Processed: 1358157, Total Chunk Time: 0.028 seconds
+## Rows Read: 14674, Total Rows Processed: 1372831, Total Chunk Time: 0.024 seconds
+## Rows Read: 20410, Total Rows Processed: 1393241, Total Chunk Time: 0.549 seconds
+## Rows Read: 20448, Total Rows Processed: 1413689, Total Chunk Time: 0.027 seconds
+## Rows Read: 20614, Total Rows Processed: 1434303, Total Chunk Time: 0.027 seconds
+## Rows Read: 14668, Total Rows Processed: 1448971, Total Chunk Time: 0.024 seconds
+## Rows Read: 20440, Total Rows Processed: 1469411, Total Chunk Time: 0.708 seconds
+## Rows Read: 20558, Total Rows Processed: 1489969, Total Chunk Time: 0.027 seconds
+## Rows Read: 20481, Total Rows Processed: 1510450, Total Chunk Time: 0.027 seconds
+## Rows Read: 14652, Total Rows Processed: 1525102, Total Chunk Time: 0.024 seconds
+## Rows Read: 20498, Total Rows Processed: 1545600, Total Chunk Time: 0.492 seconds
+## Rows Read: 20597, Total Rows Processed: 1566197, Total Chunk Time: 0.027 seconds
+## Rows Read: 20500, Total Rows Processed: 1586697, Total Chunk Time: 0.027 seconds
+## Rows Read: 14590, Total Rows Processed: 1601287, Total Chunk Time: 0.024 seconds
+## Rows Read: 20563, Total Rows Processed: 1621850, Total Chunk Time: 1.001 seconds
+## Rows Read: 20468, Total Rows Processed: 1642318, Total Chunk Time: 0.031 seconds
+## Rows Read: 20504, Total Rows Processed: 1662822, Total Chunk Time: 0.028 seconds
+## Rows Read: 14647, Total Rows Processed: 1677469, Total Chunk Time: 0.033 seconds
+## Rows Read: 20545, Total Rows Processed: 1698014, Total Chunk Time: 0.336 seconds
+## Rows Read: 20521, Total Rows Processed: 1718535, Total Chunk Time: 0.031 seconds
+## Rows Read: 20413, Total Rows Processed: 1738948, Total Chunk Time: 0.028 seconds
+## Rows Read: 14748, Total Rows Processed: 1753696, Total Chunk Time: 0.024 seconds
+## Rows Read: 20503, Total Rows Processed: 1774199, Total Chunk Time: 0.400 seconds
+## Rows Read: 20683, Total Rows Processed: 1794882, Total Chunk Time: 0.034 seconds
+## Rows Read: 20372, Total Rows Processed: 1815254, Total Chunk Time: 0.029 seconds
+## Rows Read: 14649, Total Rows Processed: 1829903, Total Chunk Time: 0.025 seconds
+## Rows Read: 20478, Total Rows Processed: 1850381, Total Chunk Time: 0.441 seconds
+## Rows Read: 20533, Total Rows Processed: 1870914, Total Chunk Time: 0.028 seconds
+## Rows Read: 20581, Total Rows Processed: 1891495, Total Chunk Time: 0.027 seconds
+## Rows Read: 14662, Total Rows Processed: 1906157, Total Chunk Time: 0.025 seconds
+## Rows Read: 20475, Total Rows Processed: 1926632, Total Chunk Time: 0.423 seconds
+## Rows Read: 20514, Total Rows Processed: 1947146, Total Chunk Time: 0.031 seconds
+## Rows Read: 20556, Total Rows Processed: 1967702, Total Chunk Time: 0.028 seconds
+## Rows Read: 14698, Total Rows Processed: 1982400, Total Chunk Time: 0.025 seconds
+## Rows Read: 20581, Total Rows Processed: 2002981, Total Chunk Time: 0.345 seconds
+## Rows Read: 20490, Total Rows Processed: 2023471, Total Chunk Time: 0.028 seconds
+## Rows Read: 20546, Total Rows Processed: 2044017, Total Chunk Time: 0.025 seconds
+## Rows Read: 14635, Total Rows Processed: 2058652, Total Chunk Time: 0.022 seconds
+## Rows Read: 20462, Total Rows Processed: 2079114, Total Chunk Time: 0.374 seconds
+## Rows Read: 20599, Total Rows Processed: 2099713, Total Chunk Time: 0.028 seconds
+## Rows Read: 20516, Total Rows Processed: 2120229, Total Chunk Time: 0.026 seconds
+## Rows Read: 14618, Total Rows Processed: 2134847, Total Chunk Time: 0.024 seconds
+## Rows Read: 20602, Total Rows Processed: 2155449, Total Chunk Time: 0.391 seconds
+## Rows Read: 20582, Total Rows Processed: 2176031, Total Chunk Time: 0.028 seconds
+## Rows Read: 20383, Total Rows Processed: 2196414, Total Chunk Time: 0.027 seconds
+## Rows Read: 14681, Total Rows Processed: 2211095, Total Chunk Time: 0.024 seconds
+## Rows Read: 20561, Total Rows Processed: 2231656, Total Chunk Time: 0.684 seconds
+## Rows Read: 20513, Total Rows Processed: 2252169, Total Chunk Time: 0.027 seconds
+## Rows Read: 20515, Total Rows Processed: 2272684, Total Chunk Time: 0.027 seconds
+## Rows Read: 14641, Total Rows Processed: 2287325, Total Chunk Time: 0.024 seconds
+## Rows Read: 20501, Total Rows Processed: 2307826, Total Chunk Time: 0.369 seconds
+## Rows Read: 20510, Total Rows Processed: 2328336, Total Chunk Time: 0.029 seconds
+## Rows Read: 20608, Total Rows Processed: 2348944, Total Chunk Time: 0.030 seconds
+## Rows Read: 14594, Total Rows Processed: 2363538, Total Chunk Time: 0.026 seconds
+## Rows Read: 20485, Total Rows Processed: 2384023, Total Chunk Time: 0.647 seconds
+## Rows Read: 20523, Total Rows Processed: 2404546, Total Chunk Time: 0.030 seconds
+## Rows Read: 20526, Total Rows Processed: 2425072, Total Chunk Time: 0.029 seconds
+## Rows Read: 14626, Total Rows Processed: 2439698, Total Chunk Time: 0.026 seconds
+## Rows Read: 20549, Total Rows Processed: 2460247, Total Chunk Time: 0.472 seconds
+## Rows Read: 20427, Total Rows Processed: 2480674, Total Chunk Time: 0.028 seconds
+## Rows Read: 20594, Total Rows Processed: 2501268, Total Chunk Time: 0.026 seconds
+## Rows Read: 14637, Total Rows Processed: 2515905, Total Chunk Time: 0.024 seconds
+## Rows Read: 20498, Total Rows Processed: 2536403, Total Chunk Time: 0.777 seconds
+## Rows Read: 20505, Total Rows Processed: 2556908, Total Chunk Time: 0.032 seconds
+## Rows Read: 20444, Total Rows Processed: 2577352, Total Chunk Time: 0.029 seconds
+## Rows Read: 14686, Total Rows Processed: 2592038, Total Chunk Time: 0.025 seconds
+## Rows Read: 20534, Total Rows Processed: 2612572, Total Chunk Time: 1.311 seconds
+## Rows Read: 20404, Total Rows Processed: 2632976, Total Chunk Time: 0.029 seconds
+## Rows Read: 20496, Total Rows Processed: 2653472, Total Chunk Time: 0.027 seconds
+## Rows Read: 14685, Total Rows Processed: 2668157, Total Chunk Time: 0.025 seconds
+## Rows Read: 20582, Total Rows Processed: 2688739, Total Chunk Time: 0.760 seconds
+## Rows Read: 20414, Total Rows Processed: 2709153, Total Chunk Time: 0.028 seconds
+## Rows Read: 20562, Total Rows Processed: 2729715, Total Chunk Time: 0.028 seconds
+## Rows Read: 14598, Total Rows Processed: 2744313, Total Chunk Time: 0.025 seconds
+## Rows Read: 20432, Total Rows Processed: 2764745, Total Chunk Time: 0.856 seconds
+## Rows Read: 20467, Total Rows Processed: 2785212, Total Chunk Time: 0.027 seconds
+## Rows Read: 20623, Total Rows Processed: 2805835, Total Chunk Time: 0.027 seconds
+## Rows Read: 14636, Total Rows Processed: 2820471, Total Chunk Time: 0.024 seconds
+## Rows Read: 20462, Total Rows Processed: 2840933, Total Chunk Time: 0.558 seconds
+## Rows Read: 20517, Total Rows Processed: 2861450, Total Chunk Time: 0.028 seconds
+## Rows Read: 20419, Total Rows Processed: 2881869, Total Chunk Time: 0.028 seconds
+## Rows Read: 14688, Total Rows Processed: 2896557, Total Chunk Time: 0.024 seconds
+## Rows Read: 20451, Total Rows Processed: 2917008, Total Chunk Time: 0.722 seconds
+## Rows Read: 20546, Total Rows Processed: 2937554, Total Chunk Time: 0.035 seconds
+## Rows Read: 20457, Total Rows Processed: 2958011, Total Chunk Time: 0.029 seconds
+## Rows Read: 14651, Total Rows Processed: 2972662, Total Chunk Time: 0.030 seconds
+## Rows Read: 20502, Total Rows Processed: 2993164, Total Chunk Time: 0.574 seconds
+## Rows Read: 20460, Total Rows Processed: 3013624, Total Chunk Time: 0.028 seconds
+## Rows Read: 20477, Total Rows Processed: 3034101, Total Chunk Time: 0.028 seconds
+## Rows Read: 14654, Total Rows Processed: 3048755, Total Chunk Time: 0.024 seconds
+## Rows Read: 20441, Total Rows Processed: 3069196, Total Chunk Time: 0.393 seconds
+## Rows Read: 20479, Total Rows Processed: 3089675, Total Chunk Time: 0.027 seconds
+## Rows Read: 20585, Total Rows Processed: 3110260, Total Chunk Time: 0.026 seconds
+## Rows Read: 14603, Total Rows Processed: 3124863, Total Chunk Time: 0.023 seconds
+## Rows Read: 20452, Total Rows Processed: 3145315, Total Chunk Time: 0.621 seconds
+## Rows Read: 20463, Total Rows Processed: 3165778, Total Chunk Time: 0.027 seconds
+## Rows Read: 20570, Total Rows Processed: 3186348, Total Chunk Time: 0.026 seconds
+## Rows Read: 14622, Total Rows Processed: 3200970, Total Chunk Time: 0.023 seconds
+## Rows Read: 20543, Total Rows Processed: 3221513, Total Chunk Time: 0.292 seconds
+## Rows Read: 20478, Total Rows Processed: 3241991, Total Chunk Time: 0.028 seconds
+## Rows Read: 20462, Total Rows Processed: 3262453, Total Chunk Time: 0.026 seconds
+## Rows Read: 14622, Total Rows Processed: 3277075, Total Chunk Time: 0.026 seconds
+## Rows Read: 20470, Total Rows Processed: 3297545, Total Chunk Time: 0.409 seconds
+## Rows Read: 20517, Total Rows Processed: 3318062, Total Chunk Time: 0.026 seconds
+## Rows Read: 20497, Total Rows Processed: 3338559, Total Chunk Time: 0.026 seconds
+## Rows Read: 14656, Total Rows Processed: 3353215, Total Chunk Time: 0.023 seconds
+## Rows Read: 20446, Total Rows Processed: 3373661, Total Chunk Time: 0.354 seconds
+## Rows Read: 20508, Total Rows Processed: 3394169, Total Chunk Time: 0.028 seconds
+## Rows Read: 20485, Total Rows Processed: 3414654, Total Chunk Time: 0.027 seconds
+## Rows Read: 14667, Total Rows Processed: 3429321, Total Chunk Time: 0.026 seconds
+## Rows Read: 20461, Total Rows Processed: 3449782, Total Chunk Time: 0.381 seconds
+## Rows Read: 20573, Total Rows Processed: 3470355, Total Chunk Time: 0.026 seconds
+## Rows Read: 20482, Total Rows Processed: 3490837, Total Chunk Time: 0.025 seconds
+## Rows Read: 14610, Total Rows Processed: 3505447, Total Chunk Time: 0.024 seconds
+## Rows Read: 20546, Total Rows Processed: 3525993, Total Chunk Time: 0.401 seconds
+## Rows Read: 20562, Total Rows Processed: 3546555, Total Chunk Time: 0.029 seconds
+## Rows Read: 20464, Total Rows Processed: 3567019, Total Chunk Time: 0.027 seconds
+## Rows Read: 14558, Total Rows Processed: 3581577, Total Chunk Time: 0.025 seconds
+## Rows Read: 20512, Total Rows Processed: 3602089, Total Chunk Time: 0.309 seconds
+## Rows Read: 20444, Total Rows Processed: 3622533, Total Chunk Time: 0.029 seconds
+## Rows Read: 20452, Total Rows Processed: 3642985, Total Chunk Time: 0.028 seconds
+## Rows Read: 14697, Total Rows Processed: 3657682, Total Chunk Time: 0.025 seconds
+## Rows Read: 20501, Total Rows Processed: 3678183, Total Chunk Time: 0.340 seconds
+## Rows Read: 20526, Total Rows Processed: 3698709, Total Chunk Time: 0.028 seconds
+## Rows Read: 20543, Total Rows Processed: 3719252, Total Chunk Time: 0.027 seconds
+## Rows Read: 14620, Total Rows Processed: 3733872, Total Chunk Time: 0.025 seconds
+## Rows Read: 20489, Total Rows Processed: 3754361, Total Chunk Time: 0.379 seconds
+## Rows Read: 20596, Total Rows Processed: 3774957, Total Chunk Time: 0.037 seconds
+## Rows Read: 20469, Total Rows Processed: 3795426, Total Chunk Time: 0.027 seconds
+## Rows Read: 14657, Total Rows Processed: 3810083, Total Chunk Time: 0.026 seconds
+## Rows Read: 20469, Total Rows Processed: 3830552, Total Chunk Time: 0.337 seconds
+## Rows Read: 20502, Total Rows Processed: 3851054, Total Chunk Time: 0.029 seconds
+## Rows Read: 20524, Total Rows Processed: 3871578, Total Chunk Time: 0.025 seconds
+## Rows Read: 14694, Total Rows Processed: 3886272, Total Chunk Time: 0.027 seconds
+## Rows Read: 20503, Total Rows Processed: 3906775, Total Chunk Time: 0.447 seconds
+## Rows Read: 20474, Total Rows Processed: 3927249, Total Chunk Time: 0.026 seconds
+## Rows Read: 20573, Total Rows Processed: 3947822, Total Chunk Time: 0.025 seconds
+## Rows Read: 14637, Total Rows Processed: 3962459, Total Chunk Time: 0.022 seconds
+## Rows Read: 20566, Total Rows Processed: 3983025, Total Chunk Time: 0.305 seconds
+## Rows Read: 20441, Total Rows Processed: 4003466, Total Chunk Time: 0.027 seconds
+## Rows Read: 20457, Total Rows Processed: 4023923, Total Chunk Time: 0.027 seconds
+## Rows Read: 14706, Total Rows Processed: 4038629, Total Chunk Time: 0.024 seconds
+## Rows Read: 20459, Total Rows Processed: 4059088, Total Chunk Time: 0.479 seconds
+## Rows Read: 20431, Total Rows Processed: 4079519, Total Chunk Time: 0.028 seconds
+## Rows Read: 20576, Total Rows Processed: 4100095, Total Chunk Time: 0.027 seconds
+## Rows Read: 14680, Total Rows Processed: 4114775, Total Chunk Time: 0.025 seconds
+## Rows Read: 20398, Total Rows Processed: 4135173, Total Chunk Time: 0.496 seconds
+## Rows Read: 20496, Total Rows Processed: 4155669, Total Chunk Time: 0.035 seconds
+## Rows Read: 20517, Total Rows Processed: 4176186, Total Chunk Time: 0.028 seconds
+## Rows Read: 14696, Total Rows Processed: 4190882, Total Chunk Time: 0.024 seconds
+## Rows Read: 20512, Total Rows Processed: 4211394, Total Chunk Time: 0.432 seconds
+## Rows Read: 20466, Total Rows Processed: 4231860, Total Chunk Time: 0.027 seconds
+## Rows Read: 20475, Total Rows Processed: 4252335, Total Chunk Time: 0.026 seconds
+## Rows Read: 14678, Total Rows Processed: 4267013, Total Chunk Time: 0.024 seconds
+## Rows Read: 20550, Total Rows Processed: 4287563, Total Chunk Time: 1.001 seconds
+## Rows Read: 20479, Total Rows Processed: 4308042, Total Chunk Time: 0.028 seconds
+## Rows Read: 20505, Total Rows Processed: 4328547, Total Chunk Time: 0.026 seconds
+## Rows Read: 14669, Total Rows Processed: 4343216, Total Chunk Time: 0.023 seconds
+## Rows Read: 20470, Total Rows Processed: 4363686, Total Chunk Time: 0.380 seconds
+## Rows Read: 20486, Total Rows Processed: 4384172, Total Chunk Time: 0.027 seconds
+## Rows Read: 20511, Total Rows Processed: 4404683, Total Chunk Time: 0.026 seconds
+## Rows Read: 14714, Total Rows Processed: 4419397, Total Chunk Time: 0.023 seconds
+## Rows Read: 20599, Total Rows Processed: 4439996, Total Chunk Time: 0.381 seconds
+## Rows Read: 20501, Total Rows Processed: 4460497, Total Chunk Time: 0.027 seconds
+## Rows Read: 20479, Total Rows Processed: 4480976, Total Chunk Time: 0.027 seconds
+## Rows Read: 14666, Total Rows Processed: 4495642, Total Chunk Time: 0.023 seconds
+## Rows Read: 20540, Total Rows Processed: 4516182, Total Chunk Time: 0.379 seconds
+## Rows Read: 20514, Total Rows Processed: 4536696, Total Chunk Time: 0.028 seconds
+## Rows Read: 20555, Total Rows Processed: 4557251, Total Chunk Time: 0.027 seconds
+## Rows Read: 14687, Total Rows Processed: 4571938, Total Chunk Time: 0.024 seconds
+## Rows Read: 20529, Total Rows Processed: 4592467, Total Chunk Time: 0.456 seconds
+## Rows Read: 20502, Total Rows Processed: 4612969, Total Chunk Time: 0.026 seconds
+## Rows Read: 20628, Total Rows Processed: 4633597, Total Chunk Time: 0.026 seconds
+## Rows Read: 14652, Total Rows Processed: 4648249, Total Chunk Time: 0.023 seconds
+## Rows Read: 20561, Total Rows Processed: 4668810, Total Chunk Time: 1.167 seconds
+## Rows Read: 20461, Total Rows Processed: 4689271, Total Chunk Time: 0.032 seconds
+## Rows Read: 20577, Total Rows Processed: 4709848, Total Chunk Time: 0.027 seconds
+## Rows Read: 14677, Total Rows Processed: 4724525, Total Chunk Time: 0.023 seconds
+## Rows Read: 20501, Total Rows Processed: 4745026, Total Chunk Time: 0.441 seconds
+## Rows Read: 20534, Total Rows Processed: 4765560, Total Chunk Time: 0.027 seconds
+## Rows Read: 20551, Total Rows Processed: 4786111, Total Chunk Time: 0.027 seconds
+## Rows Read: 14707, Total Rows Processed: 4800818, Total Chunk Time: 0.026 seconds
+## Rows Read: 20572, Total Rows Processed: 4821390, Total Chunk Time: 0.350 seconds
+## Rows Read: 20409, Total Rows Processed: 4841799, Total Chunk Time: 0.034 seconds
+## Rows Read: 20578, Total Rows Processed: 4862377, Total Chunk Time: 0.030 seconds
+## Rows Read: 14695, Total Rows Processed: 4877072, Total Chunk Time: 0.024 seconds
+## Rows Read: 20500, Total Rows Processed: 4897572, Total Chunk Time: 0.582 seconds
+## Rows Read: 20577, Total Rows Processed: 4918149, Total Chunk Time: 0.031 seconds
+## Rows Read: 20487, Total Rows Processed: 4938636, Total Chunk Time: 0.027 seconds
+## Rows Read: 14719, Total Rows Processed: 4953355, Total Chunk Time: 0.024 seconds
+## Rows Read: 20523, Total Rows Processed: 4973878, Total Chunk Time: 1.401 seconds
+## Rows Read: 20520, Total Rows Processed: 4994398, Total Chunk Time: 0.028 seconds
+## Rows Read: 20442, Total Rows Processed: 5014840, Total Chunk Time: 0.025 seconds
+## Rows Read: 14749, Total Rows Processed: 5029589, Total Chunk Time: 0.023 seconds
+## Rows Read: 20483, Total Rows Processed: 5050072, Total Chunk Time: 0.578 seconds
+## Rows Read: 20539, Total Rows Processed: 5070611, Total Chunk Time: 0.027 seconds
+## Rows Read: 20484, Total Rows Processed: 5091095, Total Chunk Time: 0.025 seconds
+## Rows Read: 14709, Total Rows Processed: 5105804, Total Chunk Time: 0.023 seconds
+## Rows Read: 20568, Total Rows Processed: 5126372, Total Chunk Time: 0.675 seconds
+## Rows Read: 20510, Total Rows Processed: 5146882, Total Chunk Time: 0.030 seconds
+## Rows Read: 20522, Total Rows Processed: 5167404, Total Chunk Time: 0.029 seconds
+## Rows Read: 14676, Total Rows Processed: 5182080, Total Chunk Time: 0.025 seconds
+## Rows Read: 20456, Total Rows Processed: 5202536, Total Chunk Time: 0.793 seconds
+## Rows Read: 20565, Total Rows Processed: 5223101, Total Chunk Time: 0.032 seconds
+## Rows Read: 20536, Total Rows Processed: 5243637, Total Chunk Time: 0.028 seconds
+## Rows Read: 14675, Total Rows Processed: 5258312, Total Chunk Time: 0.025 seconds
+## Rows Read: 20454, Total Rows Processed: 5278766, Total Chunk Time: 0.517 seconds
+## Rows Read: 20536, Total Rows Processed: 5299302, Total Chunk Time: 0.034 seconds
+## Rows Read: 20536, Total Rows Processed: 5319838, Total Chunk Time: 0.031 seconds
+## Rows Read: 14690, Total Rows Processed: 5334528, Total Chunk Time: 0.027 seconds
+## Rows Read: 20538, Total Rows Processed: 5355066, Total Chunk Time: 0.480 seconds
+## Rows Read: 20455, Total Rows Processed: 5375521, Total Chunk Time: 0.028 seconds
+## Rows Read: 20553, Total Rows Processed: 5396074, Total Chunk Time: 0.030 seconds
+## Rows Read: 14626, Total Rows Processed: 5410700, Total Chunk Time: 0.024 seconds
+## Rows Read: 20513, Total Rows Processed: 5431213, Total Chunk Time: 0.325 seconds
+## Rows Read: 20447, Total Rows Processed: 5451660, Total Chunk Time: 0.029 seconds
+## Rows Read: 20480, Total Rows Processed: 5472140, Total Chunk Time: 0.027 seconds
+## Rows Read: 14663, Total Rows Processed: 5486803, Total Chunk Time: 0.024 seconds
+## Rows Read: 20481, Total Rows Processed: 5507284, Total Chunk Time: 0.459 seconds
+## Rows Read: 20471, Total Rows Processed: 5527755, Total Chunk Time: 0.031 seconds
+## Rows Read: 20462, Total Rows Processed: 5548217, Total Chunk Time: 0.027 seconds
+## Rows Read: 14735, Total Rows Processed: 5562952, Total Chunk Time: 0.024 seconds
+## Rows Read: 20398, Total Rows Processed: 5583350, Total Chunk Time: 0.402 seconds
+## Rows Read: 20458, Total Rows Processed: 5603808, Total Chunk Time: 0.030 seconds
+## Rows Read: 20644, Total Rows Processed: 5624452, Total Chunk Time: 0.027 seconds
+## Rows Read: 14686, Total Rows Processed: 5639138, Total Chunk Time: 0.023 seconds
+## Rows Read: 20541, Total Rows Processed: 5659679, Total Chunk Time: 0.835 seconds
+## Rows Read: 20462, Total Rows Processed: 5680141, Total Chunk Time: 0.033 seconds
+## Rows Read: 20508, Total Rows Processed: 5700649, Total Chunk Time: 0.033 seconds
+## Rows Read: 14695, Total Rows Processed: 5715344, Total Chunk Time: 0.027 seconds
+## Rows Read: 20432, Total Rows Processed: 5735776, Total Chunk Time: 0.421 seconds
+## Rows Read: 20512, Total Rows Processed: 5756288, Total Chunk Time: 0.029 seconds
+## Rows Read: 20556, Total Rows Processed: 5776844, Total Chunk Time: 0.028 seconds
+## Rows Read: 14700, Total Rows Processed: 5791544, Total Chunk Time: 0.025 seconds
+## Rows Read: 20536, Total Rows Processed: 5812080, Total Chunk Time: 0.741 seconds
+## Rows Read: 20490, Total Rows Processed: 5832570, Total Chunk Time: 0.028 seconds
+## Rows Read: 20605, Total Rows Processed: 5853175, Total Chunk Time: 0.028 seconds
+## Rows Read: 14617, Total Rows Processed: 5867792, Total Chunk Time: 0.025 seconds
+## Rows Read: 20494, Total Rows Processed: 5888286, Total Chunk Time: 0.478 seconds
+## Rows Read: 20573, Total Rows Processed: 5908859, Total Chunk Time: 0.029 seconds
+## Rows Read: 20502, Total Rows Processed: 5929361, Total Chunk Time: 0.028 seconds
+## Rows Read: 14718, Total Rows Processed: 5944079, Total Chunk Time: 0.025 seconds
+## Rows Read: 20501, Total Rows Processed: 5964580, Total Chunk Time: 0.454 seconds
+## Rows Read: 20500, Total Rows Processed: 5985080, Total Chunk Time: 0.027 seconds
+## Rows Read: 20610, Total Rows Processed: 6005690, Total Chunk Time: 0.027 seconds
+## Rows Read: 14721, Total Rows Processed: 6020411, Total Chunk Time: 0.024 seconds
+## Rows Read: 20527, Total Rows Processed: 6040938, Total Chunk Time: 0.664 seconds
+## Rows Read: 20594, Total Rows Processed: 6061532, Total Chunk Time: 0.028 seconds
+## Rows Read: 20555, Total Rows Processed: 6082087, Total Chunk Time: 0.026 seconds
+## Rows Read: 14675, Total Rows Processed: 6096762, Total Chunk Time: 0.023 seconds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate ROC and Area Under the Curve (AUC).</span>
+
+logitRoc &lt;-<span class="st"> </span><span class="kw">rxRoc</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="st">&quot;ArrDel15_Pred&quot;</span>, logitPredict)
+logitAuc &lt;-<span class="st"> </span><span class="kw">rxAuc</span>(logitRoc)
+
+<span class="kw">plot</span>(logitRoc)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/-test-score-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate ROC and Area Under the Curve (AUC)</span>
+
+treeRoc &lt;-<span class="st"> </span><span class="kw">rxRoc</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="st">&quot;ArrDel15_Pred&quot;</span>, treePredict)
+treeAuc &lt;-<span class="st"> </span><span class="kw">rxAuc</span>(treeRoc)
+
+<span class="kw">plot</span>(treeRoc)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/-test-score-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(dTreeModel, <span class="dt">file =</span> <span class="st">&quot;dTreeModel.RData&quot;</span>)</code></pre></div>
 
 </div>
 </div>
@@ -254,8 +1072,8 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
           </div>
         </div>
       </div>
-<a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="placeholder.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="data-manipulation-with-sparkr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

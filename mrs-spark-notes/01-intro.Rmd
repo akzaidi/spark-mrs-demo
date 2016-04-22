@@ -40,4 +40,4 @@ These notes will be most useful to those that have been programming with R, have
 
 ## Versioning
 
-We will be using HDInsight 3.4, which is runnign HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3.
+We will be using HDInsight 3.4, which is running HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3. The HDInsight cluster consists of 4 worker nodes, two head nodes, and an edge node. Each node conists of 8 cores, and 28 GB of RAM.

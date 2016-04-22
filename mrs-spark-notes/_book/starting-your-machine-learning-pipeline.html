@@ -139,11 +139,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6.3" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#sparkr-1"><i class="fa fa-check"></i><b>2.6.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
-<li class="chapter" data-level="3.1" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
-<li class="chapter" data-level="3.2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#pema-algorithms-and-the-revoscaler-package"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
-<li class="chapter" data-level="3.3" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#external-data-frames-xdfs"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
-<li class="chapter" data-level="3.4" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html#compute-contexts"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="rserver.html"><a href="rserver.html#computecontext"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
 <li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
@@ -179,6 +179,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
 <li class="chapter" data-level="9" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>9</b> Modeling with Microsoft R Server</a><ul>
 <li class="chapter" data-level="9.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>9.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="9.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>9.2</b> Splitting XDF into Train and Test Tests</a></li>
+<li class="chapter" data-level="9.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>9.3</b> Training Binary Classification Models</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>9.3.1</b> Logistic Regression Models</a></li>
+<li class="chapter" data-level="9.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>9.3.2</b> Tree and Ensemble Classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>9.4</b> Testing Models</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
@@ -269,33 +275,9 @@ dest_flights %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<spa
 <p>We have saved in our data directory a couple of data directories (virtually, everything in Azure Storage is a simple blob!). Let’s see what we have in our directory using the <code>rxHadoopListFiles</code> command, which is simply a wrapper to hadoop shell command <code>hadoop fs -ls</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dir &lt;-<span class="st"> &quot;/user/RevoShare/alizaidi&quot;</span>
 <span class="kw">rxHadoopListFiles</span>(data_dir)</code></pre></div>
-<pre><code>## Found 3 items
-## drwxr-xr-x   - alizaidi supergroup          0 2016-04-10 15:06 /user/RevoShare/alizaidi/AirOnTimeCSV
-## drwxr-xr-x   - alizaidi supergroup          0 2016-04-22 04:01 /user/RevoShare/alizaidi/delayDataLarge
-## drwxr-xr-x   - alizaidi supergroup          0 2016-04-21 10:56 /user/RevoShare/alizaidi/nyctaxi</code></pre>
 <p>Taking a look at the individual directories, we can see how many files there are for the Airlines directory and Weather directory</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)</code></pre></div>
-<pre><code>## Found 303 items
-## -rw-r--r--   1 alizaidi supergroup   85446458 2016-04-10 03:37 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198710.csv
-## -rw-r--r--   1 alizaidi supergroup   80483032 2016-04-10 03:37 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198711.csv
-## -rw-r--r--   1 alizaidi supergroup   83681473 2016-04-10 03:38 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198712.csv
-## -rw-r--r--   1 alizaidi supergroup   82378862 2016-04-10 03:38 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198801.csv
-## -rw-r--r--   1 alizaidi supergroup   78067414 2016-04-10 03:38 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198802.csv
-## -rw-r--r--   1 alizaidi supergroup   84402544 2016-04-10 03:38 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198803.csv
-## -rw-r--r--   1 alizaidi supergroup   81068505 2016-04-10 03:39 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198804.csv
-## -rw-r--r--   1 alizaidi supergroup   82704506 2016-04-10 03:39 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198805.csv
-## -rw-r--r--   1 alizaidi supergroup   81858043 2016-04-10 03:39 /user/RevoShare/alizaidi/AirOnTimeCSV/airOT198806.csv</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
-<pre><code>## Found 50 items
-## -rw-r--r--   1 alizaidi supergroup  280625309 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200705hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  273456800 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200706hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  286008781 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200707hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  283559637 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200708hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  289507036 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200710hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  262807653 2016-04-10 16:02 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200711hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  313171093 2016-04-10 16:03 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200712hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  413439554 2016-04-10 16:03 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200801hourly.txt
-## -rw-r--r--   1 alizaidi supergroup  396326349 2016-04-10 16:03 /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw/200802hourly.txt</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)
+<span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
 <p>Let’s read the airlines directory and the weather directory to Spark DataFrames. We will use the <code>read.df</code> function from the <code>spark.csv</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(data_dir, <span class="st">&quot;AirOnTimeCSV&quot;</span>)
 weatherPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;Weather&quot;</span>) <span class="co"># pre-processed weather data</span>

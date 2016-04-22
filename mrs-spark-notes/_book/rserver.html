@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="rserver.html">
-<link rel="next" href="provisioning-instructions.html">
+<link rel="prev" href="apache-spark-todo.html">
+<link rel="next" href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -207,29 +207,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="azure-hdinsight-managed-hadoop-in-the-cloud---todo" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Azure HDInsight – Managed Hadoop in the Cloud - todo</h1>
-<div id="hdinsight-premium-spark-clusters-with-r-server" class="section level2">
-<h2><span class="header-section-number">4.1</span> HDInsight Premium Spark Clusters with R Server</h2>
+<div id="rserver" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> R &amp; Microsoft R Server - todo</h1>
+<div id="functional-programming-and-lazy-evaluation-in-r" class="section level2">
+<h2><span class="header-section-number">3.1</span> Functional Programming and Lazy Evaluation in R</h2>
+<p>As we mentioned in Section <a href="apache-spark-todo.html#lazyevalfp">2.1</a>, Spark takes advantage of the functional programming paradigm and lazy evaluation to optimize it’s operations and improve upon algorithmic complexity. R is also at it’s heart a functional programming langauge. Moreover, the arguments in a function are evaluated lazily by R: only evaluated if they’re actually used, and only when they’re needed. This allows R to be highly expressive, capable of doing many intricate things with few lines of code, but also causes R to have a rather heavy memory footprint.</p>
+<p>Many packages for R have been written to take advantage of it’s lazy, and non-standard evaluation procedures. Most famously, the dplyr package utlizes R’s NSE mechanism to have it’s functions connect to backends in different databases, translating R into syntax that can be understood and evaluated by those backends.</p>
+<p>Thee RevoScaleR similarly reimagines R’s algorithms as distributable C++ code, taht can be optimized and compiled in various compute contexts.</p>
 </div>
-<div id="dashboards-for-management" class="section level2">
-<h2><span class="header-section-number">4.2</span> Dashboards for Management</h2>
+<div id="pema" class="section level2">
+<h2><span class="header-section-number">3.2</span> PEMA Algorithms and the RevoScaleR Package</h2>
 </div>
-<div id="jupyter-and-rstudio-server" class="section level2">
-<h2><span class="header-section-number">4.3</span> Jupyter and RStudio Server</h2>
+<div id="xdf" class="section level2">
+<h2><span class="header-section-number">3.3</span> eXternal Data Frames (XDFs)</h2>
+</div>
+<div id="computecontext" class="section level2">
+<h2><span class="header-section-number">3.4</span> Compute Contexts</h2>
 
 </div>
 </div>
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="rserver.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="provisioning-instructions.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="apache-spark-todo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -256,7 +259,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-hdinsight.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-r-server.Rmd",
 "text": null
 },
 "download": null,

@@ -1,4 +1,4 @@
-# R & Microsoft R Server - todo
+# R & Microsoft R Server - todo {#rserver}
 
 ## Functional Programming and Lazy Evaluation in R
 
@@ -8,8 +8,8 @@ Many packages for R have been written to take advantage of it's lazy, and non-st
 
 Thee RevoScaleR similarly reimagines R's algorithms as distributable C++ code, taht can be optimized and compiled in various compute contexts. 
 
-## PEMA Algorithms and the RevoScaleR Package
+## PEMA Algorithms and the RevoScaleR Package {#pema}
 
-## eXternal Data Frames (XDFs)
+## eXternal Data Frames (XDFs) {#xdf}
 
-## Compute Contexts
+## Compute Contexts {#computecontext}
