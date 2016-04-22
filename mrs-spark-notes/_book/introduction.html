@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
 
-<meta name="date" content="2016-04-21">
+<meta name="date" content="2016-04-22">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +49,11 @@
 
 
 
+<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.5/d3.min.js"></script>
+<script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
+<script src="libs/dimple-2.1.6/dimple.min.js"></script>
+<script src="libs/dimple-binding-0.1/dimple.js"></script>
 
 
 <style type="text/css">
@@ -105,11 +110,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i><b>0.1</b> Scalable Machine Learning with Microsoft R Server and Spark</a></li>
-<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i><b>0.2</b> Useful Resources</a><ul>
-<li class="chapter" data-level="0.2.1" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i><b>0.2.1</b> Spark</a></li>
-<li class="chapter" data-level="0.2.2" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i><b>0.2.2</b> Microsoft R Server</a></li>
-<li class="chapter" data-level="0.2.3" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i><b>0.2.3</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i>Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i>Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i>Microsoft R Server</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i>Azure HDInsight</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><b><a href="#">Overview</a></b></li>
@@ -120,6 +125,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
 <li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.7</b> Versioning</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>2</b> Apache Spark - todo</a><ul>
 <li class="chapter" data-level="2.1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
@@ -157,14 +163,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
 <li class="chapter" data-level="7" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>7</b> Starting Your Machine Learning Pipeline</a><ul>
-<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>7.1</b> Finding the SparkR Library</a></li>
-<li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.2</b> Creating a Spark Context</a></li>
-<li class="chapter" data-level="7.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>7.3</b> Creating DataFrames</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>7.3.1</b> From Local R data.frames</a></li>
-<li class="chapter" data-level="7.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>7.3.2</b> Creating DataFrames from CSV Files</a></li>
+<li class="chapter" data-level="7.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#todo"><i class="fa fa-check"></i><b>7.1</b> todo</a></li>
+<li class="chapter" data-level="7.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>7.2</b> Finding the SparkR Library</a></li>
+<li class="chapter" data-level="7.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>7.3</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="7.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>7.4</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>7.4.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="7.4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>7.4.2</b> Creating DataFrames from CSV Files</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="chapter" data-level="8" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>8</b> Data Manipulation with SparkR</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>8.1</b> Data Aggregations</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -209,7 +219,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="azure-hdinsight-1" class="section level2">
 <h2><span class="header-section-number">1.5</span> Azure HDInsight</h2>
-<p>[todo] add overview of azure HDInsight…</p>
+<p><a href="starting-your-machine-learning-pipeline.html#todo">todo</a> add overview of azure HDInsight…</p>
 </div>
 <div id="prerequisites---what-youll-need" class="section level2">
 <h2><span class="header-section-number">1.6</span> Prerequisites - What You’ll Need</h2>
@@ -222,6 +232,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Visual Studio 2015</li>
 </ul>
 <p>These notes will be most useful to those that have been programming with R, have a solid knowledge of statistics and machine learning, but have limited exposure to Spark. I don’t assume any Spark background for these notes, and try to explain the Spark concepts from the ground up. I also do not presume that you have used the Microsoft R Server implementation of R, or have used the RevoScaleR package that MRS ships with.</p>
+</div>
+<div id="versioning" class="section level2">
+<h2><span class="header-section-number">1.7</span> Versioning</h2>
+<p>We will be using HDInsight 3.4, which is runnign HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3.</p>
 
 </div>
 </div>

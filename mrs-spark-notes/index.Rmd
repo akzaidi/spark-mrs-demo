@@ -13,14 +13,16 @@ description: "These are (tentatively) rough notes showcasing some tips on conduc
 ---
 
 # Abstract {-}
-## Scalable Machine Learning with Microsoft R Server and Spark
+## Scalable Machine Learning with Microsoft R Server and Spark {-}
 
-This collection of notes in progress will help you get started on using Microsoft R Server and Spark with the Azure HDInsight platform. 
+This collection of notes in progress will help you get started with using Microsoft R Server and Spark with the Azure HDInsight platform. 
 
-## Useful Resources
-There are a number of useful resources on Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.
+## Useful Resources {-}
+There are a number of useful resources for Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.
 
-### Spark
+todo: this should probably got into the .bib file instead, and use cross-reference.
+
+### Spark {-}
 + [Spark Documentation Home Page](http://spark.apache.org/docs/latest/index.html)
 + [The Founding Paper](http://people.csail.mit.edu/matei/papers/2010/hotcloud_spark.pdf)
 + [Origination of RDDs](https://www.cs.berkeley.edu/~matei/papers/2012/nsdi_spark.pdf)
@@ -29,14 +31,14 @@ There are a number of useful resources on Spark, R, and Azure HDInsight. I have 
 + [Spark Packages](http://spark-packages.org/)
 + [Spark Summit](https://spark-summit.org/east-2016/schedule/)
 + [Jacek Laskowski - Mastering Apache Spark](https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details)
-+ 
++ [SparkR: Scaling R Programs with Spark](http://shivaram.org/publications/sparkr-sigmod.pdf)
 
-### Microsoft R Server
+### Microsoft R Server {-}
 + [Landing Page for R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/)
 + [Documentation](https://packages.revolutionanalytics.com/doc/8.0.0/)
 + 
 
-### Azure HDInsight
+### Azure HDInsight {-}
 + [HDInsight Documentation Home Page](https://azure.microsoft.com/en-us/documentation/services/hdinsight/)
 + [Machine Learning with HDInsight Spark](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-apache-spark-machine-learning-mllib-ipython/)
 + [R Server on HDInsight](https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-overview/)
