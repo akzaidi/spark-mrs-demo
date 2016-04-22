@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
+  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  
+  <meta name="twitter:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
+  
+
+<meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
+
+<meta name="date" content="2016-04-22">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="starting-your-machine-learning-pipeline.html">
+<link rel="next" href="placeholder.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.5/d3.min.js"></script>
+<script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
+<script src="libs/dimple-2.1.6/dimple.min.js"></script>
+<script src="libs/dimple-binding-0.1/dimple.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="chapter" data-level="1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>1</b> Apache Spark - todo</a></li>
+<li class="chapter" data-level="2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>2</b> R &amp; Microsoft R Server - todo</a></li>
+<li class="chapter" data-level="3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>3</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a></li>
+<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
+<li class="chapter" data-level="4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>4</b> Starting Your Machine Learning Pipeline</a><ul>
+<li class="chapter" data-level="4.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#todo"><i class="fa fa-check"></i><b>4.1</b> todo</a></li>
+<li class="chapter" data-level="4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>4.2</b> Finding the SparkR Library</a></li>
+<li class="chapter" data-level="4.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>4.3</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="4.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>4.4</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>4.4.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="4.4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>4.4.2</b> Creating DataFrames from CSV Files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>5</b> Data Manipulation with SparkR</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>5.1</b> Data Aggregations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>6</b> Placeholder</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation-with-sparkr" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Data Manipulation with SparkR</h1>
+<p>Now that we have our two datasets saved as Spark DataFrames, we can conduct standard data manipulation techniques to visualize and explore our data.</p>
+<p>First, we’ll use the <code>rename</code> function to rename our columns, and the <code>select</code> function to select the columns we need. We’ll also transform the These SparkR functions look just like the verbs from teh <code>dplyr</code> package for data manipulation, but are designed to work with Spark DataFrames.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(airDF &lt;-<span class="st"> </span><span class="kw">rename</span>(airDF,
+                <span class="dt">ArrDel15 =</span> airDF$ARR_DEL15,
+                <span class="dt">Year =</span> airDF$YEAR,
+                <span class="dt">Month =</span> airDF$MONTH,
+                <span class="dt">DayofMonth =</span> airDF$DAY_OF_MONTH,
+                <span class="dt">DayOfWeek =</span> airDF$DAY_OF_WEEK,
+                <span class="dt">Carrier =</span> airDF$UNIQUE_CARRIER,
+                <span class="dt">OriginAirportID =</span> airDF$ORIGIN_AIRPORT_ID,
+                <span class="dt">DestAirportID =</span> airDF$DEST_AIRPORT_ID,
+                <span class="dt">CRSDepTime =</span> airDF$CRS_DEP_TIME,
+                <span class="dt">CRSArrTime =</span>  airDF$CRS_ARR_TIME,
+                <span class="dt">Distance =</span> airDF$DISTANCE,
+                <span class="dt">DepDelay =</span> airDF$DEP_DELAY,
+                <span class="dt">ArrDelay =</span> airDF$ARR_DELAY
+                )
+            )
+  <span class="co">#  user  system elapsed </span>
+  <span class="co"># 0.136   0.000   0.242 </span>
+
+<span class="co"># Select desired columns from the flight data. </span>
+varsToKeep &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Month&quot;</span>, <span class="st">&quot;DayofMonth&quot;</span>, <span class="st">&quot;DayOfWeek&quot;</span>, <span class="st">&quot;Carrier&quot;</span>,
+                <span class="st">&quot;OriginAirportID&quot;</span>, <span class="st">&quot;DestAirportID&quot;</span>, <span class="st">&quot;CRSDepTime&quot;</span>, <span class="st">&quot;CRSArrTime&quot;</span>,
+                <span class="st">&quot;Distance&quot;</span>, <span class="st">&quot;DepDelay&quot;</span>, <span class="st">&quot;ArrDelay&quot;</span>)
+<span class="kw">system.time</span>(airDF &lt;-<span class="st"> </span><span class="kw">select</span>(airDF, varsToKeep))
+  <span class="co">#  user  system elapsed </span>
+  <span class="co"># 0.064   0.000   0.112 </span>
+
+<span class="co"># Round down scheduled departure time to full hour.</span>
+<span class="kw">system.time</span>(airDF$CRSDepTime &lt;-<span class="st"> </span><span class="kw">floor</span>(airDF$CRSDepTime /<span class="st"> </span><span class="dv">100</span>))
+  <span class="co"># user  system elapsed </span>
+  <span class="co">#  0.00    0.00    0.06 </span></code></pre></div>
+<div id="data-aggregations" class="section level2">
+<h2><span class="header-section-number">5.1</span> Data Aggregations</h2>
+<p>SparkR is great at merges, and data aggregation. For instance, suppose we want to see the average departure delay for each carrier and arrange it in descending order. The following syntax makes that very easy.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_df &lt;-<span class="st"> </span>airDF %&gt;%<span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;Carrier&quot;</span>, <span class="st">&quot;DepDelay&quot;</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">groupBy</span>(airDF$Carrier) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">count =</span> <span class="kw">n</span>(airDF$Carrier), 
+            <span class="dt">ave_delay =</span> <span class="kw">mean</span>(airDF$DepDelay))
+   <span class="co"># user  system elapsed </span>
+  <span class="co"># 0.024   0.000   0.055 </span></code></pre></div>
+<p>The syntax is almost exactly like the syntax from the dplyr package, and the <code>%&gt;%</code> operator makes chaining the additive methods exceptionally simple. Note that the above operation will not be run until we call upon the sum_df. It is for now, just a promise for deferred evaluation.</p>
+<p>In order to evaluate and bring the summarized data into an R <code>data.frame</code>, we can use the <code>collect</code> statement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_local &lt;-<span class="st"> </span>sum_df %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<span class="kw">library</span>(dplyr)
+sum_local %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(ave_delay))
+  <span class="co">#  user  system elapsed </span>
+  <span class="co"># 0.616   0.536 337.758 </span></code></pre></div>
+<p>Now that our data resides as a local data.frame, we can plot it using any R plotting library.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;local_df.RData&quot;</span>)
+<span class="kw">library</span>(rcdimple)
+sum_local %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">dimple</span>(<span class="dt">x =</span><span class="st">&quot;Carrier&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ave_delay&quot;</span>, <span class="dt">z =</span>  <span class="st">&quot;count&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;bar&quot;</span>) %&gt;%
+<span class="st">  </span><span class="kw">add_title</span>(<span class="dt">html =</span> <span class="st">&quot;&lt;h4&gt;Average Delay in Minutes by Carrier&lt;/h4&gt;&quot;</span> ) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">zAxis</span>(<span class="dt">outputFormat =</span> <span class="st">&quot;#,### &quot;</span>)</code></pre></div>
+<p><div id="htmlwidget-6568" style="width:672px;height:480px;" class="dimple html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6568">{"x":{"options":{"chart":[],"xAxis":{"type":"addCategoryAxis"},"yAxis":{"type":"addMeasureAxis"},"zAxis":{"type":"addMeasureAxis","outputFormat":"#,### "},"colorAxis":[],"defaultColors":[],"layers":[],"legend":[],"x":"Carrier","y":"ave_delay","type":"bar","z":"count","title":{"text":null,"html":"<h4>Average Delay in Minutes by Carrier\u003c/h4>"}},"data":{"Carrier":["AA","PA (1)","TW","TZ","HA","AS","UA","B6","NW","HP","US","OH","OO","PI","VX","CO","ML (1)","PS","WN","DH","DL","KH","XE","EA","EV","F9","9E","YV","FL","MQ"],"count":[17140606,316167,3757747,208420,555683,3443588,14862404,1652137,10585760,3636682,15709733,1765828,5443169,873957,54742,8888536,70622,83617,20529039,693047,19168060,154381,3459389,919785,3384793,670653,1045396,1563254,2232262,5750198],"ave_delay":[8.09216330413803,5.53244244289068,7.65825114221727,5.55423481294241,-0.470471755160245,7.24013290246557,9.6410715967209,10.9892686446028,6.02139368193511,8.10779026658562,6.99896030027832,9.52695744411818,6.95087777743635,9.56033602798461,10.0396614090817,7.81891288846895,6.2296766743649,8.92810370334441,9.32814933847665,9.61263938968893,7.55365844885708,1.59931768991184,8.55590331293135,8.67405056543554,12.7600643883231,6.82652221551061,6.8708289697235,9.63959007239046,8.28258416166276,8.69911067862048]}},"evals":[],"jsHooks":[]}</script></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="starting-your-machine-learning-pipeline.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="placeholder.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-spark-context.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

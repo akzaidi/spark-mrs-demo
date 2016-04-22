@@ -26,6 +26,12 @@ RDDs, short for Resilient Distributed Datasets
 
 ## DataFrames
 
+When working with relational data for structured data processing, most data scientists will think of using SQL, due to it's highly efficient relational algebra. Spark provides a SQL interface with Spark SQL and a SQL context, SQLContext.
+
+Spark SQL is a Spark module for structured data processing. While the RDD API is great for generic data storage, the interfaces provided by Spark SQL provide Spark with more information about the structure of both the data and the computation being performed. Internally, Spark SQL uses this extra information to perform extra optimizations. There are several ways to interact with Spark SQL including SQL, the DataFrames API and the Datasets API. When computing a result the same execution engine is used, independent of which API/language you are using to express the computation. This unification means that developers can easily switch back and forth between the various APIs based on which provides the most natural way to express a given transformation.
+
+DataFrames use the catalyst query optimizer to make querying more efficient. The catalyst query optimizer leverages advanced Scala features, such as pattern matching and quasiquotes to build an extenisble query optimizer.
+
 ## MLlib
 
 ## Spark APIs
