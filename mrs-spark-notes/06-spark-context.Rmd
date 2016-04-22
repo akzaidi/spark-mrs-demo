@@ -10,7 +10,7 @@
 + no console output from rxHadoop shell wrappers, need to sink and show if want to see output
 + to cache results, might make sense to persist DFs and then reuse when needed
 + take a look at [sparkr-ext](https://github.com/hoxo-m/SparkRext)
-+ 
++ and SKKU-SKT/ggplot2.SparkR
 
 The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.
 
@@ -292,5 +292,91 @@ sum_local %>%
 
 ```
 
-<!-- airDF %>%  -->
-<!-- ggplot(airDF, aes(x = Year, fill = Payment)) + geom_bar() -->
+In order to make the weather data correspond to the airline data, let us aggregate it by 
+
+```{r-agg-weather, eval = FALSE}
+weatherAgg <- weatherDF %>% 
+  groupBy("AdjustedYear", "AdjustedMonth", "AdjustedDay", "AdjustedHour", "AirportID") %>% 
+  agg(Visibility = avg(weatherDF$Visibility),
+      DryBulbCelsius = avg(weatherDF$DryBulbCelsius),
+      DewPointCelsius = avg(weatherDF$DewPointCelsius),
+      RelativeHumidity = avg(weatherDF$RelativeHumidity),
+      WindSpeed = avg(weatherDF$RelativeHumidity),
+      Altimeter = avg(weatherDF$Altimeter))
+
+
+```
+
+
+### Merging Data
+
+We can use SparkR for merging data sets as well. Let's merge the airlines dataset with the weather dataset. We'll first add weather data to the origination airport, and then add it to the destination airport. To keep our data in manageable size, we will remove the redundant columns. Finally, we save the DataFrame to a CSV file, stored in HDFS for easier access at a later date.
+
+```{r-merge-dfs, eval = FALSE}
+
+joinedDF <- SparkR::join(
+  airDF,
+  weatherAgg,
+  airDF$OriginAirportID == weatherAgg$AirportID &
+    airDF$Year == weatherAgg$AdjustedYear &
+    airDF$Month == weatherAgg$AdjustedMonth &
+    airDF$DayofMonth == weatherAgg$AdjustedDay &
+    airDF$CRSDepTime == weatherAgg$AdjustedHour,
+  joinType = "left_outer"
+)
+
+vars <- names(joinedDF)
+varsToDrop <- c('AdjustedYear', 'AdjustedMonth', 'AdjustedDay', 'AdjustedHour', 'AirportID')
+varsToKeep <- vars[!(vars %in% varsToDrop)]
+joinedDF1 <- select(joinedDF, varsToKeep)
+
+joinedDF2 <- rename(joinedDF1,
+                    VisibilityOrigin = joinedDF1$Visibility,
+                    DryBulbCelsiusOrigin = joinedDF1$DryBulbCelsius,
+                    DewPointCelsiusOrigin = joinedDF1$DewPointCelsius,
+                    RelativeHumidityOrigin = joinedDF1$RelativeHumidity,
+                    WindSpeedOrigin = joinedDF1$WindSpeed,
+                    AltimeterOrigin = joinedDF1$Altimeter
+)
+
+
+joinedDF3 <- join(
+  joinedDF2,
+  weatherAgg,
+  airDF$DestAirportID == weatherAgg$AirportID &
+    airDF$Year == weatherAgg$AdjustedYear &
+    airDF$Month == weatherAgg$AdjustedMonth &
+    airDF$DayofMonth == weatherAgg$AdjustedDay &
+    airDF$CRSDepTime == weatherAgg$AdjustedHour,
+  joinType = "left_outer"
+)
+
+# Remove redundant columns
+vars <- names(joinedDF3)
+varsToDrop <- c('AdjustedYear', 'AdjustedMonth', 'AdjustedDay', 'AdjustedHour', 'AirportID')
+varsToKeep <- vars[!(vars %in% varsToDrop)]
+joinedDF4 <- select(joinedDF3, varsToKeep)
+
+joinedDF5 <- rename(joinedDF4,
+                    VisibilityDest = joinedDF4$Visibility,
+                    DryBulbCelsiusDest = joinedDF4$DryBulbCelsius,
+                    DewPointCelsiusDest = joinedDF4$DewPointCelsius,
+                    RelativeHumidityDest = joinedDF4$RelativeHumidity,
+                    WindSpeedDest = joinedDF4$WindSpeed,
+                    AltimeterDest = joinedDF4$Altimeter
+                    )
+
+
+joinedDF5 <- repartition(joinedDF5, 80) 
+
+# write result to directory of CSVs
+write.df(joinedDF5, file.path("/user/RevoShare/alizaidi/delayDataLarge",
+                              "JoinAirWeatherDelay"),
+         "com.databricks.spark.csv", "overwrite", 
+         header = "true")
+
+# We can shut down the SparkR Spark context now
+sparkR.stop()
+
+```
+

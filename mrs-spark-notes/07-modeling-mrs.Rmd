@@ -1,0 +1,191 @@
+# (PART) Modeling and Prediction with Microsoft R Server {-}
+
+In the following modules, we will show how we can use Microsoft R Server (MRS) and the `RxSpark` compute context for modeling and prediction. 
+
+# Modeling with Microsoft R Server
+
+
+## Import CSV to XDF
+
+To take full advantage of the PEMA algorithms provided by MRS, we will import the merged data, currently saved as csv in blob storage, into an xdf. 
+
+We first have some housekeeping items to take care. We need to specify the spark compute context for the `RevoScaleR` package to properly utlize the Spark cluster. Saving a text file to HDFS creates blocks of the data and saves them in separate directories, and also saves an additional directory entitled "_SUCCESS" to indicate the import operation was successful. We need to remove this file before importing to xdf, as it has no value for the final data. 
+
+Further, in order to make sure the MRS modeling functions respect the data types of the columns in our merged dataset, we need to provide it with some column metadata. This can be provided with the `colInfo` argument inside of `rxImport`.
+
+Lastly, we need to provide MRS with pointers to the HDFS store we will be saving our XDF to.
+
+```{r-import-xdf, eval = FALSE}
+
+
+rxOptions(fileSystem = RxHdfsFileSystem())
+
+dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
+
+if(rxOptions()$hdfsHost == "default") {
+ fullDataDir <- dataDir
+} else {
+ fullDataDir <- paste0(rxOptions()$hdfsHost, dataDir)
+}  
+
+computeContext <- RxSpark(consoleOutput = TRUE)
+
+# there's a folder called SUCCESS_ that we need to delete manually
+file_to_delete <- file.path(data_dir, "delayDataLarge", "JoinAirWeatherDelay", "_SUCCESS")
+delete_command <- paste("fs -rm", file_to_delete)
+rxHadoopCommand(delete_command)
+
+
+colInfo <- list(
+  ArrDel15 = list(type="numeric"),
+  Year = list(type="factor"),
+  Month = list(type="factor"),
+  DayofMonth = list(type="factor"),
+  DayOfWeek = list(type="factor"),
+  Carrier = list(type="factor"),
+  OriginAirportID = list(type="factor"),
+  DestAirportID = list(type="factor"),
+  RelativeHumidityOrigin = list(type="numeric"),
+  AltimeterOrigin = list(type="numeric"),
+  DryBulbCelsiusOrigin = list(type="numeric"),
+  WindSpeedOrigin = list(type="numeric"),
+  VisibilityOrigin = list(type="numeric"),
+  DewPointCelsiusOrigin = list(type="numeric"),
+  RelativeHumidityDest = list(type="numeric"),
+  AltimeterDest = list(type="numeric"),
+  DryBulbCelsiusDest = list(type="numeric"),
+  WindSpeedDest = list(type="numeric"),
+  VisibilityDest = list(type="numeric"),
+  DewPointCelsiusDest = list(type="numeric"),
+  CRSDepTime = list(type = "numeric"),
+  CRSArrTime = list(type = "numeric"),
+  DepDelay = list(type = "numeric"),
+  ArrDelay = list(type = "numeric")
+)
+
+myNameNode <- "default"
+myPort <- 0
+hdfsFS <- RxHdfsFileSystem(hostName = myNameNode, 
+                           port = myPort)
+
+joined_txt <- RxTextData(file.path(data_dir, "delayDataLarge", "JoinAirWeatherDelay"),
+                           colInfo = colInfo,
+                           fileSystem = hdfsFS)
+
+dest_xdf <- RxXdfData(file.path(data_dir, "delayDataLarge", "joinedAirWeatherXdf"),
+                      fileSystem = hdfsFS)
+
+
+
+rxImport(inData = joined_txt, dest_xdf, overwrite = TRUE)
+
+
+```
+
+Now that we have imported our data to an XDF, we can get some information about the variables:
+
+```{r-get-info, dest_xdf}
+
+dest_xdf <- RxXdfData(file.path(data_dir, "delayDataLarge", "joinedAirWeatherXdf"),
+                      fileSystem = hdfsFS)
+rxGetInfo(dest_xdf, getVarInfo = T, numRows = 2)
+
+
+```
+
+
+## Splitting XDF into Train and Test Tests
+
+Prior to estimating our predictive models, we need to split our dataset into a training set, which we'll use for estimation, and a test set that we'll use for validating our results.
+
+Since we have time series data (data ordered by time), we will split our data by time. We'll use the data prior to 2012 for training, and the data in 2012 for testing. 
+
+```{r-splitxdf, eval = FALSE}
+
+trainDS <- RxXdfData( file.path(dataDir, "finalDataTrain" ),
+                      fileSystem = hdfsFS)
+
+rxDataStep( inData = dest_xdf, outFile = trainDS,
+            rowSelection = ( Year != 2012 ), overwrite = T )
+
+testDS <- RxXdfData( file.path(dataDir, "finalDataTest" ),
+                     fileSystem = hdfsFS)
+
+rxDataStep( inData = dest_xdf, outFile = testDS,
+            rowSelection = ( Year == 2012 ), overwrite = T )
+
+```
+
+## Binary Classification
+
+Now that we have our train and test sets, we can estimate our predictive model. Let's try to predict the probability that a flight will be delayed as a function of other variables.
+
+
+### Logistic Regression Models
+
+```{r-train-model, eval = FALSE}
+
+formula <- as.formula(ArrDel15 ~ Year + Month + DayofMonth + DayOfWeek + Carrier + 
+                        OriginAirportID + DestAirportID + CRSDepTime + 
+                        CRSArrTime + RelativeHumidityOrigin +
+                        AltimeterOrigin + DryBulbCelsiusOrigin + WindSpeedOrigin +
+                        VisibilityOrigin + DewPointCelsiusOrigin + RelativeHumidityDest +
+                        AltimeterDest + DryBulbCelsiusDest + WindSpeedDest + VisibilityDest +
+                        DewPointCelsiusDest
+                      )
+
+logitModel <- rxLogit(formula, data = trainDS)
+
+base::summary(logitModel)
+
+# Predict over test data (Logistic Regression).
+
+logitPredict <- RxXdfData(file.path(dataDir, "logitPredict"),
+                          fileSystem = hdfsFS)
+
+# Use the scalable rxPredict() function
+
+rxPredict(logitModel, data = testDS, outData = logitPredict,
+          extraVarsToWrite = c("ArrDel15"),
+          type = 'response', overwrite = TRUE)
+
+# Calculate ROC and Area Under the Curve (AUC).
+
+logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
+logitAuc <- rxAuc(logitRoc)
+
+plot(logitRoc)
+
+
+##############################################
+# Train and Test a Decision Tree model
+##############################################
+
+# Train using the scalable rxDTree function
+
+system.time(dTreeModel <- rxDTree(formula, data = trainDS,
+                                  maxDepth = 6, pruneCp = "auto"))
+# user   system  elapsed 
+# 26.380   25.860 1244.448 
+
+# Test using the scalable rxPredict function
+
+treePredict <- RxXdfData(file.path(dataDir, "treePredict"),
+                         fileSystem = hdfsFS)
+
+system.time(rxPredict(dTreeModel, data = testDS, outData = treePredict, 
+                      extraVarsToWrite = c("ArrDel15"), overwrite = TRUE))
+# user  system elapsed 
+# 13.436   3.616 142.326
+
+# Calculate ROC and Area Under the Curve (AUC)
+
+treeRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", treePredict)
+treeAuc <- rxAuc(treeRoc)
+
+plot(treeRoc)
+
+save(dTreeModel, file = "dTreeModel.RData")
+
+```
+
