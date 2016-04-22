@@ -292,3 +292,5 @@ sum_local %>%
 
 ```
 
+<!-- airDF %>%  -->
+<!-- ggplot(airDF, aes(x = Year, fill = Payment)) + geom_bar() -->
