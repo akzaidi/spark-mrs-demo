@@ -20,7 +20,7 @@ While Hadoop revolutionized computing by reintroducing distributed computing thr
 ## SparkR
 Spark has a number of [APIs](http://spark.apache.org/docs/latest/api.html), allowing you to write code in your favorite language to be executed in Spark. The most popular APIs for Spark are Scala and Python. 
 
-The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package.
+The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package. While the API shines in data manipulation and aggregation, it is wholly insufficient for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines.
 
 ## Azure HDInsight
 [todo] add overview of azure HDInsight...

@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="apache-spark-1.html">
+<link rel="prev" href="introduction.html">
+<link rel="next" href="rserver.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -211,48 +211,170 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>This book is organized into modules, each of which provide a motivated example of doing data science with R and Spark. The modules are based on notes I created while learning how to make scalable machine learning pipelines, focusing on the tools provided by <a href="https://www.microsoft.com/en-us/server-cloud/products/r-server/">Microsoft R Server</a>, <a href="https://azure.microsoft.com/en-us/documentation/services/hdinsight/">Azure HDInsight</a>, and <a href="http://spark.apache.org/docs/latest/">Spark</a>.</p>
-<div id="why-r" class="section level2">
-<h2><span class="header-section-number">1.1</span> Why R?</h2>
-<p><a href="https://www.r-project.org/">R</a> is a tool of choice for many data scientists. The abundance of available packages for statistical modeling, visualization, and machine learning, coupled with the deep interactivity baked into it’s very foundation, push it to the top of the stack for off-the-shelf languages for data science. Unfortunately, in order to maintain the level of interactivity R provides, it must sacrifice on performance relative to low-level, statically typed languages, which makes it inherantly difficult for R to scale, and inhibits it’s adoption in enterprise.</p>
+<div id="apache-spark-1" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Apache Spark</h1>
+<p>The core of Apache Spark consists of four components:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://spark.apache.org/sql/">Spark SQL</a></li>
+<li><a href="http://spark.apache.org/streaming/">Spark Streaming</a></li>
+<li><a href="http://spark.apache.org/mllib/">MLlib - Machine Learning Library</a></li>
+<li><a href="http://spark.apache.org/graphx/">GraphX - Graphical Computing Library</a></li>
+</ol>
+<p>The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: <a href="https://amplab.cs.berkeley.edu/software/">Berkeley Data Analytics Stack</a></p>
+<p>Even though Spark was envisioned as a better way of running iterative jobs on distributed datasets, it is actually complementary to Hadoop and can be placed over the Hadoop file system. This behavior is supported through a third-party clustering framework called <a href="http://mesos.apache.org/">Mesos</a>.</p>
+<div id="lazyevalfp" class="section level2">
+<h2><span class="header-section-number">2.1</span> Functional Programming and Lazy Evaluation</h2>
+<p>In functional programming, all constructs are functions, and all computations are evaluated as function calls (higher-order functions being functions that call upon other functions, think of it as function composition). Pure functional languages (such as Haskell), aim to achieve purity in their evaluation, and therefore rarely change-state or mutate objects, and don’t cause any side-effects.</p>
+<p>Scala, which composes ~80% of the code in Spark, has full support for functional programming. Although not a pure functional progrmaming langauge like Haskell, it is actually a hybrid of object oriented languages like Java and functional languages like Haskell.</p>
+<p>Lazy evaluation defers computation of a function until it is necessary. This makes it easy to create higher order functions, and then optimize their computation by only evaluation what is necessary, and optimizing the order of computationss. This is particularly useful for data science, where the programmer is often manipulating large amounts of data and creating complex functional pipelines.</p>
 </div>
-<div id="microsoft-r-server-ftw" class="section level2">
-<h2><span class="header-section-number">1.2</span> Microsoft R Server FTW</h2>
-<p>Microsoft R Server (formerly known as Revolution R Enterprise) was developed to tackle R’s scalability challenges and increase the adoption of the R project in industry. The MRS distribution includes R packages designed specifically for scalability, exposing new parallel external memory algorithms that interact with data residing in disk or distributed data stores, and a new highly optimized columnar data object, called xdf (short for eXternal Data Frame), that is chunked and especially amenable for parallelization.</p>
-<p>A data scientist’s coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment!</p>
+<div id="distributed-programming-abstractions" class="section level2">
+<h2><span class="header-section-number">2.2</span> Distributed Programming Abstractions</h2>
+<p>A Spark program consists of two programs, a driver program and a worker program. The driver programs run on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine).</p>
+<p>The first thing a Spark program is required to do is create a SparkContext object, which tells Spark the details of the cluster. These SparkContexts can be created using constructors through R’s or Python’s API.</p>
+<p>The most important parameter for a <code>SparkContext</code> is the <em>master</em> parameter, which determines the type and size of the cluster to use:</p>
+<table style="width:156%;">
+<colgroup>
+<col width="27%" />
+<col width="127%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Master Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">local</td>
+<td align="left">run Spark locally with one worker thread (no parallelism)</td>
+</tr>
+<tr class="even">
+<td align="left">local[K]</td>
+<td align="left">run Spark locally with K worker threads (most commonly set to number of available cores)</td>
+</tr>
+<tr class="odd">
+<td align="left">spark://HOST:PORT</td>
+<td align="left">connect to a Spark standalone cluster: PORT depends on configuration (by default is 7077)</td>
+</tr>
+<tr class="even">
+<td align="left">mesos://HOST:PORT</td>
+<td align="left">connect to a Mesos cluster: PORT depends on configuration (by default is 5050)</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="apache-spark" class="section level2">
-<h2><span class="header-section-number">1.3</span> Apache Spark</h2>
-<p>Developed at the <a href="https://amplab.cs.berkeley.edu/">AMPLab</a> at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore’s law for CPUs, so creating commodity computers were not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a rate that is comparable to the growth of data.</p>
-<p>While Hadoop revolutionized computing by reintroducing distributed computing through the MapReduce framework, and distributed storage through HDFS, Spark spurred the revolution further by utilizing memory for in-data sharing during interactive Map Reduce jobs. Spark can be 10 - 100 orders of magnitude faster than traditional Map Reduce.</p>
+<div id="rdds" class="section level2">
+<h2><span class="header-section-number">2.3</span> RDDs</h2>
+<p><em>RDDs</em>, short for Resilient Distributed Datasets, are the primary abstraction for data in Spark. They are immutable, so once they are created they cannot be modified. An RDD is a read-only collection of objects distributed across the nodes of the cluster. These collections are called resilienet due to their fault-tolerant nature, as they can be rebuilt if any portion is lost. Spark tracks lineage information of RDDs to efficeintly recompute any lost data due to machine failuers. An RDD is represented as a Scala object and can be created from a file in HDFS or any other storage system; as a parallelized slice (spread across nodes), perhaps by parallelizing Python or R collections (such as lists); as a transformation of another RDD; and finally through changing the persistence of an existing RDD, such as requesting that it be cached in memory.</p>
+<p>The programmer can specify the number of partitions for an RDD, which when unspecified will utilize the default value. The more partitions used in an RDD, the higher the amount of parallelism the program will achieve (if there are more partitions than worker machines, then some worker machines will have multiple partitions).</p>
+<p>Spark applications are called drivers, and a driver can perform one of two operations on a dataset: an action and a transformation. An action performs a computation on a dataset and returns a value to the driver; a transformation creates a new dataset from an existing dataset. Transformations are lazily evaluated, and are therefore not computed immediately, but only when an action calls it. Examples of actions include performing a Reduce operation (using a function) and iterating a dataset (running a function on each element, similar to the Map operation). Examples of transformations include Map and Filter operations, and the Cache operation (which saves an RDD to memory or disk).</p>
+<div id="common-transformations-and-actions" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Common Transformations and Actions</h3>
+<p>Here are some of the most common transformations when working with RDDs:</p>
+<table style="width:168%;">
+<colgroup>
+<col width="34%" />
+<col width="133%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Master Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>map(func)</code></td>
+<td align="left">return a new distributed dataset by passing each element of the source through a function func</td>
+</tr>
+<tr class="even">
+<td align="left"><code>filter(func)</code></td>
+<td align="left">return a new dataset by selecting those elements of the source where func returns TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>distinct([numTasks])</code></td>
+<td align="left">return a new dataset that contains the distinct elements of the source dataset</td>
+</tr>
+<tr class="even">
+<td align="left"><code>flatMap(func)</code></td>
+<td align="left">similar to map, but instead of mapping to a single value, <code>func</code> returns a sequence</td>
+</tr>
+</tbody>
+</table>
+<p>These functions will not be evaluated when called, but only when they are passed onto an action. Here are some common actions:</p>
+<table style="width:178%;">
+<colgroup>
+<col width="43%" />
+<col width="134%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Master Parameter</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>reduce(func)</code></td>
+<td align="left">aggregate elements of the dataset by func. func must take two arguments and returns a singleton</td>
+</tr>
+<tr class="even">
+<td align="left"><code>take(n)</code></td>
+<td align="left">returns an array with the first n elements of the dataset</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>collect()</code></td>
+<td align="left">returns all the elements as an array (make sure it can fit in the memory of the driver)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>takeOrdered(n, key = func)</code></td>
+<td align="left">return n elements ordered in ascending order or as specified by the key function</td>
+</tr>
+</tbody>
+</table>
+<p>The reduce function must be associative and commutative so that it can correctly compute in parallel.</p>
+<p>Since the introduction of the DataFrames API in Spark 1.3, most data science applications will not need to create and compute with RDDs. In fact, the R API, SparkR does not even export many of the transformations below in the package’s namespace. However, they can still be called by utilizing the triple colon (i.e., <code>SparkR:::filterMap</code>.</p>
+<p>Here’s a very simple example of creating a filterMap using the SparkR API:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SparkR)
+rdd &lt;-<span class="st"> </span>SparkR:::<span class="kw">parallelize</span>(sc, <span class="dv">1</span>:<span class="dv">10</span>)
+multiplyByTwo &lt;-<span class="st"> </span>SparkR:::<span class="kw">flatMap</span>(rdd, function(x) { <span class="kw">list</span>(x*<span class="dv">2</span>, x*<span class="dv">10</span>) })
+results &lt;-<span class="st"> </span><span class="kw">collect</span>(multiplyByTwo)
+<span class="kw">unlist</span>(results)</code></pre></div>
+<pre><code>##  [1]   2  10   4  20   6  30   8  40  10  50  12  60  14  70  16  80  18  90  20 100</code></pre>
 </div>
-<div id="sparkr" class="section level2">
-<h2><span class="header-section-number">1.4</span> SparkR</h2>
-<p>Spark has a number of <a href="http://spark.apache.org/docs/latest/api.html">APIs</a>, allowing you to write code in your favorite language to be executed in Spark. The most popular APIs for Spark are Scala and Python.</p>
-<p>The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R <code>data.frames</code>, and has a syntax that will be familiar to many R users of the <code>dplyr</code> package. While the API shines in data manipulation and aggregation, it is wholly insufficient for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines.</p>
 </div>
-<div id="azure-hdinsight-1" class="section level2">
-<h2><span class="header-section-number">1.5</span> Azure HDInsight</h2>
-<p><a href="starting-your-machine-learning-pipeline.html#todo">todo</a> add overview of azure HDInsight…</p>
+<div id="dataframes" class="section level2">
+<h2><span class="header-section-number">2.4</span> <a href="https://databricks.com/blog/2015/02/17/introducing-dataframes-in-spark-for-large-scale-data-science.html">DataFrames</a></h2>
+<p>When working with relational data for structured data processing, most data scientists will think of using SQL, due to it’s highly efficient relational algebra. Spark provides a SQL interface with Spark SQL and a SQL context, SQLContext.</p>
+<p>Spark SQL is a Spark module for structured data processing. While the RDD API is great for generic data storage, the interfaces provided by Spark SQL provide Spark with more information about the structure of both the data and the computation being performed. Internally, Spark SQL uses this extra information to perform extra optimizations. There are several ways to interact with Spark SQL including SQL, the DataFrames API and the Datasets API. When computing a result the same execution engine is used, independent of which API/language you are using to express the computation. This unification means that developers can easily switch back and forth between the various APIs based on which provides the most natural way to express a given transformation.</p>
+<p>DataFrames use the catalyst query optimizer to make querying more efficient. The catalyst query optimizer leverages advanced Scala features, such as pattern matching and quasiquotes to build an extenisble query optimizer.</p>
 </div>
-<div id="prerequisites---what-youll-need" class="section level2">
-<h2><span class="header-section-number">1.6</span> Prerequisites - What You’ll Need</h2>
-<p>While much of the material in these notes will generalize to other implementations of Spark and R, in order to take complete advantage of everything here you’ll need an Azure subscription, and enough credit in your subscription to provision a Premium Spark HDInsight Cluster. More details on provisioning are provided in the HDInsight chapter. The complete prerequisites (in order of importance):</p>
-<ul>
-<li>An Azure subscription</li>
-<li>A terminal emulator with openSSH or bash, e.g., bash on Linux, Mac Terminal, iTerm2, Putty, or Cygwin/MobaXterm</li>
-<li>PowerBI Desktop</li>
-<li>Azure Storage explorer</li>
-<li>Visual Studio 2015</li>
-</ul>
-<p>These notes will be most useful to those that have been programming with R, have a solid knowledge of statistics and machine learning, but have limited exposure to Spark. I don’t assume any Spark background for these notes, and try to explain the Spark concepts from the ground up. I also do not presume that you have used the Microsoft R Server implementation of R, or have used the RevoScaleR package that MRS ships with.</p>
+<div id="datasets" class="section level2">
+<h2><span class="header-section-number">2.5</span> Datasets</h2>
+<p>A Dataset is a new experimental interface added in Spark 1.6 that tries to bring the benefits of RDDs (strong typing, ability to use powerful lambda functions) with the benefits of Spark SQL’s optimized execution engine to DataFrames. A Dataset can be constructed from JVM objects and then manipulated using functional transformations. Furthermore, Datasets are an abstraction above DataFrames, a DataFrame is simply a <a href="https://github.com/apache/spark/blob/master/sql/core/src/main/scala/org/apache/spark/sql/package.scala#L45">type alias</a> of a Dataset.</p>
+<p>The unified Dataset API can be used both in Scala and Java. Python does not yet have support for the Dataset API, but due to its dynamic nature many of the benefits are already available (i.e. you can access the field of a row by name naturally row.columnName). Full python support is expected to come in Spark 2.0.</p>
 </div>
-<div id="versioning" class="section level2">
-<h2><span class="header-section-number">1.7</span> Versioning</h2>
-<p>We will be using HDInsight 3.4, which is running HDP 2.4 and Spark 1.6. The MRS version is Microsoft R Server 8.0.3. The HDInsight cluster consists of 4 worker nodes, two head nodes, and an edge node. Each node conists of 8 cores, and 28 GB of RAM.</p>
+<div id="mllib" class="section level2">
+<h2><span class="header-section-number">2.6</span> MLlib</h2>
+<p>MLlib is a scalable machine learning library for Spark. todo: ML Pipelines</p>
+</div>
+<div id="spark-apis" class="section level2">
+<h2><span class="header-section-number">2.7</span> Spark APIs</h2>
+<p>There are numerous high-levels APIs for Spark: Java, Scala, Python and R, and an optimized engine that supports general execution graphs. The Scala, Python and R APIs all ship with HDInsight Spark Premium clusters, and the former two can be accessed via the jupyter kernel, which can be accessed via the jupyter dashboard: <a href="https://%3Cyour-cluster-name%3E.azurehdinsight.net/jupyter/tree/">https://&lt;<your-cluster-name>&gt;.azurehdinsight.net/jupyter/tree/</a>.</p>
+<div id="scala" class="section level3">
+<h3><span class="header-section-number">2.7.1</span> Scala</h3>
+<p>The main Spark shell is a Scala API. It can be accessed directly from the bin directory of your Spark installation, as well as from the Jupyter notebooks running on your HDInsight cluster, where you can also find some demo notebooks illustrating how to use the API. While it is the most advanced and mature of the APIs we discussed in this section, it won’t be as familiar to data scientists who are more likely to know Python and R than Scala.</p>
+</div>
+<div id="pyspark" class="section level3">
+<h3><span class="header-section-number">2.7.2</span> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></h3>
+<p>The <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a> API might be the most commonly used API, due to Python’s ubiquity in data science. It is perhaps second in maturity to the Scala API, and when working with DataFrames, provides nearly the same performance as what you would get when writing native Spark applications with Scala. The PySpark kernel exposes all the transformation and action functions we described in the section on RDDs above.</p>
+</div>
+<div id="sparkr-1" class="section level3">
+<h3><span class="header-section-number">2.7.3</span> SparkR</h3>
+<p>The SparkR API provides two ways of interacting with Spark through R: a package called SparkR for creating the necessary abstractions in your R session to access Spark’s functionality, and a sparkR shell which loads the library on top of the interactive R shell and creates the necessary SparkContexts automatically. To use the shell, see this <a href="https://github.com/amplab-extras/SparkR-pkg/wiki/SparkR-Quick-Start">quickstart</a>. The examples in these notes use the SparkR library from RStudio, but you could use the SparkR library from any R environment of your choice. We describe how to to load the SparkR library in the next section, and how to configure your __.Rprofile_ file to automatically load the package at startup of your R session. As of Spark 1.4, the SparkR API is automatically bundled with Spark. Previous versions of Spark will need to install the library directly from the <a href="https://github.com/amplab-extras/SparkR-pkg">AMPLab github repository</a>. This requires the devtools package: <code>devtools::install_github('amplab-extras/SparkR-pkg')</code>.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -260,8 +382,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apache-spark-1.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rserver.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
@@ -288,7 +410,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-spark.Rmd",
 "text": null
 },
 "download": null,
