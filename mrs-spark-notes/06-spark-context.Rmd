@@ -219,7 +219,7 @@ lapply(list(airDF, weatherDF), head)
 
 Now that we have our two datasets saved as Spark DataFrames, we can conduct standard data manipulation techniques to visualize and explore our data. 
 
-First, we'll use the `rename` function to rename our columns, and the `select` function to select the columns we need. We'll also transform the  These SparkR functions look just like the verbs from teh `dplyr` package for data manipulation, but are designed to work with Spark DataFrames.
+First, we'll use the `rename` function to rename our columns, and the `select` function to select the columns we need. We'll also transform the  These SparkR functions look just like the verbs from the `dplyr` package for data manipulation, but are designed to work with Spark DataFrames.
 
 ```{r-rename-air, eval = FALSE}
 system.time(airDF <- rename(airDF,
@@ -257,7 +257,7 @@ system.time(airDF$CRSDepTime <- floor(airDF$CRSDepTime / 100))
 
 ## Data Aggregations
 
-SparkR is great at merges, and data aggregation. For instance, suppose we want to see the average departure delay for each carrier and arrange it in descending order. The following syntax makes that very easy.
+SparkR is great at merges, and data aggregation. For instance, suppose we want to see the average departure delay for each carrier and arrange it in descending order. The following example shows just how easy the syntax for SparkR is.
 
 ```{r-groupsummary, eval = FALSE}
 sum_df <- airDF %>% select("Carrier", "DepDelay") %>% 
@@ -268,16 +268,16 @@ sum_df <- airDF %>% select("Carrier", "DepDelay") %>%
   # 0.024   0.000   0.055 
 ```
 
-The syntax is almost exactly like the syntax from the dplyr package, and the `%>%` operator makes chaining the additive methods exceptionally simple. Note that the above operation will not be run until we call upon the sum_df. It is for now, just a promise for deferred evaluation.
+The syntax is almost exactly like the syntax from the dplyr package, and the `%>%` operator makes chaining the additive methods exceptionally simple. Note that the above operation will not be run until we call an action upon the `sum_df.` As of right now it is a series of transformations, so it is a recipe for doing some computations, but the actual evaluation has been deferred until we call an action.
 
-In order to evaluate and bring the summarized data into an R `data.frame`, we can use the `collect` statement.
+In order to evaluate and bring the summarized data into an R `data.frame`, we can use the `collect` action.
 
 ```{r-collect, eval = FALSE}
 sum_local <- sum_df %>% collect()
-library(dplyr)
-sum_local %>% arrange(desc(ave_delay))
   #  user  system elapsed 
   # 0.616   0.536 337.758 
+library(dplyr)
+sum_local %>% arrange(desc(ave_delay))
 ```
 
 Now that our data resides as a local data.frame, we can plot it using any R plotting library.
@@ -296,7 +296,7 @@ In order to make the weather data correspond to the airline data, let us aggrega
 
 ```{r-agg-weather, eval = FALSE}
 weatherAgg <- weatherDF %>% 
-  groupBy("AdjustedYear", "AdjustedMonth", "AdjustedDay", "AdjustedHour", "AirportID") %>% 
+  groupBy("AdjustedYear", "AdjustedMonth", "AdjustedDay", "AdjustedHour", "AirportID") %>%
   agg(Visibility = avg(weatherDF$Visibility),
       DryBulbCelsius = avg(weatherDF$DryBulbCelsius),
       DewPointCelsius = avg(weatherDF$DewPointCelsius),
@@ -310,7 +310,7 @@ weatherAgg <- weatherDF %>%
 
 ### Merging Data
 
-We can use SparkR for merging data sets as well. Let's merge the airlines dataset with the weather dataset. We'll first add weather data to the origination airport, and then add it to the destination airport. To keep our data in manageable size, we will remove the redundant columns. Finally, we save the DataFrame to a CSV file, stored in HDFS for easier access at a later date.
+We can use SparkR for merging data sets as well. Let's merge the airlines dataset with the weather dataset. We'll first add weather data to the origination airport, and then add it to the destination airport. To keep our data in manageable size, we will remove the redundant columns. Finally, we save the DataFrame to a CSV file, stored in HDFS so that we may access it later.
 
 ```{r-merge-dfs, eval = FALSE}
 
@@ -379,4 +379,6 @@ write.df(joinedDF5, file.path("/user/RevoShare/alizaidi/delayDataLarge",
 sparkR.stop()
 
 ```
+
+
 

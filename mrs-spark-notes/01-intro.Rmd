@@ -13,14 +13,14 @@ Microsoft R Server (formerly known as Revolution R Enterprise) was developed to 
 A data scientist's coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment! 
 
 ## Apache Spark
-Developed at the [AMPLab](https://amplab.cs.berkeley.edu/) at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore's law for CPUs, so creating commodity computers were not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a rate that is comparable to the growth of data. 
+Developed at the [AMPLab](https://amplab.cs.berkeley.edu/) at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore's law for CPUs, so creating commodity computers was not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a rate that is comparable to the growth of data. 
 
 While Hadoop revolutionized computing by reintroducing distributed computing through the MapReduce framework, and distributed storage through HDFS, Spark spurred the revolution further by utilizing memory for in-data sharing during interactive Map Reduce jobs. Spark can be 10 - 100 orders of magnitude faster than traditional Map Reduce.
 
 ## SparkR
 Spark has a number of [APIs](http://spark.apache.org/docs/latest/api.html), allowing you to write code in your favorite language to be executed in Spark. The most popular APIs for Spark are Scala and Python. 
 
-The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package. While the API shines in data manipulation and aggregation, it is wholly insufficient for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines.
+The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package (in fact, the Spark DataFrames API was directly influenced by R `data.frames` and the Python `pandas` package). While the API shines in data manipulation and aggregation, it is wholly insufficient for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines utilizing the scalability of Spark.
 
 ## Azure HDInsight
 [todo] add overview of azure HDInsight...

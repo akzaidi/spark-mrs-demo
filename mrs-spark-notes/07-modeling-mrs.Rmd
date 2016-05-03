@@ -1,5 +1,11 @@
 # (PART) Modeling and Prediction with Microsoft R Server {-}
 
+```{r-reportprogress, echo = FALSE}
+rxOptions(reportProgress = 0)
+
+```
+
+
 In the following modules, we will show how we can use Microsoft R Server (MRS) and the `RxSpark` compute context for modeling and prediction with the high-performance PEMA algorithms.
 
 # Modeling with Microsoft R Server
@@ -18,7 +24,8 @@ Lastly, we need to provide MRS with pointers to the HDFS store we will be saving
 ```{r-import-xdf, eval = FALSE}
 
 
-rxOptions(fileSystem = RxHdfsFileSystem())
+rxOptions(fileSystem = RxHdfsFileSystem(),
+          reportProgress = 0)
 
 dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
 
@@ -172,7 +179,7 @@ system.time(dTreeModel <- rxDTree(form, data = trainDS,
 
 Now that we have estimated our models, we can calculate valuation metrics for them by scoring on the test/held-out set.
 
-```{r-test-score, eval = TRUE}
+```{r-test-score, eval = TRUE, message = FALSE}
 
 load("testModels.RData")
 
