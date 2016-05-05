@@ -172,14 +172,15 @@ system.time(dTreeModel <- rxDTree(form, data = trainDS,
   #   user   system  elapsed 
   # 29.088   67.940 1265.633
 
+save(dTreeModel, file = "dTreeModel.RData")
 
 ```
 
 ## Testing Models
 
-Now that we have estimated our models, we can calculate valuation metrics for them by scoring on the test/held-out set.
+Now that we have estimated our models, we can test them on the unseen dataset, which is the dataset from the year 2012. The `RevoScaleR` package is equipped with a predict function that allows you to score a `rx` model on a new dataset.
 
-```{r-test-score, eval = TRUE, message = FALSE}
+```{r-test-score, eval = FALSE, message = FALSE}
 
 load("testModels.RData")
 
@@ -201,13 +202,20 @@ rxPredict(logitModel, data = testDS, outData = logitPredict,
           extraVarsToWrite = c("ArrDel15"),
           type = 'response', overwrite = TRUE)
 
+
+```
+
+
+Using our predicted results, we can calculate the accuracy and recall of our model. A very simple way of viewing model's accuracy is by way of a ROC curve, which plots the recall and accuracy. The metric from this chart, AUC, is a useful validation metric for viewing your moels' accuracy.
+
+```{r-model-accuracy, message = FALSE}
 # Calculate ROC and Area Under the Curve (AUC).
+load("testModels.RData")
 
 logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
 logitAuc <- rxAuc(logitRoc)
 
 plot(logitRoc)
-
 
 # Calculate ROC and Area Under the Curve (AUC)
 
@@ -216,7 +224,6 @@ treeAuc <- rxAuc(treeRoc)
 
 plot(treeRoc)
 
-save(dTreeModel, file = "dTreeModel.RData")
 
 ```
 

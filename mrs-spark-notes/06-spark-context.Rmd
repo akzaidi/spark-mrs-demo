@@ -118,17 +118,6 @@ Let's read the airlines directory and the weather directory to Spark DataFrames.
 
 ```{r-import-df, eval = FALSE}
 
-airPath <- file.path(data_dir, "AirOnTimeCSV")
-weatherPath <- file.path(data_dir, "delayDataLarge", "Weather") # pre-processed weather data
-
-airDF <- read.df(sqlContext, airPath, source = "com.databricks.spark.csv", 
-                 header = "true", inferSchema = "true")
-# user  system elapsed 
-# 0.724   0.680 378.561 
-
-weatherDF <- read.df(sqlContext, weatherPath, source = "com.databricks.spark.csv", 
-                     header = "true", inferSchema = "true")
-
 ```
 
 Note that it took more than 6 minutes to load our airlines data into Spark DataFrames. However, subsequent operations on the `airDF` object will occur in-memory, and should be very fast.
@@ -214,6 +203,134 @@ lapply(list(airDF, weatherDF), head)
 
 ```
 
+# Exploratory Data Analysis with SparkR
+
+## SparkR the Explorer
+
+SparkR has a limited API for modeling. As of 1.6.1, the only supported modeling function in SparkR is a glm. There are many more available modeling functions in the R Server `RevoScaleR` library that can be computed using a Spark compute context. We will discuss this in more detail in the subsequent chapters. 
+
+While limited in modeling, SparkR shows its versatility for data exploration. We show how easy it is to create data exploration pipelines with SparkR and open source R packages.
+
+## Doing Data Aggregations with SparkR Efficiently
+
+Since Spark evaluates objects lazily, tremendous speedups can be achieved by putting a little thought into our data analysis pipelines. In ths section, we will analyze the average arrival delay for flights and group them by carrier, origin and destination. These few feature variables are the only ones we need, so we can remove the redundant columns.
+
+```{r-sparkr-select, eval = FALSE}
+
+select_cols <- function(sparkDF = airDF) {
+  
+  library(magrittr)
+  
+  sparkDF %>% 
+    SparkR::select(airDF$FL_DATE, airDF$DAY_OF_WEEK,
+                   airDF$UNIQUE_CARRIER, airDF$ORIGIN,
+                   airDF$DEST, airDF$ARR_DELAY) -> skinny_df
+  
+  skinny_df %<>% SparkR::rename(
+    flight_date = skinny_df$FL_DATE,
+    day_of_week = skinny_df$DAY_OF_WEEK,
+    carrier = skinny_df$UNIQUE_CARRIER, 
+    origin = skinny_df$ORIGIN,
+    destination = skinny_df$DEST, 
+    arrival_delay = skinny_df$ARR_DELAY
+  )
+  
+  
+  return(skinny_df)
+  
+}
+
+air_df <- select_cols()
+
+```
+
+The function above creates a transformation on our airlines dataset and renames the columns we need for our analysis. At this point, we don't have any actions yet, so this is simply a promise the Spark interpreter has given us for later evaluation.
+
+## From Spark DataFrames to Local Dataframes
+
+For our next step, we will group by carrier, origin and destination, and calculate the average arrival delay. Our resulting dataframe should be rather condensed, so we will collect our results and save them to a local R `data.frame`. Observe how simple it is to create a pipeline that starts with a Spark DataFrame and outputs a local data.frame you can interact with locally.
+
+```{r-arrdelay, eval = FALSE}
+
+agg_delay <- function(airdf = air_df) {
+  
+  library(magrittr)
+  
+  airdf %>% SparkR::group_by(airdf$carrier,
+                             airdf$origin,
+                             airdf$destination) %>% 
+    SparkR::summarize(counts = n(airdf$arrival_delay),
+                      ave_delay = mean(airdf$arrival_delay)) -> summary_df
+  
+  return(summary_df)
+  
+}
+
+agg_df <- agg_delay()
+agg_df_local <- agg_df %>% collect() %>% dplyr::tbl_df
+save(agg_df_local, file = "aggflightslocal.RData")
+
+```
+
+
+If you are familiar with the dplyr grammar of data manipulation, you should be ecstatic by how your knowledge transfers over directly to manipulating Spark dataframes (and you'll probably just wonder why Spark DataFrames don't just have a supported backend by dplyr yet). We saved our local data.frame to disk so we don't have to re-run the Spark datasteps again.
+
+## Plotting Results
+
+We deliberately kept the __carrier__ column in our analysis, in case we wanted to visualize or analyze delays by that feature. For now, let us narrow our focus to simply the routes of our flights. 
+
+```{r-route-delays}
+# load the agg_df_local calculated above
+load("aggflightslocal.RData")
+
+delays_routes <- function(delay_df = agg_df_local) {
+  
+  library(dplyr)
+  
+  delay_df %>%
+    group_by(origin, destination) %>%
+    summarise(total = sum(counts), 
+              arrival_delay = weighted.mean(ave_delay, counts)) -> route_delays
+  
+  return(route_delays)
+ 
+  
+}
+
+delays_routes()
+
+```
+
+Let us make a heatmap of the delays, by picking just a few routes. We will use the `ggplot` library to make our base plot, and then use the `plotly` package to make our plot more interactive!
+
+```{r-plot-delays, message = FALSE}
+
+library(ggplot2)
+
+plot_route_delays <- function(min_routes = 10) {
+  
+  library(dplyr)
+  library(ggplot2)
+  
+  gplot <- delays_routes() %>% filter(total > min_routes) %>% arrange(desc(total)) %>% 
+    filter(origin %in% c("JFK", "LGA", "IAD", "DCA", "ATL", "DFW", "ORD", "IAH", "DEN", "CLT"),
+           destination %in% c("ATL", "BDL", "BOS", "JFK", "IAD", "LGA", "DCA", "IAD",
+                              "DFW", "ORD", "IAH", "DEN", "CLT")) %>% 
+    ggplot(aes(x = origin, y = destination, fill = arrival_delay)) + 
+    geom_tile(color = "white") + 
+    scale_fill_gradient(low = "white", high = "steelblue")
+  
+  return(gplot)
+  
+}
+
+gplot <- plot_route_delays(100) + theme_bw()
+library(plotly)
+ggplotly(gplot, width = 650)
+
+```
+
+
 
 # Data Manipulation with SparkR
 
@@ -222,21 +339,22 @@ Now that we have our two datasets saved as Spark DataFrames, we can conduct stan
 First, we'll use the `rename` function to rename our columns, and the `select` function to select the columns we need. We'll also transform the  These SparkR functions look just like the verbs from the `dplyr` package for data manipulation, but are designed to work with Spark DataFrames.
 
 ```{r-rename-air, eval = FALSE}
+
 system.time(airDF <- rename(airDF,
-                ArrDel15 = airDF$ARR_DEL15,
-                Year = airDF$YEAR,
-                Month = airDF$MONTH,
-                DayofMonth = airDF$DAY_OF_MONTH,
-                DayOfWeek = airDF$DAY_OF_WEEK,
-                Carrier = airDF$UNIQUE_CARRIER,
-                OriginAirportID = airDF$ORIGIN_AIRPORT_ID,
-                DestAirportID = airDF$DEST_AIRPORT_ID,
-                CRSDepTime = airDF$CRS_DEP_TIME,
-                CRSArrTime =  airDF$CRS_ARR_TIME,
-                Distance = airDF$DISTANCE,
-                DepDelay = airDF$DEP_DELAY,
-                ArrDelay = airDF$ARR_DELAY
-                )
+                            ArrDel15 = airDF$ARR_DEL15,
+                            Year = airDF$YEAR,
+                            Month = airDF$MONTH,
+                            DayofMonth = airDF$DAY_OF_MONTH,
+                            DayOfWeek = airDF$DAY_OF_WEEK,
+                            Carrier = airDF$UNIQUE_CARRIER,
+                            OriginAirportID = airDF$ORIGIN_AIRPORT_ID,
+                            DestAirportID = airDF$DEST_AIRPORT_ID,
+                            CRSDepTime = airDF$CRS_DEP_TIME,
+                            CRSArrTime =  airDF$CRS_ARR_TIME,
+                            Distance = airDF$DISTANCE,
+                            DepDelay = airDF$DEP_DELAY,
+                            ArrDelay = airDF$ARR_DELAY
+                            )
             )
   #  user  system elapsed 
   # 0.136   0.000   0.242 
@@ -292,17 +410,17 @@ sum_local %>%
 
 ```
 
-In order to make the weather data correspond to the airline data, let us aggregate it by 
+In order to make the weather data correspond to the airline data, let us aggregate it by date and airport, and obtain it's average value. If you are familiar with the dplyr package, you should be very familiar with the syntax provided by SparkR. 
 
 ```{r-agg-weather, eval = FALSE}
 weatherAgg <- weatherDF %>% 
-  groupBy("AdjustedYear", "AdjustedMonth", "AdjustedDay", "AdjustedHour", "AirportID") %>%
-  agg(Visibility = avg(weatherDF$Visibility),
-      DryBulbCelsius = avg(weatherDF$DryBulbCelsius),
-      DewPointCelsius = avg(weatherDF$DewPointCelsius),
-      RelativeHumidity = avg(weatherDF$RelativeHumidity),
-      WindSpeed = avg(weatherDF$RelativeHumidity),
-      Altimeter = avg(weatherDF$Altimeter))
+  SparkR::group_by("AdjustedYear", "AdjustedMonth", "AdjustedDay", "AdjustedHour", "AirportID") %>%
+  SparkR::summarize(Visibility = mean(weatherDF$Visibility),
+                    DryBulbCelsius = mean(weatherDF$DryBulbCelsius),
+                    DewPointCelsius = mean(weatherDF$DewPointCelsius),
+                    RelativeHumidity = mean(weatherDF$RelativeHumidity),
+                    WindSpeed = mean(weatherDF$RelativeHumidity),
+                    Altimeter = mean(weatherDF$Altimeter))
 
 
 ```

@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.70 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
 
-<meta name="date" content="2016-05-03">
+<meta name="date" content="2016-05-05">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,6 +50,9 @@
 
 
 <script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-3.5.5/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -117,7 +120,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i>Azure HDInsight</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><b><a href="#">Overview</a></b></li>
+<li class="part"><span><b>Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
 <li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
@@ -153,7 +156,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>4.2</b> Dashboards for Management</a></li>
 <li class="chapter" data-level="4.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>4.3</b> Jupyter and RStudio Server</a></li>
 </ul></li>
-<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
+<li class="part"><span><b>Provisioning and Ingesting Data</b></span></li>
 <li class="chapter" data-level="5" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>5</b> Provisioning Instructions</a><ul>
 <li class="chapter" data-level="5.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>5.1</b> Provision Cluster from Azure Portal</a></li>
 <li class="chapter" data-level="5.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a><ul>
@@ -165,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2" data-path="ingestion.html"><a href="ingestion.html#azure-storage-explorer"><i class="fa fa-check"></i><b>6.2</b> Azure Storage Explorer</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="setting-your-r-profile.html"><a href="setting-your-r-profile.html"><i class="fa fa-check"></i><b>7</b> Setting Your R Profile</a></li>
-<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
+<li class="part"><span><b>Data Manipulation and Data Aggregation</b></span></li>
 <li class="chapter" data-level="8" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>8</b> Starting Your Machine Learning Pipeline</a><ul>
 <li class="chapter" data-level="8.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#todo"><i class="fa fa-check"></i><b>8.1</b> todo</a></li>
 <li class="chapter" data-level="8.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>8.2</b> Finding the SparkR Library</a></li>
@@ -175,22 +178,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.4.2</b> Creating DataFrames from CSV Files</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>9</b> Data Manipulation with SparkR</a><ul>
-<li class="chapter" data-level="9.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>9.1</b> Data Aggregations</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>9.1.1</b> Merging Data</a></li>
+<li class="chapter" data-level="9" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html"><i class="fa fa-check"></i><b>9</b> Exploratory Data Analysis with SparkR</a><ul>
+<li class="chapter" data-level="9.1" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#sparkr-the-explorer"><i class="fa fa-check"></i><b>9.1</b> SparkR the Explorer</a></li>
+<li class="chapter" data-level="9.2" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#doing-data-aggregations-with-sparkr-efficiently"><i class="fa fa-check"></i><b>9.2</b> Doing Data Aggregations with SparkR Efficiently</a></li>
+<li class="chapter" data-level="9.3" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#from-spark-dataframes-to-local-dataframes"><i class="fa fa-check"></i><b>9.3</b> From Spark DataFrames to Local Dataframes</a></li>
+<li class="chapter" data-level="9.4" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#plotting-results"><i class="fa fa-check"></i><b>9.4</b> Plotting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>10</b> Data Manipulation with SparkR</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.1.1</b> Merging Data</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
-<li class="chapter" data-level="10" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>10</b> Modeling with Microsoft R Server</a><ul>
-<li class="chapter" data-level="10.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>10.1</b> Import CSV to XDF</a></li>
-<li class="chapter" data-level="10.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>10.2</b> Splitting XDF into Train and Test Tests</a></li>
-<li class="chapter" data-level="10.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>10.3</b> Training Binary Classification Models</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>10.3.1</b> Logistic Regression Models</a></li>
-<li class="chapter" data-level="10.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>10.3.2</b> Tree and Ensemble Classifiers</a></li>
+<li class="part"><span><b>Modeling and Prediction with Microsoft R Server</b></span></li>
+<li class="chapter" data-level="11" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>11</b> Modeling with Microsoft R Server</a><ul>
+<li class="chapter" data-level="11.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>11.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="11.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>11.2</b> Splitting XDF into Train and Test Tests</a></li>
+<li class="chapter" data-level="11.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>11.3</b> Training Binary Classification Models</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>11.3.1</b> Logistic Regression Models</a></li>
+<li class="chapter" data-level="11.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>11.3.2</b> Tree and Ensemble Classifiers</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>10.4</b> Testing Models</a></li>
+<li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
