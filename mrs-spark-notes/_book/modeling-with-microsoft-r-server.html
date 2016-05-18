@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.66 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.0.70 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
 
-<meta name="date" content="2016-04-22">
+<meta name="date" content="2016-05-05">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html">
-<link rel="next" href="placeholder.html">
+<link rel="prev" href="data-manipulation-with-sparkr.html">
+<link rel="next" href="references.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,6 +49,14 @@
 
 
 
+<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-3.5.5/plotly.js"></script>
+<script src="libs/d3-3.5.5/d3.min.js"></script>
+<script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
+<script src="libs/dimple-2.1.6/dimple.min.js"></script>
+<script src="libs/dimple-binding-0.1/dimple.js"></script>
 
 
 <style type="text/css">
@@ -104,18 +112,94 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
-<li class="part"><b><a href="#">Overview</a></b></li>
-<li class="chapter" data-level="1" data-path="apache-spark-todo.html"><a href="apache-spark-todo.html"><i class="fa fa-check"></i><b>1</b> Apache Spark - todo</a></li>
-<li class="chapter" data-level="2" data-path="r-microsoft-r-server-todo.html"><a href="r-microsoft-r-server-todo.html"><i class="fa fa-check"></i><b>2</b> R &amp; Microsoft R Server - todo</a></li>
-<li class="chapter" data-level="3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>3</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a></li>
-<li class="part"><b><a href="#">Provisioning and Ingesting Data</a></b></li>
-<li class="part"><b><a href="#">Data Manipulation and Data Aggregation</a></b></li>
-<li class="part"><b><a href="#">Modeling and Prediction with Microsoft R Server</a></b></li>
-<li class="chapter" data-level="4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>4</b> Modeling with Microsoft R Server</a><ul>
-<li class="chapter" data-level="4.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>4.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i>Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i>Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i>Microsoft R Server</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#azure-hdinsight"><i class="fa fa-check"></i>Azure HDInsight</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="placeholder.html"><a href="placeholder.html"><i class="fa fa-check"></i><b>5</b> Placeholder</a></li>
+</ul></li>
+<li class="part"><span><b>Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
+<li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
+<li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.7</b> Versioning</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="apache-spark-1.html"><a href="apache-spark-1.html"><i class="fa fa-check"></i><b>2</b> Apache Spark</a><ul>
+<li class="chapter" data-level="2.1" data-path="apache-spark-1.html"><a href="apache-spark-1.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
+<li class="chapter" data-level="2.2" data-path="apache-spark-1.html"><a href="apache-spark-1.html#distributed-programming-abstractions"><i class="fa fa-check"></i><b>2.2</b> Distributed Programming Abstractions</a></li>
+<li class="chapter" data-level="2.3" data-path="apache-spark-1.html"><a href="apache-spark-1.html#rdds"><i class="fa fa-check"></i><b>2.3</b> RDDs</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="apache-spark-1.html"><a href="apache-spark-1.html#common-transformations-and-actions"><i class="fa fa-check"></i><b>2.3.1</b> Common Transformations and Actions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="apache-spark-1.html"><a href="apache-spark-1.html#dataframes"><i class="fa fa-check"></i><b>2.4</b> DataFrames</a></li>
+<li class="chapter" data-level="2.5" data-path="apache-spark-1.html"><a href="apache-spark-1.html#datasets"><i class="fa fa-check"></i><b>2.5</b> Datasets</a></li>
+<li class="chapter" data-level="2.6" data-path="apache-spark-1.html"><a href="apache-spark-1.html#mllib"><i class="fa fa-check"></i><b>2.6</b> MLlib</a></li>
+<li class="chapter" data-level="2.7" data-path="apache-spark-1.html"><a href="apache-spark-1.html#spark-apis"><i class="fa fa-check"></i><b>2.7</b> Spark APIs</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="apache-spark-1.html"><a href="apache-spark-1.html#scala"><i class="fa fa-check"></i><b>2.7.1</b> Scala</a></li>
+<li class="chapter" data-level="2.7.2" data-path="apache-spark-1.html"><a href="apache-spark-1.html#pyspark"><i class="fa fa-check"></i><b>2.7.2</b> <a href="https://spark.apache.org/docs/latest/api/python/index.html">PySpark</a></a></li>
+<li class="chapter" data-level="2.7.3" data-path="apache-spark-1.html"><a href="apache-spark-1.html#sparkr-1"><i class="fa fa-check"></i><b>2.7.3</b> SparkR</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
+<li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
+<li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
+<li class="chapter" data-level="3.4" data-path="rserver.html"><a href="rserver.html#computecontext"><i class="fa fa-check"></i><b>3.4</b> Compute Contexts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><i class="fa fa-check"></i><b>4</b> Azure HDInsight – Managed Hadoop in the Cloud - todo</a><ul>
+<li class="chapter" data-level="4.1" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#hdinsight-premium-spark-clusters-with-r-server"><i class="fa fa-check"></i><b>4.1</b> HDInsight Premium Spark Clusters with R Server</a></li>
+<li class="chapter" data-level="4.2" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#dashboards-for-management"><i class="fa fa-check"></i><b>4.2</b> Dashboards for Management</a></li>
+<li class="chapter" data-level="4.3" data-path="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html"><a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html#jupyter-and-rstudio-server"><i class="fa fa-check"></i><b>4.3</b> Jupyter and RStudio Server</a></li>
+</ul></li>
+<li class="part"><span><b>Provisioning and Ingesting Data</b></span></li>
+<li class="chapter" data-level="5" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html"><i class="fa fa-check"></i><b>5</b> Provisioning Instructions</a><ul>
+<li class="chapter" data-level="5.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#provision-cluster-from-azure-portal"><i class="fa fa-check"></i><b>5.1</b> Provision Cluster from Azure Portal</a></li>
+<li class="chapter" data-level="5.2" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="provisioning-instructions.html"><a href="provisioning-instructions.html#todo---install-packages-demo"><i class="fa fa-check"></i><b>5.2.1</b> todo - install packages demo</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ingestion.html"><a href="ingestion.html"><i class="fa fa-check"></i><b>6</b> Ingesting Data into Azure Blob Storage - todo</a><ul>
+<li class="chapter" data-level="6.1" data-path="ingestion.html"><a href="ingestion.html#azcopy"><i class="fa fa-check"></i><b>6.1</b> AzCopy</a></li>
+<li class="chapter" data-level="6.2" data-path="ingestion.html"><a href="ingestion.html#azure-storage-explorer"><i class="fa fa-check"></i><b>6.2</b> Azure Storage Explorer</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="setting-your-r-profile.html"><a href="setting-your-r-profile.html"><i class="fa fa-check"></i><b>7</b> Setting Your R Profile</a></li>
+<li class="part"><span><b>Data Manipulation and Data Aggregation</b></span></li>
+<li class="chapter" data-level="8" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html"><i class="fa fa-check"></i><b>8</b> Starting Your Machine Learning Pipeline</a><ul>
+<li class="chapter" data-level="8.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#todo"><i class="fa fa-check"></i><b>8.1</b> todo</a></li>
+<li class="chapter" data-level="8.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#finding-the-sparkr-library"><i class="fa fa-check"></i><b>8.2</b> Finding the SparkR Library</a></li>
+<li class="chapter" data-level="8.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>8.3</b> Creating a Spark Context</a></li>
+<li class="chapter" data-level="8.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>8.4</b> Creating DataFrames</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>8.4.1</b> From Local R data.frames</a></li>
+<li class="chapter" data-level="8.4.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.4.2</b> Creating DataFrames from CSV Files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html"><i class="fa fa-check"></i><b>9</b> Exploratory Data Analysis with SparkR</a><ul>
+<li class="chapter" data-level="9.1" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#sparkr-the-explorer"><i class="fa fa-check"></i><b>9.1</b> SparkR the Explorer</a></li>
+<li class="chapter" data-level="9.2" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#doing-data-aggregations-with-sparkr-efficiently"><i class="fa fa-check"></i><b>9.2</b> Doing Data Aggregations with SparkR Efficiently</a></li>
+<li class="chapter" data-level="9.3" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#from-spark-dataframes-to-local-dataframes"><i class="fa fa-check"></i><b>9.3</b> From Spark DataFrames to Local Dataframes</a></li>
+<li class="chapter" data-level="9.4" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#plotting-results"><i class="fa fa-check"></i><b>9.4</b> Plotting Results</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>10</b> Data Manipulation with SparkR</a><ul>
+<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.1.1</b> Merging Data</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Modeling and Prediction with Microsoft R Server</b></span></li>
+<li class="chapter" data-level="11" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>11</b> Modeling with Microsoft R Server</a><ul>
+<li class="chapter" data-level="11.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#import-csv-to-xdf"><i class="fa fa-check"></i><b>11.1</b> Import CSV to XDF</a></li>
+<li class="chapter" data-level="11.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#splitting-xdf-into-train-and-test-tests"><i class="fa fa-check"></i><b>11.2</b> Splitting XDF into Train and Test Tests</a></li>
+<li class="chapter" data-level="11.3" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#training-binary-classification-models"><i class="fa fa-check"></i><b>11.3</b> Training Binary Classification Models</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#logistic-regression-models"><i class="fa fa-check"></i><b>11.3.1</b> Logistic Regression Models</a></li>
+<li class="chapter" data-level="11.3.2" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#tree-and-ensemble-classifiers"><i class="fa fa-check"></i><b>11.3.2</b> Tree and Ensemble Classifiers</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -137,14 +221,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="modeling-with-microsoft-r-server" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Modeling with Microsoft R Server</h1>
+<h1><span class="header-section-number">Chapter 11</span> Modeling with Microsoft R Server</h1>
 <div id="import-csv-to-xdf" class="section level2">
-<h2><span class="header-section-number">4.1</span> Import CSV to XDF</h2>
+<h2><span class="header-section-number">11.1</span> Import CSV to XDF</h2>
 <p>To take full advantage of the PEMA algorithms provided by MRS, we will import the merged data, currently saved as csv in blob storage, into an xdf.</p>
 <p>We first have some housekeeping items to take care. We need to specify the spark compute context for the <code>RevoScaleR</code> package to properly utlize the Spark cluster. Saving a text file to HDFS creates blocks of the data and saves them in separate directories, and also saves an additional directory entitled “_SUCCESS&quot; to indicate the import operation was successful. We need to remove this file before importing to xdf, as it has no value for the final data.</p>
 <p>Further, in order to make sure the MRS modeling functions respect the data types of the columns in our merged dataset, we need to provide it with some column metadata. This can be provided with the <code>colInfo</code> argument inside of <code>rxImport</code>.</p>
 <p>Lastly, we need to provide MRS with pointers to the HDFS store we will be saving our XDF to.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxOptions</span>(<span class="dt">fileSystem =</span> <span class="kw">RxHdfsFileSystem</span>())
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxOptions</span>(<span class="dt">fileSystem =</span> <span class="kw">RxHdfsFileSystem</span>(),
+          <span class="dt">reportProgress =</span> <span class="dv">0</span>)
 
 dataDir &lt;-<span class="st"> &quot;/user/RevoShare/alizaidi/delayDataLarge&quot;</span>
 
@@ -205,11 +290,8 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
 
 <span class="kw">rxImport</span>(<span class="dt">inData =</span> joined_txt, dest_xdf, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Now that we have imported our data to an XDF, we can get some information about the variables:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
-                      <span class="dt">fileSystem =</span> hdfsFS)
-<span class="kw">rxGetInfo</span>(dest_xdf, <span class="dt">getVarInfo =</span> T)</code></pre></div>
-<pre><code>## ======  ed00-mrs-sp (Master HPA Process) has started run at Fri Apr 22 04:14:07 2016  ====== 
-## ======  ed00-mrs-sp (Master HPA Process) has completed run at Fri Apr 22 04:14:25 2016  ======</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxGetInfo</span>(<span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(data_dir, <span class="st">&quot;delayDataLarge&quot;</span>, <span class="st">&quot;joinedAirWeatherXdf&quot;</span>),
+                      <span class="dt">fileSystem =</span> hdfsFS), <span class="dt">getVarInfo =</span> T, <span class="dt">numRows =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## File name: /user/RevoShare/alizaidi/delayDataLarge/joinedAirWeatherXdf 
 ## Number of composite data files: 80 
 ## Number of observations: 148619655 
@@ -245,7 +327,118 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
 ## Var 19: DryBulbCelsiusDest, Type: numeric, Low/High: (-46.1000, 53.9000)
 ## Var 20: WindSpeedDest, Type: numeric, Low/High: (0.0000, 63.0000)
 ## Var 21: VisibilityDest, Type: numeric, Low/High: (0.0000, 88.0000)
-## Var 22: DewPointCelsiusDest, Type: numeric, Low/High: (-43.0000, 29.0000)</code></pre>
+## Var 22: DewPointCelsiusDest, Type: numeric, Low/High: (-43.0000, 29.0000)
+## Data (2 rows starting with row 1):
+##   ArrDel15 Year Month DayofMonth DayOfWeek Carrier OriginAirportID
+## 1        0 1990     3         11         7      US           10821
+## 2        1 1992     8         23         7      UA           13930
+##   DestAirportID CRSDepTime CRSArrTime RelativeHumidityOrigin
+## 1         10135         10       1056                     NA
+## 2         10135          6        928                     NA
+##   AltimeterOrigin DryBulbCelsiusOrigin WindSpeedOrigin VisibilityOrigin
+## 1              NA                   NA              NA               NA
+## 2              NA                   NA              NA               NA
+##   DewPointCelsiusOrigin RelativeHumidityDest AltimeterDest
+## 1                    NA                   NA            NA
+## 2                    NA                   NA            NA
+##   DryBulbCelsiusDest WindSpeedDest VisibilityDest DewPointCelsiusDest
+## 1                 NA            NA             NA                  NA
+## 2                 NA            NA             NA                  NA</code></pre>
+</div>
+<div id="splitting-xdf-into-train-and-test-tests" class="section level2">
+<h2><span class="header-section-number">11.2</span> Splitting XDF into Train and Test Tests</h2>
+<p>Prior to estimating our predictive models, we need to split our dataset into a training set, which we’ll use for estimation, and a test set that we’ll use for validating our results.</p>
+<p>Since we have time series data (data ordered by time), we will split our data by time. We’ll use the data prior to 2012 for training, and the data in 2012 for testing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">trainDS &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>( <span class="kw">file.path</span>(dataDir, <span class="st">&quot;finalDataTrain&quot;</span> ),
+                      <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxDataStep</span>( <span class="dt">inData =</span> dest_xdf, <span class="dt">outFile =</span> trainDS,
+            <span class="dt">rowSelection =</span> ( Year !=<span class="st"> </span><span class="dv">2012</span> ), <span class="dt">overwrite =</span> T )
+
+testDS &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>( <span class="kw">file.path</span>(dataDir, <span class="st">&quot;finalDataTest&quot;</span> ),
+                     <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxDataStep</span>( <span class="dt">inData =</span> dest_xdf, <span class="dt">outFile =</span> testDS,
+            <span class="dt">rowSelection =</span> ( Year ==<span class="st"> </span><span class="dv">2012</span> ), <span class="dt">overwrite =</span> T )</code></pre></div>
+</div>
+<div id="training-binary-classification-models" class="section level2">
+<h2><span class="header-section-number">11.3</span> Training Binary Classification Models</h2>
+<p>Now that we have our train and test sets, we can estimate our predictive model. Let’s try to predict the probability that a flight will be delayed as a function of other variables.</p>
+<div id="logistic-regression-models" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> Logistic Regression Models</h3>
+<p>RevoScaleR provides a highly optimized logistic regression model based on the Iteratively Reweighted Least Squares (IRLS) algorithm, which can be called using the <code>rxLogit</code> function. The <code>rxLogit</code> function looks nearly identical to the standard logistic regression function provided by the <code>glm</code> function in the base <code>stats</code> package, taking a formula as it’s first argument, and the data as it’s second argument.</p>
+<p>We create a handy function <code>make_formula</code> for creating formula objects based on the variables in the <code>all_vars</code> argument of the function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">make_formula &lt;-<span class="st"> </span>function(resp_var,
+                         vars_exclude,
+                         all_vars) {
+  
+  features &lt;-<span class="st"> </span>all_vars[!(all_vars %in%<span class="st"> </span><span class="kw">c</span>(resp_var, vars_exclude))]
+  form &lt;-<span class="st"> </span><span class="kw">as.formula</span>(<span class="kw">paste</span>(resp_var, <span class="kw">paste0</span>(features, <span class="dt">collapse =</span> <span class="st">&quot; + &quot;</span>),
+                           <span class="dt">sep  =</span> <span class="st">&quot; ~ &quot;</span>))
+  
+  <span class="kw">return</span>(form)
+}
+
+data_names &lt;-<span class="st"> </span><span class="kw">rxGetVarNames</span>(trainDS)
+
+form &lt;-<span class="st"> </span><span class="kw">make_formula</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;DepDelay&quot;</span>, <span class="st">&quot;ArrDelay&quot;</span>), data_names)
+
+<span class="kw">system.time</span>(logitModel &lt;-<span class="st"> </span><span class="kw">rxLogit</span>(form, <span class="dt">data =</span> trainDS))
+ <span class="co">#   user  system elapsed </span>
+ <span class="co"># 15.916  17.068 302.806 </span>
+
+base::<span class="kw">summary</span>(logitModel)</code></pre></div>
+</div>
+<div id="tree-and-ensemble-classifiers" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Tree and Ensemble Classifiers</h3>
+<p>Training the logistic regression model on the full training set took about five minutes. Logistic regression models are frequently used for classification problems due to their interpability and extensibility. However, without adequeate feature engineering, logistic regression models tend to lack the expressiveness and predictive power of ensemble methods, such as boosted trees, or random forests.</p>
+<p>Using the same methodology as above, we could estimate decision trees and decision forests (random forests) just as easily with the same formula:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(dTreeModel &lt;-<span class="st"> </span><span class="kw">rxDTree</span>(form, <span class="dt">data =</span> trainDS,
+                                  <span class="dt">maxDepth =</span> <span class="dv">6</span>, <span class="dt">pruneCp =</span> <span class="st">&quot;auto&quot;</span>))
+  <span class="co">#   user   system  elapsed </span>
+  <span class="co"># 29.088   67.940 1265.633</span>
+
+<span class="kw">save</span>(dTreeModel, <span class="dt">file =</span> <span class="st">&quot;dTreeModel.RData&quot;</span>)</code></pre></div>
+</div>
+</div>
+<div id="testing-models" class="section level2">
+<h2><span class="header-section-number">11.4</span> Testing Models</h2>
+<p>Now that we have estimated our models, we can test them on the unseen dataset, which is the dataset from the year 2012. The <code>RevoScaleR</code> package is equipped with a predict function that allows you to score a <code>rx</code> model on a new dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;testModels.RData&quot;</span>)
+
+treePredict &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(dataDir, <span class="st">&quot;treePredict&quot;</span>),
+                         <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">system.time</span>(<span class="kw">rxPredict</span>(dTreeModel, <span class="dt">data =</span> testDS, <span class="dt">outData =</span> treePredict, 
+                      <span class="dt">extraVarsToWrite =</span> <span class="kw">c</span>(<span class="st">&quot;ArrDel15&quot;</span>), <span class="dt">overwrite =</span> <span class="ot">TRUE</span>))
+
+
+<span class="co"># user  system elapsed </span>
+<span class="co"># 13.436   3.616 142.326</span>
+
+
+logitPredict &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span class="kw">file.path</span>(dataDir, <span class="st">&quot;logitPredict&quot;</span>),
+                          <span class="dt">fileSystem =</span> hdfsFS)
+
+<span class="kw">rxPredict</span>(logitModel, <span class="dt">data =</span> testDS, <span class="dt">outData =</span> logitPredict,
+          <span class="dt">extraVarsToWrite =</span> <span class="kw">c</span>(<span class="st">&quot;ArrDel15&quot;</span>),
+          <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>, <span class="dt">overwrite =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Using our predicted results, we can calculate the accuracy and recall of our model. A very simple way of viewing model’s accuracy is by way of a ROC curve, which plots the recall and accuracy. The metric from this chart, AUC, is a useful validation metric for viewing your moels’ accuracy.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate ROC and Area Under the Curve (AUC).</span>
+<span class="kw">load</span>(<span class="st">&quot;testModels.RData&quot;</span>)
+
+logitRoc &lt;-<span class="st"> </span><span class="kw">rxRoc</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="st">&quot;ArrDel15_Pred&quot;</span>, logitPredict)
+logitAuc &lt;-<span class="st"> </span><span class="kw">rxAuc</span>(logitRoc)
+
+<span class="kw">plot</span>(logitRoc)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/-model-accuracy-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate ROC and Area Under the Curve (AUC)</span>
+
+treeRoc &lt;-<span class="st"> </span><span class="kw">rxRoc</span>(<span class="st">&quot;ArrDel15&quot;</span>, <span class="st">&quot;ArrDel15_Pred&quot;</span>, treePredict)
+treeAuc &lt;-<span class="st"> </span><span class="kw">rxAuc</span>(treeRoc)
+
+<span class="kw">plot</span>(treeRoc)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/-model-accuracy-2.png" width="672" /></p>
 
 </div>
 </div>
@@ -254,8 +447,8 @@ dest_xdf &lt;-<span class="st"> </span><span class="kw">RxXdfData</span>(<span c
           </div>
         </div>
       </div>
-<a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="placeholder.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="data-manipulation-with-sparkr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

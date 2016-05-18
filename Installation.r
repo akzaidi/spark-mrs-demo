@@ -5,7 +5,7 @@
 
 # Run R using "sudo" if you want to install AzureML system-wide
 
-options("repos"="https://mran.revolutionanalytics.com")
+options("repos" = "https://mran.revolutionanalytics.com")
 
 if(!require("AzureML")) install.packages("AzureML")
 

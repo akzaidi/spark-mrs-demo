@@ -1,6 +1,12 @@
 # (PART) Modeling and Prediction with Microsoft R Server {-}
 
-In the following modules, we will show how we can use Microsoft R Server (MRS) and the `RxSpark` compute context for modeling and prediction. 
+```{r-reportprogress, echo = FALSE}
+rxOptions(reportProgress = 0)
+
+```
+
+
+In the following modules, we will show how we can use Microsoft R Server (MRS) and the `RxSpark` compute context for modeling and prediction with the high-performance PEMA algorithms.
 
 # Modeling with Microsoft R Server
 
@@ -18,7 +24,8 @@ Lastly, we need to provide MRS with pointers to the HDFS store we will be saving
 ```{r-import-xdf, eval = FALSE}
 
 
-rxOptions(fileSystem = RxHdfsFileSystem())
+rxOptions(fileSystem = RxHdfsFileSystem(),
+          reportProgress = 0)
 
 dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
 
@@ -84,11 +91,11 @@ rxImport(inData = joined_txt, dest_xdf, overwrite = TRUE)
 
 Now that we have imported our data to an XDF, we can get some information about the variables:
 
-```{r-get-info, dest_xdf}
+```{r-get-info, cache = TRUE}
 
-dest_xdf <- RxXdfData(file.path(data_dir, "delayDataLarge", "joinedAirWeatherXdf"),
-                      fileSystem = hdfsFS)
-rxGetInfo(dest_xdf, getVarInfo = T, numRows = 2)
+
+rxGetInfo(RxXdfData(file.path(data_dir, "delayDataLarge", "joinedAirWeatherXdf"),
+                      fileSystem = hdfsFS), getVarInfo = T, numRows = 2)
 
 
 ```
@@ -116,67 +123,99 @@ rxDataStep( inData = dest_xdf, outFile = testDS,
 
 ```
 
-## Binary Classification
+## Training Binary Classification Models
 
 Now that we have our train and test sets, we can estimate our predictive model. Let's try to predict the probability that a flight will be delayed as a function of other variables.
 
 
 ### Logistic Regression Models
 
-```{r-train-model, eval = FALSE}
+RevoScaleR provides a highly optimized logistic regression model based on the Iteratively Reweighted Least Squares (IRLS) algorithm, which can be called using the `rxLogit` function. The `rxLogit` function looks nearly identical to the standard logistic regression function provided by the `glm` function in the base `stats` package, taking a formula as it's first argument, and the data as it's second argument. 
 
-formula <- as.formula(ArrDel15 ~ Year + Month + DayofMonth + DayOfWeek + Carrier + 
-                        OriginAirportID + DestAirportID + CRSDepTime + 
-                        CRSArrTime + RelativeHumidityOrigin +
-                        AltimeterOrigin + DryBulbCelsiusOrigin + WindSpeedOrigin +
-                        VisibilityOrigin + DewPointCelsiusOrigin + RelativeHumidityDest +
-                        AltimeterDest + DryBulbCelsiusDest + WindSpeedDest + VisibilityDest +
-                        DewPointCelsiusDest
-                      )
+We create a handy function `make_formula` for creating formula objects based on the variables in the `all_vars` argument of the function.
 
-logitModel <- rxLogit(formula, data = trainDS)
+```{r-train-logit, eval = FALSE}
+
+make_formula <- function(resp_var,
+                         vars_exclude,
+                         all_vars) {
+  
+  features <- all_vars[!(all_vars %in% c(resp_var, vars_exclude))]
+  form <- as.formula(paste(resp_var, paste0(features, collapse = " + "),
+                           sep  = " ~ "))
+  
+  return(form)
+}
+
+data_names <- rxGetVarNames(trainDS)
+
+form <- make_formula("ArrDel15", c("DepDelay", "ArrDelay"), data_names)
+
+system.time(logitModel <- rxLogit(form, data = trainDS))
+ #   user  system elapsed 
+ # 15.916  17.068 302.806 
 
 base::summary(logitModel)
 
-# Predict over test data (Logistic Regression).
+```
 
-logitPredict <- RxXdfData(file.path(dataDir, "logitPredict"),
-                          fileSystem = hdfsFS)
+### Tree and Ensemble Classifiers
 
-# Use the scalable rxPredict() function
+Training the logistic regression model on the full training set took about five minutes. Logistic regression models are frequently used for classification problems due to their interpability and extensibility. However, without adequeate feature engineering, logistic regression models tend to lack the expressiveness and predictive power of ensemble methods, such as boosted trees, or random forests.
 
-rxPredict(logitModel, data = testDS, outData = logitPredict,
-          extraVarsToWrite = c("ArrDel15"),
-          type = 'response', overwrite = TRUE)
+Using the same methodology as above, we could estimate decision trees and decision forests (random forests) just as easily with the same formula:
 
-# Calculate ROC and Area Under the Curve (AUC).
+```{r-dtree-forest-train, eval = FALSE}
 
-logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
-logitAuc <- rxAuc(logitRoc)
-
-plot(logitRoc)
-
-
-##############################################
-# Train and Test a Decision Tree model
-##############################################
-
-# Train using the scalable rxDTree function
-
-system.time(dTreeModel <- rxDTree(formula, data = trainDS,
+system.time(dTreeModel <- rxDTree(form, data = trainDS,
                                   maxDepth = 6, pruneCp = "auto"))
-# user   system  elapsed 
-# 26.380   25.860 1244.448 
+  #   user   system  elapsed 
+  # 29.088   67.940 1265.633
 
-# Test using the scalable rxPredict function
+save(dTreeModel, file = "dTreeModel.RData")
+
+```
+
+## Testing Models
+
+Now that we have estimated our models, we can test them on the unseen dataset, which is the dataset from the year 2012. The `RevoScaleR` package is equipped with a predict function that allows you to score a `rx` model on a new dataset.
+
+```{r-test-score, eval = FALSE, message = FALSE}
+
+load("testModels.RData")
 
 treePredict <- RxXdfData(file.path(dataDir, "treePredict"),
                          fileSystem = hdfsFS)
 
 system.time(rxPredict(dTreeModel, data = testDS, outData = treePredict, 
                       extraVarsToWrite = c("ArrDel15"), overwrite = TRUE))
+
+
 # user  system elapsed 
 # 13.436   3.616 142.326
+
+
+logitPredict <- RxXdfData(file.path(dataDir, "logitPredict"),
+                          fileSystem = hdfsFS)
+
+rxPredict(logitModel, data = testDS, outData = logitPredict,
+          extraVarsToWrite = c("ArrDel15"),
+          type = 'response', overwrite = TRUE)
+
+
+```
+
+
+Using our predicted results, we can calculate the accuracy and recall of our model. A very simple way of viewing model's accuracy is by way of a ROC curve, which plots the recall and accuracy. The metric from this chart, AUC, is a useful validation metric for viewing your moels' accuracy.
+
+```{r-model-accuracy, message = FALSE}
+# Calculate ROC and Area Under the Curve (AUC).
+load("testModels.RData")
+
+logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
+logitAuc <- rxAuc(logitRoc)
+
+plot(logitRoc)
 
 # Calculate ROC and Area Under the Curve (AUC)
 
@@ -185,7 +224,6 @@ treeAuc <- rxAuc(treeRoc)
 
 plot(treeRoc)
 
-save(dTreeModel, file = "dTreeModel.RData")
 
 ```
 

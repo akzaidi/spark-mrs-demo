@@ -36,7 +36,6 @@ todo: this should probably got into the .bib file instead, and use citations.
 ### Microsoft R Server {-}
 + [Landing Page for R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/)
 + [Documentation](https://packages.revolutionanalytics.com/doc/8.0.0/)
-+ 
 
 ### Azure HDInsight {-}
 + [HDInsight Documentation Home Page](https://azure.microsoft.com/en-us/documentation/services/hdinsight/)
