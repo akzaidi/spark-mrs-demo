@@ -10,6 +10,8 @@ Thee RevoScaleR similarly reimagines R's algorithms as distributable C++ code, t
 
 ## PEMA Algorithms and the RevoScaleR Package {#pema}
 
+
+
 ## eXternal Data Frames (XDFs) {#xdf}
 
 ## Compute Contexts {#computecontext}

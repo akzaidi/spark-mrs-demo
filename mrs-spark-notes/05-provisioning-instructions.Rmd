@@ -2,7 +2,7 @@
 
 # Provisioning Instructions
 
-This module provides a walkthrough of how to provision a Spark cluster on Azure HDInsight Premium with Microsoft R Server, and how to add an edge node with RStudio Server.
+In order to make the most of the material in these notes, you will need to have a Spark cluster with Microsoft R Server installed. The easiest way of accomplishing this is to provision a premium HDInsight Spark Cluster on Azure. This module provides a walkthrough of how to provision a Spark cluster on Azure HDInsight Premium with Microsoft R Server, and how to add an edge node with RStudio Server.
 
 ## Provision Cluster from Azure Portal
 

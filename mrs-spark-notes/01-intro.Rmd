@@ -5,25 +5,25 @@
 This book is organized into modules, each of which provide a motivated example of doing data science with R and Spark. The modules are based on notes I created while learning how to make scalable machine learning pipelines, focusing on the tools provided by [Microsoft R Server](https://www.microsoft.com/en-us/server-cloud/products/r-server/), [Azure HDInsight](https://azure.microsoft.com/en-us/documentation/services/hdinsight/), and [Spark](http://spark.apache.org/docs/latest/). 
 
 ## Why R?
-[R](https://www.r-project.org/) is a tool of choice for many data scientists. The abundance of available packages for statistical modeling, visualization, and machine learning, coupled with the deep interactivity baked into it's very foundation, push it to the top of the stack for off-the-shelf languages for data science. Unfortunately, in order to maintain the level of interactivity R provides, it must sacrifice on performance relative to low-level, statically typed languages, which makes it inherantly difficult for R to scale, and inhibits it's adoption in enterprise. 
+[R](https://www.r-project.org/) has become a very popular programming environment for data scientists, especially those with academic experience in statistics, and statistical learning theory. The abundance of available packages for statistical modeling, visualization, and machine learning, coupled with the deep interactivity baked into it's very foundation, push it to the top of the stack for off-the-shelf languages for data science. Unfortunately, in order to maintain the level of interactivity R provides, it must sacrifice on performance relative to it's low-level, statically typed counterparts. This performance block has often hindered R's ability to scale, and prevents it's more general adoption in enterprise settings. 
 
 ## Microsoft R Server FTW
-Microsoft R Server (formerly known as Revolution R Enterprise) was developed to tackle R's scalability challenges and increase the adoption of the R project in industry. The MRS distribution includes R packages designed specifically for scalability, exposing new parallel external memory algorithms that interact with data residing in disk or distributed data stores, and a new highly optimized columnar data object, called xdf (short for eXternal Data Frame), that is chunked and especially amenable for parallelization.
+Microsoft R Server (MRS, formerly known as Revolution R Enterprise, RRE) was developed to tackle R's scalability challenges and increase the adoption of the R project in industry. The MRS distribution includes R packages designed specifically for scalability, exposing new parallel external memory algorithms that interact with data residing in disk or distributed data stores, and a new highly optimized columnar data object, called xdf (short for eXternal Data Frame), that is chunked and especially amenable for parallelization.
 
-A data scientist's coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment! 
+A data scientist's coding and debugging time is the most important resource in data science applications, and MRS makes it possible for the data scientist to execute highly performant distributed algorithms on huge amounts of data without ever having to leave their favorite programming environment. As many data scientists (especially those that are trained in R and statistics) are unlikely to have development experience low-level languages like Java, it is becoming increasingly imperative that their favorite programming languages can interact with high-performant progrmaming frameworks and architectures like Spark. 
 
 ## Apache Spark
-Developed at the [AMPLab](https://amplab.cs.berkeley.edu/) at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore's law for CPUs, so creating commodity computers was not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a rate that is comparable to the growth of data. 
+Developed at the [AMPLab](https://amplab.cs.berkeley.edu/) (Algorithms, Machines and People), at Berkeley, Spark was designed to tackle scalability. Data is growing much faster than Moore's law for CPUs, so creating commodity computers was not feasible or scalable for the type of data we face today. However, the cost of memory is dropping at a faster rate than CPU speed. 
 
-While Hadoop revolutionized computing by reintroducing distributed computing through the MapReduce framework, and distributed storage through HDFS, Spark spurred the revolution further by utilizing memory for in-data sharing during interactive Map Reduce jobs. Spark can be 10 - 100 orders of magnitude faster than traditional Map Reduce.
+While Hadoop revolutionized computing by reintroducing distributed computing through the MapReduce framework, and distributed storage through HDFS, Spark ignited (excuse the pun, and those forthcoming) the revolution further by utilizing distributed memory storage and computation for in-data sharing during interactive Map Reduce jobs. By eliminating the I/O overhead that MapReduce amplifies, Spark algorithms can achive 10 - 100 orders of magnitude performance improvements over traditional MapReduce.
 
 ## SparkR
 Spark has a number of [APIs](http://spark.apache.org/docs/latest/api.html), allowing you to write code in your favorite language to be executed in Spark. The most popular APIs for Spark are Scala and Python. 
 
-The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package (in fact, the Spark DataFrames API was directly influenced by R `data.frames` and the Python `pandas` package). While the API shines in data manipulation and aggregation, it is wholly insufficient for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines utilizing the scalability of Spark.
+The SparkR API is less mature than the Python and Scala APIs, but provides R with an abstraction to interact with data residing in Spark DataFrames in a manner that looks a lot like manipulating R `data.frames`, and has a syntax that will be familiar to many R users of the `dplyr` package (in fact, the Spark DataFrames API was directly influenced by R `data.frames` and the Python `pandas` package). While the API shines in data manipulation and aggregation, it is currently very limited for modeling and predictive analysis. However, when used in conjuction with the algorithms provided by MRS, developers can build full data science pipelines utilizing the scalability of Spark without ever having to leave their R environment.
 
 ## Azure HDInsight
-[todo] add overview of azure HDInsight...
+Even though Hadoop was envisioned as a framework that could run on commodity, inexpensive hardware, deploying Hadoop in practice required extensive resources. Azure HDInsight is a fully-managed Hadoop distribution on the cloud, based on the popular Hadoop distribution, Hortonworks Data Platform. Through their partnership with Hortonworks, Microsoft has created a state-of-the-art service for deploying Hadoop and Spark clusters on the cloud. 
 
 ## Prerequisites - What You'll Need
 
@@ -37,6 +37,13 @@ While much of the material in these notes will generalize to other implementatio
 
 These notes will be most useful to those that have been programming with R, have a solid knowledge of statistics and machine learning, but have limited exposure to Spark. I don't assume any Spark background for these notes, and try to explain the Spark concepts from the ground up. I also do not presume that you have used the Microsoft R Server implementation of R, or have used the RevoScaleR package that MRS ships with.
 
+## Data Used
+
+In these notes, I will look at three different data sources: 
+
+1. New York Airlines Dataset
+2. New York Taxi Data
+3. Fannie Mae Single Family Loan Level Data
 
 ## Versioning
 

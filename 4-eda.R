@@ -24,7 +24,7 @@ weatherPath <- file.path(data_dir, "delayDataLarge", "Weather") # pre-processed 
 airDF <- read.df(sqlContext, airPath, source = "com.databricks.spark.csv",
                  header = "true", inferSchema = "true")
 
-weatherDF <- read.df(sqlContext, weatherPath, source = "com.databricks.spark.csv",
+weatherDF <- read.df(sqlContext, weatherPath, source = "com.databricks.spark.csv", 
                      header = "true", inferSchema = "true")
 
 

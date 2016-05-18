@@ -16,11 +16,6 @@ The first steps to start your machine learning and data science pipeline is to s
 
 In Spark, you'll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You'll use this constructor to create new RDDs or DataFrames. 
 
-```{r-lib, echo = FALSE}
-.libPaths(c("/home/alizaidi/R/x86_64-pc-linux-gnu-library/3.2", "/usr/lib64/MRO-for-MRS-8.0.3/R-3.2.2/lib/R/library", "/usr/hdp/2.4.1.1-3/spark/R/lib"))
-```
-
-
 ## Finding the SparkR Library
 
 In order to create a Spark Context from your RStudio Server environment, you'll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. A system variable called "SPARK_HOME" has been set that points to the Spark installation directory, and in it you'll find subdirectories, "R/lib", containing the SparkR library. 
@@ -67,22 +62,25 @@ Using our `sqlContext` variable, we can create DataFrames from local R data.fram
 
 ### From Local R data.frames
 
-Creating Spark DataFrames from local R data.frames might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node's memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and will scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it'll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.
+Creating Spark DataFrames from local R `data.frames` might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node's memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and eventually you plan to scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it'll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.
 
-We'll import data from the nycflight13 package into a Spark DataFrame, and use it's data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK
+As a first example, we'll import data from the `nycflight13` package into a Spark DataFrame, and use it's data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK.
 
 ```{r-rdftosparkdf, eval = FALSE}
 library(nycflights13)
 flights <- createDataFrame(sqlContext, nycflights13::flights)
 jfk_flights <- filter(flights, flights$origin == "JFK")
 # Group the flights by destination and aggregate by the number of flights
-dest_flights <- agg(group_by(jfk_flights, jfk_flights$dest), count = n(jfk_flights$dest))
+dest_flights <- summarize(
+  group_by(jkf_flights, jfk_flights$dest), 
+  count = n(jfk_flights$dest)
+  )
 # Now sort by the `count` column and print the first few rows
 head(arrange(dest_flights, desc(dest_flights$count)))
 
 ```
 
-This same analysis could be streamlined using the `%>%` operator exposed by the magrittr package:
+This same analysis could be streamlined using the `%>%` operator exposed by the magrittr package to improve the readability of the pipeline:
 
 ```{r-spark-magrittr, eval = FALSE}
 library(magrittr)
@@ -289,7 +287,7 @@ delays_routes <- function(delay_df = agg_df_local) {
   
   delay_df %>%
     group_by(origin, destination) %>%
-    summarise(total = sum(counts), 
+    summarize(total = sum(counts), 
               arrival_delay = weighted.mean(ave_delay, counts)) -> route_delays
   
   return(route_delays)
@@ -312,10 +310,16 @@ plot_route_delays <- function(min_routes = 10) {
   library(dplyr)
   library(ggplot2)
   
-  gplot <- delays_routes() %>% filter(total > min_routes) %>% arrange(desc(total)) %>% 
-    filter(origin %in% c("JFK", "LGA", "IAD", "DCA", "ATL", "DFW", "ORD", "IAH", "DEN", "CLT"),
-           destination %in% c("ATL", "BDL", "BOS", "JFK", "IAD", "LGA", "DCA", "IAD",
-                              "DFW", "ORD", "IAH", "DEN", "CLT")) %>% 
+  gplot <- delays_routes() %>%
+    filter(total > min_routes) %>% 
+    arrange(desc(total)) %>% 
+    filter(origin %in% c("JFK", "LGA", "IAD", "DCA",
+                         "ATL", "DFW", "ORD", "IAH", 
+                         "DEN", "CLT"),
+           destination %in% c("ATL", "BDL", "BOS", "JFK", 
+                              "IAD", "LGA", "DCA", "IAD",
+                              "DFW", "ORD", "IAH", "DEN", 
+                              "CLT")) %>% 
     ggplot(aes(x = origin, y = destination, fill = arrival_delay)) + 
     geom_tile(color = "white") + 
     scale_fill_gradient(low = "white", high = "steelblue")
@@ -379,7 +383,7 @@ SparkR is great at merges, and data aggregation. For instance, suppose we want t
 
 ```{r-groupsummary, eval = FALSE}
 sum_df <- airDF %>% select("Carrier", "DepDelay") %>% 
-  groupBy(airDF$Carrier) %>% 
+  group_by(airDF$Carrier) %>% 
   summarize(count = n(airDF$Carrier), 
             ave_delay = mean(airDF$DepDelay))
    # user  system elapsed 
@@ -387,6 +391,8 @@ sum_df <- airDF %>% select("Carrier", "DepDelay") %>%
 ```
 
 The syntax is almost exactly like the syntax from the dplyr package, and the `%>%` operator makes chaining the additive methods exceptionally simple. Note that the above operation will not be run until we call an action upon the `sum_df.` As of right now it is a series of transformations, so it is a recipe for doing some computations, but the actual evaluation has been deferred until we call an action.
+
+## Collecting Results to Local Dataframes
 
 In order to evaluate and bring the summarized data into an R `data.frame`, we can use the `collect` action.
 
@@ -397,6 +403,8 @@ sum_local <- sum_df %>% collect()
 library(dplyr)
 sum_local %>% arrange(desc(ave_delay))
 ```
+
+## Dimple Bar Charts
 
 Now that our data resides as a local data.frame, we can plot it using any R plotting library.
 
@@ -426,7 +434,7 @@ weatherAgg <- weatherDF %>%
 ```
 
 
-### Merging Data
+## Merging Data
 
 We can use SparkR for merging data sets as well. Let's merge the airlines dataset with the weather dataset. We'll first add weather data to the origination airport, and then add it to the destination airport. To keep our data in manageable size, we will remove the redundant columns. Finally, we save the DataFrame to a CSV file, stored in HDFS so that we may access it later.
 
