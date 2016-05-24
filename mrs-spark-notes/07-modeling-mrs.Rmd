@@ -2,6 +2,13 @@
 
 ```{r-reportprogress, echo = FALSE}
 rxOptions(reportProgress = 0)
+myNameNode <- "default"
+myPort <- 0
+hdfsFS <- RxHdfsFileSystem(hostName = myNameNode, 
+                           port = myPort)
+
+dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
+computeContext <- RxSpark(consoleOutput = TRUE)
 
 ```
 
@@ -195,12 +202,12 @@ system.time(rxPredict(dTreeModel, data = testDS, outData = treePredict,
 # 13.436   3.616 142.326
 
 
-logitPredict <- RxXdfData(file.path(dataDir, "logitPredict"),
-                          fileSystem = hdfsFS)
+# logitPredict <- RxXdfData(file.path(dataDir, "logitPredict"),
+                          # fileSystem = hdfsFS)
 
-rxPredict(logitModel, data = testDS, outData = logitPredict,
-          extraVarsToWrite = c("ArrDel15"),
-          type = 'response', overwrite = TRUE)
+# rxPredict(logitModel, data = testDS, outData = logitPredict,
+          # extraVarsToWrite = c("ArrDel15"),
+          # type = 'response', overwrite = TRUE)
 
 
 ```
@@ -208,21 +215,21 @@ rxPredict(logitModel, data = testDS, outData = logitPredict,
 
 Using our predicted results, we can calculate the accuracy and recall of our model. A very simple way of viewing model's accuracy is by way of a ROC curve, which plots the recall and accuracy. The metric from this chart, AUC, is a useful validation metric for viewing your moels' accuracy.
 
-```{r-model-accuracy, message = FALSE}
+```{r-model-accuracy, message = FALSE, eval = FALSE}
 # Calculate ROC and Area Under the Curve (AUC).
 load("testModels.RData")
 
-logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
-logitAuc <- rxAuc(logitRoc)
+# logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
+# logitAuc <- rxAuc(logitRoc)
 
-plot(logitRoc)
+# plot(logitRoc)
 
 # Calculate ROC and Area Under the Curve (AUC)
 
-treeRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", treePredict)
-treeAuc <- rxAuc(treeRoc)
-
-plot(treeRoc)
+# treeRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", treePredict)
+# treeAuc <- rxAuc(treeRoc)
+# 
+# plot(treeRoc)
 
 
 ```

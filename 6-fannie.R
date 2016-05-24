@@ -113,7 +113,7 @@ perf_df %>% count
 
 originations_dates <- function(orig_df = originations) {
   
-  orig_df <- orig_df %>% mutate(month = substr(orig_df$orig_dte, 1, 2),
+  orig_df <- orig_df %>% SparkR::mutate(month = substr(orig_df$orig_dte, 1, 2),
                                 year = substr(orig_df$orig_dte, 5, 8))
   
   return(orig_df)
@@ -123,8 +123,8 @@ originations_dates <- function(orig_df = originations) {
 
 originations_state <- function(orig_df = originations_dates(originations)) {
   
-  orig_df %>% group_by(orig_df$state, orig_df$year) %>% 
-    summarize(ave_dti = mean(orig_df$dti),
+  orig_df %>% SparkR::group_by(orig_df$state, orig_df$year) %>% 
+    SparkR::summarize(ave_dti = mean(orig_df$dti),
               ave_ltv = mean(orig_df$oltv),
               ave_cltv = mean(orig_df$ocltv), 
               ave_fico = mean(orig_df$cscore_b)) -> orig_df
@@ -134,18 +134,32 @@ originations_state <- function(orig_df = originations_dates(originations)) {
 } 
 
 
-orig_summary <- originations_state() %>% collect
+orig_summary <- originations_state() %>% SparkR::collect
 
 library(rMaps)
-orig_summary %>% 
+# orig_summary %>% 
+#   dplyr::mutate(year = as.numeric(year)) %>% 
+#   rMaps::ichoropleth(ave_fico ~ state, data = ., 
+#                      animate = "year",
+#                      geographyConfig = list(popupTemplate = "#!function(geo, data) {
+#                                          return '<div class=\"hoverinfo\"><strong>'+
+#                                          data.state + '<br>' + 'Average FICO Score in  '+ data.year + ': ' +
+#                                          data.ave_fico.toFixed(2)+ 
+#                                          '</strong></div>';}!#")) -> state_fico
+
+orig_df %>% 
   dplyr::mutate(year = as.numeric(year)) %>% 
   rMaps::ichoropleth(ave_fico ~ state, data = ., 
                      animate = "year",
                      geographyConfig = list(popupTemplate = "#!function(geo, data) {
                                          return '<div class=\"hoverinfo\"><strong>'+
-                                         data.state + '<br>' + 'Average FICO Score in  '+ data.year + ': ' +
-                                         data.ave_fico.toFixed(2)+ 
+                                         data.state+ '<br>' + 'Average Credit Score for Loans Originated in '+ data.year + ': ' +
+                                         data.ave_fico.toFixed(0) +
                                          '</strong></div>';}!#")) -> state_fico
+
+state_fico$save("StateMapSlider.html", cdn = T)
+
+
 
 
 library(ggplot2)
@@ -163,3 +177,18 @@ plot_bin <- function(data = originations) {
   return(g_plot)
   
 }
+
+
+
+
+## rMaps help
+
+# crime2010 = subset(violent_crime, Year == 2010)
+# https://gist.github.com/ramnathv/8936426
+choro = ichoropleth(Crime ~ State, data = violent_crime, animate = "Year")
+choro$set(geographyConfig = list(
+  popupTemplate = "#! function(geography, data){
+     return '<div class=hoverinfo><strong>' + geography.properties.name + 
+       ': ' + data.Crime + '</strong></div>';
+   } !#" 
+))

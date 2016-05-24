@@ -116,6 +116,18 @@ Let's read the airlines directory and the weather directory to Spark DataFrames.
 
 ```{r-import-df, eval = FALSE}
 
+airPath <- file.path("/user/RevoShare/alizaidi", "AirOnTimeCSV")
+weatherPath <- file.path(fullDataDir, "Weather") # pre-processed weather data
+
+# create a SparkR DataFrame for the airline data
+
+airDF <- read.df(sqlContext, airPath, source = "com.databricks.spark.csv", 
+                 header = "true", inferSchema = "true")
+
+# Create a SparkR DataFrame for the weather data
+
+weatherDF <- read.df(sqlContext, weatherPath, source = "com.databricks.spark.csv", 
+                     header = "true", inferSchema = "true")
 ```
 
 Note that it took more than 6 minutes to load our airlines data into Spark DataFrames. However, subsequent operations on the `airDF` object will occur in-memory, and should be very fast.
@@ -506,5 +518,16 @@ sparkR.stop()
 
 ```
 
+## Exploring Credit Scores for Mortgage Borrowers
+
+We will examine a very different dataset in this section. 
+
+```{r, eval = FALSE}
+
+
+data_dir <- "/user/RevoShare/alizaidi"
+
+
+```
 
 

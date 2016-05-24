@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
 
-<meta name="date" content="2016-05-05">
+<meta name="date" content="2016-05-23">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,7 +128,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
 <li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.7</b> Versioning</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#data-used"><i class="fa fa-check"></i><b>1.7</b> Data Used</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.8</b> Versioning</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="apache-spark-1.html"><a href="apache-spark-1.html"><i class="fa fa-check"></i><b>2</b> Apache Spark</a><ul>
 <li class="chapter" data-level="2.1" data-path="apache-spark-1.html"><a href="apache-spark-1.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
@@ -185,9 +186,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.4" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#plotting-results"><i class="fa fa-check"></i><b>9.4</b> Plotting Results</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>10</b> Data Manipulation with SparkR</a><ul>
-<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.1.1</b> Merging Data</a></li>
-</ul></li>
+<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a></li>
+<li class="chapter" data-level="10.2" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#collecting-results-to-local-dataframes"><i class="fa fa-check"></i><b>10.2</b> Collecting Results to Local Dataframes</a></li>
+<li class="chapter" data-level="10.3" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#dimple-bar-charts"><i class="fa fa-check"></i><b>10.3</b> Dimple Bar Charts</a></li>
+<li class="chapter" data-level="10.4" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.4</b> Merging Data</a></li>
+<li class="chapter" data-level="10.5" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#exploring-credit-scores-for-mortgage-borrowers"><i class="fa fa-check"></i><b>10.5</b> Exploring Credit Scores for Mortgage Borrowers</a></li>
 </ul></li>
 <li class="part"><span><b>Modeling and Prediction with Microsoft R Server</b></span></li>
 <li class="chapter" data-level="11" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>11</b> Modeling with Microsoft R Server</a><ul>
@@ -230,9 +233,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="pema" class="section level2">
 <h2><span class="header-section-number">3.2</span> PEMA Algorithms and the RevoScaleR Package</h2>
+<p>Parallel External Memory Algorithms (PEMA) are algorithms that do not require all the data to be in memory at one time. This is in contrast to all of the functions in base R, and most of the methods in additional R packages.</p>
+<p>RevoScaleR implements many of the most popular statistical models as PEMAs, so that they can be estimated on data that is far larger than the memory capacity of your platform. Moreover, the PEMA algorithms exposed by <code>RevoScaleR</code> cn run on a variety of different platforms, including Spark, and therefore, can scale out very efficiently.</p>
 </div>
 <div id="xdf" class="section level2">
 <h2><span class="header-section-number">3.3</span> eXternal Data Frames (XDFs)</h2>
+<p>The most efficient way to use PEMA algorithms is to apply them to the novel data type provided by RevoScaleR, <strong>XDFs</strong>, short for external data frames. Unlike traditional R objects, and R <code>data.frame</code>s, a <code>xdf</code> is a chunked data set that can be stored in a variety of data stores: disks, Hadoop distributed file systems, SQL Server databases, and many more. Rather than bringing your data into R, we move the analytics from R and into your data stores, and utilize the high performance PEMA algorithms to estimate models as efficiently as possible.</p>
 </div>
 <div id="computecontext" class="section level2">
 <h2><span class="header-section-number">3.4</span> Compute Contexts</h2>
