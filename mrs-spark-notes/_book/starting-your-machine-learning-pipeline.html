@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
 
-<meta name="date" content="2016-05-05">
+<meta name="date" content="2016-05-23">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,7 +128,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
 <li class="chapter" data-level="1.6" data-path="introduction.html"><a href="introduction.html#prerequisites---what-youll-need"><i class="fa fa-check"></i><b>1.6</b> Prerequisites - What You’ll Need</a></li>
-<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.7</b> Versioning</a></li>
+<li class="chapter" data-level="1.7" data-path="introduction.html"><a href="introduction.html#data-used"><i class="fa fa-check"></i><b>1.7</b> Data Used</a></li>
+<li class="chapter" data-level="1.8" data-path="introduction.html"><a href="introduction.html#versioning"><i class="fa fa-check"></i><b>1.8</b> Versioning</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="apache-spark-1.html"><a href="apache-spark-1.html"><i class="fa fa-check"></i><b>2</b> Apache Spark</a><ul>
 <li class="chapter" data-level="2.1" data-path="apache-spark-1.html"><a href="apache-spark-1.html#lazyevalfp"><i class="fa fa-check"></i><b>2.1</b> Functional Programming and Lazy Evaluation</a></li>
@@ -185,9 +186,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.4" data-path="exploratory-data-analysis-with-sparkr.html"><a href="exploratory-data-analysis-with-sparkr.html#plotting-results"><i class="fa fa-check"></i><b>9.4</b> Plotting Results</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html"><i class="fa fa-check"></i><b>10</b> Data Manipulation with SparkR</a><ul>
-<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.1.1</b> Merging Data</a></li>
-</ul></li>
+<li class="chapter" data-level="10.1" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#data-aggregations"><i class="fa fa-check"></i><b>10.1</b> Data Aggregations</a></li>
+<li class="chapter" data-level="10.2" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#collecting-results-to-local-dataframes"><i class="fa fa-check"></i><b>10.2</b> Collecting Results to Local Dataframes</a></li>
+<li class="chapter" data-level="10.3" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#dimple-bar-charts"><i class="fa fa-check"></i><b>10.3</b> Dimple Bar Charts</a></li>
+<li class="chapter" data-level="10.4" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#merging-data"><i class="fa fa-check"></i><b>10.4</b> Merging Data</a></li>
+<li class="chapter" data-level="10.5" data-path="data-manipulation-with-sparkr.html"><a href="data-manipulation-with-sparkr.html#exploring-credit-scores-for-mortgage-borrowers"><i class="fa fa-check"></i><b>10.5</b> Exploring Credit Scores for Mortgage Borrowers</a></li>
 </ul></li>
 <li class="part"><span><b>Modeling and Prediction with Microsoft R Server</b></span></li>
 <li class="chapter" data-level="11" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html"><i class="fa fa-check"></i><b>11</b> Modeling with Microsoft R Server</a><ul>
@@ -266,16 +269,19 @@ sqlContext &lt;-<span class="st"> </span><span class="kw">sparkRSQL.init</span>(
 <p>Using our <code>sqlContext</code> variable, we can create DataFrames from local R data.frames, from Hive tables, or from other data sources. You could create a Spark DataFrame from a local R data.frame using the <code>createDataFrame</code> function,</p>
 <div id="from-local-r-data.frames" class="section level3">
 <h3><span class="header-section-number">8.4.1</span> From Local R data.frames</h3>
-<p>Creating Spark DataFrames from local R data.frames might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node’s memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and will scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it’ll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.</p>
-<p>We’ll import data from the nycflight13 package into a Spark DataFrame, and use it’s data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK</p>
+<p>Creating Spark DataFrames from local R <code>data.frames</code> might not seem like a great idea. After all, if it can fit in an R data.frame, that means it can fit in a single node’s memory, so why distribute it? It might be that you are testing your methods out on a sample dataset, and eventually you plan to scale out your analysis to larger datasets when your tests have passed. For expository purposes, this is a useful exercise, as it’ll expose you to the fundamentals of Spark DataFrames, and the SparkR syntax.</p>
+<p>As a first example, we’ll import data from the <code>nycflight13</code> package into a Spark DataFrame, and use it’s data aggregation functions to tabulate the number of flights to each destination of flights originating from JFK.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nycflights13)
 flights &lt;-<span class="st"> </span><span class="kw">createDataFrame</span>(sqlContext, nycflights13::flights)
 jfk_flights &lt;-<span class="st"> </span><span class="kw">filter</span>(flights, flights$origin ==<span class="st"> &quot;JFK&quot;</span>)
 <span class="co"># Group the flights by destination and aggregate by the number of flights</span>
-dest_flights &lt;-<span class="st"> </span><span class="kw">agg</span>(<span class="kw">group_by</span>(jfk_flights, jfk_flights$dest), <span class="dt">count =</span> <span class="kw">n</span>(jfk_flights$dest))
+dest_flights &lt;-<span class="st"> </span><span class="kw">summarize</span>(
+  <span class="kw">group_by</span>(jkf_flights, jfk_flights$dest), 
+  <span class="dt">count =</span> <span class="kw">n</span>(jfk_flights$dest)
+  )
 <span class="co"># Now sort by the `count` column and print the first few rows</span>
 <span class="kw">head</span>(<span class="kw">arrange</span>(dest_flights, <span class="kw">desc</span>(dest_flights$count)))</code></pre></div>
-<p>This same analysis could be streamlined using the <code>%&gt;%</code> operator exposed by the magrittr package:</p>
+<p>This same analysis could be streamlined using the <code>%&gt;%</code> operator exposed by the magrittr package to improve the readability of the pipeline:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
 dest_flights &lt;-<span class="st"> </span><span class="kw">filter</span>(flights, flights$origin ==<span class="st"> &quot;JFK&quot;</span>) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(flights$dest) %&gt;%<span class="st"> </span>
@@ -292,6 +298,18 @@ dest_flights %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<spa
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)
 <span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
 <p>Let’s read the airlines directory and the weather directory to Spark DataFrames. We will use the <code>read.df</code> function from the <code>spark.csv</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&quot;/user/RevoShare/alizaidi&quot;</span>, <span class="st">&quot;AirOnTimeCSV&quot;</span>)
+weatherPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(fullDataDir, <span class="st">&quot;Weather&quot;</span>) <span class="co"># pre-processed weather data</span>
+
+<span class="co"># create a SparkR DataFrame for the airline data</span>
+
+airDF &lt;-<span class="st"> </span><span class="kw">read.df</span>(sqlContext, airPath, <span class="dt">source =</span> <span class="st">&quot;com.databricks.spark.csv&quot;</span>, 
+                 <span class="dt">header =</span> <span class="st">&quot;true&quot;</span>, <span class="dt">inferSchema =</span> <span class="st">&quot;true&quot;</span>)
+
+<span class="co"># Create a SparkR DataFrame for the weather data</span>
+
+weatherDF &lt;-<span class="st"> </span><span class="kw">read.df</span>(sqlContext, weatherPath, <span class="dt">source =</span> <span class="st">&quot;com.databricks.spark.csv&quot;</span>, 
+                     <span class="dt">header =</span> <span class="st">&quot;true&quot;</span>, <span class="dt">inferSchema =</span> <span class="st">&quot;true&quot;</span>)</code></pre></div>
 <p>Note that it took more than 6 minutes to load our airlines data into Spark DataFrames. However, subsequent operations on the <code>airDF</code> object will occur in-memory, and should be very fast.</p>
 <p>Let’s count the number of rows in each of our DataFrames and print the first few rows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(SparkR)

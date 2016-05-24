@@ -9,9 +9,12 @@ Many packages for R have been written to take advantage of it's lazy, and non-st
 Thee RevoScaleR similarly reimagines R's algorithms as distributable C++ code, taht can be optimized and compiled in various compute contexts. 
 
 ## PEMA Algorithms and the RevoScaleR Package {#pema}
+Parallel External Memory Algorithms (PEMA) are algorithms that do not require all the data to be in memory at one time. This is in contrast to all of the functions in base R, and most of the methods in additional R packages. 
 
-
+RevoScaleR implements many of the most popular statistical models as PEMAs, so that they can be estimated on data that is far larger than the memory capacity of your platform. Moreover, the PEMA algorithms exposed by `RevoScaleR` cn run on a variety of different platforms, including Spark, and therefore, can scale out very efficiently.
 
 ## eXternal Data Frames (XDFs) {#xdf}
+The most efficient way to use PEMA algorithms is to apply them to the novel data type provided by RevoScaleR, **XDFs**, short for external data frames. Unlike traditional R objects, and R `data.frame`s, a `xdf` is a chunked data set that can be stored in a variety of data stores: disks, Hadoop distributed file systems, SQL Server databases, and many more. Rather than bringing your data into R, we move the analytics from R and into your data stores, and utilize the high performance PEMA algorithms to estimate models as efficiently as possible.
+
 
 ## Compute Contexts {#computecontext}
