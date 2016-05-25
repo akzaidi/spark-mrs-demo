@@ -33,7 +33,7 @@ Azure HDInsight utilizes low-cost Blob storage as it's data store. Through a Had
 
 ## Azure Storage Explorer
 
-# Setting Your R Profile
+# Setting Your R Profile {#rprofile}
 
 When developing on the RStudio server instance on your Spark HDInsight Cluster, it might be useful to configure your profile so that your R environment can find the SparkR library. This can save some tedious operations that can easily be missed, or mistyped.
 

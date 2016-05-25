@@ -3,22 +3,15 @@
 
 # Starting Your Machine Learning Pipeline
 
-## todo
-+ since rmarkdown/knitr start a new session when building docs, can't access current spark context
-+ either build from scratch, or persist rdds/dfs
-+ alternatively, make ipynb in jupyter and save as md and render in book as md
-+ no console output from rxHadoop shell wrappers, need to sink and show if want to see output
-+ to cache results, might make sense to persist DFs and then reuse when needed
-+ take a look at [sparkr-ext](https://github.com/hoxo-m/SparkRext)
-+ and SKKU-SKT/ggplot2.SparkR
-
 The first steps to start your machine learning and data science pipeline is to set your compute environment, and point to your data.
 
 In Spark, you'll need to create a SparkContext. This constructor provides Spark with the details of the cluster: how and where to access it, additional package directories, etc. You'll use this constructor to create new RDDs or DataFrames. 
 
 ## Finding the SparkR Library
 
-In order to create a Spark Context from your RStudio Server environment, you'll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. A system variable called "SPARK_HOME" has been set that points to the Spark installation directory, and in it you'll find subdirectories, "R/lib", containing the SparkR library. 
+In order to create a Spark Context from your RStudio Server environment, you'll need to access the SparkR library. Since Spark 1.4, SparkR has shipped the R API directly with its core implementation. Therefore, since 1.4 you do not need to install Spark from CRAN or a development version from github, but you need to add the SparkR library to your library paths in order to access it. 
+
+A system variable called "SPARK_HOME" has been set that points to the Spark installation directory, and in it you'll find subdirectories, "R/lib", containing the SparkR library. If you prefer, you can add the location of the SparkR package to your library paths, as we did in section \@ref(rprofile). If you prefer not edit your Rprofile, you can add the location of the SparkR package to your library paths at the start of your R session.
 
 
 ```{r-spark-lib-ls}
@@ -212,6 +205,11 @@ lapply(list(airDF, weatherDF), head)
 # 6         2007             5           4            7     15177
 
 ```
+
+
+## Caching DataFrames
+
+Spark provides a few different options for caching DataFrames. 
 
 # Exploratory Data Analysis with SparkR
 
@@ -520,10 +518,12 @@ sparkR.stop()
 
 ## Exploring Credit Scores for Mortgage Borrowers
 
-We will examine a very different dataset in this section. 
+[Freddie Mac](http://www.freddiemac.com/news/finance/sf_loanlevel_dataset.html) and [Fannie Mae](http://www.fanniemae.com/portal/funding-the-market/data/loan-performance-data.html) make their single family loan level data available publically (for research and non-commerical use). This data includes credit attributes for new loan originations, as well as a time series of performance metrics for each loan that was sponsored by these GSE(Government Sponsored Enterprise). 
+
+We have loaded both portions of these data into different data directories on our Azure Storage Account. Let's import the acquistion data (credit profiles for new originations for new mortgages)
+
 
 ```{r, eval = FALSE}
-
 
 data_dir <- "/user/RevoShare/alizaidi"
 
