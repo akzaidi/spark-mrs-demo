@@ -134,18 +134,18 @@ originations_state <- function(orig_df = originations_dates(originations)) {
 } 
 
 
-orig_summary <- originations_state() %>% SparkR::collect
+orig_summary <- originations_state() %>% collect
 
 library(rMaps)
-# orig_summary %>% 
-#   dplyr::mutate(year = as.numeric(year)) %>% 
-#   rMaps::ichoropleth(ave_fico ~ state, data = ., 
-#                      animate = "year",
-#                      geographyConfig = list(popupTemplate = "#!function(geo, data) {
-#                                          return '<div class=\"hoverinfo\"><strong>'+
-#                                          data.state + '<br>' + 'Average FICO Score in  '+ data.year + ': ' +
-#                                          data.ave_fico.toFixed(2)+ 
-#                                          '</strong></div>';}!#")) -> state_fico
+orig_summary %>%
+  dplyr::mutate(year = as.numeric(year)) %>%
+  rMaps::ichoropleth(ave_fico ~ state, data = .,
+                     animate = "year",
+                     geographyConfig = list(popupTemplate = "#!function(geo, data) {
+                                         return '<div class=\"hoverinfo\"><strong>'+
+                                         data.state + '<br>' + 'Average FICO Score in  '+ data.year + ': ' +
+                                         data.ave_fico.toFixed(2)+
+                                         '</strong></div>';}!#")) -> state_fico
 
 orig_df %>% 
   dplyr::mutate(year = as.numeric(year)) %>% 

@@ -13,7 +13,6 @@ In order to create a Spark Context from your RStudio Server environment, you'll 
 
 A system variable called "SPARK_HOME" has been set that points to the Spark installation directory, and in it you'll find subdirectories, "R/lib", containing the SparkR library. If you prefer, you can add the location of the SparkR package to your library paths, as we did in section \@ref(rprofile). If you prefer not edit your Rprofile, you can add the location of the SparkR package to your library paths at the start of your R session.
 
-
 ```{r-spark-lib-ls}
 list.files(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"))
 
@@ -31,7 +30,7 @@ To add the SparkR library to your library paths, use the `.libPaths` function to
 
 To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext using the `sparkRSQL.init` function. 
 
-```{r-spark-context, eval = FALSE}
+```{r-spark-context}
 library(SparkR)
 
 sparkEnvir <- list(spark.executor.instance = '10',
@@ -345,7 +344,6 @@ ggplotly(gplot, width = 650)
 ```
 
 
-
 # Data Manipulation with SparkR
 
 Now that we have our two datasets saved as Spark DataFrames, we can conduct standard data manipulation techniques to visualize and explore our data. 
@@ -520,14 +518,110 @@ sparkR.stop()
 
 [Freddie Mac](http://www.freddiemac.com/news/finance/sf_loanlevel_dataset.html) and [Fannie Mae](http://www.fanniemae.com/portal/funding-the-market/data/loan-performance-data.html) make their single family loan level data available publically (for research and non-commerical use). This data includes credit attributes for new loan originations, as well as a time series of performance metrics for each loan that was sponsored by these GSE(Government Sponsored Enterprise). 
 
-We have loaded both portions of these data into different data directories on our Azure Storage Account. Let's import the acquistion data (credit profiles for new originations for new mortgages)
+We have loaded both portions of these data into different data directories on our Azure Storage Account. Let's import the acquistion data (credit profiles for new originations for new mortgages) and rename it's columns to more manageable column names.
 
 
-```{r, eval = FALSE}
+### Ingesting Originations Data into Spark DataFrames
+
+```{r import-orig}
 
 data_dir <- "/user/RevoShare/alizaidi"
 
+acquisition_import <- function(datadir) {
+
+  library(magrittr)
+
+  acquisition <- file.path(datadir, "Acquisition")
+
+  originations <- read.df(sqlContext, acquisition,
+                          source = "com.databricks.spark.csv",
+                          header = "false", inferSchema = "true", delimiter = "|")
+
+
+  originations %<>% SparkR::rename(loan_id  = originations$C0,
+                                   orig_chn = originations$C1,
+                                   seller_name = originations$C2,
+                                   orig_rt = originations$C3,
+                                   orig_amt = originations$C4,
+                                   orig_trm = originations$C5,
+                                   orig_dte = originations$C6,
+                                   frst_dte = originations$C7,
+                                   oltv = originations$C8,
+                                   ocltv = originations$C9,
+                                   num_bo = originations$C10,
+                                   dti = originations$C11,
+                                   cscore_b = originations$C12,
+                                   fthb_flg = originations$C13,
+                                   purpose = originations$C14,
+                                   prop_typ = originations$C15,
+                                   num_unit  = originations$C16,
+                                   occ_stat  = originations$C17,
+                                   state  = originations$C18,
+                                   zip_3 = originations$C19,
+                                   mi_pct  = originations$C20,
+                                   product_type = originations$C21,
+                                   cscore_co  = originations$C22)
+  return(originations)
+
+
+}
+
+originations <- acquisition_import(datadir = data_dir)
+originations %>% persist("MEMORY_ONLY")
+originations %>% nrow
+originations %>% head
 
 ```
 
+We encapsulated our import into an R function to make the overall operation a bit more readable. 
+
+### Calculting State Level Credit Attributes
+
+Let's extract the month and year from each loan's origination date, and then calculate the average value for a few different credit attributes at the state level. 
+
+```{r state-calc}
+
+originations_dates <- function(orig_df = originations) {
+
+  orig_df <- orig_df %>% SparkR::mutate(month = substr(orig_df$orig_dte, 1, 2),
+                                year = substr(orig_df$orig_dte, 5, 8))
+
+  return(orig_df)
+
+}
+
+
+originations_state <- function(orig_df = originations_dates(originations)) {
+
+  orig_df %>% SparkR::group_by(orig_df$state, orig_df$year) %>%
+    SparkR::summarize(ave_dti = mean(orig_df$dti),
+              ave_ltv = mean(orig_df$oltv),
+              ave_cltv = mean(orig_df$ocltv),
+              ave_fico = mean(orig_df$cscore_b)) -> orig_df
+
+  return(orig_df)
+
+}
+
+orig_summary <- originations_state() %>% collect
+sparkR.stop()
+
+```
+
+### Credit Attribute Choropleths
+
+We can visualize these average values in team as a choropleth. We will use the very easy to use `rMaps` package for this visualiziation.
+
+```{r choroplot}
+library(rMaps)
+orig_summary %>%
+  dplyr::mutate(year = as.numeric(year)) %>%
+  rMaps::ichoropleth(ave_fico ~ state, data = .,
+                     animate = "year",
+                     geographyConfig = list(popupTemplate = "#!function(geo, data) {
+                                         return '<div class=\"hoverinfo\"><strong>'+
+                                         data.state+ '<br>' + 'Average Credit Score for Loans Originated in '+ data.year + ': ' +
+                                         data.ave_fico.toFixed(0) +
+                                         '</strong></div>';}!#"))
+```
 
