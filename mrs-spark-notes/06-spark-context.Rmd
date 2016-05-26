@@ -1,5 +1,12 @@
 # (PART) Data Manipulation and Data Aggregation {-}
 
+```{r load-config, echo = FALSE}
+# see https://github.com/ramnathv/slidify/issues/299
+# same issue for rMaps
+library(knitr)
+
+```
+
 
 # Starting Your Machine Learning Pipeline
 
@@ -31,6 +38,7 @@ To add the SparkR library to your library paths, use the `.libPaths` function to
 To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext using the `sparkRSQL.init` function. 
 
 ```{r-spark-context}
+library(dplyr)
 library(SparkR)
 
 sparkEnvir <- list(spark.executor.instance = '10',
@@ -597,13 +605,13 @@ originations_state <- function(orig_df = originations_dates(originations)) {
     SparkR::summarize(ave_dti = mean(orig_df$dti),
               ave_ltv = mean(orig_df$oltv),
               ave_cltv = mean(orig_df$ocltv),
-              ave_fico = mean(orig_df$cscore_b)) -> orig_df
+              ave_fico = mean(orig_df$cscore_b)) -> orig_summary
 
-  return(orig_df)
+  return(orig_summary)
 
 }
 
-orig_summary <- originations_state() %>% collect
+orig_summary <- originations_state() %>% as.data.frame
 sparkR.stop()
 
 ```
@@ -622,6 +630,8 @@ orig_summary %>%
                                          return '<div class=\"hoverinfo\"><strong>'+
                                          data.state+ '<br>' + 'Average Credit Score for Loans Originated in '+ data.year + ': ' +
                                          data.ave_fico.toFixed(0) +
-                                         '</strong></div>';}!#"))
+                                         '</strong></div>';}!#")) -> fico.map
+fico.map$show('iframesrc', cdn = TRUE)
+
 ```
 

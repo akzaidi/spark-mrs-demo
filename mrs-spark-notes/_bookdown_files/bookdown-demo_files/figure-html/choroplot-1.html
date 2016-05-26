@@ -1,0 +1,8408 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    
+    <script src='http://d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='http://d3js.org/topojson.v1.min.js' type='text/javascript'></script>
+    <script src='http://datamaps.github.io/scripts/datamaps.all.min.js' type='text/javascript'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js' type='text/javascript'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js' type='text/javascript'></script>
+    
+    <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 800px;
+      height: 400px;
+    }  
+    </style>
+    
+  </head>
+  <body ng-app ng-controller='rChartsCtrl'>
+    
+    
+            <div class='container'>
+              <input id='slider' type='range' min=1999 max=2014 ng-model='year' width=200>
+              <span ng-bind='year'></span>
+              <div id='chart737914b4d411' class='rChart datamaps'></div>          
+            </div>
+            <script>
+              function rChartsCtrl($scope){
+                $scope.year = 1999;
+                $scope.$watch('year', function(newYear){
+                  mapchart737914b4d411.updateChoropleth(chartParams.newData[newYear]);
+                })
+              }
+           </script>    
+    <script id='popup-template' type='text/x-handlebars-template'>
+    
+</script>
+<script>
+  var chartParams = {
+ "dom": "chart737914b4d411",
+"width":    800,
+"height":    400,
+"scope": "usa",
+"fills": {
+ "(675,718]": "#EFF3FF",
+"(718,725]": "#BDD7E7",
+"(725,739]": "#6BAED6",
+"(739,761]": "#3182BD",
+"(761,774]": "#08519C" 
+},
+"legend": true,
+"labels": true,
+"geographyConfig": {
+ "popupTemplate": function(geo, data) {
+                                         return '<div class=\"hoverinfo\"><strong>'+
+                                         data.state+ '<br>' + 'Average Credit Score for Loans Originated in '+ data.year + ': ' +
+                                         data.ave_fico.toFixed(0) +
+                                         '</strong></div>';} 
+},
+"bodyattrs": "ng-app ng-controller='rChartsCtrl'",
+"newData": {
+ "1999": {
+ "NM": {
+ "state": "NM",
+"year":   1999,
+"ave_dti": 34.238,
+"ave_ltv":  77.78,
+"ave_cltv": 78.784,
+"ave_fico": 713.18,
+"fillKey": "(675,718]" 
+},
+"SD": {
+ "state": "SD",
+"year":   1999,
+"ave_dti": 33.578,
+"ave_ltv": 79.367,
+"ave_cltv":  77.72,
+"ave_fico": 718.92,
+"fillKey": "(718,725]" 
+},
+"KY": {
+ "state": "KY",
+"year":   1999,
+"ave_dti": 32.558,
+"ave_ltv": 79.691,
+"ave_cltv": 78.957,
+"ave_fico": 713.49,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   1999,
+"ave_dti": 34.353,
+"ave_ltv": 74.563,
+"ave_cltv": 71.886,
+"ave_fico": 718.08,
+"fillKey": "(675,718]" 
+},
+"NH": {
+ "state": "NH",
+"year":   1999,
+"ave_dti": 34.678,
+"ave_ltv": 77.392,
+"ave_cltv": 74.337,
+"ave_fico": 718.27,
+"fillKey": "(718,725]" 
+},
+"AK": {
+ "state": "AK",
+"year":   1999,
+"ave_dti": 36.233,
+"ave_ltv": 77.453,
+"ave_cltv": 77.246,
+"ave_fico": 707.36,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   1999,
+"ave_dti": 32.867,
+"ave_ltv":  80.97,
+"ave_cltv": 81.341,
+"ave_fico": 718.77,
+"fillKey": "(718,725]" 
+},
+"IL": {
+ "state": "IL",
+"year":   1999,
+"ave_dti": 33.828,
+"ave_ltv": 78.994,
+"ave_cltv": 77.644,
+"ave_fico": 718.18,
+"fillKey": "(675,718]" 
+},
+"VI": {
+ "state": "VI",
+"year":   1999,
+"ave_dti":   35.8,
+"ave_ltv":   80.4,
+"ave_cltv": null,
+"ave_fico":  742.6,
+"fillKey": "(739,761]" 
+},
+"NC": {
+ "state": "NC",
+"year":   1999,
+"ave_dti": 34.433,
+"ave_ltv": 80.492,
+"ave_cltv": 84.786,
+"ave_fico": 711.92,
+"fillKey": "(675,718]" 
+},
+"DE": {
+ "state": "DE",
+"year":   1999,
+"ave_dti": 32.553,
+"ave_ltv":  77.43,
+"ave_cltv": 72.441,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"VT": {
+ "state": "VT",
+"year":   1999,
+"ave_dti": 34.577,
+"ave_ltv": 76.756,
+"ave_cltv": 74.286,
+"ave_fico": 713.79,
+"fillKey": "(675,718]" 
+},
+"RI": {
+ "state": "RI",
+"year":   1999,
+"ave_dti": 33.256,
+"ave_ltv": 76.059,
+"ave_cltv":  72.09,
+"ave_fico": 726.54,
+"fillKey": "(725,739]" 
+},
+"CT": {
+ "state": "CT",
+"year":   1999,
+"ave_dti": 34.173,
+"ave_ltv": 76.459,
+"ave_cltv": 74.934,
+"ave_fico": 720.01,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   1999,
+"ave_dti": 34.691,
+"ave_ltv": 77.439,
+"ave_cltv": 77.135,
+"ave_fico": 714.76,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   1999,
+"ave_dti": 33.034,
+"ave_ltv": 80.246,
+"ave_cltv": 77.092,
+"ave_fico": 722.58,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   1999,
+"ave_dti": 33.778,
+"ave_ltv": 78.865,
+"ave_cltv": 61.645,
+"ave_fico": 708.22,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   1999,
+"ave_dti": 32.109,
+"ave_ltv":  80.37,
+"ave_cltv": 75.946,
+"ave_fico": 717.33,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   1999,
+"ave_dti": 35.397,
+"ave_ltv": 76.772,
+"ave_cltv": 72.672,
+"ave_fico": 719.86,
+"fillKey": "(718,725]" 
+},
+"LA": {
+ "state": "LA",
+"year":   1999,
+"ave_dti": 31.559,
+"ave_ltv": 79.679,
+"ave_cltv": 77.801,
+"ave_fico":  707.3,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   1999,
+"ave_dti": 31.243,
+"ave_ltv": 80.718,
+"ave_cltv":     94,
+"ave_fico": 717.23,
+"fillKey": "(675,718]" 
+},
+"GU": {
+ "state": "GU",
+"year":   1999,
+"ave_dti":     38,
+"ave_ltv":     80,
+"ave_cltv":     80,
+"ave_fico":    675,
+"fillKey": null 
+},
+"OK": {
+ "state": "OK",
+"year":   1999,
+"ave_dti": 32.489,
+"ave_ltv": 81.795,
+"ave_cltv": 81.034,
+"ave_fico": 710.51,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   1999,
+"ave_dti": 30.852,
+"ave_ltv": 79.021,
+"ave_cltv": 71.703,
+"ave_fico": 718.12,
+"fillKey": "(675,718]" 
+},
+"MS": {
+ "state": "MS",
+"year":   1999,
+"ave_dti": 32.871,
+"ave_ltv": 80.699,
+"ave_cltv": 80.632,
+"ave_fico":    708,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   1999,
+"ave_dti":  35.28,
+"ave_ltv": 76.255,
+"ave_cltv": 66.926,
+"ave_fico": 715.86,
+"fillKey": "(675,718]" 
+},
+"PR": {
+ "state": "PR",
+"year":   1999,
+"ave_dti": 35.497,
+"ave_ltv": 75.848,
+"ave_cltv": 75.529,
+"ave_fico": 696.74,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   1999,
+"ave_dti": 35.586,
+"ave_ltv":  79.53,
+"ave_cltv": 77.534,
+"ave_fico": 711.04,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   1999,
+"ave_dti": 34.475,
+"ave_ltv": 81.203,
+"ave_cltv": 77.472,
+"ave_fico": 710.49,
+"fillKey": "(675,718]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   1999,
+"ave_dti": 34.807,
+"ave_ltv": 77.364,
+"ave_cltv": 74.683,
+"ave_fico": 714.82,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   1999,
+"ave_dti": 32.292,
+"ave_ltv":  79.82,
+"ave_cltv": 77.433,
+"ave_fico": 722.89,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   1999,
+"ave_dti": 32.403,
+"ave_ltv":  80.03,
+"ave_cltv": 77.258,
+"ave_fico": 713.19,
+"fillKey": "(675,718]" 
+},
+"NE": {
+ "state": "NE",
+"year":   1999,
+"ave_dti": 33.537,
+"ave_ltv": 79.524,
+"ave_cltv": 72.526,
+"ave_fico": 726.65,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   1999,
+"ave_dti": 34.484,
+"ave_ltv": 77.249,
+"ave_cltv": 72.047,
+"ave_fico": 709.37,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   1999,
+"ave_dti": 34.077,
+"ave_ltv": 74.958,
+"ave_cltv": 54.448,
+"ave_fico": 722.28,
+"fillKey": "(718,725]" 
+},
+"TN": {
+ "state": "TN",
+"year":   1999,
+"ave_dti": 33.177,
+"ave_ltv":  79.86,
+"ave_cltv": 75.706,
+"ave_fico": 714.72,
+"fillKey": "(675,718]" 
+},
+"MD": {
+ "state": "MD",
+"year":   1999,
+"ave_dti": 34.062,
+"ave_ltv": 77.899,
+"ave_cltv": 77.795,
+"ave_fico": 717.55,
+"fillKey": "(675,718]" 
+},
+"GA": {
+ "state": "GA",
+"year":   1999,
+"ave_dti": 34.678,
+"ave_ltv": 80.356,
+"ave_cltv":  75.08,
+"ave_fico":  709.4,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   1999,
+"ave_dti": 32.872,
+"ave_ltv": 79.476,
+"ave_cltv":  80.95,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"VA": {
+ "state": "VA",
+"year":   1999,
+"ave_dti": 33.315,
+"ave_ltv": 77.824,
+"ave_cltv": 75.544,
+"ave_fico": 722.52,
+"fillKey": "(718,725]" 
+},
+"OR": {
+ "state": "OR",
+"year":   1999,
+"ave_dti": 35.795,
+"ave_ltv": 77.794,
+"ave_cltv": 72.574,
+"ave_fico": 713.55,
+"fillKey": "(675,718]" 
+},
+"ID": {
+ "state": "ID",
+"year":   1999,
+"ave_dti": 33.207,
+"ave_ltv": 77.347,
+"ave_cltv": 67.247,
+"ave_fico": 718.06,
+"fillKey": "(675,718]" 
+},
+"NV": {
+ "state": "NV",
+"year":   1999,
+"ave_dti": 36.314,
+"ave_ltv": 80.553,
+"ave_cltv": 78.344,
+"ave_fico": 713.11,
+"fillKey": "(675,718]" 
+},
+"CA": {
+ "state": "CA",
+"year":   1999,
+"ave_dti": 36.886,
+"ave_ltv": 75.975,
+"ave_cltv": 78.295,
+"ave_fico": 717.14,
+"fillKey": "(675,718]" 
+},
+"ME": {
+ "state": "ME",
+"year":   1999,
+"ave_dti": 34.675,
+"ave_ltv":  77.66,
+"ave_cltv":   74.8,
+"ave_fico": 722.95,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   1999,
+"ave_dti": 31.559,
+"ave_ltv": 80.568,
+"ave_cltv": 79.979,
+"ave_fico": 713.38,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   1999,
+"ave_dti": 32.506,
+"ave_ltv": 79.136,
+"ave_cltv":  79.01,
+"ave_fico": 715.32,
+"fillKey": "(675,718]" 
+},
+"SC": {
+ "state": "SC",
+"year":   1999,
+"ave_dti": 33.788,
+"ave_ltv": 78.536,
+"ave_cltv": 56.366,
+"ave_fico": 709.48,
+"fillKey": "(675,718]" 
+},
+"WY": {
+ "state": "WY",
+"year":   1999,
+"ave_dti": 33.061,
+"ave_ltv":  76.13,
+"ave_cltv":  81.25,
+"ave_fico": 723.47,
+"fillKey": "(718,725]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   1999,
+"ave_dti": 34.293,
+"ave_ltv":  80.03,
+"ave_cltv": 81.324,
+"ave_fico": 717.19,
+"fillKey": "(675,718]" 
+},
+"HI": {
+ "state": "HI",
+"year":   1999,
+"ave_dti": 37.991,
+"ave_ltv": 80.286,
+"ave_cltv": 76.407,
+"ave_fico": 734.64,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   1999,
+"ave_dti": 33.472,
+"ave_ltv": 77.994,
+"ave_cltv":  75.89,
+"ave_fico": 725.71,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   1999,
+"ave_dti": 32.504,
+"ave_ltv": 80.587,
+"ave_cltv": 75.729,
+"ave_fico": 716.96,
+"fillKey": "(675,718]" 
+},
+"FL": {
+ "state": "FL",
+"year":   1999,
+"ave_dti":  34.01,
+"ave_ltv":  80.81,
+"ave_cltv": 78.255,
+"ave_fico": 711.58,
+"fillKey": "(675,718]" 
+} 
+},
+"2000": {
+ "ME": {
+ "state": "ME",
+"year":   2000,
+"ave_dti": 35.462,
+"ave_ltv":  77.86,
+"ave_cltv": 77.994,
+"ave_fico": 723.21,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2000,
+"ave_dti": 32.809,
+"ave_ltv": 78.696,
+"ave_cltv": 79.535,
+"ave_fico": 710.58,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2000,
+"ave_dti": 33.769,
+"ave_ltv": 79.806,
+"ave_cltv": 79.903,
+"ave_fico": 716.08,
+"fillKey": "(675,718]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2000,
+"ave_dti": 35.301,
+"ave_ltv":  80.94,
+"ave_cltv": 80.957,
+"ave_fico": 713.65,
+"fillKey": "(675,718]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2000,
+"ave_dti": 34.747,
+"ave_ltv": 78.299,
+"ave_cltv": 78.421,
+"ave_fico": 723.67,
+"fillKey": "(718,725]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2000,
+"ave_dti": 35.105,
+"ave_ltv":  79.77,
+"ave_cltv": 79.984,
+"ave_fico":    721,
+"fillKey": "(718,725]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2000,
+"ave_dti": 37.909,
+"ave_ltv": 76.397,
+"ave_cltv": 76.874,
+"ave_fico": 731.01,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2000,
+"ave_dti": 34.675,
+"ave_ltv": 78.502,
+"ave_cltv": 78.633,
+"ave_fico": 724.87,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2000,
+"ave_dti": 34.062,
+"ave_ltv": 81.653,
+"ave_cltv": 81.862,
+"ave_fico": 719.01,
+"fillKey": "(718,725]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2000,
+"ave_dti": 35.218,
+"ave_ltv":  80.43,
+"ave_cltv":  80.48,
+"ave_fico": 714.05,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2000,
+"ave_dti": 33.519,
+"ave_ltv": 77.846,
+"ave_cltv": 78.571,
+"ave_fico": 718.47,
+"fillKey": "(718,725]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2000,
+"ave_dti":  35.39,
+"ave_ltv": 79.067,
+"ave_cltv": 78.935,
+"ave_fico": 723.54,
+"fillKey": "(718,725]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2000,
+"ave_dti": 33.595,
+"ave_ltv": 79.663,
+"ave_cltv": 79.791,
+"ave_fico": 715.91,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2000,
+"ave_dti": 35.764,
+"ave_ltv": 74.236,
+"ave_cltv": 74.612,
+"ave_fico": 715.85,
+"fillKey": "(675,718]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2000,
+"ave_dti": 36.328,
+"ave_ltv": 78.022,
+"ave_cltv": 78.162,
+"ave_fico": 716.93,
+"fillKey": "(675,718]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2000,
+"ave_dti": 36.702,
+"ave_ltv": 79.528,
+"ave_cltv": 79.579,
+"ave_fico": 719.15,
+"fillKey": "(718,725]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2000,
+"ave_dti": 34.108,
+"ave_ltv": 80.985,
+"ave_cltv": 81.176,
+"ave_fico": 723.04,
+"fillKey": "(718,725]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2000,
+"ave_dti": 35.288,
+"ave_ltv": 78.744,
+"ave_cltv": 78.924,
+"ave_fico": 717.38,
+"fillKey": "(675,718]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2000,
+"ave_dti":     37,
+"ave_ltv": 72.763,
+"ave_cltv": 72.795,
+"ave_fico": 703.58,
+"fillKey": "(675,718]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2000,
+"ave_dti": 35.564,
+"ave_ltv": 79.578,
+"ave_cltv": 79.781,
+"ave_fico": 716.22,
+"fillKey": "(675,718]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2000,
+"ave_dti": 33.434,
+"ave_ltv": 79.234,
+"ave_cltv": 79.324,
+"ave_fico": 721.39,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2000,
+"ave_dti": 35.974,
+"ave_ltv": 78.046,
+"ave_cltv": 77.989,
+"ave_fico": 721.68,
+"fillKey": "(718,725]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2000,
+"ave_dti": 34.452,
+"ave_ltv": 77.051,
+"ave_cltv": 77.343,
+"ave_fico": 719.81,
+"fillKey": "(718,725]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2000,
+"ave_dti": 35.589,
+"ave_ltv": 77.052,
+"ave_cltv": 77.167,
+"ave_fico": 718.54,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2000,
+"ave_dti": 35.746,
+"ave_ltv": 76.833,
+"ave_cltv": 76.741,
+"ave_fico": 713.14,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2000,
+"ave_dti": 33.816,
+"ave_ltv": 80.279,
+"ave_cltv": 80.491,
+"ave_fico": 721.25,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2000,
+"ave_dti": 33.537,
+"ave_ltv": 79.811,
+"ave_cltv": 79.905,
+"ave_fico": 713.31,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2000,
+"ave_dti": 33.167,
+"ave_ltv":  80.63,
+"ave_cltv": 80.662,
+"ave_fico": 711.43,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2000,
+"ave_dti": 36.229,
+"ave_ltv": 76.909,
+"ave_cltv":  77.17,
+"ave_fico": 721.21,
+"fillKey": "(718,725]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2000,
+"ave_dti": 31.487,
+"ave_ltv": 79.837,
+"ave_cltv": 79.859,
+"ave_fico":    709,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2000,
+"ave_dti": 33.656,
+"ave_ltv": 80.199,
+"ave_cltv": 80.215,
+"ave_fico": 727.85,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2000,
+"ave_dti": 31.364,
+"ave_ltv":     68,
+"ave_cltv": 68.636,
+"ave_fico": 714.18,
+"fillKey": "(675,718]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2000,
+"ave_dti": 33.329,
+"ave_ltv": 81.082,
+"ave_cltv":  81.29,
+"ave_fico": 715.02,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2000,
+"ave_dti": 31.411,
+"ave_ltv":   79.5,
+"ave_cltv": 79.568,
+"ave_fico": 721.56,
+"fillKey": "(718,725]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2000,
+"ave_dti": 34.158,
+"ave_ltv": 81.633,
+"ave_cltv": 81.798,
+"ave_fico": 702.69,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2000,
+"ave_dti": 36.253,
+"ave_ltv": 77.642,
+"ave_cltv": 77.875,
+"ave_fico": 719.84,
+"fillKey": "(718,725]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2000,
+"ave_dti": 37.308,
+"ave_ltv": 74.549,
+"ave_cltv":  74.74,
+"ave_fico": 691.53,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2000,
+"ave_dti": 36.323,
+"ave_ltv": 79.414,
+"ave_cltv": 79.603,
+"ave_fico": 715.87,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2000,
+"ave_dti": 34.611,
+"ave_ltv": 81.095,
+"ave_cltv": 81.515,
+"ave_fico": 714.56,
+"fillKey": "(675,718]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2000,
+"ave_dti": 35.354,
+"ave_ltv": 77.604,
+"ave_cltv": 77.714,
+"ave_fico": 715.54,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2000,
+"ave_dti": 35.266,
+"ave_ltv": 79.601,
+"ave_cltv": 79.721,
+"ave_fico": 721.11,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2000,
+"ave_dti": 33.623,
+"ave_ltv": 80.352,
+"ave_cltv": 80.495,
+"ave_fico": 716.53,
+"fillKey": "(675,718]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2000,
+"ave_dti": 35.099,
+"ave_ltv": 79.553,
+"ave_cltv": 79.767,
+"ave_fico": 723.79,
+"fillKey": "(718,725]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2000,
+"ave_dti": 35.256,
+"ave_ltv": 77.417,
+"ave_cltv": 77.562,
+"ave_fico": 713.21,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2000,
+"ave_dti": 35.742,
+"ave_ltv": 76.394,
+"ave_cltv": 76.749,
+"ave_fico": 723.62,
+"fillKey": "(718,725]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2000,
+"ave_dti":  35.03,
+"ave_ltv": 80.411,
+"ave_cltv": 80.507,
+"ave_fico": 715.59,
+"fillKey": "(675,718]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2000,
+"ave_dti": 34.008,
+"ave_ltv": 78.075,
+"ave_cltv": 78.762,
+"ave_fico": 720.69,
+"fillKey": "(718,725]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2000,
+"ave_dti": 35.749,
+"ave_ltv": 80.402,
+"ave_cltv":  80.57,
+"ave_fico": 713.18,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2000,
+"ave_dti":   34.4,
+"ave_ltv": 79.399,
+"ave_cltv": 79.606,
+"ave_fico": 719.86,
+"fillKey": "(718,725]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2000,
+"ave_dti": 34.096,
+"ave_ltv":  78.56,
+"ave_cltv": 79.334,
+"ave_fico": 724.96,
+"fillKey": "(725,739]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2000,
+"ave_dti":  34.43,
+"ave_ltv": 79.362,
+"ave_cltv": 79.523,
+"ave_fico": 715.83,
+"fillKey": "(675,718]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2000,
+"ave_dti": 36.151,
+"ave_ltv": 77.292,
+"ave_cltv":  77.55,
+"ave_fico": 722.27,
+"fillKey": "(718,725]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2000,
+"ave_dti": 35.728,
+"ave_ltv": 80.098,
+"ave_cltv": 80.162,
+"ave_fico":  715.9,
+"fillKey": "(675,718]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2000,
+"ave_dti":  36.76,
+"ave_ltv": 74.874,
+"ave_cltv": 75.064,
+"ave_fico": 717.46,
+"fillKey": "(675,718]" 
+} 
+},
+"2001": {
+ "CA": {
+ "state": "CA",
+"year":   2001,
+"ave_dti": 34.943,
+"ave_ltv": 69.765,
+"ave_cltv": 70.079,
+"ave_fico": 718.51,
+"fillKey": "(718,725]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2001,
+"ave_dti": 33.855,
+"ave_ltv": 74.574,
+"ave_cltv": 74.965,
+"ave_fico": 719.84,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2001,
+"ave_dti": 32.181,
+"ave_ltv": 73.295,
+"ave_cltv": 73.892,
+"ave_fico":  715.3,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2001,
+"ave_dti": 32.547,
+"ave_ltv": 77.823,
+"ave_cltv": 78.036,
+"ave_fico": 716.61,
+"fillKey": "(675,718]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2001,
+"ave_dti": 34.148,
+"ave_ltv": 79.363,
+"ave_cltv": 79.541,
+"ave_fico": 712.64,
+"fillKey": "(675,718]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2001,
+"ave_dti": 33.638,
+"ave_ltv": 75.918,
+"ave_cltv": 76.032,
+"ave_fico": 726.49,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2001,
+"ave_dti": 33.162,
+"ave_ltv": 77.929,
+"ave_cltv": 78.174,
+"ave_fico": 721.31,
+"fillKey": "(718,725]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2001,
+"ave_dti":  35.48,
+"ave_ltv": 73.946,
+"ave_cltv": 74.325,
+"ave_fico": 735.71,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2001,
+"ave_dti": 32.651,
+"ave_ltv": 76.217,
+"ave_cltv": 76.377,
+"ave_fico": 727.75,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2001,
+"ave_dti": 32.306,
+"ave_ltv": 79.402,
+"ave_cltv": 79.548,
+"ave_fico": 719.96,
+"fillKey": "(718,725]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2001,
+"ave_dti": 33.799,
+"ave_ltv": 78.049,
+"ave_cltv": 78.235,
+"ave_fico": 713.98,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2001,
+"ave_dti":  32.12,
+"ave_ltv": 76.786,
+"ave_cltv": 77.481,
+"ave_fico": 719.08,
+"fillKey": "(718,725]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2001,
+"ave_dti": 32.945,
+"ave_ltv": 78.379,
+"ave_cltv": 78.941,
+"ave_fico": 726.57,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2001,
+"ave_dti": 31.388,
+"ave_ltv": 77.899,
+"ave_cltv":  78.02,
+"ave_fico":  715.4,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2001,
+"ave_dti": 33.632,
+"ave_ltv": 69.134,
+"ave_cltv": 69.504,
+"ave_fico": 716.79,
+"fillKey": "(675,718]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2001,
+"ave_dti": 34.674,
+"ave_ltv": 73.973,
+"ave_cltv": 74.186,
+"ave_fico": 714.97,
+"fillKey": "(675,718]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2001,
+"ave_dti": 35.441,
+"ave_ltv": 77.705,
+"ave_cltv": 77.885,
+"ave_fico":    717,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2001,
+"ave_dti": 32.202,
+"ave_ltv": 78.748,
+"ave_cltv": 79.048,
+"ave_fico": 725.64,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2001,
+"ave_dti": 33.225,
+"ave_ltv": 76.012,
+"ave_cltv": 76.312,
+"ave_fico": 719.28,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2001,
+"ave_dti": 36.877,
+"ave_ltv": 72.198,
+"ave_cltv": 72.198,
+"ave_fico": 712.35,
+"fillKey": "(675,718]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2001,
+"ave_dti":  33.39,
+"ave_ltv": 78.009,
+"ave_cltv": 78.342,
+"ave_fico": 716.31,
+"fillKey": "(675,718]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2001,
+"ave_dti": 31.595,
+"ave_ltv":  76.68,
+"ave_cltv": 77.029,
+"ave_fico": 720.96,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2001,
+"ave_dti": 34.701,
+"ave_ltv":  75.72,
+"ave_cltv":  75.91,
+"ave_fico": 720.94,
+"fillKey": "(718,725]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2001,
+"ave_dti": 33.134,
+"ave_ltv": 74.191,
+"ave_cltv": 74.533,
+"ave_fico": 717.58,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2001,
+"ave_dti": 33.932,
+"ave_ltv": 73.224,
+"ave_cltv": 73.529,
+"ave_fico": 718.42,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2001,
+"ave_dti": 34.344,
+"ave_ltv": 73.325,
+"ave_cltv": 73.484,
+"ave_fico": 712.49,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2001,
+"ave_dti": 32.479,
+"ave_ltv":  78.69,
+"ave_cltv": 79.121,
+"ave_fico": 721.35,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2001,
+"ave_dti":  31.67,
+"ave_ltv": 78.673,
+"ave_cltv": 78.946,
+"ave_fico":  714.2,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2001,
+"ave_dti": 31.814,
+"ave_ltv": 79.539,
+"ave_cltv": 79.656,
+"ave_fico": 711.03,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2001,
+"ave_dti": 34.448,
+"ave_ltv": 73.554,
+"ave_cltv": 73.778,
+"ave_fico": 722.95,
+"fillKey": "(718,725]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2001,
+"ave_dti": 29.735,
+"ave_ltv": 78.288,
+"ave_cltv": 78.427,
+"ave_fico": 709.48,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2001,
+"ave_dti":  31.64,
+"ave_ltv": 79.323,
+"ave_cltv": 79.486,
+"ave_fico": 731.38,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2001,
+"ave_dti":  32.61,
+"ave_ltv": 71.372,
+"ave_cltv": 71.551,
+"ave_fico":  725.3,
+"fillKey": "(725,739]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2001,
+"ave_dti":  31.55,
+"ave_ltv": 80.229,
+"ave_cltv": 80.367,
+"ave_fico": 714.31,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2001,
+"ave_dti": 29.562,
+"ave_ltv": 78.173,
+"ave_cltv": 78.285,
+"ave_fico": 722.74,
+"fillKey": "(718,725]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2001,
+"ave_dti": 33.088,
+"ave_ltv":  79.34,
+"ave_cltv":  79.56,
+"ave_fico": 708.88,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2001,
+"ave_dti": 33.821,
+"ave_ltv": 75.159,
+"ave_cltv": 75.457,
+"ave_fico": 721.99,
+"fillKey": "(718,725]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2001,
+"ave_dti": 36.803,
+"ave_ltv": 71.945,
+"ave_cltv": 71.945,
+"ave_fico": 702.03,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2001,
+"ave_dti": 34.076,
+"ave_ltv": 78.409,
+"ave_cltv": 78.621,
+"ave_fico": 718.69,
+"fillKey": "(718,725]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2001,
+"ave_dti": 33.416,
+"ave_ltv": 79.343,
+"ave_cltv": 79.782,
+"ave_fico": 713.96,
+"fillKey": "(675,718]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2001,
+"ave_dti": 34.181,
+"ave_ltv": 74.201,
+"ave_cltv": 74.415,
+"ave_fico": 714.58,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2001,
+"ave_dti": 33.822,
+"ave_ltv": 76.036,
+"ave_cltv": 76.235,
+"ave_fico": 719.64,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2001,
+"ave_dti": 32.327,
+"ave_ltv": 78.779,
+"ave_cltv": 79.063,
+"ave_fico": 716.72,
+"fillKey": "(675,718]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2001,
+"ave_dti": 33.487,
+"ave_ltv": 78.037,
+"ave_cltv": 78.179,
+"ave_fico": 726.46,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2001,
+"ave_dti": 33.919,
+"ave_ltv": 75.297,
+"ave_cltv":  75.52,
+"ave_fico": 714.72,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2001,
+"ave_dti": 34.466,
+"ave_ltv": 74.834,
+"ave_cltv": 75.002,
+"ave_fico": 726.32,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2001,
+"ave_dti": 33.622,
+"ave_ltv": 79.296,
+"ave_cltv": 79.506,
+"ave_fico":  715.7,
+"fillKey": "(675,718]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2001,
+"ave_dti": 32.514,
+"ave_ltv": 76.334,
+"ave_cltv": 77.341,
+"ave_fico": 722.11,
+"fillKey": "(718,725]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2001,
+"ave_dti": 32.128,
+"ave_ltv": 77.231,
+"ave_cltv": 77.429,
+"ave_fico": 720.83,
+"fillKey": "(718,725]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2001,
+"ave_dti": 34.024,
+"ave_ltv": 78.322,
+"ave_cltv": 78.744,
+"ave_fico": 714.58,
+"fillKey": "(675,718]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2001,
+"ave_dti": 34.037,
+"ave_ltv":  75.29,
+"ave_cltv": 75.621,
+"ave_fico": 725.21,
+"fillKey": "(725,739]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2001,
+"ave_dti": 32.757,
+"ave_ltv": 78.412,
+"ave_cltv": 78.705,
+"ave_fico": 718.26,
+"fillKey": "(675,718]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2001,
+"ave_dti": 32.288,
+"ave_ltv": 75.834,
+"ave_cltv": 76.895,
+"ave_fico": 725.07,
+"fillKey": "(725,739]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2001,
+"ave_dti": 34.121,
+"ave_ltv": 79.261,
+"ave_cltv": 79.451,
+"ave_fico": 715.64,
+"fillKey": "(675,718]" 
+} 
+},
+"2002": {
+ "CA": {
+ "state": "CA",
+"year":   2002,
+"ave_dti": 34.972,
+"ave_ltv": 65.752,
+"ave_cltv": 66.165,
+"ave_fico": 723.25,
+"fillKey": "(718,725]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2002,
+"ave_dti": 34.146,
+"ave_ltv": 72.525,
+"ave_cltv": 73.083,
+"ave_fico": 722.36,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2002,
+"ave_dti": 31.309,
+"ave_ltv": 67.028,
+"ave_cltv": 67.892,
+"ave_fico": 717.64,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2002,
+"ave_dti": 32.223,
+"ave_ltv": 76.423,
+"ave_cltv": 76.809,
+"ave_fico": 719.46,
+"fillKey": "(718,725]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2002,
+"ave_dti": 33.564,
+"ave_ltv":  78.75,
+"ave_cltv":  79.09,
+"ave_fico": 714.45,
+"fillKey": "(675,718]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2002,
+"ave_dti": 33.607,
+"ave_ltv": 75.142,
+"ave_cltv": 75.312,
+"ave_fico": 723.49,
+"fillKey": "(718,725]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2002,
+"ave_dti": 33.318,
+"ave_ltv":  75.85,
+"ave_cltv": 76.276,
+"ave_fico": 725.31,
+"fillKey": "(725,739]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2002,
+"ave_dti": 36.032,
+"ave_ltv": 72.338,
+"ave_cltv": 73.024,
+"ave_fico": 738.68,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2002,
+"ave_dti": 31.569,
+"ave_ltv": 74.558,
+"ave_cltv": 74.953,
+"ave_fico": 731.95,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2002,
+"ave_dti": 31.305,
+"ave_ltv": 77.996,
+"ave_cltv": 78.347,
+"ave_fico":  724.1,
+"fillKey": "(718,725]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2002,
+"ave_dti": 33.755,
+"ave_ltv": 75.825,
+"ave_cltv":  76.14,
+"ave_fico": 715.82,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2002,
+"ave_dti": 31.809,
+"ave_ltv": 75.625,
+"ave_cltv": 76.301,
+"ave_fico": 725.04,
+"fillKey": "(725,739]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2002,
+"ave_dti":  32.07,
+"ave_ltv": 77.441,
+"ave_cltv": 78.241,
+"ave_fico": 729.48,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2002,
+"ave_dti": 31.608,
+"ave_ltv": 76.623,
+"ave_cltv": 76.939,
+"ave_fico": 717.01,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2002,
+"ave_dti":  34.02,
+"ave_ltv": 65.119,
+"ave_cltv": 65.576,
+"ave_fico": 721.22,
+"fillKey": "(718,725]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2002,
+"ave_dti": 34.822,
+"ave_ltv":  70.93,
+"ave_cltv": 71.211,
+"ave_fico": 718.02,
+"fillKey": "(675,718]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2002,
+"ave_dti": 35.388,
+"ave_ltv": 76.468,
+"ave_cltv": 76.629,
+"ave_fico": 720.25,
+"fillKey": "(718,725]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2002,
+"ave_dti":  32.11,
+"ave_ltv": 78.188,
+"ave_cltv":  78.61,
+"ave_fico": 728.53,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2002,
+"ave_dti": 32.792,
+"ave_ltv": 73.505,
+"ave_cltv": 73.947,
+"ave_fico": 720.76,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2002,
+"ave_dti": 37.311,
+"ave_ltv": 73.717,
+"ave_cltv": 73.717,
+"ave_fico": 719.62,
+"fillKey": "(718,725]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2002,
+"ave_dti": 32.965,
+"ave_ltv": 76.393,
+"ave_cltv": 77.009,
+"ave_fico": 719.48,
+"fillKey": "(718,725]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2002,
+"ave_dti": 31.706,
+"ave_ltv": 74.545,
+"ave_cltv": 75.016,
+"ave_fico": 724.27,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2002,
+"ave_dti": 34.693,
+"ave_ltv": 72.628,
+"ave_cltv": 73.092,
+"ave_fico": 725.87,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2002,
+"ave_dti": 33.889,
+"ave_ltv": 70.909,
+"ave_cltv": 71.235,
+"ave_fico": 718.14,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2002,
+"ave_dti": 33.914,
+"ave_ltv": 70.535,
+"ave_cltv": 70.994,
+"ave_fico": 721.67,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2002,
+"ave_dti": 33.799,
+"ave_ltv": 69.857,
+"ave_cltv": 70.107,
+"ave_fico": 715.46,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2002,
+"ave_dti": 32.806,
+"ave_ltv": 76.957,
+"ave_cltv": 77.634,
+"ave_fico":  722.8,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2002,
+"ave_dti": 31.324,
+"ave_ltv": 78.785,
+"ave_cltv": 79.162,
+"ave_fico": 716.98,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2002,
+"ave_dti": 32.086,
+"ave_ltv": 78.624,
+"ave_cltv": 78.931,
+"ave_fico": 714.47,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2002,
+"ave_dti": 34.204,
+"ave_ltv": 70.574,
+"ave_cltv":  70.92,
+"ave_fico": 729.51,
+"fillKey": "(725,739]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2002,
+"ave_dti": 29.902,
+"ave_ltv": 77.588,
+"ave_cltv": 77.758,
+"ave_fico": 710.97,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2002,
+"ave_dti": 30.976,
+"ave_ltv": 79.397,
+"ave_cltv": 79.632,
+"ave_fico": 727.24,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2002,
+"ave_dti": 32.703,
+"ave_ltv":  73.73,
+"ave_cltv":  73.73,
+"ave_fico": 723.51,
+"fillKey": "(718,725]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2002,
+"ave_dti": 31.679,
+"ave_ltv":  79.82,
+"ave_cltv": 80.019,
+"ave_fico": 715.98,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2002,
+"ave_dti": 30.004,
+"ave_ltv": 77.776,
+"ave_cltv": 77.979,
+"ave_fico": 724.96,
+"fillKey": "(725,739]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2002,
+"ave_dti": 33.221,
+"ave_ltv": 78.794,
+"ave_cltv": 79.071,
+"ave_fico": 713.11,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2002,
+"ave_dti": 33.652,
+"ave_ltv": 72.998,
+"ave_cltv": 73.452,
+"ave_fico": 727.36,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2002,
+"ave_dti":  37.66,
+"ave_ltv":   72.7,
+"ave_cltv": 72.705,
+"ave_fico": 708.81,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2002,
+"ave_dti": 34.682,
+"ave_ltv": 77.443,
+"ave_cltv": 77.784,
+"ave_fico": 723.55,
+"fillKey": "(718,725]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2002,
+"ave_dti": 33.762,
+"ave_ltv":  71.13,
+"ave_cltv": 71.456,
+"ave_fico": 715.93,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2002,
+"ave_dti": 33.192,
+"ave_ltv": 78.246,
+"ave_cltv": 78.878,
+"ave_fico": 715.56,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2002,
+"ave_dti": 33.672,
+"ave_ltv": 73.439,
+"ave_cltv": 73.729,
+"ave_fico": 722.87,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2002,
+"ave_dti": 32.651,
+"ave_ltv": 77.643,
+"ave_cltv": 78.167,
+"ave_fico": 719.11,
+"fillKey": "(718,725]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2002,
+"ave_dti": 32.733,
+"ave_ltv": 76.702,
+"ave_cltv": 77.174,
+"ave_fico": 731.64,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2002,
+"ave_dti": 34.086,
+"ave_ltv": 73.336,
+"ave_cltv": 73.696,
+"ave_fico": 717.86,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2002,
+"ave_dti":  34.55,
+"ave_ltv": 73.421,
+"ave_cltv": 73.699,
+"ave_fico": 727.18,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2002,
+"ave_dti": 33.443,
+"ave_ltv": 78.083,
+"ave_cltv": 78.522,
+"ave_fico": 720.45,
+"fillKey": "(718,725]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2002,
+"ave_dti": 32.574,
+"ave_ltv": 72.906,
+"ave_cltv": 73.941,
+"ave_fico": 725.43,
+"fillKey": "(725,739]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2002,
+"ave_dti":  33.43,
+"ave_ltv": 76.747,
+"ave_cltv": 77.409,
+"ave_fico": 717.64,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2002,
+"ave_dti": 32.014,
+"ave_ltv": 75.387,
+"ave_cltv": 75.733,
+"ave_fico": 724.33,
+"fillKey": "(718,725]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2002,
+"ave_dti": 32.188,
+"ave_ltv": 72.493,
+"ave_cltv": 73.537,
+"ave_fico": 729.05,
+"fillKey": "(725,739]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2002,
+"ave_dti": 33.835,
+"ave_ltv": 73.417,
+"ave_cltv": 74.014,
+"ave_fico": 730.36,
+"fillKey": "(725,739]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2002,
+"ave_dti": 33.952,
+"ave_ltv": 77.269,
+"ave_cltv": 77.715,
+"ave_fico": 721.74,
+"fillKey": "(718,725]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2002,
+"ave_dti": 34.802,
+"ave_ltv": 77.183,
+"ave_cltv":   77.5,
+"ave_fico": 719.28,
+"fillKey": "(718,725]" 
+} 
+},
+"2003": {
+ "CA": {
+ "state": "CA",
+"year":   2003,
+"ave_dti": 34.274,
+"ave_ltv": 62.429,
+"ave_cltv": 63.053,
+"ave_fico": 726.29,
+"fillKey": "(725,739]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2003,
+"ave_dti": 34.979,
+"ave_ltv": 70.229,
+"ave_cltv": 71.154,
+"ave_fico": 724.12,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2003,
+"ave_dti": 30.819,
+"ave_ltv": 63.146,
+"ave_cltv": 63.963,
+"ave_fico": 721.38,
+"fillKey": "(718,725]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2003,
+"ave_dti": 32.502,
+"ave_ltv": 75.399,
+"ave_cltv": 76.127,
+"ave_fico": 722.63,
+"fillKey": "(718,725]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2003,
+"ave_dti": 32.778,
+"ave_ltv": 77.493,
+"ave_cltv": 78.131,
+"ave_fico": 718.47,
+"fillKey": "(718,725]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2003,
+"ave_dti": 33.163,
+"ave_ltv": 74.443,
+"ave_cltv":  74.76,
+"ave_fico": 726.36,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2003,
+"ave_dti": 33.064,
+"ave_ltv": 74.464,
+"ave_cltv":  75.17,
+"ave_fico": 727.14,
+"fillKey": "(725,739]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2003,
+"ave_dti": 34.271,
+"ave_ltv":   69.6,
+"ave_cltv": 70.424,
+"ave_fico": 738.84,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2003,
+"ave_dti": 30.881,
+"ave_ltv": 73.684,
+"ave_cltv": 74.394,
+"ave_fico": 730.87,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2003,
+"ave_dti": 31.601,
+"ave_ltv": 76.955,
+"ave_cltv": 77.567,
+"ave_fico": 725.48,
+"fillKey": "(725,739]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2003,
+"ave_dti": 33.355,
+"ave_ltv": 73.447,
+"ave_cltv": 73.949,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2003,
+"ave_dti": 31.751,
+"ave_ltv": 74.885,
+"ave_cltv": 76.087,
+"ave_fico": 727.52,
+"fillKey": "(725,739]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2003,
+"ave_dti": 31.414,
+"ave_ltv": 77.208,
+"ave_cltv": 77.825,
+"ave_fico": 729.31,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2003,
+"ave_dti": 31.214,
+"ave_ltv": 75.946,
+"ave_cltv": 76.456,
+"ave_fico": 719.52,
+"fillKey": "(718,725]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2003,
+"ave_dti": 34.023,
+"ave_ltv": 62.602,
+"ave_cltv": 63.405,
+"ave_fico": 724.77,
+"fillKey": "(725,739]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2003,
+"ave_dti": 34.646,
+"ave_ltv": 75.149,
+"ave_cltv": 75.557,
+"ave_fico": 721.23,
+"fillKey": "(718,725]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2003,
+"ave_dti": 35.718,
+"ave_ltv": 68.687,
+"ave_cltv": 69.376,
+"ave_fico":  719.9,
+"fillKey": "(718,725]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2003,
+"ave_dti": 31.169,
+"ave_ltv": 77.244,
+"ave_cltv": 77.903,
+"ave_fico":  730.9,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2003,
+"ave_dti":  32.08,
+"ave_ltv": 71.698,
+"ave_cltv": 72.407,
+"ave_fico":  721.6,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2003,
+"ave_dti": 37.442,
+"ave_ltv": 69.713,
+"ave_cltv": 69.721,
+"ave_fico": 719.53,
+"fillKey": "(718,725]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2003,
+"ave_dti": 31.912,
+"ave_ltv":  75.14,
+"ave_cltv":   76.2,
+"ave_fico":  724.9,
+"fillKey": "(725,739]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2003,
+"ave_dti": 32.312,
+"ave_ltv":  72.22,
+"ave_cltv": 73.038,
+"ave_fico": 725.81,
+"fillKey": "(725,739]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2003,
+"ave_dti": 34.358,
+"ave_ltv": 70.882,
+"ave_cltv": 71.675,
+"ave_fico": 727.49,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2003,
+"ave_dti": 35.082,
+"ave_ltv": 67.648,
+"ave_cltv": 68.193,
+"ave_fico": 717.87,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2003,
+"ave_dti":  33.19,
+"ave_ltv":  68.15,
+"ave_cltv": 68.926,
+"ave_fico": 722.31,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2003,
+"ave_dti": 33.325,
+"ave_ltv": 66.116,
+"ave_cltv": 66.644,
+"ave_fico":  718.9,
+"fillKey": "(718,725]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2003,
+"ave_dti": 32.689,
+"ave_ltv": 75.016,
+"ave_cltv": 76.008,
+"ave_fico": 724.28,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2003,
+"ave_dti": 32.226,
+"ave_ltv": 77.787,
+"ave_cltv": 78.378,
+"ave_fico": 720.66,
+"fillKey": "(718,725]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2003,
+"ave_dti": 32.246,
+"ave_ltv": 77.609,
+"ave_cltv":  78.19,
+"ave_fico": 717.14,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2003,
+"ave_dti": 33.339,
+"ave_ltv": 69.809,
+"ave_cltv": 70.505,
+"ave_fico": 733.45,
+"fillKey": "(725,739]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2003,
+"ave_dti": 30.564,
+"ave_ltv": 76.857,
+"ave_cltv": 77.149,
+"ave_fico": 714.69,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2003,
+"ave_dti": 28.734,
+"ave_ltv": 78.188,
+"ave_cltv": 78.605,
+"ave_fico": 731.96,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2003,
+"ave_dti": 36.214,
+"ave_ltv": 75.754,
+"ave_cltv": 75.754,
+"ave_fico": 730.18,
+"fillKey": "(725,739]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2003,
+"ave_dti": 31.744,
+"ave_ltv": 78.515,
+"ave_cltv": 78.866,
+"ave_fico": 720.32,
+"fillKey": "(718,725]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2003,
+"ave_dti": 31.451,
+"ave_ltv": 77.403,
+"ave_cltv": 77.669,
+"ave_fico": 726.68,
+"fillKey": "(725,739]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2003,
+"ave_dti": 33.101,
+"ave_ltv": 78.404,
+"ave_cltv": 78.896,
+"ave_fico":  719.5,
+"fillKey": "(718,725]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2003,
+"ave_dti": 32.432,
+"ave_ltv": 71.676,
+"ave_cltv": 72.378,
+"ave_fico": 732.07,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2003,
+"ave_dti": 37.214,
+"ave_ltv": 71.279,
+"ave_cltv": 71.311,
+"ave_fico": 714.88,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2003,
+"ave_dti": 33.907,
+"ave_ltv": 76.506,
+"ave_cltv": 77.157,
+"ave_fico": 725.18,
+"fillKey": "(725,739]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2003,
+"ave_dti": 33.795,
+"ave_ltv": 67.906,
+"ave_cltv": 68.592,
+"ave_fico": 717.88,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2003,
+"ave_dti": 32.765,
+"ave_ltv": 77.187,
+"ave_cltv": 77.912,
+"ave_fico": 717.49,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2003,
+"ave_dti": 33.063,
+"ave_ltv": 71.819,
+"ave_cltv": 72.392,
+"ave_fico": 725.93,
+"fillKey": "(725,739]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2003,
+"ave_dti": 32.561,
+"ave_ltv": 76.903,
+"ave_cltv": 77.749,
+"ave_fico": 722.08,
+"fillKey": "(718,725]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2003,
+"ave_dti": 31.731,
+"ave_ltv": 76.318,
+"ave_cltv": 76.768,
+"ave_fico": 733.32,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2003,
+"ave_dti": 33.608,
+"ave_ltv":   72.4,
+"ave_cltv": 73.139,
+"ave_fico": 719.95,
+"fillKey": "(718,725]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2003,
+"ave_dti": 33.418,
+"ave_ltv": 72.821,
+"ave_cltv": 73.312,
+"ave_fico": 730.44,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2003,
+"ave_dti":  33.43,
+"ave_ltv": 77.207,
+"ave_cltv": 77.905,
+"ave_fico": 724.11,
+"fillKey": "(718,725]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2003,
+"ave_dti": 32.202,
+"ave_ltv":  70.12,
+"ave_cltv": 71.056,
+"ave_fico": 724.39,
+"fillKey": "(718,725]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2003,
+"ave_dti": 32.235,
+"ave_ltv": 75.475,
+"ave_cltv":  76.43,
+"ave_fico": 720.84,
+"fillKey": "(718,725]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2003,
+"ave_dti":  31.74,
+"ave_ltv": 74.448,
+"ave_cltv": 75.055,
+"ave_fico": 725.29,
+"fillKey": "(725,739]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2003,
+"ave_dti": 31.763,
+"ave_ltv": 70.103,
+"ave_cltv": 71.155,
+"ave_fico": 730.53,
+"fillKey": "(725,739]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2003,
+"ave_dti": 33.863,
+"ave_ltv":  76.14,
+"ave_cltv": 77.055,
+"ave_fico": 725.86,
+"fillKey": "(725,739]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2003,
+"ave_dti": 32.512,
+"ave_ltv": 72.268,
+"ave_cltv": 73.141,
+"ave_fico": 734.59,
+"fillKey": "(725,739]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2003,
+"ave_dti": 34.745,
+"ave_ltv": 75.433,
+"ave_cltv": 75.948,
+"ave_fico": 720.04,
+"fillKey": "(718,725]" 
+} 
+},
+"2004": {
+ "CA": {
+ "state": "CA",
+"year":   2004,
+"ave_dti": 37.265,
+"ave_ltv": 61.178,
+"ave_cltv": 62.348,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2004,
+"ave_dti": 37.111,
+"ave_ltv": 71.972,
+"ave_cltv":  73.08,
+"ave_fico": 720.21,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2004,
+"ave_dti": 34.337,
+"ave_ltv": 63.356,
+"ave_cltv": 64.817,
+"ave_fico": 700.47,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2004,
+"ave_dti": 34.637,
+"ave_ltv": 76.243,
+"ave_cltv": 77.626,
+"ave_fico": 719.51,
+"fillKey": "(718,725]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2004,
+"ave_dti": 36.036,
+"ave_ltv": 77.434,
+"ave_cltv": 78.612,
+"ave_fico": 720.61,
+"fillKey": "(718,725]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2004,
+"ave_dti": 35.799,
+"ave_ltv": 75.985,
+"ave_cltv": 76.908,
+"ave_fico": 725.32,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2004,
+"ave_dti": 35.237,
+"ave_ltv": 74.695,
+"ave_cltv": 76.181,
+"ave_fico": 725.62,
+"fillKey": "(725,739]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2004,
+"ave_dti": 37.995,
+"ave_ltv": 68.424,
+"ave_cltv": 69.809,
+"ave_fico": 731.48,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2004,
+"ave_dti":  33.48,
+"ave_ltv": 75.112,
+"ave_cltv": 76.324,
+"ave_fico": 727.18,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2004,
+"ave_dti": 34.708,
+"ave_ltv": 78.233,
+"ave_cltv": 79.634,
+"ave_fico": 721.27,
+"fillKey": "(718,725]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2004,
+"ave_dti": 37.291,
+"ave_ltv": 73.863,
+"ave_cltv": 74.894,
+"ave_fico": 714.77,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2004,
+"ave_dti": 34.869,
+"ave_ltv": 75.545,
+"ave_cltv": 77.876,
+"ave_fico": 724.67,
+"fillKey": "(725,739]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2004,
+"ave_dti": 38.229,
+"ave_ltv": 77.555,
+"ave_cltv": 78.801,
+"ave_fico": 726.89,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2004,
+"ave_dti": 34.477,
+"ave_ltv": 76.808,
+"ave_cltv": 77.876,
+"ave_fico": 716.67,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2004,
+"ave_dti": 37.277,
+"ave_ltv":   64.9,
+"ave_cltv": 66.617,
+"ave_fico": 721.48,
+"fillKey": "(718,725]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2004,
+"ave_dti":  38.99,
+"ave_ltv": 70.009,
+"ave_cltv": 71.198,
+"ave_fico": 717.93,
+"fillKey": "(675,718]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2004,
+"ave_dti":   37.9,
+"ave_ltv": 75.661,
+"ave_cltv": 76.468,
+"ave_fico":  716.8,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2004,
+"ave_dti": 34.998,
+"ave_ltv": 78.845,
+"ave_cltv": 80.211,
+"ave_fico": 725.32,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2004,
+"ave_dti": 36.246,
+"ave_ltv": 73.655,
+"ave_cltv": 75.066,
+"ave_fico": 718.14,
+"fillKey": "(675,718]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2004,
+"ave_dti": 38.014,
+"ave_ltv": 69.844,
+"ave_cltv": 69.941,
+"ave_fico": 720.17,
+"fillKey": "(718,725]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2004,
+"ave_dti": 34.379,
+"ave_ltv": 75.557,
+"ave_cltv": 77.507,
+"ave_fico": 722.47,
+"fillKey": "(718,725]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2004,
+"ave_dti": 34.135,
+"ave_ltv": 73.152,
+"ave_cltv": 74.738,
+"ave_fico": 722.04,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2004,
+"ave_dti":  37.68,
+"ave_ltv": 71.993,
+"ave_cltv": 73.176,
+"ave_fico": 724.82,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2004,
+"ave_dti": 38.115,
+"ave_ltv": 66.924,
+"ave_cltv": 68.328,
+"ave_fico": 712.76,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2004,
+"ave_dti": 36.825,
+"ave_ltv": 70.152,
+"ave_cltv": 71.965,
+"ave_fico":  718.9,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2004,
+"ave_dti": 36.358,
+"ave_ltv": 68.733,
+"ave_cltv": 70.328,
+"ave_fico":  715.1,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2004,
+"ave_dti": 35.121,
+"ave_ltv": 75.942,
+"ave_cltv": 77.876,
+"ave_fico": 719.85,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2004,
+"ave_dti": 34.922,
+"ave_ltv": 78.097,
+"ave_cltv": 79.327,
+"ave_fico": 718.25,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2004,
+"ave_dti": 33.666,
+"ave_ltv": 77.349,
+"ave_cltv": 78.404,
+"ave_fico": 712.15,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2004,
+"ave_dti": 35.677,
+"ave_ltv": 71.137,
+"ave_cltv": 72.991,
+"ave_fico": 732.22,
+"fillKey": "(725,739]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2004,
+"ave_dti": 33.131,
+"ave_ltv": 77.401,
+"ave_cltv": 78.013,
+"ave_fico":  714.6,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2004,
+"ave_dti":  35.66,
+"ave_ltv": 79.539,
+"ave_cltv": 80.583,
+"ave_fico": 727.98,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2004,
+"ave_dti": 35.577,
+"ave_ltv": 78.731,
+"ave_cltv": 79.115,
+"ave_fico": 713.92,
+"fillKey": "(675,718]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2004,
+"ave_dti": 35.363,
+"ave_ltv": 78.833,
+"ave_cltv": 79.868,
+"ave_fico": 717.29,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2004,
+"ave_dti": 35.267,
+"ave_ltv": 77.748,
+"ave_cltv": 78.342,
+"ave_fico": 724.42,
+"fillKey": "(718,725]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2004,
+"ave_dti": 35.291,
+"ave_ltv": 79.048,
+"ave_cltv":  79.82,
+"ave_fico": 717.39,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2004,
+"ave_dti": 35.296,
+"ave_ltv": 73.161,
+"ave_cltv": 75.108,
+"ave_fico": 729.21,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2004,
+"ave_dti": 38.178,
+"ave_ltv":  70.11,
+"ave_cltv": 70.211,
+"ave_fico": 717.58,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2004,
+"ave_dti": 34.538,
+"ave_ltv": 76.687,
+"ave_cltv": 78.269,
+"ave_fico": 725.48,
+"fillKey": "(725,739]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2004,
+"ave_dti":  37.11,
+"ave_ltv":  69.78,
+"ave_cltv": 71.136,
+"ave_fico": 711.57,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2004,
+"ave_dti": 35.565,
+"ave_ltv": 78.577,
+"ave_cltv": 80.364,
+"ave_fico": 716.15,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2004,
+"ave_dti": 36.182,
+"ave_ltv": 73.156,
+"ave_cltv":  74.61,
+"ave_fico":  724.2,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2004,
+"ave_dti": 34.502,
+"ave_ltv": 77.608,
+"ave_cltv":  79.09,
+"ave_fico": 718.11,
+"fillKey": "(675,718]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2004,
+"ave_dti": 36.804,
+"ave_ltv": 77.666,
+"ave_cltv": 79.103,
+"ave_fico":  730.1,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2004,
+"ave_dti": 36.073,
+"ave_ltv": 73.882,
+"ave_cltv": 75.493,
+"ave_fico": 717.11,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2004,
+"ave_dti": 36.936,
+"ave_ltv": 73.481,
+"ave_cltv": 74.542,
+"ave_fico":  726.5,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2004,
+"ave_dti": 35.388,
+"ave_ltv": 77.341,
+"ave_cltv": 78.937,
+"ave_fico": 721.21,
+"fillKey": "(718,725]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2004,
+"ave_dti": 34.857,
+"ave_ltv": 70.469,
+"ave_cltv": 72.275,
+"ave_fico": 715.03,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2004,
+"ave_dti": 34.966,
+"ave_ltv": 75.736,
+"ave_cltv": 77.057,
+"ave_fico": 719.86,
+"fillKey": "(718,725]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2004,
+"ave_dti": 35.606,
+"ave_ltv": 76.363,
+"ave_cltv": 78.197,
+"ave_fico": 716.66,
+"fillKey": "(675,718]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2004,
+"ave_dti": 34.846,
+"ave_ltv": 71.009,
+"ave_cltv": 72.842,
+"ave_fico": 723.26,
+"fillKey": "(718,725]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2004,
+"ave_dti": 34.552,
+"ave_ltv": 76.121,
+"ave_cltv": 77.922,
+"ave_fico": 723.87,
+"fillKey": "(718,725]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2004,
+"ave_dti": 34.789,
+"ave_ltv": 72.549,
+"ave_cltv": 74.452,
+"ave_fico": 730.85,
+"fillKey": "(725,739]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2004,
+"ave_dti": 37.013,
+"ave_ltv": 72.244,
+"ave_cltv": 72.966,
+"ave_fico":  710.8,
+"fillKey": "(675,718]" 
+} 
+},
+"2005": {
+ "CA": {
+ "state": "CA",
+"year":   2005,
+"ave_dti": 39.303,
+"ave_ltv":  58.14,
+"ave_cltv": 59.382,
+"ave_fico": 720.63,
+"fillKey": "(718,725]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2005,
+"ave_dti":  38.36,
+"ave_ltv": 71.158,
+"ave_cltv": 72.602,
+"ave_fico":  723.5,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2005,
+"ave_dti": 36.835,
+"ave_ltv": 59.921,
+"ave_cltv":  61.63,
+"ave_fico":  706.8,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2005,
+"ave_dti": 35.494,
+"ave_ltv": 75.846,
+"ave_cltv": 77.559,
+"ave_fico": 727.99,
+"fillKey": "(725,739]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2005,
+"ave_dti": 36.715,
+"ave_ltv": 75.903,
+"ave_cltv":  77.67,
+"ave_fico": 726.13,
+"fillKey": "(725,739]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2005,
+"ave_dti": 36.723,
+"ave_ltv": 75.038,
+"ave_cltv": 76.783,
+"ave_fico": 730.89,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2005,
+"ave_dti": 37.284,
+"ave_ltv": 70.782,
+"ave_cltv": 72.193,
+"ave_fico": 721.84,
+"fillKey": "(718,725]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2005,
+"ave_dti": 40.939,
+"ave_ltv": 64.363,
+"ave_cltv": 65.819,
+"ave_fico": 733.65,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2005,
+"ave_dti": 34.511,
+"ave_ltv": 74.655,
+"ave_cltv": 76.399,
+"ave_fico": 729.94,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2005,
+"ave_dti": 35.806,
+"ave_ltv": 78.252,
+"ave_cltv": 80.439,
+"ave_fico": 724.41,
+"fillKey": "(718,725]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2005,
+"ave_dti": 38.607,
+"ave_ltv": 70.398,
+"ave_cltv": 71.584,
+"ave_fico": 716.34,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2005,
+"ave_dti":  36.77,
+"ave_ltv": 74.856,
+"ave_cltv": 77.658,
+"ave_fico": 726.65,
+"fillKey": "(725,739]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2005,
+"ave_dti": 38.198,
+"ave_ltv": 77.054,
+"ave_cltv": 79.161,
+"ave_fico": 731.21,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2005,
+"ave_dti": 35.548,
+"ave_ltv": 77.089,
+"ave_cltv": 78.984,
+"ave_fico": 722.25,
+"fillKey": "(718,725]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2005,
+"ave_dti": 39.139,
+"ave_ltv": 65.273,
+"ave_cltv": 67.715,
+"ave_fico": 723.71,
+"fillKey": "(718,725]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2005,
+"ave_dti": 39.812,
+"ave_ltv": 69.808,
+"ave_cltv": 71.798,
+"ave_fico": 724.95,
+"fillKey": "(725,739]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2005,
+"ave_dti":  38.47,
+"ave_ltv": 75.638,
+"ave_cltv": 77.304,
+"ave_fico": 720.47,
+"fillKey": "(718,725]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2005,
+"ave_dti": 36.166,
+"ave_ltv": 77.898,
+"ave_cltv": 79.916,
+"ave_fico": 730.49,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2005,
+"ave_dti": 37.579,
+"ave_ltv":  73.38,
+"ave_cltv": 75.474,
+"ave_fico":  724.4,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2005,
+"ave_dti": 41.055,
+"ave_ltv": 72.232,
+"ave_cltv": 72.567,
+"ave_fico": 722.29,
+"fillKey": "(718,725]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2005,
+"ave_dti": 35.751,
+"ave_ltv": 74.862,
+"ave_cltv": 77.496,
+"ave_fico": 729.37,
+"fillKey": "(725,739]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2005,
+"ave_dti": 37.044,
+"ave_ltv": 71.302,
+"ave_cltv": 73.086,
+"ave_fico": 724.27,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2005,
+"ave_dti": 39.036,
+"ave_ltv": 70.236,
+"ave_cltv": 71.649,
+"ave_fico": 727.82,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2005,
+"ave_dti": 39.399,
+"ave_ltv": 66.007,
+"ave_cltv": 67.857,
+"ave_fico": 717.13,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2005,
+"ave_dti": 38.417,
+"ave_ltv": 69.436,
+"ave_cltv": 71.733,
+"ave_fico": 721.47,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2005,
+"ave_dti": 37.935,
+"ave_ltv": 67.703,
+"ave_cltv": 69.708,
+"ave_fico": 720.58,
+"fillKey": "(718,725]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2005,
+"ave_dti": 37.056,
+"ave_ltv":  74.48,
+"ave_cltv": 76.923,
+"ave_fico":  723.1,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2005,
+"ave_dti": 35.793,
+"ave_ltv": 77.545,
+"ave_cltv": 79.365,
+"ave_fico": 723.52,
+"fillKey": "(718,725]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2005,
+"ave_dti": 35.094,
+"ave_ltv": 75.051,
+"ave_cltv": 76.479,
+"ave_fico":  713.9,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2005,
+"ave_dti": 36.775,
+"ave_ltv": 71.678,
+"ave_cltv": 74.572,
+"ave_fico": 739.25,
+"fillKey": "(739,761]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2005,
+"ave_dti": 36.229,
+"ave_ltv": 77.381,
+"ave_cltv": 78.453,
+"ave_fico": 721.09,
+"fillKey": "(718,725]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2005,
+"ave_dti": 37.228,
+"ave_ltv": 78.324,
+"ave_cltv": 80.375,
+"ave_fico": 733.39,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2005,
+"ave_dti":  33.68,
+"ave_ltv": 78.962,
+"ave_cltv": 78.962,
+"ave_fico": 728.46,
+"fillKey": "(725,739]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2005,
+"ave_dti": 35.852,
+"ave_ltv": 78.546,
+"ave_cltv": 80.186,
+"ave_fico": 721.73,
+"fillKey": "(718,725]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2005,
+"ave_dti":  35.91,
+"ave_ltv": 76.815,
+"ave_cltv":  77.79,
+"ave_fico": 728.89,
+"fillKey": "(725,739]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2005,
+"ave_dti": 36.106,
+"ave_ltv": 78.817,
+"ave_cltv": 79.996,
+"ave_fico": 723.14,
+"fillKey": "(718,725]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2005,
+"ave_dti": 37.762,
+"ave_ltv": 72.237,
+"ave_cltv": 74.593,
+"ave_fico": 732.08,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2005,
+"ave_dti": 37.652,
+"ave_ltv": 68.388,
+"ave_cltv": 68.476,
+"ave_fico": 717.67,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2005,
+"ave_dti": 36.619,
+"ave_ltv": 75.662,
+"ave_cltv": 78.353,
+"ave_fico": 732.28,
+"fillKey": "(725,739]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2005,
+"ave_dti": 39.081,
+"ave_ltv": 68.282,
+"ave_cltv": 70.073,
+"ave_fico": 714.37,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2005,
+"ave_dti": 36.794,
+"ave_ltv": 77.625,
+"ave_cltv": 80.432,
+"ave_fico": 724.05,
+"fillKey": "(718,725]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2005,
+"ave_dti": 37.323,
+"ave_ltv": 72.732,
+"ave_cltv": 74.872,
+"ave_fico": 730.59,
+"fillKey": "(725,739]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2005,
+"ave_dti": 35.575,
+"ave_ltv": 77.423,
+"ave_cltv": 79.492,
+"ave_fico": 723.64,
+"fillKey": "(718,725]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2005,
+"ave_dti": 37.528,
+"ave_ltv": 76.888,
+"ave_cltv": 79.455,
+"ave_fico": 737.49,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2005,
+"ave_dti": 37.051,
+"ave_ltv": 73.857,
+"ave_cltv": 76.219,
+"ave_fico": 724.81,
+"fillKey": "(725,739]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2005,
+"ave_dti": 37.963,
+"ave_ltv": 72.262,
+"ave_cltv": 73.682,
+"ave_fico": 732.79,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2005,
+"ave_dti": 36.483,
+"ave_ltv": 76.972,
+"ave_cltv": 79.204,
+"ave_fico": 726.64,
+"fillKey": "(725,739]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2005,
+"ave_dti": 37.306,
+"ave_ltv": 67.841,
+"ave_cltv": 69.593,
+"ave_fico": 713.07,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2005,
+"ave_dti": 36.446,
+"ave_ltv": 75.724,
+"ave_cltv": 77.839,
+"ave_fico": 723.43,
+"fillKey": "(718,725]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2005,
+"ave_dti": 36.479,
+"ave_ltv":  75.86,
+"ave_cltv":  78.46,
+"ave_fico": 724.72,
+"fillKey": "(725,739]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2005,
+"ave_dti": 37.157,
+"ave_ltv": 67.969,
+"ave_cltv": 69.787,
+"ave_fico": 723.54,
+"fillKey": "(718,725]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2005,
+"ave_dti": 37.359,
+"ave_ltv": 74.511,
+"ave_cltv": 77.079,
+"ave_fico": 726.53,
+"fillKey": "(725,739]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2005,
+"ave_dti": 37.427,
+"ave_ltv": 71.594,
+"ave_cltv": 73.864,
+"ave_fico": 735.21,
+"fillKey": "(725,739]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2005,
+"ave_dti": 38.064,
+"ave_ltv": 67.972,
+"ave_cltv":  69.06,
+"ave_fico": 717.17,
+"fillKey": "(675,718]" 
+} 
+},
+"2006": {
+ "CA": {
+ "state": "CA",
+"year":   2006,
+"ave_dti": 40.341,
+"ave_ltv": 58.036,
+"ave_cltv": 59.242,
+"ave_fico": 720.66,
+"fillKey": "(718,725]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2006,
+"ave_dti":  39.22,
+"ave_ltv": 72.128,
+"ave_cltv": 73.575,
+"ave_fico": 719.69,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2006,
+"ave_dti": 38.739,
+"ave_ltv": 62.282,
+"ave_cltv": 64.227,
+"ave_fico": 701.75,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2006,
+"ave_dti": 36.464,
+"ave_ltv": 76.013,
+"ave_cltv": 78.019,
+"ave_fico": 729.85,
+"fillKey": "(725,739]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2006,
+"ave_dti": 38.074,
+"ave_ltv": 74.892,
+"ave_cltv": 76.552,
+"ave_fico": 722.78,
+"fillKey": "(718,725]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2006,
+"ave_dti": 37.847,
+"ave_ltv": 74.397,
+"ave_cltv": 75.903,
+"ave_fico": 728.42,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2006,
+"ave_dti": 38.515,
+"ave_ltv": 68.867,
+"ave_cltv": 70.321,
+"ave_fico": 718.51,
+"fillKey": "(718,725]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2006,
+"ave_dti": 41.968,
+"ave_ltv": 61.149,
+"ave_cltv": 62.631,
+"ave_fico": 731.66,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2006,
+"ave_dti": 36.752,
+"ave_ltv": 74.061,
+"ave_cltv": 75.897,
+"ave_fico": 731.92,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2006,
+"ave_dti": 36.181,
+"ave_ltv": 77.911,
+"ave_cltv":  80.24,
+"ave_fico": 724.98,
+"fillKey": "(725,739]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2006,
+"ave_dti": 40.266,
+"ave_ltv": 68.491,
+"ave_cltv": 69.594,
+"ave_fico": 710.38,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2006,
+"ave_dti": 37.644,
+"ave_ltv": 74.392,
+"ave_cltv": 76.832,
+"ave_fico": 722.18,
+"fillKey": "(718,725]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2006,
+"ave_dti": 37.708,
+"ave_ltv": 76.931,
+"ave_cltv": 78.658,
+"ave_fico": 734.42,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2006,
+"ave_dti": 36.231,
+"ave_ltv": 76.536,
+"ave_cltv": 78.516,
+"ave_fico": 722.61,
+"fillKey": "(718,725]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2006,
+"ave_dti": 40.388,
+"ave_ltv": 66.896,
+"ave_cltv": 69.743,
+"ave_fico": 721.58,
+"fillKey": "(718,725]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2006,
+"ave_dti": 41.517,
+"ave_ltv": 70.398,
+"ave_cltv": 72.476,
+"ave_fico": 720.48,
+"fillKey": "(718,725]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2006,
+"ave_dti":  39.74,
+"ave_ltv": 74.997,
+"ave_cltv": 76.722,
+"ave_fico": 716.23,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2006,
+"ave_dti": 36.395,
+"ave_ltv": 77.356,
+"ave_cltv":  79.28,
+"ave_fico": 729.25,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2006,
+"ave_dti":  38.83,
+"ave_ltv": 73.728,
+"ave_cltv": 76.058,
+"ave_fico": 724.13,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2006,
+"ave_dti": 40.655,
+"ave_ltv": 70.875,
+"ave_cltv": 71.071,
+"ave_fico": 723.65,
+"fillKey": "(718,725]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2006,
+"ave_dti": 37.499,
+"ave_ltv": 74.797,
+"ave_cltv": 77.375,
+"ave_fico": 726.81,
+"fillKey": "(725,739]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2006,
+"ave_dti": 38.587,
+"ave_ltv": 71.372,
+"ave_cltv": 73.171,
+"ave_fico": 721.98,
+"fillKey": "(718,725]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2006,
+"ave_dti": 40.552,
+"ave_ltv": 69.487,
+"ave_cltv": 70.851,
+"ave_fico": 725.61,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2006,
+"ave_dti": 40.898,
+"ave_ltv": 67.176,
+"ave_cltv": 69.025,
+"ave_fico": 714.58,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2006,
+"ave_dti": 39.978,
+"ave_ltv": 69.258,
+"ave_cltv": 71.556,
+"ave_fico": 717.46,
+"fillKey": "(675,718]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2006,
+"ave_dti": 38.747,
+"ave_ltv": 67.663,
+"ave_cltv": 69.306,
+"ave_fico": 719.95,
+"fillKey": "(718,725]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2006,
+"ave_dti": 38.349,
+"ave_ltv": 74.629,
+"ave_cltv": 77.035,
+"ave_fico": 719.93,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2006,
+"ave_dti": 36.778,
+"ave_ltv": 76.554,
+"ave_cltv": 78.181,
+"ave_fico": 721.63,
+"fillKey": "(718,725]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2006,
+"ave_dti": 36.405,
+"ave_ltv": 74.156,
+"ave_cltv": 75.776,
+"ave_fico": 713.22,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2006,
+"ave_dti": 38.103,
+"ave_ltv": 71.866,
+"ave_cltv": 74.829,
+"ave_fico": 740.16,
+"fillKey": "(739,761]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2006,
+"ave_dti": 38.061,
+"ave_ltv": 76.323,
+"ave_cltv": 77.346,
+"ave_fico": 714.57,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2006,
+"ave_dti":  37.96,
+"ave_ltv": 78.586,
+"ave_cltv": 80.333,
+"ave_fico": 733.95,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2006,
+"ave_dti": 33.235,
+"ave_ltv": 77.691,
+"ave_cltv": 77.971,
+"ave_fico": 724.65,
+"fillKey": "(718,725]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2006,
+"ave_dti": 36.191,
+"ave_ltv": 78.096,
+"ave_cltv": 79.885,
+"ave_fico": 721.12,
+"fillKey": "(718,725]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2006,
+"ave_dti": 36.835,
+"ave_ltv": 76.877,
+"ave_cltv":  77.88,
+"ave_fico": 725.61,
+"fillKey": "(725,739]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2006,
+"ave_dti": 37.129,
+"ave_ltv": 77.132,
+"ave_cltv": 78.174,
+"ave_fico": 719.85,
+"fillKey": "(718,725]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2006,
+"ave_dti": 39.414,
+"ave_ltv":  71.18,
+"ave_cltv": 73.298,
+"ave_fico": 727.99,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2006,
+"ave_dti": 39.115,
+"ave_ltv":  69.11,
+"ave_cltv": 69.248,
+"ave_fico": 719.69,
+"fillKey": "(718,725]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2006,
+"ave_dti": 38.412,
+"ave_ltv": 74.576,
+"ave_cltv":   77.1,
+"ave_fico": 727.31,
+"fillKey": "(725,739]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2006,
+"ave_dti": 37.299,
+"ave_ltv": 77.161,
+"ave_cltv": 80.173,
+"ave_fico": 724.64,
+"fillKey": "(718,725]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2006,
+"ave_dti": 40.765,
+"ave_ltv": 68.296,
+"ave_cltv": 70.122,
+"ave_fico": 710.87,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2006,
+"ave_dti": 38.334,
+"ave_ltv":  73.31,
+"ave_cltv": 75.676,
+"ave_fico": 730.32,
+"fillKey": "(725,739]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2006,
+"ave_dti": 36.478,
+"ave_ltv": 77.239,
+"ave_cltv": 79.428,
+"ave_fico": 723.19,
+"fillKey": "(718,725]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2006,
+"ave_dti": 36.285,
+"ave_ltv": 77.158,
+"ave_cltv": 79.636,
+"ave_fico": 735.81,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2006,
+"ave_dti": 37.976,
+"ave_ltv":  73.99,
+"ave_cltv": 76.513,
+"ave_fico":  725.1,
+"fillKey": "(725,739]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2006,
+"ave_dti":  38.36,
+"ave_ltv": 70.903,
+"ave_cltv": 72.337,
+"ave_fico": 733.55,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2006,
+"ave_dti": 37.736,
+"ave_ltv": 76.241,
+"ave_cltv": 78.402,
+"ave_fico": 724.87,
+"fillKey": "(725,739]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2006,
+"ave_dti":  38.85,
+"ave_ltv": 67.303,
+"ave_cltv": 69.054,
+"ave_fico": 706.13,
+"fillKey": "(675,718]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2006,
+"ave_dti": 37.908,
+"ave_ltv": 75.543,
+"ave_cltv": 78.124,
+"ave_fico":  724.3,
+"fillKey": "(718,725]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2006,
+"ave_dti": 36.986,
+"ave_ltv":  75.28,
+"ave_cltv": 77.628,
+"ave_fico": 725.17,
+"fillKey": "(725,739]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2006,
+"ave_dti":  38.86,
+"ave_ltv": 68.787,
+"ave_cltv": 70.768,
+"ave_fico":  719.8,
+"fillKey": "(718,725]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2006,
+"ave_dti": 38.891,
+"ave_ltv": 70.346,
+"ave_cltv": 72.396,
+"ave_fico": 730.61,
+"fillKey": "(725,739]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2006,
+"ave_dti": 38.477,
+"ave_ltv":  72.93,
+"ave_cltv": 75.056,
+"ave_fico": 720.14,
+"fillKey": "(718,725]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2006,
+"ave_dti": 38.483,
+"ave_ltv": 67.983,
+"ave_cltv": 69.363,
+"ave_fico": 720.49,
+"fillKey": "(718,725]" 
+} 
+},
+"2007": {
+ "NV": {
+ "state": "NV",
+"year":   2007,
+"ave_dti": 39.409,
+"ave_ltv": 71.702,
+"ave_cltv": 72.949,
+"ave_fico": 720.37,
+"fillKey": "(718,725]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2007,
+"ave_dti": 40.581,
+"ave_ltv": 61.901,
+"ave_cltv": 63.625,
+"ave_fico": 725.72,
+"fillKey": "(725,739]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2007,
+"ave_dti": 39.824,
+"ave_ltv": 73.197,
+"ave_cltv": 74.278,
+"ave_fico":  717.3,
+"fillKey": "(675,718]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2007,
+"ave_dti":  39.03,
+"ave_ltv": 65.318,
+"ave_cltv": 67.509,
+"ave_fico":  702.6,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2007,
+"ave_dti": 36.768,
+"ave_ltv":  77.09,
+"ave_cltv": 78.885,
+"ave_fico": 728.59,
+"fillKey": "(725,739]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2007,
+"ave_dti":  38.57,
+"ave_ltv": 76.064,
+"ave_cltv": 77.351,
+"ave_fico": 719.25,
+"fillKey": "(718,725]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2007,
+"ave_dti": 38.247,
+"ave_ltv": 74.605,
+"ave_cltv": 75.653,
+"ave_fico": 722.67,
+"fillKey": "(718,725]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2007,
+"ave_dti": 38.528,
+"ave_ltv": 71.824,
+"ave_cltv":  73.25,
+"ave_fico": 721.69,
+"fillKey": "(718,725]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2007,
+"ave_dti": 42.045,
+"ave_ltv": 65.026,
+"ave_cltv": 66.176,
+"ave_fico":  734.2,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2007,
+"ave_dti": 37.291,
+"ave_ltv": 75.218,
+"ave_cltv": 77.051,
+"ave_fico": 732.83,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2007,
+"ave_dti": 36.268,
+"ave_ltv": 78.702,
+"ave_cltv": 80.365,
+"ave_fico": 725.12,
+"fillKey": "(725,739]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2007,
+"ave_dti": 40.438,
+"ave_ltv": 70.734,
+"ave_cltv": 71.915,
+"ave_fico": 709.38,
+"fillKey": "(675,718]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2007,
+"ave_dti": 37.955,
+"ave_ltv": 74.691,
+"ave_cltv": 76.083,
+"ave_fico": 717.64,
+"fillKey": "(675,718]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2007,
+"ave_dti": 36.113,
+"ave_ltv": 77.309,
+"ave_cltv": 78.532,
+"ave_fico": 735.15,
+"fillKey": "(725,739]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2007,
+"ave_dti": 36.463,
+"ave_ltv": 76.808,
+"ave_cltv": 78.557,
+"ave_fico": 719.38,
+"fillKey": "(718,725]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2007,
+"ave_dti": 40.143,
+"ave_ltv": 69.555,
+"ave_cltv": 72.054,
+"ave_fico": 725.69,
+"fillKey": "(725,739]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2007,
+"ave_dti": 41.721,
+"ave_ltv": 72.837,
+"ave_cltv": 74.411,
+"ave_fico": 721.63,
+"fillKey": "(718,725]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2007,
+"ave_dti": 39.371,
+"ave_ltv": 76.621,
+"ave_cltv": 77.578,
+"ave_fico": 709.66,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2007,
+"ave_dti": 36.327,
+"ave_ltv": 77.945,
+"ave_cltv": 79.517,
+"ave_fico": 731.64,
+"fillKey": "(725,739]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2007,
+"ave_dti": 38.812,
+"ave_ltv": 74.635,
+"ave_cltv": 76.756,
+"ave_fico": 722.82,
+"fillKey": "(718,725]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2007,
+"ave_dti": 41.939,
+"ave_ltv": 72.154,
+"ave_cltv": 72.391,
+"ave_fico": 726.72,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2007,
+"ave_dti": 37.609,
+"ave_ltv": 75.979,
+"ave_cltv": 77.912,
+"ave_fico": 723.63,
+"fillKey": "(718,725]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2007,
+"ave_dti": 38.745,
+"ave_ltv": 72.918,
+"ave_cltv": 74.553,
+"ave_fico": 718.03,
+"fillKey": "(675,718]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2007,
+"ave_dti": 40.609,
+"ave_ltv": 70.414,
+"ave_cltv": 71.457,
+"ave_fico": 723.57,
+"fillKey": "(718,725]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2007,
+"ave_dti": 40.814,
+"ave_ltv": 69.422,
+"ave_cltv": 71.041,
+"ave_fico": 716.33,
+"fillKey": "(675,718]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2007,
+"ave_dti": 40.101,
+"ave_ltv": 71.393,
+"ave_cltv": 73.523,
+"ave_fico": 717.45,
+"fillKey": "(675,718]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2007,
+"ave_dti": 39.377,
+"ave_ltv": 69.645,
+"ave_cltv": 71.694,
+"ave_fico": 718.81,
+"fillKey": "(718,725]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2007,
+"ave_dti": 38.483,
+"ave_ltv": 75.775,
+"ave_cltv":  77.67,
+"ave_fico": 718.05,
+"fillKey": "(675,718]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2007,
+"ave_dti": 36.718,
+"ave_ltv": 77.206,
+"ave_cltv": 78.377,
+"ave_fico": 717.44,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2007,
+"ave_dti": 36.208,
+"ave_ltv": 75.598,
+"ave_cltv": 76.767,
+"ave_fico": 711.43,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2007,
+"ave_dti": 38.383,
+"ave_ltv": 74.474,
+"ave_cltv": 76.846,
+"ave_fico": 737.18,
+"fillKey": "(725,739]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2007,
+"ave_dti": 37.614,
+"ave_ltv": 76.512,
+"ave_cltv": 77.533,
+"ave_fico": 707.45,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2007,
+"ave_dti": 38.655,
+"ave_ltv": 78.643,
+"ave_cltv": 80.385,
+"ave_fico": 731.82,
+"fillKey": "(725,739]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2007,
+"ave_dti": 36.469,
+"ave_ltv": 80.159,
+"ave_cltv":  80.28,
+"ave_fico":  717.7,
+"fillKey": "(675,718]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2007,
+"ave_dti": 36.235,
+"ave_ltv":  79.24,
+"ave_cltv": 80.572,
+"ave_fico": 717.28,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2007,
+"ave_dti":  36.11,
+"ave_ltv": 77.194,
+"ave_cltv": 78.013,
+"ave_fico": 723.85,
+"fillKey": "(718,725]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2007,
+"ave_dti": 37.387,
+"ave_ltv":  77.03,
+"ave_cltv": 77.969,
+"ave_fico": 714.05,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2007,
+"ave_dti": 39.891,
+"ave_ltv": 71.801,
+"ave_cltv": 73.433,
+"ave_fico":  725.1,
+"fillKey": "(725,739]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2007,
+"ave_dti": 39.085,
+"ave_ltv": 69.333,
+"ave_cltv": 69.528,
+"ave_fico": 724.48,
+"fillKey": "(718,725]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2007,
+"ave_dti": 39.111,
+"ave_ltv": 75.004,
+"ave_cltv":  76.66,
+"ave_fico": 720.22,
+"fillKey": "(718,725]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2007,
+"ave_dti": 37.784,
+"ave_ltv": 77.949,
+"ave_cltv": 80.194,
+"ave_fico": 719.75,
+"fillKey": "(718,725]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2007,
+"ave_dti": 40.823,
+"ave_ltv": 70.477,
+"ave_cltv": 72.168,
+"ave_fico": 711.01,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2007,
+"ave_dti": 38.419,
+"ave_ltv": 74.747,
+"ave_cltv": 76.961,
+"ave_fico":  731.2,
+"fillKey": "(725,739]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2007,
+"ave_dti": 36.741,
+"ave_ltv": 78.579,
+"ave_cltv": 80.258,
+"ave_fico": 721.11,
+"fillKey": "(718,725]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2007,
+"ave_dti": 35.472,
+"ave_ltv": 77.457,
+"ave_cltv": 79.374,
+"ave_fico": 736.73,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2007,
+"ave_dti": 37.822,
+"ave_ltv": 75.555,
+"ave_cltv": 77.718,
+"ave_fico": 727.33,
+"fillKey": "(725,739]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2007,
+"ave_dti": 38.927,
+"ave_ltv":  71.82,
+"ave_cltv": 72.971,
+"ave_fico": 729.92,
+"fillKey": "(725,739]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2007,
+"ave_dti": 37.667,
+"ave_ltv": 77.084,
+"ave_cltv": 78.764,
+"ave_fico": 721.72,
+"fillKey": "(718,725]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2007,
+"ave_dti": 39.071,
+"ave_ltv": 69.546,
+"ave_cltv": 71.385,
+"ave_fico": 706.84,
+"fillKey": "(675,718]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2007,
+"ave_dti": 37.953,
+"ave_ltv": 77.004,
+"ave_cltv":  79.03,
+"ave_fico": 720.06,
+"fillKey": "(718,725]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2007,
+"ave_dti": 36.726,
+"ave_ltv": 76.402,
+"ave_cltv": 78.147,
+"ave_fico": 724.69,
+"fillKey": "(725,739]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2007,
+"ave_dti": 39.455,
+"ave_ltv": 71.624,
+"ave_cltv": 73.214,
+"ave_fico": 729.89,
+"fillKey": "(725,739]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2007,
+"ave_dti": 38.722,
+"ave_ltv": 71.382,
+"ave_cltv": 73.396,
+"ave_fico": 721.28,
+"fillKey": "(718,725]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2007,
+"ave_dti": 38.876,
+"ave_ltv": 73.827,
+"ave_cltv": 75.267,
+"ave_fico":  718.9,
+"fillKey": "(718,725]" 
+} 
+},
+"2008": {
+ "VA": {
+ "state": "VA",
+"year":   2008,
+"ave_dti": 37.798,
+"ave_ltv": 72.096,
+"ave_cltv": 73.545,
+"ave_fico": 743.31,
+"fillKey": "(739,761]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2008,
+"ave_dti": 38.821,
+"ave_ltv": 71.778,
+"ave_cltv":  72.61,
+"ave_fico": 745.66,
+"fillKey": "(739,761]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2008,
+"ave_dti": 38.282,
+"ave_ltv": 74.082,
+"ave_cltv": 74.907,
+"ave_fico":    737,
+"fillKey": "(725,739]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2008,
+"ave_dti": 39.164,
+"ave_ltv": 74.355,
+"ave_cltv": 74.741,
+"ave_fico": 743.53,
+"fillKey": "(739,761]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2008,
+"ave_dti": 39.289,
+"ave_ltv": 68.162,
+"ave_cltv": 69.275,
+"ave_fico":  749.6,
+"fillKey": "(739,761]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2008,
+"ave_dti": 39.042,
+"ave_ltv": 73.173,
+"ave_cltv": 73.867,
+"ave_fico": 733.33,
+"fillKey": "(725,739]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2008,
+"ave_dti": 36.846,
+"ave_ltv": 67.823,
+"ave_cltv": 69.623,
+"ave_fico": 733.25,
+"fillKey": "(725,739]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2008,
+"ave_dti": 35.599,
+"ave_ltv": 76.993,
+"ave_cltv": 78.068,
+"ave_fico": 744.65,
+"fillKey": "(739,761]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2008,
+"ave_dti": 38.034,
+"ave_ltv": 75.337,
+"ave_cltv": 76.487,
+"ave_fico": 737.61,
+"fillKey": "(725,739]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2008,
+"ave_dti": 37.525,
+"ave_ltv": 74.452,
+"ave_cltv": 75.159,
+"ave_fico": 736.19,
+"fillKey": "(725,739]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2008,
+"ave_dti": 37.963,
+"ave_ltv":  72.55,
+"ave_cltv":  73.25,
+"ave_fico": 743.47,
+"fillKey": "(739,761]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2008,
+"ave_dti": 42.668,
+"ave_ltv": 66.151,
+"ave_cltv": 66.969,
+"ave_fico":  742.5,
+"fillKey": "(739,761]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2008,
+"ave_dti": 35.849,
+"ave_ltv":  75.58,
+"ave_cltv":  77.02,
+"ave_fico":  749.2,
+"fillKey": "(739,761]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2008,
+"ave_dti":  35.59,
+"ave_ltv": 79.478,
+"ave_cltv": 80.339,
+"ave_fico": 742.59,
+"fillKey": "(739,761]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2008,
+"ave_dti": 40.418,
+"ave_ltv": 72.026,
+"ave_cltv": 72.762,
+"ave_fico": 731.55,
+"fillKey": "(725,739]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2008,
+"ave_dti": 37.973,
+"ave_ltv": 74.093,
+"ave_cltv":  74.86,
+"ave_fico": 734.84,
+"fillKey": "(725,739]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2008,
+"ave_dti": 35.517,
+"ave_ltv": 77.977,
+"ave_cltv": 79.328,
+"ave_fico": 747.54,
+"fillKey": "(739,761]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2008,
+"ave_dti": 35.014,
+"ave_ltv": 76.124,
+"ave_cltv": 77.373,
+"ave_fico": 740.37,
+"fillKey": "(739,761]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2008,
+"ave_dti": 38.638,
+"ave_ltv": 70.883,
+"ave_cltv": 72.379,
+"ave_fico": 742.88,
+"fillKey": "(739,761]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2008,
+"ave_dti": 37.804,
+"ave_ltv": 75.636,
+"ave_cltv": 75.954,
+"ave_fico": 730.21,
+"fillKey": "(725,739]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2008,
+"ave_dti": 40.502,
+"ave_ltv":  73.22,
+"ave_cltv": 74.145,
+"ave_fico": 737.83,
+"fillKey": "(725,739]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2008,
+"ave_dti": 35.097,
+"ave_ltv": 78.942,
+"ave_cltv": 80.271,
+"ave_fico": 747.07,
+"fillKey": "(739,761]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2008,
+"ave_dti":  38.21,
+"ave_ltv": 74.618,
+"ave_cltv": 76.223,
+"ave_fico": 741.05,
+"fillKey": "(739,761]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2008,
+"ave_dti": 41.033,
+"ave_ltv": 68.103,
+"ave_cltv": 68.285,
+"ave_fico": 734.06,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2008,
+"ave_dti": 37.239,
+"ave_ltv": 75.369,
+"ave_cltv": 76.855,
+"ave_fico": 739.65,
+"fillKey": "(739,761]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2008,
+"ave_dti": 37.997,
+"ave_ltv": 72.556,
+"ave_cltv": 73.419,
+"ave_fico": 736.81,
+"fillKey": "(725,739]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2008,
+"ave_dti": 40.462,
+"ave_ltv": 71.582,
+"ave_cltv":  72.16,
+"ave_fico": 738.73,
+"fillKey": "(725,739]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2008,
+"ave_dti": 39.845,
+"ave_ltv": 70.242,
+"ave_cltv": 71.145,
+"ave_fico": 736.71,
+"fillKey": "(725,739]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2008,
+"ave_dti": 39.246,
+"ave_ltv": 71.829,
+"ave_cltv": 72.944,
+"ave_fico": 736.91,
+"fillKey": "(725,739]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2008,
+"ave_dti": 39.771,
+"ave_ltv": 69.761,
+"ave_cltv": 70.965,
+"ave_fico": 734.23,
+"fillKey": "(725,739]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2008,
+"ave_dti":  38.13,
+"ave_ltv": 76.261,
+"ave_cltv": 77.244,
+"ave_fico": 734.99,
+"fillKey": "(725,739]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2008,
+"ave_dti": 36.276,
+"ave_ltv": 76.854,
+"ave_cltv": 77.823,
+"ave_fico": 734.75,
+"fillKey": "(725,739]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2008,
+"ave_dti":   35.4,
+"ave_ltv": 76.015,
+"ave_cltv": 76.985,
+"ave_fico": 731.07,
+"fillKey": "(725,739]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2008,
+"ave_dti": 37.135,
+"ave_ltv": 74.483,
+"ave_cltv": 75.954,
+"ave_fico": 752.05,
+"fillKey": "(739,761]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2008,
+"ave_dti": 37.541,
+"ave_ltv": 76.205,
+"ave_cltv": 76.854,
+"ave_fico": 723.48,
+"fillKey": "(718,725]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2008,
+"ave_dti": 36.736,
+"ave_ltv": 79.325,
+"ave_cltv":   80.4,
+"ave_fico": 745.45,
+"fillKey": "(739,761]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2008,
+"ave_dti": 36.017,
+"ave_ltv": 76.817,
+"ave_cltv": 76.817,
+"ave_fico": 736.78,
+"fillKey": "(725,739]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2008,
+"ave_dti": 36.364,
+"ave_ltv": 78.628,
+"ave_cltv": 79.334,
+"ave_fico": 733.59,
+"fillKey": "(725,739]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2008,
+"ave_dti": 35.468,
+"ave_ltv": 75.717,
+"ave_cltv": 76.377,
+"ave_fico": 738.86,
+"fillKey": "(739,761]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2008,
+"ave_dti": 36.198,
+"ave_ltv": 76.971,
+"ave_cltv":  77.76,
+"ave_fico":  729.3,
+"fillKey": "(725,739]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2008,
+"ave_dti": 38.947,
+"ave_ltv": 71.763,
+"ave_cltv": 72.816,
+"ave_fico": 743.22,
+"fillKey": "(739,761]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2008,
+"ave_dti": 40.145,
+"ave_ltv": 71.711,
+"ave_cltv": 71.843,
+"ave_fico": 731.09,
+"fillKey": "(725,739]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2008,
+"ave_dti": 38.043,
+"ave_ltv": 74.539,
+"ave_cltv":   75.4,
+"ave_fico":  740.8,
+"fillKey": "(739,761]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2008,
+"ave_dti": 37.887,
+"ave_ltv": 78.697,
+"ave_cltv": 80.042,
+"ave_fico": 733.88,
+"fillKey": "(725,739]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2008,
+"ave_dti": 40.201,
+"ave_ltv": 70.558,
+"ave_cltv": 71.454,
+"ave_fico": 732.78,
+"fillKey": "(725,739]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2008,
+"ave_dti": 37.044,
+"ave_ltv": 75.566,
+"ave_cltv": 77.111,
+"ave_fico": 748.69,
+"fillKey": "(739,761]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2008,
+"ave_dti": 35.809,
+"ave_ltv": 78.026,
+"ave_cltv": 79.169,
+"ave_fico": 739.27,
+"fillKey": "(739,761]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2008,
+"ave_dti": 34.477,
+"ave_ltv": 78.083,
+"ave_cltv": 79.708,
+"ave_fico": 750.05,
+"fillKey": "(739,761]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2008,
+"ave_dti": 36.971,
+"ave_ltv": 75.633,
+"ave_cltv": 76.787,
+"ave_fico": 745.27,
+"fillKey": "(739,761]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2008,
+"ave_dti": 38.688,
+"ave_ltv": 71.722,
+"ave_cltv": 72.435,
+"ave_fico": 743.17,
+"fillKey": "(739,761]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2008,
+"ave_dti": 36.795,
+"ave_ltv": 76.566,
+"ave_cltv": 77.858,
+"ave_fico": 738.11,
+"fillKey": "(725,739]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2008,
+"ave_dti": 38.249,
+"ave_ltv": 69.871,
+"ave_cltv": 71.131,
+"ave_fico": 732.65,
+"fillKey": "(725,739]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2008,
+"ave_dti":  37.51,
+"ave_ltv": 76.707,
+"ave_cltv": 78.141,
+"ave_fico": 738.34,
+"fillKey": "(725,739]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2008,
+"ave_dti": 35.787,
+"ave_ltv": 76.397,
+"ave_cltv": 77.456,
+"ave_fico": 742.18,
+"fillKey": "(739,761]" 
+} 
+},
+"2009": {
+ "ID": {
+ "state": "ID",
+"year":   2009,
+"ave_dti": 33.332,
+"ave_ltv": 69.352,
+"ave_cltv": 70.169,
+"ave_fico":  760.3,
+"fillKey": "(739,761]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2009,
+"ave_dti": 32.787,
+"ave_ltv": 66.907,
+"ave_cltv":  68.16,
+"ave_fico": 765.25,
+"fillKey": "(761,774]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2009,
+"ave_dti": 33.994,
+"ave_ltv": 66.783,
+"ave_cltv": 67.597,
+"ave_fico": 766.39,
+"fillKey": "(761,774]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2009,
+"ave_dti": 35.073,
+"ave_ltv": 71.148,
+"ave_cltv": 71.527,
+"ave_fico": 763.24,
+"fillKey": "(761,774]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2009,
+"ave_dti": 35.926,
+"ave_ltv": 62.457,
+"ave_cltv": 63.669,
+"ave_fico": 766.85,
+"fillKey": "(761,774]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2009,
+"ave_dti": 33.975,
+"ave_ltv":  67.27,
+"ave_cltv": 68.385,
+"ave_fico": 758.85,
+"fillKey": "(739,761]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2009,
+"ave_dti": 32.568,
+"ave_ltv": 63.669,
+"ave_cltv": 64.955,
+"ave_fico": 762.31,
+"fillKey": "(761,774]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2009,
+"ave_dti": 31.318,
+"ave_ltv": 72.846,
+"ave_cltv": 74.337,
+"ave_fico": 763.24,
+"fillKey": "(761,774]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2009,
+"ave_dti": 33.307,
+"ave_ltv": 68.598,
+"ave_cltv": 69.927,
+"ave_fico": 761.11,
+"fillKey": "(761,774]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2009,
+"ave_dti":  33.44,
+"ave_ltv":  68.35,
+"ave_cltv": 69.123,
+"ave_fico": 754.26,
+"fillKey": "(739,761]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2009,
+"ave_dti": 33.769,
+"ave_ltv": 68.968,
+"ave_cltv": 69.684,
+"ave_fico": 766.56,
+"fillKey": "(761,774]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2009,
+"ave_dti": 37.465,
+"ave_ltv": 60.127,
+"ave_cltv": 60.963,
+"ave_fico": 763.12,
+"fillKey": "(761,774]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2009,
+"ave_dti":  31.25,
+"ave_ltv": 71.071,
+"ave_cltv": 72.549,
+"ave_fico": 767.63,
+"fillKey": "(761,774]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2009,
+"ave_dti": 31.035,
+"ave_ltv":  74.56,
+"ave_cltv": 75.498,
+"ave_fico":  762.6,
+"fillKey": "(761,774]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2009,
+"ave_dti": 35.969,
+"ave_ltv": 67.877,
+"ave_cltv":  68.65,
+"ave_fico": 761.04,
+"fillKey": "(761,774]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2009,
+"ave_dti": 33.375,
+"ave_ltv": 67.655,
+"ave_cltv": 68.659,
+"ave_fico": 759.49,
+"fillKey": "(739,761]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2009,
+"ave_dti": 32.771,
+"ave_ltv": 73.465,
+"ave_cltv": 75.008,
+"ave_fico": 763.87,
+"fillKey": "(761,774]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2009,
+"ave_dti": 31.252,
+"ave_ltv": 72.053,
+"ave_cltv": 73.339,
+"ave_fico": 759.07,
+"fillKey": "(739,761]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2009,
+"ave_dti": 33.919,
+"ave_ltv":  65.04,
+"ave_cltv":  66.71,
+"ave_fico": 762.36,
+"fillKey": "(761,774]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2009,
+"ave_dti":  35.61,
+"ave_ltv":  68.35,
+"ave_cltv": 69.383,
+"ave_fico": 760.54,
+"fillKey": "(739,761]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2009,
+"ave_dti": 32.952,
+"ave_ltv": 72.349,
+"ave_cltv": 72.657,
+"ave_fico": 751.67,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2009,
+"ave_dti": 30.907,
+"ave_ltv": 74.752,
+"ave_cltv": 76.349,
+"ave_fico": 764.32,
+"fillKey": "(761,774]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2009,
+"ave_dti":  33.21,
+"ave_ltv": 69.491,
+"ave_cltv": 71.011,
+"ave_fico":  762.6,
+"fillKey": "(761,774]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2009,
+"ave_dti": 40.366,
+"ave_ltv": 63.065,
+"ave_cltv": 63.254,
+"ave_fico": 735.25,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2009,
+"ave_dti": 32.221,
+"ave_ltv": 69.202,
+"ave_cltv":   70.7,
+"ave_fico": 762.87,
+"fillKey": "(761,774]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2009,
+"ave_dti": 33.407,
+"ave_ltv": 66.931,
+"ave_cltv": 67.783,
+"ave_fico": 761.61,
+"fillKey": "(761,774]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2009,
+"ave_dti": 35.677,
+"ave_ltv": 65.836,
+"ave_cltv": 67.033,
+"ave_fico": 759.42,
+"fillKey": "(739,761]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2009,
+"ave_dti": 34.995,
+"ave_ltv": 65.106,
+"ave_cltv": 66.887,
+"ave_fico": 760.09,
+"fillKey": "(739,761]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2009,
+"ave_dti": 34.277,
+"ave_ltv": 65.072,
+"ave_cltv": 66.711,
+"ave_fico": 760.25,
+"fillKey": "(739,761]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2009,
+"ave_dti": 35.993,
+"ave_ltv": 64.156,
+"ave_cltv": 65.306,
+"ave_fico": 756.84,
+"fillKey": "(739,761]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2009,
+"ave_dti": 33.102,
+"ave_ltv": 70.468,
+"ave_cltv": 71.668,
+"ave_fico": 759.64,
+"fillKey": "(739,761]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2009,
+"ave_dti": 31.553,
+"ave_ltv": 71.888,
+"ave_cltv": 73.169,
+"ave_fico": 757.76,
+"fillKey": "(739,761]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2009,
+"ave_dti": 31.331,
+"ave_ltv": 72.546,
+"ave_cltv": 73.401,
+"ave_fico":  755.3,
+"fillKey": "(739,761]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2009,
+"ave_dti": 33.067,
+"ave_ltv": 68.303,
+"ave_cltv": 69.694,
+"ave_fico": 767.57,
+"fillKey": "(761,774]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2009,
+"ave_dti": 33.003,
+"ave_ltv": 71.999,
+"ave_cltv": 72.925,
+"ave_fico": 749.12,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2009,
+"ave_dti":  32.23,
+"ave_ltv": 75.082,
+"ave_cltv": 76.628,
+"ave_fico": 762.54,
+"fillKey": "(761,774]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2009,
+"ave_dti": 31.136,
+"ave_ltv": 71.932,
+"ave_cltv": 72.093,
+"ave_fico": 743.39,
+"fillKey": "(739,761]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2009,
+"ave_dti": 32.419,
+"ave_ltv": 74.022,
+"ave_cltv": 74.834,
+"ave_fico": 755.78,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2009,
+"ave_dti": 31.578,
+"ave_ltv": 72.141,
+"ave_cltv": 72.982,
+"ave_fico": 759.58,
+"fillKey": "(739,761]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2009,
+"ave_dti":  31.72,
+"ave_ltv": 72.639,
+"ave_cltv": 73.842,
+"ave_fico": 750.62,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2009,
+"ave_dti": 34.167,
+"ave_ltv": 66.323,
+"ave_cltv": 67.376,
+"ave_fico": 764.59,
+"fillKey": "(761,774]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2009,
+"ave_dti": 37.999,
+"ave_ltv": 67.721,
+"ave_cltv": 67.938,
+"ave_fico": 737.09,
+"fillKey": "(725,739]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2009,
+"ave_dti": 33.481,
+"ave_ltv": 70.265,
+"ave_cltv": 71.127,
+"ave_fico": 760.67,
+"fillKey": "(761,774]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2009,
+"ave_dti": 35.569,
+"ave_ltv": 65.324,
+"ave_cltv":  66.32,
+"ave_fico":    758,
+"fillKey": "(739,761]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2009,
+"ave_dti": 33.878,
+"ave_ltv": 74.049,
+"ave_cltv": 75.141,
+"ave_fico": 754.31,
+"fillKey": "(739,761]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2009,
+"ave_dti": 32.121,
+"ave_ltv": 70.663,
+"ave_cltv": 71.961,
+"ave_fico":  767.4,
+"fillKey": "(761,774]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2009,
+"ave_dti": 30.871,
+"ave_ltv": 73.667,
+"ave_cltv": 74.975,
+"ave_fico": 762.37,
+"fillKey": "(761,774]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2009,
+"ave_dti": 31.238,
+"ave_ltv": 74.128,
+"ave_cltv": 75.637,
+"ave_fico":  765.8,
+"fillKey": "(761,774]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2009,
+"ave_dti": 33.032,
+"ave_ltv": 71.337,
+"ave_cltv": 72.516,
+"ave_fico":  765.7,
+"fillKey": "(761,774]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2009,
+"ave_dti": 34.024,
+"ave_ltv": 66.707,
+"ave_cltv": 67.586,
+"ave_fico": 760.95,
+"fillKey": "(761,774]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2009,
+"ave_dti":  32.44,
+"ave_ltv": 71.338,
+"ave_cltv": 72.794,
+"ave_fico": 759.26,
+"fillKey": "(739,761]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2009,
+"ave_dti": 33.079,
+"ave_ltv": 65.374,
+"ave_cltv": 66.675,
+"ave_fico": 761.78,
+"fillKey": "(761,774]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2009,
+"ave_dti": 32.651,
+"ave_ltv":   70.6,
+"ave_cltv": 72.029,
+"ave_fico": 763.16,
+"fillKey": "(761,774]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2009,
+"ave_dti": 31.458,
+"ave_ltv": 71.744,
+"ave_cltv": 72.868,
+"ave_fico": 763.26,
+"fillKey": "(761,774]" 
+} 
+},
+"2010": {
+ "MT": {
+ "state": "MT",
+"year":   2010,
+"ave_dti": 32.229,
+"ave_ltv": 69.516,
+"ave_cltv": 70.201,
+"ave_fico": 763.97,
+"fillKey": "(761,774]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2010,
+"ave_dti": 31.031,
+"ave_ltv": 73.007,
+"ave_cltv": 74.152,
+"ave_fico": 761.66,
+"fillKey": "(761,774]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2010,
+"ave_dti": 31.569,
+"ave_ltv": 67.396,
+"ave_cltv": 68.738,
+"ave_fico": 766.31,
+"fillKey": "(761,774]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2010,
+"ave_dti": 30.276,
+"ave_ltv": 72.935,
+"ave_cltv": 74.063,
+"ave_fico": 766.01,
+"fillKey": "(761,774]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2010,
+"ave_dti": 31.187,
+"ave_ltv":  72.95,
+"ave_cltv": 73.953,
+"ave_fico": 765.12,
+"fillKey": "(761,774]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2010,
+"ave_dti": 32.058,
+"ave_ltv": 72.402,
+"ave_cltv": 72.997,
+"ave_fico": 765.09,
+"fillKey": "(761,774]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2010,
+"ave_dti": 31.649,
+"ave_ltv": 68.988,
+"ave_cltv": 70.131,
+"ave_fico":  768.1,
+"fillKey": "(761,774]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2010,
+"ave_dti": 32.659,
+"ave_ltv": 68.966,
+"ave_cltv": 69.765,
+"ave_fico":  771.2,
+"fillKey": "(761,774]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2010,
+"ave_dti": 33.273,
+"ave_ltv": 73.035,
+"ave_cltv": 73.342,
+"ave_fico": 766.37,
+"fillKey": "(761,774]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2010,
+"ave_dti": 34.346,
+"ave_ltv": 64.657,
+"ave_cltv": 65.948,
+"ave_fico": 770.23,
+"fillKey": "(761,774]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2010,
+"ave_dti": 32.787,
+"ave_ltv": 69.346,
+"ave_cltv": 70.325,
+"ave_fico": 763.97,
+"fillKey": "(761,774]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2010,
+"ave_dti": 31.102,
+"ave_ltv": 66.825,
+"ave_cltv": 68.247,
+"ave_fico":  765.8,
+"fillKey": "(761,774]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2010,
+"ave_dti": 30.964,
+"ave_ltv": 75.141,
+"ave_cltv": 76.437,
+"ave_fico": 763.98,
+"fillKey": "(761,774]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2010,
+"ave_dti": 31.591,
+"ave_ltv": 71.374,
+"ave_cltv": 72.501,
+"ave_fico": 764.35,
+"fillKey": "(761,774]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2010,
+"ave_dti": 31.658,
+"ave_ltv": 71.693,
+"ave_cltv": 72.341,
+"ave_fico": 759.63,
+"fillKey": "(739,761]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2010,
+"ave_dti": 34.315,
+"ave_ltv": 61.751,
+"ave_cltv": 62.443,
+"ave_fico": 769.54,
+"fillKey": "(761,774]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2010,
+"ave_dti": 32.115,
+"ave_ltv": 71.622,
+"ave_cltv": 72.158,
+"ave_fico": 770.75,
+"fillKey": "(761,774]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2010,
+"ave_dti": 30.515,
+"ave_ltv": 72.509,
+"ave_cltv": 74.023,
+"ave_fico": 769.95,
+"fillKey": "(761,774]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2010,
+"ave_dti":   30.4,
+"ave_ltv": 75.635,
+"ave_cltv": 76.516,
+"ave_fico": 766.08,
+"fillKey": "(761,774]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2010,
+"ave_dti": 33.946,
+"ave_ltv": 70.715,
+"ave_cltv": 71.178,
+"ave_fico": 763.94,
+"fillKey": "(761,774]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2010,
+"ave_dti": 31.322,
+"ave_ltv": 69.755,
+"ave_cltv": 70.547,
+"ave_fico": 764.07,
+"fillKey": "(761,774]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2010,
+"ave_dti": 31.882,
+"ave_ltv": 74.817,
+"ave_cltv": 76.377,
+"ave_fico": 763.19,
+"fillKey": "(761,774]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2010,
+"ave_dti": 30.283,
+"ave_ltv": 73.088,
+"ave_cltv": 74.428,
+"ave_fico": 761.92,
+"fillKey": "(761,774]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2010,
+"ave_dti": 32.001,
+"ave_ltv": 67.075,
+"ave_cltv": 68.838,
+"ave_fico": 766.64,
+"fillKey": "(761,774]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2010,
+"ave_dti": 33.213,
+"ave_ltv":  69.88,
+"ave_cltv": 71.029,
+"ave_fico": 766.26,
+"fillKey": "(761,774]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2010,
+"ave_dti": 31.788,
+"ave_ltv": 73.028,
+"ave_cltv": 73.418,
+"ave_fico": 755.07,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2010,
+"ave_dti": 30.612,
+"ave_ltv": 75.574,
+"ave_cltv": 77.238,
+"ave_fico": 765.57,
+"fillKey": "(761,774]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2010,
+"ave_dti":   31.8,
+"ave_ltv": 70.616,
+"ave_cltv": 72.202,
+"ave_fico": 766.73,
+"fillKey": "(761,774]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2010,
+"ave_dti": 35.841,
+"ave_ltv": 65.336,
+"ave_cltv": 65.694,
+"ave_fico":  738.8,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2010,
+"ave_dti":  31.15,
+"ave_ltv":  71.72,
+"ave_cltv": 73.067,
+"ave_fico": 765.81,
+"fillKey": "(761,774]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2010,
+"ave_dti": 31.864,
+"ave_ltv": 68.879,
+"ave_cltv": 69.783,
+"ave_fico": 766.45,
+"fillKey": "(761,774]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2010,
+"ave_dti": 33.447,
+"ave_ltv":  68.58,
+"ave_cltv": 69.843,
+"ave_fico": 762.76,
+"fillKey": "(761,774]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2010,
+"ave_dti": 33.369,
+"ave_ltv":  67.45,
+"ave_cltv": 69.353,
+"ave_fico": 766.13,
+"fillKey": "(761,774]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2010,
+"ave_dti": 32.658,
+"ave_ltv": 67.926,
+"ave_cltv": 69.306,
+"ave_fico": 764.49,
+"fillKey": "(761,774]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2010,
+"ave_dti": 33.937,
+"ave_ltv": 66.576,
+"ave_cltv": 67.462,
+"ave_fico": 761.49,
+"fillKey": "(761,774]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2010,
+"ave_dti": 31.928,
+"ave_ltv": 71.963,
+"ave_cltv": 73.229,
+"ave_fico": 762.77,
+"fillKey": "(761,774]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2010,
+"ave_dti": 29.977,
+"ave_ltv": 73.707,
+"ave_cltv": 74.627,
+"ave_fico": 760.21,
+"fillKey": "(739,761]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2010,
+"ave_dti": 30.049,
+"ave_ltv": 74.388,
+"ave_cltv":  75.12,
+"ave_fico":  758.5,
+"fillKey": "(739,761]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2010,
+"ave_dti": 31.438,
+"ave_ltv": 70.414,
+"ave_cltv": 71.935,
+"ave_fico": 771.63,
+"fillKey": "(761,774]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2010,
+"ave_dti": 31.263,
+"ave_ltv": 72.818,
+"ave_cltv": 73.743,
+"ave_fico": 752.47,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2010,
+"ave_dti": 31.519,
+"ave_ltv": 75.761,
+"ave_cltv": 76.988,
+"ave_fico": 765.23,
+"fillKey": "(761,774]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2010,
+"ave_dti": 30.342,
+"ave_ltv": 68.513,
+"ave_cltv": 69.184,
+"ave_fico": 744.92,
+"fillKey": "(739,761]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2010,
+"ave_dti": 31.066,
+"ave_ltv": 74.728,
+"ave_cltv":  75.53,
+"ave_fico": 758.75,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2010,
+"ave_dti": 30.455,
+"ave_ltv": 73.754,
+"ave_cltv": 74.417,
+"ave_fico": 761.98,
+"fillKey": "(761,774]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2010,
+"ave_dti": 30.007,
+"ave_ltv": 73.476,
+"ave_cltv": 74.811,
+"ave_fico": 753.01,
+"fillKey": "(739,761]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2010,
+"ave_dti": 34.665,
+"ave_ltv": 68.114,
+"ave_cltv": 68.279,
+"ave_fico": 744.03,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2010,
+"ave_dti": 32.598,
+"ave_ltv": 68.475,
+"ave_cltv": 69.522,
+"ave_fico": 767.98,
+"fillKey": "(761,774]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2010,
+"ave_dti": 32.161,
+"ave_ltv": 72.529,
+"ave_cltv": 73.222,
+"ave_fico": 765.83,
+"fillKey": "(761,774]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2010,
+"ave_dti": 32.584,
+"ave_ltv": 74.884,
+"ave_cltv": 76.001,
+"ave_fico": 758.37,
+"fillKey": "(739,761]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2010,
+"ave_dti": 33.821,
+"ave_ltv": 67.669,
+"ave_cltv":  68.59,
+"ave_fico": 762.76,
+"fillKey": "(761,774]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2010,
+"ave_dti": 31.322,
+"ave_ltv": 72.624,
+"ave_cltv": 74.038,
+"ave_fico":  770.3,
+"fillKey": "(761,774]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2010,
+"ave_dti": 29.834,
+"ave_ltv": 75.005,
+"ave_cltv": 76.214,
+"ave_fico": 764.05,
+"fillKey": "(761,774]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2010,
+"ave_dti": 30.316,
+"ave_ltv": 74.967,
+"ave_cltv": 76.252,
+"ave_fico": 768.15,
+"fillKey": "(761,774]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2010,
+"ave_dti":  31.81,
+"ave_ltv": 73.619,
+"ave_cltv": 74.578,
+"ave_fico": 766.88,
+"fillKey": "(761,774]" 
+} 
+},
+"2011": {
+ "MT": {
+ "state": "MT",
+"year":   2011,
+"ave_dti": 33.019,
+"ave_ltv": 72.307,
+"ave_cltv": 72.908,
+"ave_fico": 762.31,
+"fillKey": "(761,774]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2011,
+"ave_dti": 31.822,
+"ave_ltv": 75.505,
+"ave_cltv": 76.379,
+"ave_fico": 759.83,
+"fillKey": "(739,761]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2011,
+"ave_dti": 32.024,
+"ave_ltv": 69.947,
+"ave_cltv": 71.165,
+"ave_fico": 765.72,
+"fillKey": "(761,774]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2011,
+"ave_dti": 31.199,
+"ave_ltv": 75.587,
+"ave_cltv": 76.518,
+"ave_fico": 762.81,
+"fillKey": "(761,774]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2011,
+"ave_dti": 31.885,
+"ave_ltv": 75.985,
+"ave_cltv": 76.851,
+"ave_fico": 763.04,
+"fillKey": "(761,774]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2011,
+"ave_dti": 32.854,
+"ave_ltv": 71.897,
+"ave_cltv": 72.652,
+"ave_fico": 771.18,
+"fillKey": "(761,774]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2011,
+"ave_dti": 31.887,
+"ave_ltv": 71.056,
+"ave_cltv": 72.161,
+"ave_fico": 767.28,
+"fillKey": "(761,774]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2011,
+"ave_dti": 32.303,
+"ave_ltv": 75.441,
+"ave_cltv": 75.881,
+"ave_fico": 764.16,
+"fillKey": "(761,774]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2011,
+"ave_dti": 33.737,
+"ave_ltv": 76.007,
+"ave_cltv": 76.164,
+"ave_fico": 765.35,
+"fillKey": "(761,774]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2011,
+"ave_dti": 34.379,
+"ave_ltv": 66.425,
+"ave_cltv": 67.641,
+"ave_fico": 771.04,
+"fillKey": "(761,774]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2011,
+"ave_dti": 33.587,
+"ave_ltv": 71.604,
+"ave_cltv": 72.275,
+"ave_fico": 761.56,
+"fillKey": "(761,774]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2011,
+"ave_dti":  31.08,
+"ave_ltv": 68.103,
+"ave_cltv": 69.747,
+"ave_fico": 765.24,
+"fillKey": "(761,774]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2011,
+"ave_dti": 31.771,
+"ave_ltv": 77.471,
+"ave_cltv": 78.411,
+"ave_fico": 761.73,
+"fillKey": "(761,774]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2011,
+"ave_dti": 32.083,
+"ave_ltv": 74.019,
+"ave_cltv": 74.882,
+"ave_fico": 762.85,
+"fillKey": "(761,774]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2011,
+"ave_dti": 32.245,
+"ave_ltv": 75.288,
+"ave_cltv": 75.938,
+"ave_fico": 758.46,
+"fillKey": "(739,761]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2011,
+"ave_dti": 32.886,
+"ave_ltv": 75.252,
+"ave_cltv": 75.561,
+"ave_fico": 769.45,
+"fillKey": "(761,774]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2011,
+"ave_dti": 34.902,
+"ave_ltv": 64.031,
+"ave_cltv": 64.783,
+"ave_fico": 769.22,
+"fillKey": "(761,774]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2011,
+"ave_dti":   31.1,
+"ave_ltv": 74.341,
+"ave_cltv": 75.495,
+"ave_fico": 769.19,
+"fillKey": "(761,774]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2011,
+"ave_dti": 31.562,
+"ave_ltv":  77.96,
+"ave_cltv": 78.627,
+"ave_fico":  762.1,
+"fillKey": "(761,774]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2011,
+"ave_dti":   34.4,
+"ave_ltv": 72.614,
+"ave_cltv": 72.989,
+"ave_fico": 762.77,
+"fillKey": "(761,774]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2011,
+"ave_dti": 31.893,
+"ave_ltv": 71.868,
+"ave_cltv": 72.562,
+"ave_fico": 762.46,
+"fillKey": "(761,774]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2011,
+"ave_dti": 32.817,
+"ave_ltv": 76.881,
+"ave_cltv": 77.937,
+"ave_fico": 763.31,
+"fillKey": "(761,774]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2011,
+"ave_dti": 31.223,
+"ave_ltv": 75.144,
+"ave_cltv": 76.207,
+"ave_fico": 759.01,
+"fillKey": "(739,761]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2011,
+"ave_dti": 32.482,
+"ave_ltv": 69.282,
+"ave_cltv":   70.7,
+"ave_fico": 765.07,
+"fillKey": "(761,774]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2011,
+"ave_dti":   33.9,
+"ave_ltv": 72.675,
+"ave_cltv": 73.454,
+"ave_fico": 762.97,
+"fillKey": "(761,774]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2011,
+"ave_dti": 32.639,
+"ave_ltv": 73.627,
+"ave_cltv": 73.894,
+"ave_fico": 754.64,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2011,
+"ave_dti": 31.238,
+"ave_ltv": 77.705,
+"ave_cltv": 79.241,
+"ave_fico": 763.06,
+"fillKey": "(761,774]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2011,
+"ave_dti": 32.434,
+"ave_ltv": 73.085,
+"ave_cltv": 74.479,
+"ave_fico":  763.7,
+"fillKey": "(761,774]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2011,
+"ave_dti": 35.371,
+"ave_ltv": 64.946,
+"ave_cltv": 65.246,
+"ave_fico": 738.05,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2011,
+"ave_dti": 31.425,
+"ave_ltv": 73.997,
+"ave_cltv": 75.192,
+"ave_fico": 765.14,
+"fillKey": "(761,774]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2011,
+"ave_dti": 32.595,
+"ave_ltv": 71.486,
+"ave_cltv": 72.313,
+"ave_fico": 765.33,
+"fillKey": "(761,774]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2011,
+"ave_dti": 33.507,
+"ave_ltv": 70.428,
+"ave_cltv": 71.509,
+"ave_fico": 761.18,
+"fillKey": "(761,774]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2011,
+"ave_dti": 33.586,
+"ave_ltv": 70.341,
+"ave_cltv": 71.586,
+"ave_fico": 763.52,
+"fillKey": "(761,774]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2011,
+"ave_dti": 33.235,
+"ave_ltv": 70.489,
+"ave_cltv": 71.583,
+"ave_fico": 762.43,
+"fillKey": "(761,774]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2011,
+"ave_dti": 34.175,
+"ave_ltv":   68.3,
+"ave_cltv":  69.04,
+"ave_fico": 761.27,
+"fillKey": "(761,774]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2011,
+"ave_dti":   32.5,
+"ave_ltv": 74.004,
+"ave_cltv":  75.11,
+"ave_fico": 761.97,
+"fillKey": "(761,774]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2011,
+"ave_dti": 30.893,
+"ave_ltv":  76.23,
+"ave_cltv": 77.023,
+"ave_fico": 758.52,
+"fillKey": "(739,761]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2011,
+"ave_dti": 30.633,
+"ave_ltv":  75.61,
+"ave_cltv": 76.259,
+"ave_fico": 754.83,
+"fillKey": "(739,761]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2011,
+"ave_dti": 32.128,
+"ave_ltv": 73.028,
+"ave_cltv": 74.326,
+"ave_fico": 770.14,
+"fillKey": "(761,774]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2011,
+"ave_dti":  32.08,
+"ave_ltv": 74.931,
+"ave_cltv": 75.692,
+"ave_fico": 750.48,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2011,
+"ave_dti": 32.435,
+"ave_ltv": 77.727,
+"ave_cltv": 78.666,
+"ave_fico":  760.8,
+"fillKey": "(761,774]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2011,
+"ave_dti": 33.305,
+"ave_ltv": 73.119,
+"ave_cltv": 73.119,
+"ave_fico": 743.17,
+"fillKey": "(739,761]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2011,
+"ave_dti": 31.843,
+"ave_ltv":  77.34,
+"ave_cltv": 78.091,
+"ave_fico": 756.86,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2011,
+"ave_dti": 30.773,
+"ave_ltv": 75.813,
+"ave_cltv": 76.404,
+"ave_fico": 758.59,
+"fillKey": "(739,761]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2011,
+"ave_dti": 30.681,
+"ave_ltv": 75.568,
+"ave_cltv": 76.528,
+"ave_fico": 752.45,
+"fillKey": "(739,761]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2011,
+"ave_dti": 34.293,
+"ave_ltv": 70.311,
+"ave_cltv": 70.551,
+"ave_fico": 747.31,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2011,
+"ave_dti": 33.007,
+"ave_ltv": 71.562,
+"ave_cltv":  72.46,
+"ave_fico": 767.71,
+"fillKey": "(761,774]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2011,
+"ave_dti": 32.467,
+"ave_ltv": 75.623,
+"ave_cltv": 76.183,
+"ave_fico": 764.89,
+"fillKey": "(761,774]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2011,
+"ave_dti": 34.294,
+"ave_ltv": 70.029,
+"ave_cltv": 70.872,
+"ave_fico": 762.16,
+"fillKey": "(761,774]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2011,
+"ave_dti": 33.114,
+"ave_ltv": 76.691,
+"ave_cltv": 77.569,
+"ave_fico": 757.06,
+"fillKey": "(739,761]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2011,
+"ave_dti": 31.956,
+"ave_ltv": 75.717,
+"ave_cltv": 76.866,
+"ave_fico": 768.63,
+"fillKey": "(761,774]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2011,
+"ave_dti": 30.782,
+"ave_ltv": 77.481,
+"ave_cltv": 78.381,
+"ave_fico": 761.25,
+"fillKey": "(761,774]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2011,
+"ave_dti": 31.641,
+"ave_ltv": 77.157,
+"ave_cltv": 78.062,
+"ave_fico": 765.49,
+"fillKey": "(761,774]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2011,
+"ave_dti": 31.982,
+"ave_ltv":  76.25,
+"ave_cltv": 76.906,
+"ave_fico": 764.86,
+"fillKey": "(761,774]" 
+} 
+},
+"2012": {
+ "MT": {
+ "state": "MT",
+"year":   2012,
+"ave_dti":  31.82,
+"ave_ltv": 73.101,
+"ave_cltv": 73.634,
+"ave_fico": 766.61,
+"fillKey": "(761,774]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2012,
+"ave_dti": 30.922,
+"ave_ltv": 76.208,
+"ave_cltv": 77.105,
+"ave_fico": 763.22,
+"fillKey": "(761,774]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2012,
+"ave_dti": 30.626,
+"ave_ltv": 70.142,
+"ave_cltv": 71.429,
+"ave_fico": 769.89,
+"fillKey": "(761,774]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2012,
+"ave_dti": 29.903,
+"ave_ltv": 75.696,
+"ave_cltv": 76.554,
+"ave_fico": 766.01,
+"fillKey": "(761,774]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2012,
+"ave_dti": 30.329,
+"ave_ltv": 76.559,
+"ave_cltv": 77.491,
+"ave_fico": 766.58,
+"fillKey": "(761,774]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2012,
+"ave_dti":  30.54,
+"ave_ltv": 70.781,
+"ave_cltv":  71.86,
+"ave_fico": 771.57,
+"fillKey": "(761,774]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2012,
+"ave_dti": 31.515,
+"ave_ltv": 77.942,
+"ave_cltv": 78.551,
+"ave_fico":  764.7,
+"fillKey": "(761,774]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2012,
+"ave_dti": 31.544,
+"ave_ltv": 72.469,
+"ave_cltv": 73.243,
+"ave_fico": 773.34,
+"fillKey": "(761,774]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2012,
+"ave_dti": 32.481,
+"ave_ltv": 76.053,
+"ave_cltv": 76.253,
+"ave_fico": 765.75,
+"fillKey": "(761,774]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2012,
+"ave_dti": 32.986,
+"ave_ltv": 65.279,
+"ave_cltv":  66.45,
+"ave_fico": 774.25,
+"fillKey": "(761,774]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2012,
+"ave_dti": 32.484,
+"ave_ltv": 72.163,
+"ave_cltv": 72.891,
+"ave_fico": 765.37,
+"fillKey": "(761,774]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2012,
+"ave_dti": 29.939,
+"ave_ltv": 67.648,
+"ave_cltv": 69.018,
+"ave_fico":    770,
+"fillKey": "(761,774]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2012,
+"ave_dti": 30.683,
+"ave_ltv": 78.367,
+"ave_cltv": 79.232,
+"ave_fico": 763.97,
+"fillKey": "(761,774]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2012,
+"ave_dti":     31,
+"ave_ltv": 74.452,
+"ave_cltv": 75.301,
+"ave_fico": 766.23,
+"fillKey": "(761,774]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2012,
+"ave_dti": 31.812,
+"ave_ltv": 75.263,
+"ave_cltv": 75.763,
+"ave_fico":  760.1,
+"fillKey": "(739,761]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2012,
+"ave_dti": 31.525,
+"ave_ltv": 74.543,
+"ave_cltv": 74.947,
+"ave_fico":  769.6,
+"fillKey": "(761,774]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2012,
+"ave_dti": 33.618,
+"ave_ltv": 64.175,
+"ave_cltv": 65.094,
+"ave_fico": 771.99,
+"fillKey": "(761,774]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2012,
+"ave_dti": 30.151,
+"ave_ltv": 75.051,
+"ave_cltv": 76.154,
+"ave_fico": 770.77,
+"fillKey": "(761,774]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2012,
+"ave_dti": 30.182,
+"ave_ltv": 78.506,
+"ave_cltv": 79.124,
+"ave_fico": 764.87,
+"fillKey": "(761,774]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2012,
+"ave_dti": 33.441,
+"ave_ltv": 73.141,
+"ave_cltv": 73.561,
+"ave_fico": 764.58,
+"fillKey": "(761,774]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2012,
+"ave_dti": 30.882,
+"ave_ltv":  72.58,
+"ave_cltv":  73.33,
+"ave_fico": 766.49,
+"fillKey": "(761,774]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2012,
+"ave_dti": 31.565,
+"ave_ltv": 77.885,
+"ave_cltv": 78.941,
+"ave_fico": 765.41,
+"fillKey": "(761,774]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2012,
+"ave_dti": 30.251,
+"ave_ltv": 75.756,
+"ave_cltv": 76.868,
+"ave_fico": 762.58,
+"fillKey": "(761,774]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2012,
+"ave_dti": 31.452,
+"ave_ltv": 70.503,
+"ave_cltv": 71.808,
+"ave_fico": 766.52,
+"fillKey": "(761,774]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2012,
+"ave_dti": 32.478,
+"ave_ltv": 73.527,
+"ave_cltv": 74.299,
+"ave_fico": 768.33,
+"fillKey": "(761,774]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2012,
+"ave_dti": 31.693,
+"ave_ltv": 75.535,
+"ave_cltv": 75.921,
+"ave_fico": 756.39,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2012,
+"ave_dti": 30.301,
+"ave_ltv": 77.207,
+"ave_cltv": 78.824,
+"ave_fico": 764.94,
+"fillKey": "(761,774]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2012,
+"ave_dti": 31.186,
+"ave_ltv": 73.553,
+"ave_cltv": 74.939,
+"ave_fico": 767.42,
+"fillKey": "(761,774]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2012,
+"ave_dti": 33.716,
+"ave_ltv": 64.323,
+"ave_cltv": 64.755,
+"ave_fico": 740.42,
+"fillKey": "(739,761]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2012,
+"ave_dti": 30.162,
+"ave_ltv": 74.492,
+"ave_cltv": 75.604,
+"ave_fico": 768.86,
+"fillKey": "(761,774]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2012,
+"ave_dti": 31.081,
+"ave_ltv": 71.909,
+"ave_cltv": 72.554,
+"ave_fico": 769.09,
+"fillKey": "(761,774]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2012,
+"ave_dti": 32.483,
+"ave_ltv": 70.186,
+"ave_cltv": 71.317,
+"ave_fico": 765.55,
+"fillKey": "(761,774]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2012,
+"ave_dti": 32.552,
+"ave_ltv": 71.123,
+"ave_cltv": 72.276,
+"ave_fico": 766.17,
+"fillKey": "(761,774]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2012,
+"ave_dti": 31.965,
+"ave_ltv": 70.861,
+"ave_cltv": 71.998,
+"ave_fico": 765.92,
+"fillKey": "(761,774]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2012,
+"ave_dti": 33.395,
+"ave_ltv": 68.349,
+"ave_cltv": 69.099,
+"ave_fico":  763.4,
+"fillKey": "(761,774]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2012,
+"ave_dti":  31.35,
+"ave_ltv": 75.015,
+"ave_cltv": 76.052,
+"ave_fico": 764.51,
+"fillKey": "(761,774]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2012,
+"ave_dti": 29.813,
+"ave_ltv": 76.449,
+"ave_cltv": 77.362,
+"ave_fico": 761.38,
+"fillKey": "(761,774]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2012,
+"ave_dti": 29.646,
+"ave_ltv": 75.315,
+"ave_cltv": 75.747,
+"ave_fico": 757.91,
+"fillKey": "(739,761]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2012,
+"ave_dti": 30.884,
+"ave_ltv": 73.505,
+"ave_cltv": 74.747,
+"ave_fico": 772.56,
+"fillKey": "(761,774]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2012,
+"ave_dti": 30.845,
+"ave_ltv": 75.521,
+"ave_cltv": 76.258,
+"ave_fico": 753.65,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2012,
+"ave_dti": 31.698,
+"ave_ltv": 77.781,
+"ave_cltv": 78.639,
+"ave_fico":  761.4,
+"fillKey": "(761,774]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2012,
+"ave_dti": 30.469,
+"ave_ltv": 69.125,
+"ave_cltv": 69.125,
+"ave_fico": 741.22,
+"fillKey": "(739,761]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2012,
+"ave_dti": 30.603,
+"ave_ltv": 77.675,
+"ave_cltv": 78.287,
+"ave_fico": 759.04,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2012,
+"ave_dti": 29.906,
+"ave_ltv": 76.154,
+"ave_cltv": 76.668,
+"ave_fico": 762.45,
+"fillKey": "(761,774]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2012,
+"ave_dti": 29.949,
+"ave_ltv": 76.671,
+"ave_cltv": 77.631,
+"ave_fico": 755.88,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2012,
+"ave_dti": 31.512,
+"ave_ltv": 72.221,
+"ave_cltv": 73.139,
+"ave_fico":  770.8,
+"fillKey": "(761,774]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2012,
+"ave_dti": 33.701,
+"ave_ltv": 74.187,
+"ave_cltv": 74.279,
+"ave_fico": 748.04,
+"fillKey": "(739,761]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2012,
+"ave_dti": 31.245,
+"ave_ltv": 76.474,
+"ave_cltv": 77.096,
+"ave_fico": 767.18,
+"fillKey": "(761,774]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2012,
+"ave_dti": 31.927,
+"ave_ltv": 76.856,
+"ave_cltv":  77.63,
+"ave_fico":  759.8,
+"fillKey": "(739,761]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2012,
+"ave_dti": 33.071,
+"ave_ltv": 70.525,
+"ave_cltv": 71.352,
+"ave_fico": 765.99,
+"fillKey": "(761,774]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2012,
+"ave_dti": 30.796,
+"ave_ltv": 76.442,
+"ave_cltv":  77.64,
+"ave_fico":  770.6,
+"fillKey": "(761,774]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2012,
+"ave_dti": 29.372,
+"ave_ltv": 77.728,
+"ave_cltv": 78.582,
+"ave_fico":  763.4,
+"fillKey": "(761,774]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2012,
+"ave_dti": 30.553,
+"ave_ltv": 77.787,
+"ave_cltv": 78.609,
+"ave_fico": 768.68,
+"fillKey": "(761,774]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2012,
+"ave_dti": 30.787,
+"ave_ltv": 76.792,
+"ave_cltv":  77.43,
+"ave_fico": 766.76,
+"fillKey": "(761,774]" 
+} 
+},
+"2013": {
+ "MT": {
+ "state": "MT",
+"year":   2013,
+"ave_dti":  32.77,
+"ave_ltv": 75.215,
+"ave_cltv": 75.637,
+"ave_fico": 759.39,
+"fillKey": "(739,761]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2013,
+"ave_dti": 32.136,
+"ave_ltv": 79.137,
+"ave_cltv": 79.863,
+"ave_fico": 756.66,
+"fillKey": "(739,761]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2013,
+"ave_dti": 32.235,
+"ave_ltv": 74.038,
+"ave_cltv": 75.088,
+"ave_fico": 761.83,
+"fillKey": "(761,774]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2013,
+"ave_dti": 31.241,
+"ave_ltv": 79.118,
+"ave_cltv": 79.677,
+"ave_fico":  759.2,
+"fillKey": "(739,761]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2013,
+"ave_dti": 31.786,
+"ave_ltv": 79.641,
+"ave_cltv": 80.445,
+"ave_fico": 759.15,
+"fillKey": "(739,761]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2013,
+"ave_dti": 33.093,
+"ave_ltv": 75.374,
+"ave_cltv": 76.071,
+"ave_fico": 766.31,
+"fillKey": "(761,774]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2013,
+"ave_dti": 32.918,
+"ave_ltv":  80.52,
+"ave_cltv": 81.106,
+"ave_fico": 757.03,
+"fillKey": "(739,761]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2013,
+"ave_dti": 32.008,
+"ave_ltv": 74.332,
+"ave_cltv": 75.282,
+"ave_fico": 764.18,
+"fillKey": "(761,774]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2013,
+"ave_dti":  33.69,
+"ave_ltv": 76.922,
+"ave_cltv": 77.076,
+"ave_fico": 757.68,
+"fillKey": "(739,761]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2013,
+"ave_dti": 34.736,
+"ave_ltv": 68.304,
+"ave_cltv": 69.331,
+"ave_fico": 764.08,
+"fillKey": "(761,774]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2013,
+"ave_dti": 33.318,
+"ave_ltv": 74.827,
+"ave_cltv": 75.411,
+"ave_fico": 756.31,
+"fillKey": "(739,761]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2013,
+"ave_dti": 31.215,
+"ave_ltv": 69.568,
+"ave_cltv": 70.606,
+"ave_fico": 762.82,
+"fillKey": "(761,774]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2013,
+"ave_dti": 31.968,
+"ave_ltv": 81.672,
+"ave_cltv": 82.205,
+"ave_fico": 756.17,
+"fillKey": "(739,761]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2013,
+"ave_dti": 32.215,
+"ave_ltv":  77.97,
+"ave_cltv": 78.608,
+"ave_fico": 759.51,
+"fillKey": "(739,761]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2013,
+"ave_dti": 32.655,
+"ave_ltv": 78.324,
+"ave_cltv": 78.808,
+"ave_fico": 754.61,
+"fillKey": "(739,761]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2013,
+"ave_dti": 32.794,
+"ave_ltv": 75.949,
+"ave_cltv": 76.334,
+"ave_fico": 760.17,
+"fillKey": "(739,761]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2013,
+"ave_dti": 35.122,
+"ave_ltv": 66.917,
+"ave_cltv": 67.749,
+"ave_fico": 765.76,
+"fillKey": "(761,774]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2013,
+"ave_dti": 31.442,
+"ave_ltv": 78.618,
+"ave_cltv":  79.45,
+"ave_fico":  762.4,
+"fillKey": "(761,774]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2013,
+"ave_dti": 31.434,
+"ave_ltv": 81.658,
+"ave_cltv": 82.136,
+"ave_fico": 758.49,
+"fillKey": "(739,761]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2013,
+"ave_dti": 34.445,
+"ave_ltv": 75.766,
+"ave_cltv": 76.114,
+"ave_fico": 757.94,
+"fillKey": "(739,761]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2013,
+"ave_dti": 31.832,
+"ave_ltv": 75.863,
+"ave_cltv": 76.706,
+"ave_fico": 759.13,
+"fillKey": "(739,761]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2013,
+"ave_dti":  32.54,
+"ave_ltv": 79.527,
+"ave_cltv": 80.351,
+"ave_fico": 761.44,
+"fillKey": "(761,774]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2013,
+"ave_dti": 31.575,
+"ave_ltv": 79.252,
+"ave_cltv": 80.316,
+"ave_fico":  754.2,
+"fillKey": "(739,761]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2013,
+"ave_dti":  33.16,
+"ave_ltv": 74.204,
+"ave_cltv": 75.306,
+"ave_fico": 758.22,
+"fillKey": "(739,761]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2013,
+"ave_dti": 33.028,
+"ave_ltv": 76.909,
+"ave_cltv": 77.119,
+"ave_fico": 752.16,
+"fillKey": "(739,761]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2013,
+"ave_dti": 33.764,
+"ave_ltv": 76.691,
+"ave_cltv": 77.266,
+"ave_fico": 759.12,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2013,
+"ave_dti": 31.436,
+"ave_ltv": 79.625,
+"ave_cltv": 81.205,
+"ave_fico": 759.02,
+"fillKey": "(739,761]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2013,
+"ave_dti":  32.81,
+"ave_ltv": 77.545,
+"ave_cltv": 78.516,
+"ave_fico": 758.97,
+"fillKey": "(739,761]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2013,
+"ave_dti": 33.699,
+"ave_ltv": 67.236,
+"ave_cltv": 67.393,
+"ave_fico": 737.66,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2013,
+"ave_dti": 31.467,
+"ave_ltv": 77.575,
+"ave_cltv": 78.465,
+"ave_fico": 762.29,
+"fillKey": "(761,774]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2013,
+"ave_dti": 32.187,
+"ave_ltv": 75.343,
+"ave_cltv": 75.803,
+"ave_fico": 762.38,
+"fillKey": "(761,774]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2013,
+"ave_dti": 33.791,
+"ave_ltv": 73.368,
+"ave_cltv": 74.305,
+"ave_fico": 755.95,
+"fillKey": "(739,761]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2013,
+"ave_dti": 33.566,
+"ave_ltv":  75.75,
+"ave_cltv": 76.737,
+"ave_fico": 758.53,
+"fillKey": "(739,761]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2013,
+"ave_dti": 33.309,
+"ave_ltv": 74.354,
+"ave_cltv": 75.166,
+"ave_fico": 759.42,
+"fillKey": "(739,761]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2013,
+"ave_dti": 34.172,
+"ave_ltv": 71.229,
+"ave_cltv": 71.818,
+"ave_fico": 758.99,
+"fillKey": "(739,761]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2013,
+"ave_dti": 32.463,
+"ave_ltv": 78.016,
+"ave_cltv": 78.813,
+"ave_fico": 758.25,
+"fillKey": "(739,761]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2013,
+"ave_dti": 31.105,
+"ave_ltv": 79.376,
+"ave_cltv": 79.946,
+"ave_fico": 754.76,
+"fillKey": "(739,761]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2013,
+"ave_dti": 30.839,
+"ave_ltv": 78.145,
+"ave_cltv": 78.533,
+"ave_fico": 748.76,
+"fillKey": "(739,761]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2013,
+"ave_dti": 32.582,
+"ave_ltv": 76.525,
+"ave_cltv": 77.549,
+"ave_fico": 764.17,
+"fillKey": "(761,774]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2013,
+"ave_dti": 32.043,
+"ave_ltv": 78.511,
+"ave_cltv":  79.13,
+"ave_fico":  748.1,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2013,
+"ave_dti": 32.725,
+"ave_ltv": 78.552,
+"ave_cltv": 79.193,
+"ave_fico": 754.06,
+"fillKey": "(739,761]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2013,
+"ave_dti": 32.238,
+"ave_ltv": 72.937,
+"ave_cltv": 73.444,
+"ave_fico": 743.49,
+"fillKey": "(739,761]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2013,
+"ave_dti": 31.765,
+"ave_ltv":  79.97,
+"ave_cltv": 80.493,
+"ave_fico":  753.3,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2013,
+"ave_dti": 31.051,
+"ave_ltv": 79.098,
+"ave_cltv": 79.529,
+"ave_fico":    756,
+"fillKey": "(739,761]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2013,
+"ave_dti": 31.256,
+"ave_ltv": 78.963,
+"ave_cltv": 79.703,
+"ave_fico": 748.29,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2013,
+"ave_dti": 32.983,
+"ave_ltv": 75.922,
+"ave_cltv": 76.746,
+"ave_fico": 763.76,
+"fillKey": "(761,774]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2013,
+"ave_dti": 34.149,
+"ave_ltv": 77.024,
+"ave_cltv": 77.182,
+"ave_fico": 748.95,
+"fillKey": "(739,761]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2013,
+"ave_dti": 33.065,
+"ave_ltv": 79.352,
+"ave_cltv": 79.878,
+"ave_fico": 760.76,
+"fillKey": "(761,774]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2013,
+"ave_dti": 33.006,
+"ave_ltv": 79.256,
+"ave_cltv": 79.992,
+"ave_fico":  753.3,
+"fillKey": "(739,761]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2013,
+"ave_dti": 34.312,
+"ave_ltv": 73.661,
+"ave_cltv": 74.332,
+"ave_fico": 759.45,
+"fillKey": "(739,761]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2013,
+"ave_dti": 32.235,
+"ave_ltv": 79.804,
+"ave_cltv": 80.777,
+"ave_fico": 764.19,
+"fillKey": "(761,774]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2013,
+"ave_dti": 30.536,
+"ave_ltv": 80.861,
+"ave_cltv": 81.516,
+"ave_fico":  756.1,
+"fillKey": "(739,761]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2013,
+"ave_dti": 31.569,
+"ave_ltv": 80.526,
+"ave_cltv": 81.146,
+"ave_fico": 761.34,
+"fillKey": "(761,774]" 
+},
+"MI": {
+ "state": "MI",
+"year":   2013,
+"ave_dti": 32.113,
+"ave_ltv": 80.082,
+"ave_cltv": 80.541,
+"ave_fico": 757.49,
+"fillKey": "(739,761]" 
+} 
+},
+"2014": {
+ "MI": {
+ "state": "MI",
+"year":   2014,
+"ave_dti":  33.62,
+"ave_ltv": 80.972,
+"ave_cltv": 81.241,
+"ave_fico": 747.71,
+"fillKey": "(739,761]" 
+},
+"MT": {
+ "state": "MT",
+"year":   2014,
+"ave_dti": 34.451,
+"ave_ltv": 75.908,
+"ave_cltv": 76.168,
+"ave_fico": 752.43,
+"fillKey": "(739,761]" 
+},
+"TN": {
+ "state": "TN",
+"year":   2014,
+"ave_dti": 33.326,
+"ave_ltv": 79.845,
+"ave_cltv": 80.366,
+"ave_fico": 748.08,
+"fillKey": "(739,761]" 
+},
+"MD": {
+ "state": "MD",
+"year":   2014,
+"ave_dti": 34.601,
+"ave_ltv": 76.909,
+"ave_cltv":  77.73,
+"ave_fico":  749.8,
+"fillKey": "(739,761]" 
+},
+"MO": {
+ "state": "MO",
+"year":   2014,
+"ave_dti": 32.665,
+"ave_ltv": 79.795,
+"ave_cltv": 80.303,
+"ave_fico":  748.7,
+"fillKey": "(739,761]" 
+},
+"GA": {
+ "state": "GA",
+"year":   2014,
+"ave_dti": 33.292,
+"ave_ltv": 81.208,
+"ave_cltv": 81.685,
+"ave_fico": 750.33,
+"fillKey": "(739,761]" 
+},
+"ID": {
+ "state": "ID",
+"year":   2014,
+"ave_dti": 33.508,
+"ave_ltv": 78.761,
+"ave_cltv": 79.049,
+"ave_fico": 752.18,
+"fillKey": "(739,761]" 
+},
+"OR": {
+ "state": "OR",
+"year":   2014,
+"ave_dti": 34.979,
+"ave_ltv": 77.093,
+"ave_cltv":   77.7,
+"ave_fico": 756.66,
+"fillKey": "(739,761]" 
+},
+"VA": {
+ "state": "VA",
+"year":   2014,
+"ave_dti": 33.907,
+"ave_ltv": 76.634,
+"ave_cltv": 77.211,
+"ave_fico": 753.16,
+"fillKey": "(739,761]" 
+},
+"NV": {
+ "state": "NV",
+"year":   2014,
+"ave_dti": 34.724,
+"ave_ltv": 78.217,
+"ave_cltv": 78.326,
+"ave_fico": 746.58,
+"fillKey": "(739,761]" 
+},
+"CA": {
+ "state": "CA",
+"year":   2014,
+"ave_dti": 36.662,
+"ave_ltv": 71.896,
+"ave_cltv": 72.699,
+"ave_fico": 749.35,
+"fillKey": "(739,761]" 
+},
+"ME": {
+ "state": "ME",
+"year":   2014,
+"ave_dti":  34.48,
+"ave_ltv": 75.785,
+"ave_cltv":  76.04,
+"ave_fico": 749.53,
+"fillKey": "(739,761]" 
+},
+"DC": {
+ "state": "DC",
+"year":   2014,
+"ave_dti": 34.285,
+"ave_ltv": 70.603,
+"ave_cltv": 71.749,
+"ave_fico": 747.29,
+"fillKey": "(739,761]" 
+},
+"OH": {
+ "state": "OH",
+"year":   2014,
+"ave_dti": 33.709,
+"ave_ltv": 82.777,
+"ave_cltv": 83.216,
+"ave_fico": 746.98,
+"fillKey": "(739,761]" 
+},
+"SC": {
+ "state": "SC",
+"year":   2014,
+"ave_dti": 33.459,
+"ave_ltv": 79.235,
+"ave_cltv": 79.699,
+"ave_fico":  749.6,
+"fillKey": "(739,761]" 
+},
+"WY": {
+ "state": "WY",
+"year":   2014,
+"ave_dti": 34.682,
+"ave_ltv":   80.8,
+"ave_cltv": 81.194,
+"ave_fico": 740.93,
+"fillKey": "(739,761]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   2014,
+"ave_dti": 34.189,
+"ave_ltv": 77.705,
+"ave_cltv": 78.002,
+"ave_fico": 750.03,
+"fillKey": "(739,761]" 
+},
+"HI": {
+ "state": "HI",
+"year":   2014,
+"ave_dti": 36.992,
+"ave_ltv": 69.991,
+"ave_cltv": 70.707,
+"ave_fico": 758.12,
+"fillKey": "(739,761]" 
+},
+"WI": {
+ "state": "WI",
+"year":   2014,
+"ave_dti": 32.912,
+"ave_ltv": 79.751,
+"ave_cltv": 80.379,
+"ave_fico": 754.44,
+"fillKey": "(739,761]" 
+},
+"KS": {
+ "state": "KS",
+"year":   2014,
+"ave_dti": 32.688,
+"ave_ltv": 82.528,
+"ave_cltv": 82.642,
+"ave_fico": 751.02,
+"fillKey": "(739,761]" 
+},
+"FL": {
+ "state": "FL",
+"year":   2014,
+"ave_dti": 35.424,
+"ave_ltv":  77.73,
+"ave_cltv": 77.902,
+"ave_fico": 750.45,
+"fillKey": "(739,761]" 
+},
+"NM": {
+ "state": "NM",
+"year":   2014,
+"ave_dti": 33.048,
+"ave_ltv":  78.63,
+"ave_cltv": 79.709,
+"ave_fico": 752.81,
+"fillKey": "(739,761]" 
+},
+"SD": {
+ "state": "SD",
+"year":   2014,
+"ave_dti": 34.368,
+"ave_ltv": 80.564,
+"ave_cltv": 81.632,
+"ave_fico": 754.31,
+"fillKey": "(739,761]" 
+},
+"KY": {
+ "state": "KY",
+"year":   2014,
+"ave_dti": 32.458,
+"ave_ltv": 79.498,
+"ave_cltv": 80.635,
+"ave_fico": 744.43,
+"fillKey": "(739,761]" 
+},
+"MA": {
+ "state": "MA",
+"year":   2014,
+"ave_dti": 35.124,
+"ave_ltv":  76.12,
+"ave_cltv": 76.797,
+"ave_fico": 749.26,
+"fillKey": "(739,761]" 
+},
+"NH": {
+ "state": "NH",
+"year":   2014,
+"ave_dti": 35.042,
+"ave_ltv":  78.39,
+"ave_cltv": 78.679,
+"ave_fico": 751.43,
+"fillKey": "(739,761]" 
+},
+"AK": {
+ "state": "AK",
+"year":   2014,
+"ave_dti":  32.93,
+"ave_ltv": 75.346,
+"ave_cltv": 75.459,
+"ave_fico": 743.29,
+"fillKey": "(739,761]" 
+},
+"IA": {
+ "state": "IA",
+"year":   2014,
+"ave_dti": 32.414,
+"ave_ltv": 80.133,
+"ave_cltv": 81.783,
+"ave_fico": 750.83,
+"fillKey": "(739,761]" 
+},
+"IL": {
+ "state": "IL",
+"year":   2014,
+"ave_dti": 33.852,
+"ave_ltv":  79.66,
+"ave_cltv": 80.192,
+"ave_fico": 749.96,
+"fillKey": "(739,761]" 
+},
+"VI": {
+ "state": "VI",
+"year":   2014,
+"ave_dti": 33.321,
+"ave_ltv": 69.071,
+"ave_cltv": 69.071,
+"ave_fico": 738.75,
+"fillKey": "(725,739]" 
+},
+"NC": {
+ "state": "NC",
+"year":   2014,
+"ave_dti": 32.971,
+"ave_ltv": 79.544,
+"ave_cltv": 80.015,
+"ave_fico": 751.81,
+"fillKey": "(739,761]" 
+},
+"DE": {
+ "state": "DE",
+"year":   2014,
+"ave_dti": 33.337,
+"ave_ltv": 77.331,
+"ave_cltv": 77.536,
+"ave_fico": 759.46,
+"fillKey": "(739,761]" 
+},
+"VT": {
+ "state": "VT",
+"year":   2014,
+"ave_dti": 35.732,
+"ave_ltv":  75.58,
+"ave_cltv": 77.102,
+"ave_fico": 746.52,
+"fillKey": "(739,761]" 
+},
+"RI": {
+ "state": "RI",
+"year":   2014,
+"ave_dti": 35.467,
+"ave_ltv": 78.454,
+"ave_cltv": 79.017,
+"ave_fico":    752,
+"fillKey": "(739,761]" 
+},
+"CT": {
+ "state": "CT",
+"year":   2014,
+"ave_dti": 35.115,
+"ave_ltv": 77.149,
+"ave_cltv": 77.727,
+"ave_fico": 749.85,
+"fillKey": "(739,761]" 
+},
+"NY": {
+ "state": "NY",
+"year":   2014,
+"ave_dti": 35.746,
+"ave_ltv": 74.218,
+"ave_cltv": 74.561,
+"ave_fico": 751.19,
+"fillKey": "(739,761]" 
+},
+"PA": {
+ "state": "PA",
+"year":   2014,
+"ave_dti": 33.931,
+"ave_ltv": 79.248,
+"ave_cltv": 79.775,
+"ave_fico": 749.74,
+"fillKey": "(739,761]" 
+},
+"AL": {
+ "state": "AL",
+"year":   2014,
+"ave_dti": 32.344,
+"ave_ltv": 80.311,
+"ave_cltv": 80.778,
+"ave_fico":  746.7,
+"fillKey": "(739,761]" 
+},
+"WV": {
+ "state": "WV",
+"year":   2014,
+"ave_dti": 33.261,
+"ave_ltv": 78.365,
+"ave_cltv": 78.665,
+"ave_fico": 735.99,
+"fillKey": "(725,739]" 
+},
+"CO": {
+ "state": "CO",
+"year":   2014,
+"ave_dti": 34.591,
+"ave_ltv": 78.424,
+"ave_cltv": 79.239,
+"ave_fico": 755.32,
+"fillKey": "(739,761]" 
+},
+"LA": {
+ "state": "LA",
+"year":   2014,
+"ave_dti": 32.847,
+"ave_ltv": 79.969,
+"ave_cltv": 80.441,
+"ave_fico": 741.02,
+"fillKey": "(739,761]" 
+},
+"ND": {
+ "state": "ND",
+"year":   2014,
+"ave_dti": 33.771,
+"ave_ltv": 80.467,
+"ave_cltv": 80.858,
+"ave_fico": 744.81,
+"fillKey": "(739,761]" 
+},
+"GU": {
+ "state": "GU",
+"year":   2014,
+"ave_dti":   38.6,
+"ave_ltv":   71.2,
+"ave_cltv":   71.2,
+"ave_fico":  762.2,
+"fillKey": "(761,774]" 
+},
+"OK": {
+ "state": "OK",
+"year":   2014,
+"ave_dti": 32.904,
+"ave_ltv": 80.943,
+"ave_cltv": 81.425,
+"ave_fico": 746.18,
+"fillKey": "(739,761]" 
+},
+"AR": {
+ "state": "AR",
+"year":   2014,
+"ave_dti": 31.599,
+"ave_ltv": 79.206,
+"ave_cltv":  79.55,
+"ave_fico": 751.06,
+"fillKey": "(739,761]" 
+},
+"MS": {
+ "state": "MS",
+"year":   2014,
+"ave_dti": 32.037,
+"ave_ltv": 79.377,
+"ave_cltv": 80.007,
+"ave_fico": 744.58,
+"fillKey": "(739,761]" 
+},
+"WA": {
+ "state": "WA",
+"year":   2014,
+"ave_dti": 34.598,
+"ave_ltv": 79.088,
+"ave_cltv": 79.693,
+"ave_fico": 754.45,
+"fillKey": "(739,761]" 
+},
+"PR": {
+ "state": "PR",
+"year":   2014,
+"ave_dti": 33.994,
+"ave_ltv": 75.906,
+"ave_cltv": 76.296,
+"ave_fico": 743.99,
+"fillKey": "(739,761]" 
+},
+"UT": {
+ "state": "UT",
+"year":   2014,
+"ave_dti":  34.78,
+"ave_ltv": 80.938,
+"ave_cltv": 81.324,
+"ave_fico": 753.97,
+"fillKey": "(739,761]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   2014,
+"ave_dti":  35.87,
+"ave_ltv": 75.692,
+"ave_cltv": 76.245,
+"ave_fico": 749.99,
+"fillKey": "(739,761]" 
+},
+"TX": {
+ "state": "TX",
+"year":   2014,
+"ave_dti": 34.444,
+"ave_ltv": 80.278,
+"ave_cltv": 81.069,
+"ave_fico": 743.65,
+"fillKey": "(739,761]" 
+},
+"MN": {
+ "state": "MN",
+"year":   2014,
+"ave_dti": 33.366,
+"ave_ltv": 80.719,
+"ave_cltv": 81.511,
+"ave_fico": 756.66,
+"fillKey": "(739,761]" 
+},
+"IN": {
+ "state": "IN",
+"year":   2014,
+"ave_dti": 32.804,
+"ave_ltv": 81.418,
+"ave_cltv": 82.023,
+"ave_fico":  745.2,
+"fillKey": "(739,761]" 
+},
+"NE": {
+ "state": "NE",
+"year":   2014,
+"ave_dti": 32.957,
+"ave_ltv": 82.131,
+"ave_cltv": 82.568,
+"ave_fico": 754.18,
+"fillKey": "(739,761]" 
+} 
+} 
+},
+"data": {
+ "NM": {
+ "state": "NM",
+"year":   1999,
+"ave_dti": 34.238,
+"ave_ltv":  77.78,
+"ave_cltv": 78.784,
+"ave_fico": 713.18,
+"fillKey": "(675,718]" 
+},
+"SD": {
+ "state": "SD",
+"year":   1999,
+"ave_dti": 33.578,
+"ave_ltv": 79.367,
+"ave_cltv":  77.72,
+"ave_fico": 718.92,
+"fillKey": "(718,725]" 
+},
+"KY": {
+ "state": "KY",
+"year":   1999,
+"ave_dti": 32.558,
+"ave_ltv": 79.691,
+"ave_cltv": 78.957,
+"ave_fico": 713.49,
+"fillKey": "(675,718]" 
+},
+"MA": {
+ "state": "MA",
+"year":   1999,
+"ave_dti": 34.353,
+"ave_ltv": 74.563,
+"ave_cltv": 71.886,
+"ave_fico": 718.08,
+"fillKey": "(675,718]" 
+},
+"NH": {
+ "state": "NH",
+"year":   1999,
+"ave_dti": 34.678,
+"ave_ltv": 77.392,
+"ave_cltv": 74.337,
+"ave_fico": 718.27,
+"fillKey": "(718,725]" 
+},
+"AK": {
+ "state": "AK",
+"year":   1999,
+"ave_dti": 36.233,
+"ave_ltv": 77.453,
+"ave_cltv": 77.246,
+"ave_fico": 707.36,
+"fillKey": "(675,718]" 
+},
+"IA": {
+ "state": "IA",
+"year":   1999,
+"ave_dti": 32.867,
+"ave_ltv":  80.97,
+"ave_cltv": 81.341,
+"ave_fico": 718.77,
+"fillKey": "(718,725]" 
+},
+"IL": {
+ "state": "IL",
+"year":   1999,
+"ave_dti": 33.828,
+"ave_ltv": 78.994,
+"ave_cltv": 77.644,
+"ave_fico": 718.18,
+"fillKey": "(675,718]" 
+},
+"VI": {
+ "state": "VI",
+"year":   1999,
+"ave_dti":   35.8,
+"ave_ltv":   80.4,
+"ave_cltv": null,
+"ave_fico":  742.6,
+"fillKey": "(739,761]" 
+},
+"NC": {
+ "state": "NC",
+"year":   1999,
+"ave_dti": 34.433,
+"ave_ltv": 80.492,
+"ave_cltv": 84.786,
+"ave_fico": 711.92,
+"fillKey": "(675,718]" 
+},
+"DE": {
+ "state": "DE",
+"year":   1999,
+"ave_dti": 32.553,
+"ave_ltv":  77.43,
+"ave_cltv": 72.441,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"VT": {
+ "state": "VT",
+"year":   1999,
+"ave_dti": 34.577,
+"ave_ltv": 76.756,
+"ave_cltv": 74.286,
+"ave_fico": 713.79,
+"fillKey": "(675,718]" 
+},
+"RI": {
+ "state": "RI",
+"year":   1999,
+"ave_dti": 33.256,
+"ave_ltv": 76.059,
+"ave_cltv":  72.09,
+"ave_fico": 726.54,
+"fillKey": "(725,739]" 
+},
+"CT": {
+ "state": "CT",
+"year":   1999,
+"ave_dti": 34.173,
+"ave_ltv": 76.459,
+"ave_cltv": 74.934,
+"ave_fico": 720.01,
+"fillKey": "(718,725]" 
+},
+"NY": {
+ "state": "NY",
+"year":   1999,
+"ave_dti": 34.691,
+"ave_ltv": 77.439,
+"ave_cltv": 77.135,
+"ave_fico": 714.76,
+"fillKey": "(675,718]" 
+},
+"PA": {
+ "state": "PA",
+"year":   1999,
+"ave_dti": 33.034,
+"ave_ltv": 80.246,
+"ave_cltv": 77.092,
+"ave_fico": 722.58,
+"fillKey": "(718,725]" 
+},
+"AL": {
+ "state": "AL",
+"year":   1999,
+"ave_dti": 33.778,
+"ave_ltv": 78.865,
+"ave_cltv": 61.645,
+"ave_fico": 708.22,
+"fillKey": "(675,718]" 
+},
+"WV": {
+ "state": "WV",
+"year":   1999,
+"ave_dti": 32.109,
+"ave_ltv":  80.37,
+"ave_cltv": 75.946,
+"ave_fico": 717.33,
+"fillKey": "(675,718]" 
+},
+"CO": {
+ "state": "CO",
+"year":   1999,
+"ave_dti": 35.397,
+"ave_ltv": 76.772,
+"ave_cltv": 72.672,
+"ave_fico": 719.86,
+"fillKey": "(718,725]" 
+},
+"LA": {
+ "state": "LA",
+"year":   1999,
+"ave_dti": 31.559,
+"ave_ltv": 79.679,
+"ave_cltv": 77.801,
+"ave_fico":  707.3,
+"fillKey": "(675,718]" 
+},
+"ND": {
+ "state": "ND",
+"year":   1999,
+"ave_dti": 31.243,
+"ave_ltv": 80.718,
+"ave_cltv":     94,
+"ave_fico": 717.23,
+"fillKey": "(675,718]" 
+},
+"GU": {
+ "state": "GU",
+"year":   1999,
+"ave_dti":     38,
+"ave_ltv":     80,
+"ave_cltv":     80,
+"ave_fico":    675,
+"fillKey": null 
+},
+"OK": {
+ "state": "OK",
+"year":   1999,
+"ave_dti": 32.489,
+"ave_ltv": 81.795,
+"ave_cltv": 81.034,
+"ave_fico": 710.51,
+"fillKey": "(675,718]" 
+},
+"AR": {
+ "state": "AR",
+"year":   1999,
+"ave_dti": 30.852,
+"ave_ltv": 79.021,
+"ave_cltv": 71.703,
+"ave_fico": 718.12,
+"fillKey": "(675,718]" 
+},
+"MS": {
+ "state": "MS",
+"year":   1999,
+"ave_dti": 32.871,
+"ave_ltv": 80.699,
+"ave_cltv": 80.632,
+"ave_fico":    708,
+"fillKey": "(675,718]" 
+},
+"WA": {
+ "state": "WA",
+"year":   1999,
+"ave_dti":  35.28,
+"ave_ltv": 76.255,
+"ave_cltv": 66.926,
+"ave_fico": 715.86,
+"fillKey": "(675,718]" 
+},
+"PR": {
+ "state": "PR",
+"year":   1999,
+"ave_dti": 35.497,
+"ave_ltv": 75.848,
+"ave_cltv": 75.529,
+"ave_fico": 696.74,
+"fillKey": "(675,718]" 
+},
+"UT": {
+ "state": "UT",
+"year":   1999,
+"ave_dti": 35.586,
+"ave_ltv":  79.53,
+"ave_cltv": 77.534,
+"ave_fico": 711.04,
+"fillKey": "(675,718]" 
+},
+"TX": {
+ "state": "TX",
+"year":   1999,
+"ave_dti": 34.475,
+"ave_ltv": 81.203,
+"ave_cltv": 77.472,
+"ave_fico": 710.49,
+"fillKey": "(675,718]" 
+},
+"NJ": {
+ "state": "NJ",
+"year":   1999,
+"ave_dti": 34.807,
+"ave_ltv": 77.364,
+"ave_cltv": 74.683,
+"ave_fico": 714.82,
+"fillKey": "(675,718]" 
+},
+"MN": {
+ "state": "MN",
+"year":   1999,
+"ave_dti": 32.292,
+"ave_ltv":  79.82,
+"ave_cltv": 77.433,
+"ave_fico": 722.89,
+"fillKey": "(718,725]" 
+},
+"IN": {
+ "state": "IN",
+"year":   1999,
+"ave_dti": 32.403,
+"ave_ltv":  80.03,
+"ave_cltv": 77.258,
+"ave_fico": 713.19,
+"fillKey": "(675,718]" 
+},
+"NE": {
+ "state": "NE",
+"year":   1999,
+"ave_dti": 33.537,
+"ave_ltv": 79.524,
+"ave_cltv": 72.526,
+"ave_fico": 726.65,
+"fillKey": "(725,739]" 
+},
+"MI": {
+ "state": "MI",
+"year":   1999,
+"ave_dti": 34.484,
+"ave_ltv": 77.249,
+"ave_cltv": 72.047,
+"ave_fico": 709.37,
+"fillKey": "(675,718]" 
+},
+"MT": {
+ "state": "MT",
+"year":   1999,
+"ave_dti": 34.077,
+"ave_ltv": 74.958,
+"ave_cltv": 54.448,
+"ave_fico": 722.28,
+"fillKey": "(718,725]" 
+},
+"TN": {
+ "state": "TN",
+"year":   1999,
+"ave_dti": 33.177,
+"ave_ltv":  79.86,
+"ave_cltv": 75.706,
+"ave_fico": 714.72,
+"fillKey": "(675,718]" 
+},
+"MD": {
+ "state": "MD",
+"year":   1999,
+"ave_dti": 34.062,
+"ave_ltv": 77.899,
+"ave_cltv": 77.795,
+"ave_fico": 717.55,
+"fillKey": "(675,718]" 
+},
+"GA": {
+ "state": "GA",
+"year":   1999,
+"ave_dti": 34.678,
+"ave_ltv": 80.356,
+"ave_cltv":  75.08,
+"ave_fico":  709.4,
+"fillKey": "(675,718]" 
+},
+"MO": {
+ "state": "MO",
+"year":   1999,
+"ave_dti": 32.872,
+"ave_ltv": 79.476,
+"ave_cltv":  80.95,
+"ave_fico": 717.82,
+"fillKey": "(675,718]" 
+},
+"VA": {
+ "state": "VA",
+"year":   1999,
+"ave_dti": 33.315,
+"ave_ltv": 77.824,
+"ave_cltv": 75.544,
+"ave_fico": 722.52,
+"fillKey": "(718,725]" 
+},
+"OR": {
+ "state": "OR",
+"year":   1999,
+"ave_dti": 35.795,
+"ave_ltv": 77.794,
+"ave_cltv": 72.574,
+"ave_fico": 713.55,
+"fillKey": "(675,718]" 
+},
+"ID": {
+ "state": "ID",
+"year":   1999,
+"ave_dti": 33.207,
+"ave_ltv": 77.347,
+"ave_cltv": 67.247,
+"ave_fico": 718.06,
+"fillKey": "(675,718]" 
+},
+"NV": {
+ "state": "NV",
+"year":   1999,
+"ave_dti": 36.314,
+"ave_ltv": 80.553,
+"ave_cltv": 78.344,
+"ave_fico": 713.11,
+"fillKey": "(675,718]" 
+},
+"CA": {
+ "state": "CA",
+"year":   1999,
+"ave_dti": 36.886,
+"ave_ltv": 75.975,
+"ave_cltv": 78.295,
+"ave_fico": 717.14,
+"fillKey": "(675,718]" 
+},
+"ME": {
+ "state": "ME",
+"year":   1999,
+"ave_dti": 34.675,
+"ave_ltv":  77.66,
+"ave_cltv":   74.8,
+"ave_fico": 722.95,
+"fillKey": "(718,725]" 
+},
+"DC": {
+ "state": "DC",
+"year":   1999,
+"ave_dti": 31.559,
+"ave_ltv": 80.568,
+"ave_cltv": 79.979,
+"ave_fico": 713.38,
+"fillKey": "(675,718]" 
+},
+"OH": {
+ "state": "OH",
+"year":   1999,
+"ave_dti": 32.506,
+"ave_ltv": 79.136,
+"ave_cltv":  79.01,
+"ave_fico": 715.32,
+"fillKey": "(675,718]" 
+},
+"SC": {
+ "state": "SC",
+"year":   1999,
+"ave_dti": 33.788,
+"ave_ltv": 78.536,
+"ave_cltv": 56.366,
+"ave_fico": 709.48,
+"fillKey": "(675,718]" 
+},
+"WY": {
+ "state": "WY",
+"year":   1999,
+"ave_dti": 33.061,
+"ave_ltv":  76.13,
+"ave_cltv":  81.25,
+"ave_fico": 723.47,
+"fillKey": "(718,725]" 
+},
+"AZ": {
+ "state": "AZ",
+"year":   1999,
+"ave_dti": 34.293,
+"ave_ltv":  80.03,
+"ave_cltv": 81.324,
+"ave_fico": 717.19,
+"fillKey": "(675,718]" 
+},
+"HI": {
+ "state": "HI",
+"year":   1999,
+"ave_dti": 37.991,
+"ave_ltv": 80.286,
+"ave_cltv": 76.407,
+"ave_fico": 734.64,
+"fillKey": "(725,739]" 
+},
+"WI": {
+ "state": "WI",
+"year":   1999,
+"ave_dti": 33.472,
+"ave_ltv": 77.994,
+"ave_cltv":  75.89,
+"ave_fico": 725.71,
+"fillKey": "(725,739]" 
+},
+"KS": {
+ "state": "KS",
+"year":   1999,
+"ave_dti": 32.504,
+"ave_ltv": 80.587,
+"ave_cltv": 75.729,
+"ave_fico": 716.96,
+"fillKey": "(675,718]" 
+},
+"FL": {
+ "state": "FL",
+"year":   1999,
+"ave_dti":  34.01,
+"ave_ltv":  80.81,
+"ave_cltv": 78.255,
+"ave_fico": 711.58,
+"fillKey": "(675,718]" 
+} 
+},
+"id": "chart737914b4d411" 
+}
+  chartParams.element = document.getElementById('chart737914b4d411')
+  
+  
+  var mapchart737914b4d411 = new Datamap(chartParams);
+  
+  
+    
+  // draw a bubble map if specified
+  if (chartParams.bubbles) {
+    var bubbles = chartParams.bubbles
+    mapchart737914b4d411.bubbles(bubbles)
+  }
+  
+  if (chartParams.labels){
+    mapchart737914b4d411.labels()
+  }
+  
+  if (chartParams.legend){
+    mapchart737914b4d411.legend()
+  }
+  
+  setProjection = function( element, options ) {
+    var projection, path;
+ 
+      projection = d3.geo.albersUsa()
+        .scale(element.offsetWidth)
+        .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+ 
+    path = d3.geo.path()
+      .projection( projection );
+ 
+    return {path: path, projection: projection};
+  }
+</script>
+
+<style>
+.datamaps {
+  position: relative;
+}
+</style>
+    
+    <script></script>    
+  </body>
+</html>
