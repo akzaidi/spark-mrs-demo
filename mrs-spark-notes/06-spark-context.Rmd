@@ -35,7 +35,7 @@ To add the SparkR library to your library paths, use the `.libPaths` function to
 
 ## Creating a Spark Context
 
-To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext, which can be created from the SparkContext using the `sparkRSQL.init` function. 
+To create a SparkContext, you should use the `spark.init` function and pass in options for the environment parameters, application properties, any spark packages depended on, and any other additional Spark parameters. In order to create and manipulate DataFrames, we will need a SQLContext or the HiveContext, which can be created from the SparkContext using the `sparkRSQL.init` and `sparkRHive.init` functions respectively. 
 
 ```{r-spark-context}
 library(dplyr)
@@ -49,7 +49,7 @@ sc <- sparkR.init(
   sparkPackages = "com.databricks:spark-csv_2.10:1.3.0"
 )
 
-sqlContext <- sparkRSQL.init(sc)
+sqlContext <- sparkRHive.init(sc)
 ```
 
 We added the `sparkPackages` argument and set it to the value of `spark-csv` package provided by databricks. This will allow us to read csv objects into Spark DataFrames. Databricks are a prominent vendor for Spark, and are developers of many Spark packages (think of them as the RStudio of the Spark ecosystem). 
@@ -620,7 +620,7 @@ sparkR.stop()
 
 We can visualize these average values in team as a choropleth. We will use the very easy to use `rMaps` package for this visualiziation.
 
-```{r choroplot}
+```{r choroplot, results = "asis"}
 library(rMaps)
 orig_summary %>%
   dplyr::mutate(year = as.numeric(year)) %>%
