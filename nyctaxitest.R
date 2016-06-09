@@ -9,7 +9,7 @@ sc <- sparkR.init(
 sqlContext <- sparkRSQL.init(sc)
 
 
-dataframe_import <- function(path = "wasb://nyctaxidata@alizaidi.blob.core.windows.net/") {
+dataframe_import <- function(path = "/") {
   
   library(SparkR)
   path <- file.path(path)
