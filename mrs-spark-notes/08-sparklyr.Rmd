@@ -1,0 +1,38 @@
+# Spark Backend for dplyr
+
+The last section described the limitations with the `SparkR` API and provided some solutions through the `SparkRext` package. The team at RStudio have an alternative and more comprehensive solution for the Spark API. This chapter showcases the extensions provided by their team. For more information you should visit the documentation at the [RStudio Spark Homepage](http://spark.rstudio.com/)
+
+## sparkrapi
+
+Underpinning the Spark API developed by RStudio is the package [sparkapi](github.com/rstudio/sparkapi), which provides 
+
+```{r sparkapi, eval = FALSE}
+sparkEnvir <- list(spark.executor.instance = '10',
+                   spark.yarn.executor.memoryOverhead = '8000')
+
+sc <- sparkR.init(
+  sparkEnvir = sparkEnvir,
+  sparkPackages = "com.databricks:spark-csv_2.10:1.3.0"
+)
+
+sqlContext <- sparkRHive.init(sc)
+
+library(sparklyr)
+
+dataframe_import <- function(path = "/") {
+  
+  library(SparkR)
+  path <- file.path(path)
+  path_df <- read.df(sqlContext, path,
+                     source = "com.databricks.spark.csv",
+                     header = "true", inferSchema = "true", delimiter = ",")
+  
+  return(path_df)
+  
+}
+
+taxi_trip <- dataframe_import(path = "wasb://nyctaxidata@alizaidi.blob.core.windows.net/trips")
+taxi_df <- sdf_register(taxi_trip)
+taxi_df <- spark_read_csv(sc, name = 'taxi',  path = "wasb://nyctaxidata@alizaidi.blob.core.windows.net/trips")
+```
+

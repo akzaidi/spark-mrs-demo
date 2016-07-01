@@ -42,7 +42,7 @@ library(dplyr)
 library(SparkR)
 
 sparkEnvir <- list(spark.executor.instance = '10',
-                   spark.yarn.executor.memoryOverhead = '8000')
+                   spark.yarn.executor.memoryOverhead = '1000')
 
 sc <- sparkR.init(
   sparkEnvir = sparkEnvir,
@@ -91,6 +91,38 @@ dest_flights %>% arrange(desc(dest_flights$count)) %>% head
 
 
 ```
+
+### Code Reusability and Non-Standard Evaluation
+
+Many R users are familiar with the [`dplyr` package](http://cran.r-project.org/web/packages/dplyr/) for data manipulation. The SparkR API has intentionally tried to imitate the syntax of the `dplyr` package because of it's popularity and ease of use. Unfortunately, the `SparkR` lacks the [non-standard evaluation](https://cran.r-project.org/web/packages/dplyr/vignettes/nse.html) procedures that `dplyr` utilizes, which lead to less-typing and, the ability to translate R code into other backends (such as SQL for databases). In particular, a typical `dplyr`allows you to do the following to create new columns for a `data.frame` of nyctaxi:
+
+```{r dplyr-ex}
+library(nycflights13)
+flights %>% 
+  group_by(year, carrier) %>% 
+  summarize(average_delay = mean(arr_delay, na.rm = TRUE))
+
+```
+
+That the above code works as easily as it does is pretty incredible. The only object that actually exists (in an explicity sense, a pointer to a object living in memory) is the `flights` data.frame (which is lazily loaded from the `nycflights13` package). The objects `year`, `carrier` and `arr_delay` don't actually exist outside of the `data.frame` `flights`. For example, if you tried `summary(year)` you will get the error "object not found". This makes sense, in that we don't actually have `year` as an object in our current global environment. 
+
+In order to make the code work, `dplyr` relies on [non-standard evaluation](http://adv-r.had.co.nz/Computing-on-the-language.html). In particular, Hadley recreated the functions `substitute` and `deparse` from the `base` R package in a new package called [`lazyeval`](https://cran.r-project.org/web/packages/lazyeval/vignettes/lazyeval-old.html), which makes it very easy to use non-standard evaluation. In NSE, the arguments of the function are captured as expressions, and are evaluated later. This is all possible due to R's lazy evaluation procedures. 
+
+Unfortunately, the SparkR API does not currently take advantage of this procedure, and therefore you have to explicitly call on the columns that you want to evaluate. However, there is a very handy package [github.com/akzaidi/SparkRext](github.com/akzaidi/SparkRext) that provides lazy evaluation support and therefore, it is possible to write functions and functional pipelines that work with `data.frames` and can automatically be applied to Spark DataFrames without having to rewrite the code. This is described more fully in the section *Functional Pipelines*. 
+
+By loading the `SparkRext` package, we automatically get all that NSE goodness (at least for the main `dplyr` verbs).
+
+```{r sparkext, eval = FALSE}
+library(SparkRext)
+flights <- createDataFrame(sqlContext, nycflights13::flights)
+dest_flights <- filter(flights, origin == "JFK") %>% 
+  group_by(dest) %>% 
+  summarize(ave_delay = mean(arr_delay))
+dest_flights %>% arrange(desc(ave_delay)) %>% head
+
+
+```
+
 
 ### Creating DataFrames from CSV Files
 
