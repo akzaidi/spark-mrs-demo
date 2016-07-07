@@ -7,15 +7,16 @@ output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
+cover-image: "images/scalemlcover.png"
 link-citations: yes
-github-repo: rstudio/bookdown-demo
-description: "This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark, and Microsoft R Server to bring your favorite R functions to large datasets."
+github-repo: akzaidi/spark-mrs-demo
+description: "This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets."
 ---
 
 # Abstract {-}
-## Scalable Machine Learning with Microsoft R Server and Spark {-}
+## Scalable Machine Learning and Data Science {-}
 
-This collection of notes in progress will help you get started with using Microsoft R Server and Spark with the Azure HDInsight platform. 
+This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark, and Microsoft R Server to bring your favorite R functions to large datasets.
 
 ## Useful Resources {-}
 There are a number of useful resources for Spark, R, and Azure HDInsight. I have listed a few that I found particularly useful.
