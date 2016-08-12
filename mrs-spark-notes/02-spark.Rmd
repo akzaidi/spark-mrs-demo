@@ -7,7 +7,7 @@ The core of Apache Spark consists of four components:
 3. [MLlib - Machine Learning Library](http://spark.apache.org/mllib/)
 4. [GraphX - Graphical Computing Library](http://spark.apache.org/graphx/)
 
-The Spark project is constantly under development, and the AMPLab is frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem can be found here: [Berkeley Data Analytics Stack](https://amplab.cs.berkeley.edu/software/)
+The Spark project is constantly under development, and core contributors at AMPLab, Databricks, and others are frequently adding new packages and implementing new ideas. An overview of the current state of the ecosystem at Berkeley's Big Data stack can be found here: [here](https://amplab.cs.berkeley.edu/software/)
 
 Even though Spark was envisioned as a better way of running iterative jobs on distributed datasets, it is actually complementary to Hadoop and can be placed over the Hadoop file system. This behavior is supported through a third-party clustering framework called [Mesos](http://mesos.apache.org/).
 
@@ -116,10 +116,7 @@ The unified Dataset API can be used both in Scala and Java. Python does not yet 
 
 ## MLlib
 
-
-
-
-ML Pipelines
+Since Spark 1.3, there has been much interest in creating a simple, interactive machine learning pipeline that represents a full data science application from start to end. The `mllib` package was created to address this need. 
 
 ## Spark APIs
 

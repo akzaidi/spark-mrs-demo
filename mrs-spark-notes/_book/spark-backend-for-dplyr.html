@@ -33,8 +33,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html">
-<link rel="next" href="ingestion.html">
+<link rel="prev" href="modeling-with-microsoft-r-server.html">
+
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -226,28 +226,70 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="provisioning-instructions" class="section level1">
-<h1><span class="header-section-number">Chapter 5</span> Provisioning Instructions</h1>
-<p>In order to make the most of the material in these notes, you will need to have a Spark cluster with Microsoft R Server installed. The easiest way of accomplishing this is to provision a premium HDInsight Spark Cluster on Azure. This module provides a walkthrough of how to provision a Spark cluster on Azure HDInsight Premium with Microsoft R Server, and how to add an edge node with RStudio Server.</p>
-<div id="provision-cluster-from-azure-portal" class="section level2">
-<h2><span class="header-section-number">5.1</span> Provision Cluster from Azure Portal</h2>
-<p>The <a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-overview/">Azure documentation</a> page provides details on how to provision a Spark cluster with Microsoft R Server.</p>
-<p>The first steps are outlined here: <a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-get-started/">Get started using R Server on HDInsight (preview)</a></p>
-<p>I have summarized the steps here to help you get started quickly:</p>
-<ul>
-<li>Login to <a href="ms.portal.azure.com">portal.azure.com</a> with your Azure subscription</li>
-<li>New -&gt; Data + Analytics -&gt; HDInsight</li>
-<li>Choose Premium cluster: R Server on Spark</li>
-<li>Create an sshkey, using putty or openSSH, and include the public key in the credentials tab</li>
-<li><a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-install-r-studio/">Install RStudio Server on the Edge Node</a></li>
-<li>Tunnel into your RStudio Server instance, and start your ML pipeline!</li>
-</ul>
+<div id="spark-backend-for-dplyr" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> Spark Backend for dplyr</h1>
+<p>The last section described the limitations with the <code>SparkR</code> API and provided some solutions through the <code>SparkRext</code> package. The team at RStudio has developed an alternative and more comprehensive solution for accessing Spark through an R API. This chapter showcases these extensions. For more information you should visit the documentation at the <a href="http://spark.rstudio.com/">RStudio Spark Homepage</a></p>
+<div id="sparkrapi" class="section level2">
+<h2><span class="header-section-number">12.1</span> sparkrapi</h2>
+<p>Underpinning the Spark API developed by RStudio is the package <a href="github.com/rstudio/sparkapi">sparkapi</a>, which provides access to the SQLContext and HiveContext needed for creating DataFrames, but also provides access to calling the full Spark Scala API. By providing a low-level API like this, it is possible to create <a href="http://spark.rstudio.com/extensions.html">extensions</a> that access parts of the Spark codebase that are not currently exposed to the R API. As an example extension, the RStudio team immediately wrote a package called <a href="github.com/rstudio/sparklyr">sparklyr</a> which provides an <em>actual</em> backend for <code>dplyr</code>.</p>
+<div id="a-proper-dplyr-backend-for-spark-dataframes" class="section level3">
+<h3><span class="header-section-number">12.1.1</span> A Proper <code>dplyr</code> backend for Spark DataFrames</h3>
+<p>While <code>SparkR</code> attempted to mimick the <code>dplyr</code> syntax, the actual functions exported by the package masked the <code>dplyr</code> functions, making it impossible to interoperate between the two packages (loading one would cause calls from the second package to fail). While the <code>SparkRext</code> attempted to resolve this issue by properly defining classes and methods for the <code>dplyr</code> functions that interacted specifically with Spark DataFrames, the <code>sparklyr</code> package took the process one step further (lower?). Since <code>dplyr</code> supports <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/new-sql-backend.html">SQL backends</a> as a data source, and since Spark DataFrames use Spark SQL to create and query its DataFrames, <code>sparklyr</code> allows complete access to <code>dplyr</code> by invoking SQL commands directly to <code>src_sql</code> in <code>dplyr</code>.</p>
+<p>In order to get started with the <code>sparklyr</code> package, we need to create a Spark connection. We specify the connection directly through <code>sparklyr</code>, by running <code>spark_connect</code> and specifying our cluster’s URL. Since we are using a HDInsight Spark cluster, our cluster is managed through YARN.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)
+sc &lt;-<span class="st"> </span><span class="kw">spark_connect</span>(<span class="st">&quot;yarn-client&quot;</span>)</code></pre></div>
+<p>Using the <code>sparklyr</code> package, importing data immediately an object of class <code>tbl_spark</code>, which inherits from the more general <code>dplyr</code> class, <code>tbl_sql</code> and <code>tbl</code> (see the <a href="github.com/hadley/tibble"><code>tibble</code></a> for more information about the <code>tibble</code> format), and allows access to all the functions exported by the <code>dplyr</code> package with methods for the <code>tbl_sql</code> class.</p>
+<p>In this section, we will examine the data from <a href="http://www.fanniemae.com/portal/funding-the-market/data/loan-performance-data.html">Fannie Mae Single Family Loan Performance Data</a>. Our data is located in an Azure Storage Account, and is delimited by a pipe and does not have a header. The function <code>spark_read_csv</code> simply invokes the <code>read.df</code> function we had used earlier, so you can think of it is a wrapper function. It is useful mainly for the additional attributes it defines on it’s return value: the <code>tbl_spark</code> class.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fannie &lt;-<span class="st"> </span><span class="kw">spark_read_csv</span>(sc, <span class="dt">name =</span> <span class="st">&quot;fannie&quot;</span>, 
+                         <span class="dt">path =</span> <span class="st">&quot;wasb://mrs-spark@alizaidi.blob.core.windows.net/user/RevoShare/alizaidi/Acquisition/&quot;</span>,
+                         <span class="dt">header =</span> F,
+                         <span class="dt">delimiter =</span> <span class="st">&quot;|&quot;</span>)
+
+<span class="kw">class</span>(fannie)
+
+<span class="kw">library</span>(dplyr)
+
+fannie &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span><span class="kw">rename</span>(<span class="dt">loan_id =</span> C0,
+                            <span class="dt">orig_chn =</span> C1,
+                            <span class="dt">seller_name =</span> C2,
+                            <span class="dt">orig_rt =</span> C3,
+                            <span class="dt">orig_amt =</span> C4,
+                            <span class="dt">orig_trm =</span> C5,
+                            <span class="dt">orig_dte =</span> C6,
+                            <span class="dt">frst_dte =</span> C7,
+                            <span class="dt">oltv =</span> C8,
+                            <span class="dt">ocltv =</span> C9,
+                            <span class="dt">num_bo =</span> C10,
+                            <span class="dt">dti =</span> C11,
+                            <span class="dt">cscore_b =</span> C12,
+                            <span class="dt">fthb_flg =</span> C13,
+                            <span class="dt">purpose =</span> C14,
+                            <span class="dt">prop_typ =</span> C15,
+                            <span class="dt">num_unit  =</span> C16,
+                            <span class="dt">occ_stat  =</span> C17,
+                            <span class="dt">state  =</span> C18,
+                            <span class="dt">zip_3 =</span> C19,
+                            <span class="dt">mi_pct  =</span> C20,
+                            <span class="dt">product_type =</span> C21,
+                            <span class="dt">cscore_co  =</span> C22)
+
+fannie %&gt;%<span class="st"> </span>head</code></pre></div>
 </div>
-<div id="installing-packages" class="section level2">
-<h2><span class="header-section-number">5.2</span> Installing Packages</h2>
-<p>For packages you only need to run on the edge node, you can continue using <code>install.packages</code>. For packages you need installed on the edge node as well as all the worker nodes, you’ll need to use a <a href="https://azure.microsoft.com/en-us/documentation/articles/hdinsight-hadoop-r-server-get-started/#install-r-packages">script action</a></p>
-<div id="todo---install-packages-demo" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> todo - install packages demo</h3>
+<div id="aggregating-data" class="section level3">
+<h3><span class="header-section-number">12.1.2</span> Aggregating Data</h3>
+<p>Now that we have a proper <code>tbl</code> class that works with the <code>dplyr</code> package, any function we write that is desgined to work with <code>dplyr</code> will automatically work here as well. The only caveat is that not all methods available for the <code>tbl_df</code> class are available for the <code>tbl_spark</code> or <code>tbl_sql</code> class. For example, you can’t use arbitrary R functions with <code>tbl_sql</code>, just those can be easily understood by SQL.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fannie &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">orig_year =</span> <span class="kw">substr</span>(orig_dte, <span class="dv">4</span>, <span class="dv">7</span>))
+
+zip_summary &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(zip_3, orig_year) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">ave_amnt =</span> <span class="kw">mean</span>(orig_amt), <span class="dt">ave_ltv =</span> <span class="kw">mean</span>(oltv), 
+            <span class="dt">ave_dti =</span> <span class="kw">mean</span>(dti), <span class="dt">ave_cscore =</span> <span class="kw">mean</span>(cscore_b))
+
+zip_summary %&gt;%<span class="st"> </span>head</code></pre></div>
+
+<div id="refs" class="references">
+
+</div>
 </div>
 </div>
 </div>
@@ -256,8 +298,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="azure-hdinsight-managed-hadoop-in-the-cloud-todo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ingestion.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+<a href="modeling-with-microsoft-r-server.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>

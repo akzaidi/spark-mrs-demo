@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
+  <title>Scalable Machine Learning and Data Science with R and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.70 and GitBook 2.6.7">
+  <meta name="description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets.">
+  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta property="og:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:image" content="images/scalemlcover.png" />
+  <meta property="og:description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets." />
+  <meta name="github-repo" content="akzaidi/spark-mrs-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   
-  <meta name="twitter:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
-  
+  <meta name="twitter:description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets." />
+  <meta name="twitter:image" content="images/scalemlcover.png" />
 
-<meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
+<meta name="author" content="Ali Zaidi">
 
-<meta name="date" content="2016-06-01">
+<meta name="date" content="2016-07-10">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,10 +49,10 @@
 
 
 
-<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
 <link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-3.5.5/plotly.js"></script>
+<script src="libs/plotly-binding-3.6.5/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -97,7 +97,6 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -109,11 +108,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i>Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-and-data-science"><i class="fa fa-check"></i>Scalable Machine Learning and Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i>Spark</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i>Microsoft R Server</a></li>
@@ -175,7 +171,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>8.2</b> Creating a Spark Context</a></li>
 <li class="chapter" data-level="8.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>8.3</b> Creating DataFrames</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>8.3.1</b> From Local R data.frames</a></li>
-<li class="chapter" data-level="8.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.3.2</b> Creating DataFrames from CSV Files</a></li>
+<li class="chapter" data-level="8.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#code-reusability-and-non-standard-evaluation"><i class="fa fa-check"></i><b>8.3.2</b> Code Reusability and Non-Standard Evaluation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.3.3</b> Creating DataFrames from CSV Files</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#caching-dataframes"><i class="fa fa-check"></i><b>8.4</b> Caching DataFrames</a></li>
 </ul></li>
@@ -206,10 +203,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
+<li class="chapter" data-level="12" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>12</b> Spark Backend for dplyr</a><ul>
+<li class="chapter" data-level="12.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>12.1</b> sparkrapi</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>12.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
+<li class="chapter" data-level="12.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>12.1.2</b> Aggregating Data</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -219,7 +218,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with R and Spark</a>
           </h1>
         </div>
 
@@ -250,33 +249,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>A Spark program consists of two programs, a driver program and a worker program. A driver program runs on the driver machine, whereas the worker program runs on cluster nodes (or in local threads when running on a single machine). The driver program communicates with YARN to negotiate resources for a Spark job, and launches various parallel operations on the cluster. Therefore, the Spark user can write functions on the driver program, and it is automatically shipped to the many nodes of your cluster.</p>
 <p>In order to access Spark, the driver program needs to define a <code>SparkContext</code> object, which provides a connection to the computing cluster. Hence, the first thing a Spark program requires is a <code>SparkContext</code> object, which tells Spark the details of the cluster. Inside a Spark shell (including <code>PySpark</code> and the <code>SparkR</code> shells), the <code>SparkContext</code> is automatically created and assigned to a variable called <code>sc</code>. When connecting to Spark from a separate R client and using the <code>SparkR</code> package, you need to define the <code>SparkContext</code> yourself.</p>
 <p>The most important parameter for a <code>SparkContext</code> is the <em>master</em> parameter, which determines the type and size of the cluster to use:</p>
-<table style="width:156%;">
+<table>
 <colgroup>
-<col width="27%" />
-<col width="127%" />
+<col width="17%" />
+<col width="82%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Master Parameter</th>
-<th align="left">Description</th>
+<th>Master Parameter</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">local</td>
-<td align="left">run Spark locally with one worker thread (no parallelism)</td>
+<td>local</td>
+<td>run Spark locally with one worker thread (no parallelism)</td>
 </tr>
 <tr class="even">
-<td align="left">local[K]</td>
-<td align="left">run Spark locally with K worker threads <br>(most commonly set to number of available cores)</td>
+<td>local[K]</td>
+<td>run Spark locally with K worker threads <br>(most commonly set to number of available cores)</td>
 </tr>
 <tr class="odd">
-<td align="left">spark://HOST:PORT</td>
-<td align="left">connect to a Spark standalone cluster: <br> PORT depends on configuration (by default is 7077)</td>
+<td>spark://HOST:PORT</td>
+<td>connect to a Spark standalone cluster: <br> PORT depends on configuration (by default is 7077)</td>
 </tr>
 <tr class="even">
-<td align="left">mesos://HOST:PORT</td>
-<td align="left">connect to a Mesos cluster: PORT depends on configuration <br> (by default is 5050)</td>
+<td>mesos://HOST:PORT</td>
+<td>connect to a Mesos cluster: PORT depends on configuration <br> (by default is 5050)</td>
 </tr>
 </tbody>
 </table>
@@ -290,64 +289,64 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="common-transformations-and-actions" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Common Transformations and Actions</h3>
 <p>Here are some of the most common transformations when working with RDDs:</p>
-<table style="width:160%;">
+<table>
 <colgroup>
-<col width="26%" />
-<col width="133%" />
+<col width="16%" />
+<col width="83%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Master Parameter</th>
-<th align="left">Description</th>
+<th>Master Parameter</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>map(func)</code></td>
-<td align="left">return a new distributed dataset by passing each element <br>of the source through a function func</td>
+<td><code>map(func)</code></td>
+<td>return a new distributed dataset by passing each element <br>of the source through a function func</td>
 </tr>
 <tr class="even">
-<td align="left"><code>filter(func)</code></td>
-<td align="left">return a new dataset by selecting those elements<br>of the source where func returns TRUE</td>
+<td><code>filter(func)</code></td>
+<td>return a new dataset by selecting those elements<br>of the source where func returns TRUE</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>distinct([numTasks])</code></td>
-<td align="left">return a new dataset that contains the distinct elements of the source dataset</td>
+<td><code>distinct([numTasks])</code></td>
+<td>return a new dataset that contains the distinct elements of the source dataset</td>
 </tr>
 <tr class="even">
-<td align="left"><code>flatMap(func)</code></td>
-<td align="left">similar to map, but instead of mapping to a single value, <br> <code>func</code> returns a sequence</td>
+<td><code>flatMap(func)</code></td>
+<td>similar to map, but instead of mapping to a single value, <br> <code>func</code> returns a sequence</td>
 </tr>
 </tbody>
 </table>
 <p>These functions will not be evaluated when called, but only when they are passed onto an action. Here are some common actions:</p>
-<table style="width:125%;">
+<table>
 <colgroup>
-<col width="25%" />
-<col width="100%" />
+<col width="20%" />
+<col width="80%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Master Parameter</th>
-<th align="left">Description</th>
+<th>Master Parameter</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>reduce(func)</code></td>
-<td align="left">aggregate elements of the dataset by func. <br> func must take two arguments and returns a singleton</td>
+<td><code>reduce(func)</code></td>
+<td>aggregate elements of the dataset by func. <br> func must take two arguments and returns a singleton</td>
 </tr>
 <tr class="even">
-<td align="left"><code>take(n)</code></td>
-<td align="left">returns an array with the first <br> n elements of the dataset</td>
+<td><code>take(n)</code></td>
+<td>returns an array with the first <br> n elements of the dataset</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>collect()</code></td>
-<td align="left">returns all the elements as an array <br> (make sure it can fit in the memory of the driver)</td>
+<td><code>collect()</code></td>
+<td>returns all the elements as an array <br> (make sure it can fit in the memory of the driver)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>takeOrdered(n, key = func)</code></td>
-<td align="left">return n elements ordered in ascending <br> order or as specified by the key function</td>
+<td><code>takeOrdered(n, key = func)</code></td>
+<td>return n elements ordered in ascending <br> order or as specified by the key function</td>
 </tr>
 </tbody>
 </table>
@@ -363,7 +362,7 @@ sc &lt;-<span class="st"> </span><span class="kw">sparkR.init</span>(
   <span class="dt">sparkEnvir =</span> sparkEnvir,
   <span class="dt">sparkPackages =</span> <span class="st">&quot;com.databricks:spark-csv_2.10:1.3.0&quot;</span>
 )</code></pre></div>
-<pre><code>## Launching java with spark-submit command /usr/hdp/current/spark-client/bin/spark-submit  --packages com.databricks:spark-csv_2.10:1.3.0 sparkr-shell /tmp/RtmpG3xXzh/backend_port52fd431065da</code></pre>
+<pre><code>## Launching java with spark-submit command /usr/hdp/current/spark-client/bin/spark-submit  --packages com.databricks:spark-csv_2.10:1.3.0 sparkr-shell /tmp/RtmpY6KWOB/backend_port17fb1d09bf0e</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqlContext &lt;-<span class="st"> </span><span class="kw">sparkRSQL.init</span>(sc)
 
 rdd &lt;-<span class="st"> </span>SparkR:::<span class="kw">parallelize</span>(sc, <span class="dv">1</span>:<span class="dv">10</span>)
@@ -442,7 +441,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-spark.Rmd",
+"link": null,
 "text": null
 },
 "download": null,

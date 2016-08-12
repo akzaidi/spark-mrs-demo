@@ -5,27 +5,27 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Scalable Machine Learning and Data Science with Microsoft R Server and Spark</title>
+  <title>Scalable Machine Learning and Data Science with R and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <meta name="description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation.">
-  <meta name="generator" content="bookdown 0.0.70 and GitBook 2.6.7">
+  <meta name="description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets.">
+  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
 
-  <meta property="og:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta property="og:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   <meta property="og:type" content="book" />
   
-  
-  <meta property="og:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:image" content="images/scalemlcover.png" />
+  <meta property="og:description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets." />
+  <meta name="github-repo" content="akzaidi/spark-mrs-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with Microsoft R Server and Spark" />
+  <meta name="twitter:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   
-  <meta name="twitter:description" content="These are (tentatively) rough notes showcasing some tips on conducting large scale data analysis with R, Spark, and Microsoft R Server. The focus is primarily on machine learning with Azure HDInsight platform, but review other in-memory, large-scale data analysis platforms, such as R Services with SQL Server 2016, and discuss how to utilize BI tools such as PowerBI and Shiny for dynamic reporting, and report generation." />
-  
+  <meta name="twitter:description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets." />
+  <meta name="twitter:image" content="images/scalemlcover.png" />
 
-<meta name="author" content="Ali Zaidi, Machine Learning and Data Science, Microsoft">
+<meta name="author" content="Ali Zaidi">
 
-<meta name="date" content="2016-06-01">
+<meta name="date" content="2016-07-10">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,10 +49,10 @@
 
 
 
-<script src="libs/htmlwidgets-0.6.1/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
 <link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-3.5.5/plotly.js"></script>
+<script src="libs/plotly-binding-3.6.5/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -97,7 +97,6 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -109,11 +108,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
-
-<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-with-microsoft-r-server-and-spark"><i class="fa fa-check"></i>Scalable Machine Learning with Microsoft R Server and Spark</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-and-data-science"><i class="fa fa-check"></i>Scalable Machine Learning and Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#spark"><i class="fa fa-check"></i>Spark</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#microsoft-r-server"><i class="fa fa-check"></i>Microsoft R Server</a></li>
@@ -175,7 +171,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="8.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-a-spark-context"><i class="fa fa-check"></i><b>8.2</b> Creating a Spark Context</a></li>
 <li class="chapter" data-level="8.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes"><i class="fa fa-check"></i><b>8.3</b> Creating DataFrames</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#from-local-r-data.frames"><i class="fa fa-check"></i><b>8.3.1</b> From Local R data.frames</a></li>
-<li class="chapter" data-level="8.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.3.2</b> Creating DataFrames from CSV Files</a></li>
+<li class="chapter" data-level="8.3.2" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#code-reusability-and-non-standard-evaluation"><i class="fa fa-check"></i><b>8.3.2</b> Code Reusability and Non-Standard Evaluation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#creating-dataframes-from-csv-files"><i class="fa fa-check"></i><b>8.3.3</b> Creating DataFrames from CSV Files</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="starting-your-machine-learning-pipeline.html"><a href="starting-your-machine-learning-pipeline.html#caching-dataframes"><i class="fa fa-check"></i><b>8.4</b> Caching DataFrames</a></li>
 </ul></li>
@@ -206,10 +203,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
+<li class="chapter" data-level="12" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>12</b> Spark Backend for dplyr</a><ul>
+<li class="chapter" data-level="12.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>12.1</b> sparkrapi</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>12.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
+<li class="chapter" data-level="12.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>12.1.2</b> Aggregating Data</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -219,7 +218,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with Microsoft R Server and Spark</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Scalable Machine Learning and Data Science with R and Spark</a>
           </h1>
         </div>
 
@@ -286,7 +285,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-provisioning-instructions.Rmd",
+"link": null,
 "text": null
 },
 "download": null,

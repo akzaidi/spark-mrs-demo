@@ -1,12 +1,5 @@
 # (PART) Data Manipulation and Data Aggregation {-}
 
-```{r load-config, echo = FALSE}
-# see https://github.com/ramnathv/slidify/issues/299
-# same issue for rMaps
-library(knitr)
-
-```
-
 
 # Starting Your Machine Learning Pipeline
 
@@ -565,7 +558,7 @@ We have loaded both portions of these data into different data directories on ou
 
 ```{r import-orig}
 
-data_dir <- "/user/RevoShare/alizaidi"
+data_dir <- "wasb://mrs-spark@alizaidi.blob.core.windows.net/user/RevoShare/alizaidi/"
 
 acquisition_import <- function(datadir) {
 

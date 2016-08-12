@@ -58,8 +58,54 @@ fannie <- fannie %>% rename(loan_id = C0,
                             cscore_co  = C22)
 
 fannie %>% head
+fannie %>% count
+
+
 
 ```
+
+### Importing Performance Data
+
+Importing the entire performance data seems to lead to storage overfill.
+
+```{r perf_import, eval = FALSE}
+
+fannie_perf <- spark_read_csv(sc, name = "performance",
+                              path = "wasb://mrs-spark@alizaidi.blob.core.windows.net/user/RevoShare/alizaidi/Performance/",
+                              header = F,
+                              delimiter = "|")
+
+fannie_perf <- fannie_perf %>% rename(loan_id = C0,
+                    monthly_rpd_prd  = C1,
+                    servicer  = C2,
+                    last_rt  = C3,
+                    last_upb  = C4,
+                    loan_age  = C5,
+                    months_to_maturity = C6,
+                    adj_months_to_maturity  = C7,
+                    maturity_date  = C8,
+                    msa  = C9,
+                    deliq_status  = C10,
+                    mod_flag  = C11,
+                    zero_bal_code = C12,
+                    zb_date  = C13,
+                    lpi_date  = C14,
+                    fcc_dte = C15,
+                    disp_dt  = C16,
+                    fcc_cost  = C17,
+                    pp_cost  = C18,
+                    ar_cost  = C19,
+                    ie_cost  = C20,
+                    tax_cost  = C21,
+                    ns_procs = C22,
+                    ce_procs  = C23,
+                    rmw_procs  = C24,
+                    o_procs  = C25,
+                    non_int_upb  = C26,
+                    prin_forg_upb  = C27)
+
+```
+
 
 ### Aggregating Data
 
@@ -67,7 +113,7 @@ fannie %>% head
 Now that we have a proper `tbl` class that works with the `dplyr` package, any function we write that is desgined to work with `dplyr` will automatically work here as well. The only caveat is that not all methods available for the `tbl_df` class are available for the `tbl_spark` or `tbl_sql` class. For example, you can't use arbitrary R functions with `tbl_sql`, just those can be easily understood by SQL.
 
 
-```{r agg-zip}
+```{r agg-zip, eval = FALSE}
 
 fannie <- fannie %>% mutate(orig_year = substr(orig_dte, 4, 7))
 
@@ -77,5 +123,32 @@ zip_summary <- fannie %>%
             ave_dti = mean(dti), ave_cscore = mean(cscore_b))
 
 zip_summary %>% head
+zip_summary %>% count
+```
+
+### Plotting Results 
+
+#### By State
+
+```{r choropleth, eval = FALSE}
+
+state_summary <- fannie %>% 
+  group_by(state, orig_year) %>% 
+  summarize(ave_amnt = mean(orig_amt), ave_ltv = mean(oltv), 
+            ave_dti = mean(dti), ave_cscore = mean(cscore_b))
+
+state_summary %>% collect %>% 
+  mutate(year = as.numeric(orig_year)) %>% 
+    rMaps::ichoropleth(ave_cscore ~ state, data = ., 
+                     animate = "year",
+                     geographyConfig = list(popupTemplate = "#!function(geo, data) {
+                                         return '<div class=\"hoverinfo\"><strong>'+
+                                         data.state+ '<br>' + 'Average Credit Score for Loans Originated in '+
+                                         data.year + ': ' +
+                                         data.ave_cscore.toFixed(0) +
+                                         '</strong></div>';}!#")) -> state_fico
+
+state_fico
+
 ```
 

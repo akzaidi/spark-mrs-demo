@@ -7,7 +7,7 @@ myPort <- 0
 hdfsFS <- RxHdfsFileSystem(hostName = myNameNode, 
                            port = myPort)
 
-dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
+dataDir <- "/user/RevoShare/alizaidi/"
 computeContext <- RxSpark(consoleOutput = TRUE)
 
 ```
@@ -34,7 +34,7 @@ Lastly, we need to provide MRS with pointers to the HDFS store we will be saving
 rxOptions(fileSystem = RxHdfsFileSystem(),
           reportProgress = 0)
 
-dataDir <- "/user/RevoShare/alizaidi/delayDataLarge"
+dataDir <- "/user/RevoShare/alizaidi/"
 
 if(rxOptions()$hdfsHost == "default") {
  fullDataDir <- dataDir
@@ -98,7 +98,7 @@ rxImport(inData = joined_txt, dest_xdf, overwrite = TRUE)
 
 Now that we have imported our data to an XDF, we can get some information about the variables:
 
-```{r-get-info, cache = TRUE}
+```{r-get-info, cache = TRUE, eval = FALSE}
 
 
 rxGetInfo(RxXdfData(file.path(data_dir, "delayDataLarge", "joinedAirWeatherXdf"),
@@ -214,23 +214,3 @@ system.time(rxPredict(dTreeModel, data = testDS, outData = treePredict,
 
 
 Using our predicted results, we can calculate the accuracy and recall of our model. A very simple way of viewing model's accuracy is by way of a ROC curve, which plots the recall and accuracy. The metric from this chart, AUC, is a useful validation metric for viewing your moels' accuracy.
-
-```{r-model-accuracy, message = FALSE, eval = FALSE}
-# Calculate ROC and Area Under the Curve (AUC).
-load("testModels.RData")
-
-# logitRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", logitPredict)
-# logitAuc <- rxAuc(logitRoc)
-
-# plot(logitRoc)
-
-# Calculate ROC and Area Under the Curve (AUC)
-
-# treeRoc <- rxRoc("ArrDel15", "ArrDel15_Pred", treePredict)
-# treeAuc <- rxAuc(treeRoc)
-# 
-# plot(treeRoc)
-
-
-```
-

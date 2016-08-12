@@ -1,12 +1,12 @@
-# R & Microsoft R Server - todo {#rserver}
+# R & Microsoft R Server {#rserver}
 
 ## Functional Programming and Lazy Evaluation in R
 
 As we mentioned in Section \@ref(lazyevalfp), Spark takes advantage of the functional programming paradigm and lazy evaluation to optimize it's operations and improve upon algorithmic complexity. R is also at it's heart a functional programming langauge. Moreover, the arguments in a function are evaluated lazily by R: only evaluated if they're actually used, and only when they're needed. This allows R to be highly expressive, capable of doing many intricate things with few lines of code, but also causes R to have a rather heavy memory footprint.
 
-Many packages for R have been written to take advantage of it's lazy, and non-standard evaluation procedures. Most famously, the dplyr package utlizes R's NSE mechanism to have it's functions connect to backends in different databases, translating R into syntax that can be understood and evaluated by those backends.
+Many packages for R have been written to take advantage of it's lazy, and non-standard evaluation procedures. Most famously, the `dplyr` package utlizes R's NSE mechanism to have it's functions connect to backends in different databases, translating R into syntax that can be understood and evaluated by those backends.
 
-Thee RevoScaleR similarly reimagines R's algorithms as distributable C++ code, taht can be optimized and compiled in various compute contexts. 
+Thee RevoScaleR similarly reimagines R's algorithms as distributable C++ code, that can be optimized and compiled in various compute contexts. 
 
 ## PEMA Algorithms and the RevoScaleR Package {#pema}
 Parallel External Memory Algorithms (PEMA) are algorithms that do not require all the data to be in memory at one time. This is in contrast to all of the functions in base R, and most of the methods in additional R packages. 
@@ -18,3 +18,4 @@ The most efficient way to use PEMA algorithms is to apply them to the novel data
 
 
 ## Compute Contexts {#computecontext}
+

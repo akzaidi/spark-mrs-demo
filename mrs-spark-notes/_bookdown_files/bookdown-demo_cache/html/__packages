@@ -12,3 +12,7 @@ htmltools
 rcdimple
 AzureML
 rMaps
+dplyr
+nycflights13
+ggplot2
+plotly
