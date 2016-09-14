@@ -1,12 +1,12 @@
 local({
   r <- getOption("repos");
-  r["CRAN"] <- "https://cran.rstudio.com/"
+  r["CRAN"] <- "https://mran.revolutionanalytics.com/snapshot/2016-07-05/"
   options(repos = r)
 })
 
 .First <- function() {
   
-  .libPaths(c(file.path(Sys.getenv("SPARK_HOME"), "R", "lib"), .libPaths()))
+  .libPaths(c(.libPaths(), file.path(Sys.getenv("SPARK_HOME"), "R", "lib")))
   pkgs_to_load <- c(getOption("defaultPackages"), "SparkR")
   options(defaultPackages = pkgs_to_load,
           continue = " ",

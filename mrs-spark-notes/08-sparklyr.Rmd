@@ -30,32 +30,33 @@ fannie <- spark_read_csv(sc, name = "fannie",
                          delimiter = "|")
 
 class(fannie)
+head(fannie)
 
 library(dplyr)
 
-fannie <- fannie %>% rename(loan_id = C0,
-                            orig_chn = C1,
-                            seller_name = C2,
-                            orig_rt = C3,
-                            orig_amt = C4,
-                            orig_trm = C5,
-                            orig_dte = C6,
-                            frst_dte = C7,
-                            oltv = C8,
-                            ocltv = C9,
-                            num_bo = C10,
-                            dti = C11,
-                            cscore_b = C12,
-                            fthb_flg = C13,
-                            purpose = C14,
-                            prop_typ = C15,
-                            num_unit  = C16,
-                            occ_stat  = C17,
-                            state  = C18,
-                            zip_3 = C19,
-                            mi_pct  = C20,
-                            product_type = C21,
-                            cscore_co  = C22)
+fannie <- fannie %>% rename(loan_id = V1,
+                            orig_chn = V2,
+                            seller_name = V3,
+                            orig_rt = V4,
+                            orig_amt = V5,
+                            orig_trm = V6,
+                            orig_dte = V7,
+                            frst_dte = V8,
+                            oltv = V9,
+                            ocltv = V10,
+                            num_bo = V11,
+                            dti = V12,
+                            cscore_b = V13,
+                            fthb_flg = V14,
+                            purpose = V15,
+                            prop_typ = V16,
+                            num_unit  = V17,
+                            occ_stat  = V18,
+                            state  = V19,
+                            zip_3 = V20,
+                            mi_pct  = V21,
+                            product_type = V22,
+                            cscore_co  = V23)
 
 fannie %>% head
 fannie %>% count

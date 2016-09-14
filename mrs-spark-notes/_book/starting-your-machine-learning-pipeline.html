@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with R and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets.">
-  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi">
 
-<meta name="date" content="2016-07-10">
+<meta name="date" content="2016-08-15">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,9 +50,9 @@
 
 
 <script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
-<link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-3.6.5/plotly.js"></script>
+<link href="libs/plotlyjs-1.16.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.1/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.2.0/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -97,6 +97,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -108,6 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-and-data-science"><i class="fa fa-check"></i>Scalable Machine Learning and Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
@@ -119,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><span><b>Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-1"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
@@ -142,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7.3" data-path="apache-spark-1.html"><a href="apache-spark-1.html#sparkr-1"><i class="fa fa-check"></i><b>2.7.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server</a><ul>
 <li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
 <li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
 <li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
@@ -203,12 +207,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>12</b> Spark Backend for dplyr</a><ul>
-<li class="chapter" data-level="12.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>12.1</b> sparkrapi</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>12.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
-<li class="chapter" data-level="12.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>12.1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+<li class="chapter" data-level="13" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>13</b> Spark Backend for dplyr</a><ul>
+<li class="chapter" data-level="13.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>13.1</b> sparkrapi</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>13.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
+<li class="chapter" data-level="13.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#importing-performance-data"><i class="fa fa-check"></i><b>13.1.2</b> Importing Performance Data</a></li>
+<li class="chapter" data-level="13.1.3" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>13.1.3</b> Aggregating Data</a></li>
+<li class="chapter" data-level="13.1.4" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#plotting-results-1"><i class="fa fa-check"></i><b>13.1.4</b> Plotting Results</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -252,7 +262,7 @@ sc &lt;-<span class="st"> </span><span class="kw">sparkR.init</span>(
   <span class="dt">sparkEnvir =</span> sparkEnvir,
   <span class="dt">sparkPackages =</span> <span class="st">&quot;com.databricks:spark-csv_2.10:1.3.0&quot;</span>
 )</code></pre></div>
-<pre><code>## Launching java with spark-submit command /usr/hdp/current/spark-client/bin/spark-submit  --packages com.databricks:spark-csv_2.10:1.3.0 sparkr-shell /tmp/RtmpY6KWOB/backend_port17fb706622b6</code></pre>
+<pre><code>## Launching java with spark-submit command /usr/hdp/current/spark-client/bin/spark-submit  --packages com.databricks:spark-csv_2.10:1.3.0 sparkr-shell /tmp/Rtmp7bZjz3/backend_port4fba4861a2c8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sqlContext &lt;-<span class="st"> </span><span class="kw">sparkRHive.init</span>(sc)</code></pre></div>
 <p>We added the <code>sparkPackages</code> argument and set it to the value of <code>spark-csv</code> package provided by databricks. This will allow us to read csv objects into Spark DataFrames. Databricks are a prominent vendor for Spark, and are developers of many Spark packages (think of them as the RStudio of the Spark ecosystem).</p>
 <p>After you are done using your Spark session, you can terminate your backend to Spark by running <code>sparkR.stop()</code>.</p>
@@ -326,9 +336,12 @@ dest_flights %&gt;%<span class="st"> </span><span class="kw">arrange</span>(<spa
 <p>We have saved in our data directory a couple of data directories (virtually, everything in Azure Storage is a simple blob!). Let’s see what we have in our directory using the <code>rxHadoopListFiles</code> command, which is simply a wrapper to hadoop shell command <code>hadoop fs -ls</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_dir &lt;-<span class="st"> &quot;/user/RevoShare/alizaidi&quot;</span>
 <span class="kw">rxHadoopListFiles</span>(data_dir)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p>Taking a look at the individual directories, we can see how many files there are for the Airlines directory and Weather directory</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)
-<span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/AirOnTimeCSV | head&quot;</span>)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rxHadoopCommand</span>(<span class="st">&quot;fs -ls /user/RevoShare/alizaidi/delayDataLarge/WeatherRaw | head&quot;</span>)</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
 <p>Let’s read the airlines directory and the weather directory to Spark DataFrames. We will use the <code>read.df</code> function from the <code>spark.csv</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(<span class="st">&quot;/user/RevoShare/alizaidi&quot;</span>, <span class="st">&quot;AirOnTimeCSV&quot;</span>)
 weatherPath &lt;-<span class="st"> </span><span class="kw">file.path</span>(fullDataDir, <span class="st">&quot;Weather&quot;</span>) <span class="co"># pre-processed weather data</span>
@@ -459,7 +472,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-spark-context.Rmd",
 "text": null
 },
 "download": null,

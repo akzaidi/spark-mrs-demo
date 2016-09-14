@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with R and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets.">
-  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi">
 
-<meta name="date" content="2016-07-10">
+<meta name="date" content="2016-08-15">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="modeling-with-microsoft-r-server.html">
+<link rel="prev" href="references.html">
 
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -50,9 +50,9 @@
 
 
 <script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
-<link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-3.6.5/plotly.js"></script>
+<link href="libs/plotlyjs-1.16.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.1/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.2.0/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -97,6 +97,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -108,6 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-and-data-science"><i class="fa fa-check"></i>Scalable Machine Learning and Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
@@ -119,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><span><b>Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-1"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
@@ -142,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7.3" data-path="apache-spark-1.html"><a href="apache-spark-1.html#sparkr-1"><i class="fa fa-check"></i><b>2.7.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server</a><ul>
 <li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
 <li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
 <li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
@@ -203,12 +207,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>12</b> Spark Backend for dplyr</a><ul>
-<li class="chapter" data-level="12.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>12.1</b> sparkrapi</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>12.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
-<li class="chapter" data-level="12.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>12.1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+<li class="chapter" data-level="13" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>13</b> Spark Backend for dplyr</a><ul>
+<li class="chapter" data-level="13.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>13.1</b> sparkrapi</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>13.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
+<li class="chapter" data-level="13.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#importing-performance-data"><i class="fa fa-check"></i><b>13.1.2</b> Importing Performance Data</a></li>
+<li class="chapter" data-level="13.1.3" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>13.1.3</b> Aggregating Data</a></li>
+<li class="chapter" data-level="13.1.4" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#plotting-results-1"><i class="fa fa-check"></i><b>13.1.4</b> Plotting Results</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -227,13 +237,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="spark-backend-for-dplyr" class="section level1">
-<h1><span class="header-section-number">Chapter 12</span> Spark Backend for dplyr</h1>
+<h1><span class="header-section-number">Chapter 13</span> Spark Backend for dplyr</h1>
 <p>The last section described the limitations with the <code>SparkR</code> API and provided some solutions through the <code>SparkRext</code> package. The team at RStudio has developed an alternative and more comprehensive solution for accessing Spark through an R API. This chapter showcases these extensions. For more information you should visit the documentation at the <a href="http://spark.rstudio.com/">RStudio Spark Homepage</a></p>
 <div id="sparkrapi" class="section level2">
-<h2><span class="header-section-number">12.1</span> sparkrapi</h2>
+<h2><span class="header-section-number">13.1</span> sparkrapi</h2>
 <p>Underpinning the Spark API developed by RStudio is the package <a href="github.com/rstudio/sparkapi">sparkapi</a>, which provides access to the SQLContext and HiveContext needed for creating DataFrames, but also provides access to calling the full Spark Scala API. By providing a low-level API like this, it is possible to create <a href="http://spark.rstudio.com/extensions.html">extensions</a> that access parts of the Spark codebase that are not currently exposed to the R API. As an example extension, the RStudio team immediately wrote a package called <a href="github.com/rstudio/sparklyr">sparklyr</a> which provides an <em>actual</em> backend for <code>dplyr</code>.</p>
 <div id="a-proper-dplyr-backend-for-spark-dataframes" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> A Proper <code>dplyr</code> backend for Spark DataFrames</h3>
+<h3><span class="header-section-number">13.1.1</span> A Proper <code>dplyr</code> backend for Spark DataFrames</h3>
 <p>While <code>SparkR</code> attempted to mimick the <code>dplyr</code> syntax, the actual functions exported by the package masked the <code>dplyr</code> functions, making it impossible to interoperate between the two packages (loading one would cause calls from the second package to fail). While the <code>SparkRext</code> attempted to resolve this issue by properly defining classes and methods for the <code>dplyr</code> functions that interacted specifically with Spark DataFrames, the <code>sparklyr</code> package took the process one step further (lower?). Since <code>dplyr</code> supports <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/new-sql-backend.html">SQL backends</a> as a data source, and since Spark DataFrames use Spark SQL to create and query its DataFrames, <code>sparklyr</code> allows complete access to <code>dplyr</code> by invoking SQL commands directly to <code>src_sql</code> in <code>dplyr</code>.</p>
 <p>In order to get started with the <code>sparklyr</code> package, we need to create a Spark connection. We specify the connection directly through <code>sparklyr</code>, by running <code>spark_connect</code> and specifying our cluster’s URL. Since we are using a HDInsight Spark cluster, our cluster is managed through YARN.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sparklyr)
@@ -273,10 +283,48 @@ fannie &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span><span
                             <span class="dt">product_type =</span> C21,
                             <span class="dt">cscore_co  =</span> C22)
 
-fannie %&gt;%<span class="st"> </span>head</code></pre></div>
+fannie %&gt;%<span class="st"> </span>head
+fannie %&gt;%<span class="st"> </span>count</code></pre></div>
+</div>
+<div id="importing-performance-data" class="section level3">
+<h3><span class="header-section-number">13.1.2</span> Importing Performance Data</h3>
+<p>Importing the entire performance data seems to lead to storage overfill.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fannie_perf &lt;-<span class="st"> </span><span class="kw">spark_read_csv</span>(sc, <span class="dt">name =</span> <span class="st">&quot;performance&quot;</span>,
+                              <span class="dt">path =</span> <span class="st">&quot;wasb://mrs-spark@alizaidi.blob.core.windows.net/user/RevoShare/alizaidi/Performance/&quot;</span>,
+                              <span class="dt">header =</span> F,
+                              <span class="dt">delimiter =</span> <span class="st">&quot;|&quot;</span>)
+
+fannie_perf &lt;-<span class="st"> </span>fannie_perf %&gt;%<span class="st"> </span><span class="kw">rename</span>(<span class="dt">loan_id =</span> C0,
+                    <span class="dt">monthly_rpd_prd  =</span> C1,
+                    <span class="dt">servicer  =</span> C2,
+                    <span class="dt">last_rt  =</span> C3,
+                    <span class="dt">last_upb  =</span> C4,
+                    <span class="dt">loan_age  =</span> C5,
+                    <span class="dt">months_to_maturity =</span> C6,
+                    <span class="dt">adj_months_to_maturity  =</span> C7,
+                    <span class="dt">maturity_date  =</span> C8,
+                    <span class="dt">msa  =</span> C9,
+                    <span class="dt">deliq_status  =</span> C10,
+                    <span class="dt">mod_flag  =</span> C11,
+                    <span class="dt">zero_bal_code =</span> C12,
+                    <span class="dt">zb_date  =</span> C13,
+                    <span class="dt">lpi_date  =</span> C14,
+                    <span class="dt">fcc_dte =</span> C15,
+                    <span class="dt">disp_dt  =</span> C16,
+                    <span class="dt">fcc_cost  =</span> C17,
+                    <span class="dt">pp_cost  =</span> C18,
+                    <span class="dt">ar_cost  =</span> C19,
+                    <span class="dt">ie_cost  =</span> C20,
+                    <span class="dt">tax_cost  =</span> C21,
+                    <span class="dt">ns_procs =</span> C22,
+                    <span class="dt">ce_procs  =</span> C23,
+                    <span class="dt">rmw_procs  =</span> C24,
+                    <span class="dt">o_procs  =</span> C25,
+                    <span class="dt">non_int_upb  =</span> C26,
+                    <span class="dt">prin_forg_upb  =</span> C27)</code></pre></div>
 </div>
 <div id="aggregating-data" class="section level3">
-<h3><span class="header-section-number">12.1.2</span> Aggregating Data</h3>
+<h3><span class="header-section-number">13.1.3</span> Aggregating Data</h3>
 <p>Now that we have a proper <code>tbl</code> class that works with the <code>dplyr</code> package, any function we write that is desgined to work with <code>dplyr</code> will automatically work here as well. The only caveat is that not all methods available for the <code>tbl_df</code> class are available for the <code>tbl_spark</code> or <code>tbl_sql</code> class. For example, you can’t use arbitrary R functions with <code>tbl_sql</code>, just those can be easily understood by SQL.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fannie &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">orig_year =</span> <span class="kw">substr</span>(orig_dte, <span class="dv">4</span>, <span class="dv">7</span>))
 
@@ -285,9 +333,30 @@ zip_summary &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">ave_amnt =</span> <span class="kw">mean</span>(orig_amt), <span class="dt">ave_ltv =</span> <span class="kw">mean</span>(oltv), 
             <span class="dt">ave_dti =</span> <span class="kw">mean</span>(dti), <span class="dt">ave_cscore =</span> <span class="kw">mean</span>(cscore_b))
 
-zip_summary %&gt;%<span class="st"> </span>head</code></pre></div>
+zip_summary %&gt;%<span class="st"> </span>head
+zip_summary %&gt;%<span class="st"> </span>count</code></pre></div>
+</div>
+<div id="plotting-results-1" class="section level3">
+<h3><span class="header-section-number">13.1.4</span> Plotting Results</h3>
+<div id="by-state" class="section level4">
+<h4><span class="header-section-number">13.1.4.1</span> By State</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">state_summary &lt;-<span class="st"> </span>fannie %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(state, orig_year) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">ave_amnt =</span> <span class="kw">mean</span>(orig_amt), <span class="dt">ave_ltv =</span> <span class="kw">mean</span>(oltv), 
+            <span class="dt">ave_dti =</span> <span class="kw">mean</span>(dti), <span class="dt">ave_cscore =</span> <span class="kw">mean</span>(cscore_b))
 
-<div id="refs" class="references">
+state_summary %&gt;%<span class="st"> </span>collect %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.numeric</span>(orig_year)) %&gt;%<span class="st"> </span>
+<span class="st">    </span>rMaps::<span class="kw">ichoropleth</span>(ave_cscore ~<span class="st"> </span>state, <span class="dt">data =</span> ., 
+                     <span class="dt">animate =</span> <span class="st">&quot;year&quot;</span>,
+                     <span class="dt">geographyConfig =</span> <span class="kw">list</span>(<span class="dt">popupTemplate =</span> <span class="st">&quot;#!function(geo, data) {</span>
+<span class="st">                                         return &#39;&lt;div class=</span><span class="ch">\&quot;</span><span class="st">hoverinfo</span><span class="ch">\&quot;</span><span class="st">&gt;&lt;strong&gt;&#39;+</span>
+<span class="st">                                         data.state+ &#39;&lt;br&gt;&#39; + &#39;Average Credit Score for Loans Originated in &#39;+</span>
+<span class="st">                                         data.year + &#39;: &#39; +</span>
+<span class="st">                                         data.ave_cscore.toFixed(0) +</span>
+<span class="st">                                         &#39;&lt;/strong&gt;&lt;/div&gt;&#39;;}!#&quot;</span>)) -&gt;<span class="st"> </span>state_fico
+
+state_fico</code></pre></div>
 
 </div>
 </div>
@@ -298,7 +367,7 @@ zip_summary %&gt;%<span class="st"> </span>head</code></pre></div>
           </div>
         </div>
       </div>
-<a href="modeling-with-microsoft-r-server.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
 
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -326,7 +395,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-sparklyr.Rmd",
 "text": null
 },
 "download": null,

@@ -8,7 +8,7 @@
   <title>Scalable Machine Learning and Data Science with R and Spark</title>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
   <meta name="description" content="This book is a guide for doing data analysis with Spark and R. It is organized as a collection of examples of data science problems analyzed with these two technologies, and tries to highlight programming paradigms that make the best of both worlds. It starts with a discussion of using R for data science and machine learning, and describes how to create functional programming pipelines that are data source invariant, easy to write, easy to debug, and easy to deploy! In order to scale out typical R workflows, we showcase how to use Spark and Microsoft R Server to bring your favorite R functions to large datasets.">
-  <meta name="generator" content="bookdown 0.0.79 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
 
   <meta property="og:title" content="Scalable Machine Learning and Data Science with R and Spark" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 
 <meta name="author" content="Ali Zaidi">
 
-<meta name="date" content="2016-07-10">
+<meta name="date" content="2016-08-15">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,9 +50,9 @@
 
 
 <script src="libs/htmlwidgets-0.6/htmlwidgets.js"></script>
-<link href="libs/plotlyjs-1.10.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotlyjs-1.10.1/plotly-latest.min.js"></script>
-<script src="libs/plotly-binding-3.6.5/plotly.js"></script>
+<link href="libs/plotlyjs-1.16.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.1/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.2.0/plotly.js"></script>
 <script src="libs/d3-3.5.5/d3.min.js"></script>
 <script src="libs/d3-grid-0.1.0/d3-grid.js"></script>
 <script src="libs/dimple-2.1.6/dimple.min.js"></script>
@@ -97,6 +97,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -108,6 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Scalable Machine Learning with MRS and Spark</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#scalable-machine-learning-and-data-science"><i class="fa fa-check"></i>Scalable Machine Learning and Data Science</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-resources"><i class="fa fa-check"></i>Useful Resources</a><ul>
@@ -119,7 +123,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="part"><span><b>Overview</b></span></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#why-r"><i class="fa fa-check"></i><b>1.1</b> Why R?</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-ftw"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server FTW</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#microsoft-r-server-1"><i class="fa fa-check"></i><b>1.2</b> Microsoft R Server</a></li>
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#apache-spark"><i class="fa fa-check"></i><b>1.3</b> Apache Spark</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#sparkr"><i class="fa fa-check"></i><b>1.4</b> SparkR</a></li>
 <li class="chapter" data-level="1.5" data-path="introduction.html"><a href="introduction.html#azure-hdinsight-1"><i class="fa fa-check"></i><b>1.5</b> Azure HDInsight</a></li>
@@ -142,7 +146,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7.3" data-path="apache-spark-1.html"><a href="apache-spark-1.html#sparkr-1"><i class="fa fa-check"></i><b>2.7.3</b> SparkR</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server - todo</a><ul>
+<li class="chapter" data-level="3" data-path="rserver.html"><a href="rserver.html"><i class="fa fa-check"></i><b>3</b> R &amp; Microsoft R Server</a><ul>
 <li class="chapter" data-level="3.1" data-path="rserver.html"><a href="rserver.html#functional-programming-and-lazy-evaluation-in-r"><i class="fa fa-check"></i><b>3.1</b> Functional Programming and Lazy Evaluation in R</a></li>
 <li class="chapter" data-level="3.2" data-path="rserver.html"><a href="rserver.html#pema"><i class="fa fa-check"></i><b>3.2</b> PEMA Algorithms and the RevoScaleR Package</a></li>
 <li class="chapter" data-level="3.3" data-path="rserver.html"><a href="rserver.html#xdf"><i class="fa fa-check"></i><b>3.3</b> eXternal Data Frames (XDFs)</a></li>
@@ -203,12 +207,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="11.4" data-path="modeling-with-microsoft-r-server.html"><a href="modeling-with-microsoft-r-server.html#testing-models"><i class="fa fa-check"></i><b>11.4</b> Testing Models</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>12</b> Spark Backend for dplyr</a><ul>
-<li class="chapter" data-level="12.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>12.1</b> sparkrapi</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>12.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
-<li class="chapter" data-level="12.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>12.1.2</b> Aggregating Data</a></li>
+<li class="chapter" data-level="12" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+<li class="chapter" data-level="13" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html"><i class="fa fa-check"></i><b>13</b> Spark Backend for dplyr</a><ul>
+<li class="chapter" data-level="13.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#sparkrapi"><i class="fa fa-check"></i><b>13.1</b> sparkrapi</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#a-proper-dplyr-backend-for-spark-dataframes"><i class="fa fa-check"></i><b>13.1.1</b> A Proper <code>dplyr</code> backend for Spark DataFrames</a></li>
+<li class="chapter" data-level="13.1.2" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#importing-performance-data"><i class="fa fa-check"></i><b>13.1.2</b> Importing Performance Data</a></li>
+<li class="chapter" data-level="13.1.3" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#aggregating-data"><i class="fa fa-check"></i><b>13.1.3</b> Aggregating Data</a></li>
+<li class="chapter" data-level="13.1.4" data-path="spark-backend-for-dplyr.html"><a href="spark-backend-for-dplyr.html#plotting-results-1"><i class="fa fa-check"></i><b>13.1.4</b> Plotting Results</a></li>
 </ul></li>
 </ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -290,8 +300,8 @@ sum_local %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">dimple</span>(<span class="dt">x =</span><span class="st">&quot;Carrier&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;ave_delay&quot;</span>, <span class="dt">z =</span>  <span class="st">&quot;count&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;bar&quot;</span>) %&gt;%
 <span class="st">  </span><span class="kw">add_title</span>(<span class="dt">html =</span> <span class="st">&quot;&lt;h4&gt;Average Delay in Minutes by Carrier&lt;/h4&gt;&quot;</span> ) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">zAxis</span>(<span class="dt">outputFormat =</span> <span class="st">&quot;#,### &quot;</span>)</code></pre></div>
-<p><div id="htmlwidget-1133" style="width:672px;height:480px;" class="dimple html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1133">{"x":{"options":{"chart":[],"xAxis":{"type":"addCategoryAxis"},"yAxis":{"type":"addMeasureAxis"},"zAxis":{"type":"addMeasureAxis","outputFormat":"#,### "},"colorAxis":[],"defaultColors":[],"layers":[],"legend":[],"x":"Carrier","y":"ave_delay","type":"bar","z":"count","title":{"text":null,"html":"<h4>Average Delay in Minutes by Carrier\u003c/h4>"}},"data":{"Carrier":["AA","PA (1)","TW","TZ","HA","AS","UA","B6","NW","HP","US","OH","OO","PI","VX","CO","ML (1)","PS","WN","DH","DL","KH","XE","EA","EV","F9","9E","YV","FL","MQ"],"count":[17140606,316167,3757747,208420,555683,3443588,14862404,1652137,10585760,3636682,15709733,1765828,5443169,873957,54742,8888536,70622,83617,20529039,693047,19168060,154381,3459389,919785,3384793,670653,1045396,1563254,2232262,5750198],"ave_delay":[8.09216330413803,5.53244244289068,7.65825114221727,5.55423481294241,-0.470471755160245,7.24013290246557,9.6410715967209,10.9892686446028,6.02139368193511,8.10779026658562,6.99896030027832,9.52695744411818,6.95087777743635,9.56033602798461,10.0396614090817,7.81891288846895,6.2296766743649,8.92810370334441,9.32814933847665,9.61263938968893,7.55365844885708,1.59931768991184,8.55590331293135,8.67405056543554,12.7600643883231,6.82652221551061,6.8708289697235,9.63959007239046,8.28258416166276,8.69911067862048]}},"evals":[],"jsHooks":[]}</script></p>
+<div id="htmlwidget-6770" style="width:672px;height:480px;" class="dimple html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6770">{"x":{"options":{"chart":[],"xAxis":{"type":"addCategoryAxis"},"yAxis":{"type":"addMeasureAxis"},"zAxis":{"type":"addMeasureAxis","outputFormat":"#,### "},"colorAxis":[],"defaultColors":[],"layers":[],"legend":[],"x":"Carrier","y":"ave_delay","type":"bar","z":"count","title":{"text":null,"html":"<h4>Average Delay in Minutes by Carrier\u003c/h4>"}},"data":{"Carrier":["AA","PA (1)","TW","TZ","HA","AS","UA","B6","NW","HP","US","OH","OO","PI","VX","CO","ML (1)","PS","WN","DH","DL","KH","XE","EA","EV","F9","9E","YV","FL","MQ"],"count":[17140606,316167,3757747,208420,555683,3443588,14862404,1652137,10585760,3636682,15709733,1765828,5443169,873957,54742,8888536,70622,83617,20529039,693047,19168060,154381,3459389,919785,3384793,670653,1045396,1563254,2232262,5750198],"ave_delay":[8.09216330413803,5.53244244289068,7.65825114221727,5.55423481294241,-0.470471755160245,7.24013290246557,9.6410715967209,10.9892686446028,6.02139368193511,8.10779026658562,6.99896030027832,9.52695744411818,6.95087777743635,9.56033602798461,10.0396614090817,7.81891288846895,6.2296766743649,8.92810370334441,9.32814933847665,9.61263938968893,7.55365844885708,1.59931768991184,8.55590331293135,8.67405056543554,12.7600643883231,6.82652221551061,6.8708289697235,9.63959007239046,8.28258416166276,8.69911067862048]}},"evals":[],"jsHooks":[]}</script>
 <p>In order to make the weather data correspond to the airline data, let us aggregate it by date and airport, and obtain it’s average value. If you are familiar with the dplyr package, you should be very familiar with the syntax provided by SparkR.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weatherAgg &lt;-<span class="st"> </span>weatherDF %&gt;%<span class="st"> </span>
 <span class="st">  </span>SparkR::<span class="kw">group_by</span>(<span class="st">&quot;AdjustedYear&quot;</span>, <span class="st">&quot;AdjustedMonth&quot;</span>, <span class="st">&quot;AdjustedDay&quot;</span>, <span class="st">&quot;AdjustedHour&quot;</span>, <span class="st">&quot;AirportID&quot;</span>) %&gt;%
@@ -522,13 +532,13 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
             &lt;div class='container'&gt;
               &lt;input id='slider' type='range' min=1999 max=2014 ng-model='year' width=200&gt;
               &lt;span ng-bind='year'&gt;&lt;/span&gt;
-              &lt;div id='chart17fb34cbde8c' class='rChart datamaps'&gt;&lt;/div&gt;          
+              &lt;div id='chart4fba5ee19845' class='rChart datamaps'&gt;&lt;/div&gt;          
             &lt;/div&gt;
             &lt;script&gt;
               function rChartsCtrl($scope){
                 $scope.year = 1999;
                 $scope.$watch('year', function(newYear){
-                  mapchart17fb34cbde8c.updateChoropleth(chartParams.newData[newYear]);
+                  mapchart4fba5ee19845.updateChoropleth(chartParams.newData[newYear]);
                 })
               }
            &lt;/script&gt;    
@@ -537,7 +547,7 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &lt;/script&gt;
 &lt;script&gt;
   var chartParams = {
- &quot;dom&quot;: &quot;chart17fb34cbde8c&quot;,
+ &quot;dom&quot;: &quot;chart4fba5ee19845&quot;,
 &quot;width&quot;:    800,
 &quot;height&quot;:    400,
 &quot;scope&quot;: &quot;usa&quot;,
@@ -596,15 +606,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 718.08,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;NH&quot;: {
- &quot;state&quot;: &quot;NH&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;: 34.678,
-&quot;ave_ltv&quot;: 77.392,
-&quot;ave_cltv&quot;: 74.337,
-&quot;ave_fico&quot;: 718.27,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;AK&quot;: {
  &quot;state&quot;: &quot;AK&quot;,
 &quot;year&quot;:   1999,
@@ -613,6 +614,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 77.246,
 &quot;ave_fico&quot;: 707.36,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;NH&quot;: {
+ &quot;state&quot;: &quot;NH&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;: 34.678,
+&quot;ave_ltv&quot;: 77.392,
+&quot;ave_cltv&quot;: 74.337,
+&quot;ave_fico&quot;: 718.27,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;IA&quot;: {
  &quot;state&quot;: &quot;IA&quot;,
@@ -740,15 +750,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;:  707.3,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;GU&quot;: {
- &quot;state&quot;: &quot;GU&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;:     38,
-&quot;ave_ltv&quot;:     80,
-&quot;ave_cltv&quot;:     80,
-&quot;ave_fico&quot;:    675,
-&quot;fillKey&quot;: null 
-},
 &quot;ND&quot;: {
  &quot;state&quot;: &quot;ND&quot;,
 &quot;year&quot;:   1999,
@@ -757,6 +758,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;:     94,
 &quot;ave_fico&quot;: 717.23,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;GU&quot;: {
+ &quot;state&quot;: &quot;GU&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;:     38,
+&quot;ave_ltv&quot;:     80,
+&quot;ave_cltv&quot;:     80,
+&quot;ave_fico&quot;:    675,
+&quot;fillKey&quot;: null 
 },
 &quot;OK&quot;: {
  &quot;state&quot;: &quot;OK&quot;,
@@ -1001,15 +1011,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 723.47,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
-&quot;HI&quot;: {
- &quot;state&quot;: &quot;HI&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;: 37.991,
-&quot;ave_ltv&quot;: 80.286,
-&quot;ave_cltv&quot;: 76.407,
-&quot;ave_fico&quot;: 734.64,
-&quot;fillKey&quot;: &quot;(725,739]&quot; 
-},
 &quot;AZ&quot;: {
  &quot;state&quot;: &quot;AZ&quot;,
 &quot;year&quot;:   1999,
@@ -1018,6 +1019,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 81.324,
 &quot;ave_fico&quot;: 717.19,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;HI&quot;: {
+ &quot;state&quot;: &quot;HI&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;: 37.991,
+&quot;ave_ltv&quot;: 80.286,
+&quot;ave_cltv&quot;: 76.407,
+&quot;ave_fico&quot;: 734.64,
+&quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
 &quot;WI&quot;: {
  &quot;state&quot;: &quot;WI&quot;,
@@ -1174,15 +1184,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 715.85,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;NH&quot;: {
- &quot;state&quot;: &quot;NH&quot;,
-&quot;year&quot;:   2000,
-&quot;ave_dti&quot;: 36.328,
-&quot;ave_ltv&quot;: 78.022,
-&quot;ave_cltv&quot;: 78.162,
-&quot;ave_fico&quot;: 716.93,
-&quot;fillKey&quot;: &quot;(675,718]&quot; 
-},
 &quot;AK&quot;: {
  &quot;state&quot;: &quot;AK&quot;,
 &quot;year&quot;:   2000,
@@ -1191,6 +1192,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 79.579,
 &quot;ave_fico&quot;: 719.15,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;NH&quot;: {
+ &quot;state&quot;: &quot;NH&quot;,
+&quot;year&quot;:   2000,
+&quot;ave_dti&quot;: 36.328,
+&quot;ave_ltv&quot;: 78.022,
+&quot;ave_cltv&quot;: 78.162,
+&quot;ave_fico&quot;: 716.93,
+&quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
 &quot;IA&quot;: {
  &quot;state&quot;: &quot;IA&quot;,
@@ -1390,15 +1400,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 715.87,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;NJ&quot;: {
- &quot;state&quot;: &quot;NJ&quot;,
-&quot;year&quot;:   2000,
-&quot;ave_dti&quot;: 35.354,
-&quot;ave_ltv&quot;: 77.604,
-&quot;ave_cltv&quot;: 77.714,
-&quot;ave_fico&quot;: 715.54,
-&quot;fillKey&quot;: &quot;(675,718]&quot; 
-},
 &quot;TX&quot;: {
  &quot;state&quot;: &quot;TX&quot;,
 &quot;year&quot;:   2000,
@@ -1406,6 +1407,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 81.095,
 &quot;ave_cltv&quot;: 81.515,
 &quot;ave_fico&quot;: 714.56,
+&quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;NJ&quot;: {
+ &quot;state&quot;: &quot;NJ&quot;,
+&quot;year&quot;:   2000,
+&quot;ave_dti&quot;: 35.354,
+&quot;ave_ltv&quot;: 77.604,
+&quot;ave_cltv&quot;: 77.714,
+&quot;ave_fico&quot;: 715.54,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
 &quot;MN&quot;: {
@@ -1471,15 +1481,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 720.69,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
-&quot;MO&quot;: {
- &quot;state&quot;: &quot;MO&quot;,
-&quot;year&quot;:   2000,
-&quot;ave_dti&quot;:   34.4,
-&quot;ave_ltv&quot;: 79.399,
-&quot;ave_cltv&quot;: 79.606,
-&quot;ave_fico&quot;: 719.86,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;GA&quot;: {
  &quot;state&quot;: &quot;GA&quot;,
 &quot;year&quot;:   2000,
@@ -1488,6 +1489,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;:  80.57,
 &quot;ave_fico&quot;: 713.18,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;MO&quot;: {
+ &quot;state&quot;: &quot;MO&quot;,
+&quot;year&quot;:   2000,
+&quot;ave_dti&quot;:   34.4,
+&quot;ave_ltv&quot;: 79.399,
+&quot;ave_cltv&quot;: 79.606,
+&quot;ave_fico&quot;: 719.86,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
@@ -1498,15 +1508,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 724.96,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;ID&quot;: {
- &quot;state&quot;: &quot;ID&quot;,
-&quot;year&quot;:   2000,
-&quot;ave_dti&quot;:  34.43,
-&quot;ave_ltv&quot;: 79.362,
-&quot;ave_cltv&quot;: 79.523,
-&quot;ave_fico&quot;: 715.83,
-&quot;fillKey&quot;: &quot;(675,718]&quot; 
-},
 &quot;OR&quot;: {
  &quot;state&quot;: &quot;OR&quot;,
 &quot;year&quot;:   2000,
@@ -1515,6 +1516,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;:  77.55,
 &quot;ave_fico&quot;: 722.27,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;ID&quot;: {
+ &quot;state&quot;: &quot;ID&quot;,
+&quot;year&quot;:   2000,
+&quot;ave_dti&quot;:  34.43,
+&quot;ave_ltv&quot;: 79.362,
+&quot;ave_cltv&quot;: 79.523,
+&quot;ave_fico&quot;: 715.83,
+&quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
 &quot;NV&quot;: {
  &quot;state&quot;: &quot;NV&quot;,
@@ -2474,15 +2484,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 724.33,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
-&quot;OR&quot;: {
- &quot;state&quot;: &quot;OR&quot;,
-&quot;year&quot;:   2002,
-&quot;ave_dti&quot;: 33.835,
-&quot;ave_ltv&quot;: 73.417,
-&quot;ave_cltv&quot;: 74.014,
-&quot;ave_fico&quot;: 730.36,
-&quot;fillKey&quot;: &quot;(725,739]&quot; 
-},
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
 &quot;year&quot;:   2002,
@@ -2490,6 +2491,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 72.493,
 &quot;ave_cltv&quot;: 73.537,
 &quot;ave_fico&quot;: 729.05,
+&quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;OR&quot;: {
+ &quot;state&quot;: &quot;OR&quot;,
+&quot;year&quot;:   2002,
+&quot;ave_dti&quot;: 33.835,
+&quot;ave_ltv&quot;: 73.417,
+&quot;ave_cltv&quot;: 74.014,
+&quot;ave_fico&quot;: 730.36,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
 &quot;ID&quot;: {
@@ -2647,15 +2657,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 724.77,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;AK&quot;: {
- &quot;state&quot;: &quot;AK&quot;,
-&quot;year&quot;:   2003,
-&quot;ave_dti&quot;: 34.646,
-&quot;ave_ltv&quot;: 75.149,
-&quot;ave_cltv&quot;: 75.557,
-&quot;ave_fico&quot;: 721.23,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;NH&quot;: {
  &quot;state&quot;: &quot;NH&quot;,
 &quot;year&quot;:   2003,
@@ -2663,6 +2664,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 68.687,
 &quot;ave_cltv&quot;: 69.376,
 &quot;ave_fico&quot;:  719.9,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;AK&quot;: {
+ &quot;state&quot;: &quot;AK&quot;,
+&quot;year&quot;:   2003,
+&quot;ave_dti&quot;: 34.646,
+&quot;ave_ltv&quot;: 75.149,
+&quot;ave_cltv&quot;: 75.557,
+&quot;ave_fico&quot;: 721.23,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;IA&quot;: {
@@ -2962,15 +2972,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 725.29,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;OR&quot;: {
- &quot;state&quot;: &quot;OR&quot;,
-&quot;year&quot;:   2003,
-&quot;ave_dti&quot;: 32.512,
-&quot;ave_ltv&quot;: 72.268,
-&quot;ave_cltv&quot;: 73.141,
-&quot;ave_fico&quot;: 734.59,
-&quot;fillKey&quot;: &quot;(725,739]&quot; 
-},
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
 &quot;year&quot;:   2003,
@@ -2978,6 +2979,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 70.103,
 &quot;ave_cltv&quot;: 71.155,
 &quot;ave_fico&quot;: 730.53,
+&quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;OR&quot;: {
+ &quot;state&quot;: &quot;OR&quot;,
+&quot;year&quot;:   2003,
+&quot;ave_dti&quot;: 32.512,
+&quot;ave_ltv&quot;: 72.268,
+&quot;ave_cltv&quot;: 73.141,
+&quot;ave_fico&quot;: 734.59,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
 &quot;ID&quot;: {
@@ -3432,15 +3442,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 715.03,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;GA&quot;: {
- &quot;state&quot;: &quot;GA&quot;,
-&quot;year&quot;:   2004,
-&quot;ave_dti&quot;: 35.606,
-&quot;ave_ltv&quot;: 76.363,
-&quot;ave_cltv&quot;: 78.197,
-&quot;ave_fico&quot;: 716.66,
-&quot;fillKey&quot;: &quot;(675,718]&quot; 
-},
 &quot;MO&quot;: {
  &quot;state&quot;: &quot;MO&quot;,
 &quot;year&quot;:   2004,
@@ -3449,6 +3450,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 77.057,
 &quot;ave_fico&quot;: 719.86,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;GA&quot;: {
+ &quot;state&quot;: &quot;GA&quot;,
+&quot;year&quot;:   2004,
+&quot;ave_dti&quot;: 35.606,
+&quot;ave_ltv&quot;: 76.363,
+&quot;ave_cltv&quot;: 78.197,
+&quot;ave_fico&quot;: 716.66,
+&quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
 &quot;OR&quot;: {
  &quot;state&quot;: &quot;OR&quot;,
@@ -3920,15 +3930,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 713.07,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;GA&quot;: {
- &quot;state&quot;: &quot;GA&quot;,
-&quot;year&quot;:   2005,
-&quot;ave_dti&quot;: 36.479,
-&quot;ave_ltv&quot;:  75.86,
-&quot;ave_cltv&quot;:  78.46,
-&quot;ave_fico&quot;: 724.72,
-&quot;fillKey&quot;: &quot;(725,739]&quot; 
-},
 &quot;MO&quot;: {
  &quot;state&quot;: &quot;MO&quot;,
 &quot;year&quot;:   2005,
@@ -3937,6 +3938,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 77.839,
 &quot;ave_fico&quot;: 723.43,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;GA&quot;: {
+ &quot;state&quot;: &quot;GA&quot;,
+&quot;year&quot;:   2005,
+&quot;ave_dti&quot;: 36.479,
+&quot;ave_ltv&quot;:  75.86,
+&quot;ave_cltv&quot;:  78.46,
+&quot;ave_fico&quot;: 724.72,
+&quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
 &quot;ID&quot;: {
  &quot;state&quot;: &quot;ID&quot;,
@@ -3947,15 +3957,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 726.53,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;VA&quot;: {
- &quot;state&quot;: &quot;VA&quot;,
-&quot;year&quot;:   2005,
-&quot;ave_dti&quot;: 37.157,
-&quot;ave_ltv&quot;: 67.969,
-&quot;ave_cltv&quot;: 69.787,
-&quot;ave_fico&quot;: 723.54,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;OR&quot;: {
  &quot;state&quot;: &quot;OR&quot;,
 &quot;year&quot;:   2005,
@@ -3964,6 +3965,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 73.864,
 &quot;ave_fico&quot;: 735.21,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;VA&quot;: {
+ &quot;state&quot;: &quot;VA&quot;,
+&quot;year&quot;:   2005,
+&quot;ave_dti&quot;: 37.157,
+&quot;ave_ltv&quot;: 67.969,
+&quot;ave_cltv&quot;: 69.787,
+&quot;ave_fico&quot;: 723.54,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;NV&quot;: {
  &quot;state&quot;: &quot;NV&quot;,
@@ -4030,15 +4040,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 728.42,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;AZ&quot;: {
- &quot;state&quot;: &quot;AZ&quot;,
-&quot;year&quot;:   2006,
-&quot;ave_dti&quot;: 38.515,
-&quot;ave_ltv&quot;: 68.867,
-&quot;ave_cltv&quot;: 70.321,
-&quot;ave_fico&quot;: 718.51,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;HI&quot;: {
  &quot;state&quot;: &quot;HI&quot;,
 &quot;year&quot;:   2006,
@@ -4047,6 +4048,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 62.631,
 &quot;ave_fico&quot;: 731.66,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;AZ&quot;: {
+ &quot;state&quot;: &quot;AZ&quot;,
+&quot;year&quot;:   2006,
+&quot;ave_dti&quot;: 38.515,
+&quot;ave_ltv&quot;: 68.867,
+&quot;ave_cltv&quot;: 70.321,
+&quot;ave_fico&quot;: 718.51,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;WI&quot;: {
  &quot;state&quot;: &quot;WI&quot;,
@@ -4327,15 +4337,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 727.31,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;NJ&quot;: {
- &quot;state&quot;: &quot;NJ&quot;,
-&quot;year&quot;:   2006,
-&quot;ave_dti&quot;: 40.765,
-&quot;ave_ltv&quot;: 68.296,
-&quot;ave_cltv&quot;: 70.122,
-&quot;ave_fico&quot;: 710.87,
-&quot;fillKey&quot;: &quot;(675,718]&quot; 
-},
 &quot;TX&quot;: {
  &quot;state&quot;: &quot;TX&quot;,
 &quot;year&quot;:   2006,
@@ -4344,6 +4345,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 80.173,
 &quot;ave_fico&quot;: 724.64,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;NJ&quot;: {
+ &quot;state&quot;: &quot;NJ&quot;,
+&quot;year&quot;:   2006,
+&quot;ave_dti&quot;: 40.765,
+&quot;ave_ltv&quot;: 68.296,
+&quot;ave_cltv&quot;: 70.122,
+&quot;ave_fico&quot;: 710.87,
+&quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
 &quot;MN&quot;: {
  &quot;state&quot;: &quot;MN&quot;,
@@ -4408,15 +4418,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 706.13,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;GA&quot;: {
- &quot;state&quot;: &quot;GA&quot;,
-&quot;year&quot;:   2006,
-&quot;ave_dti&quot;: 37.908,
-&quot;ave_ltv&quot;: 75.543,
-&quot;ave_cltv&quot;: 78.124,
-&quot;ave_fico&quot;:  724.3,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;MO&quot;: {
  &quot;state&quot;: &quot;MO&quot;,
 &quot;year&quot;:   2006,
@@ -4425,6 +4426,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 77.628,
 &quot;ave_fico&quot;: 725.17,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;GA&quot;: {
+ &quot;state&quot;: &quot;GA&quot;,
+&quot;year&quot;:   2006,
+&quot;ave_dti&quot;: 37.908,
+&quot;ave_ltv&quot;: 75.543,
+&quot;ave_cltv&quot;: 78.124,
+&quot;ave_fico&quot;:  724.3,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
@@ -4932,15 +4942,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 729.89,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;ID&quot;: {
- &quot;state&quot;: &quot;ID&quot;,
-&quot;year&quot;:   2007,
-&quot;ave_dti&quot;: 38.876,
-&quot;ave_ltv&quot;: 73.827,
-&quot;ave_cltv&quot;: 75.267,
-&quot;ave_fico&quot;:  718.9,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
 &quot;year&quot;:   2007,
@@ -4948,6 +4949,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 71.382,
 &quot;ave_cltv&quot;: 73.396,
 &quot;ave_fico&quot;: 721.28,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
+},
+&quot;ID&quot;: {
+ &quot;state&quot;: &quot;ID&quot;,
+&quot;year&quot;:   2007,
+&quot;ave_dti&quot;: 38.876,
+&quot;ave_ltv&quot;: 73.827,
+&quot;ave_cltv&quot;: 75.267,
+&quot;ave_fico&quot;:  718.9,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 } 
 },
@@ -5042,15 +5052,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 736.19,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;AZ&quot;: {
- &quot;state&quot;: &quot;AZ&quot;,
-&quot;year&quot;:   2008,
-&quot;ave_dti&quot;: 37.963,
-&quot;ave_ltv&quot;:  72.55,
-&quot;ave_cltv&quot;:  73.25,
-&quot;ave_fico&quot;: 743.47,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
 &quot;HI&quot;: {
  &quot;state&quot;: &quot;HI&quot;,
 &quot;year&quot;:   2008,
@@ -5058,6 +5059,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 66.151,
 &quot;ave_cltv&quot;: 66.969,
 &quot;ave_fico&quot;:  742.5,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;AZ&quot;: {
+ &quot;state&quot;: &quot;AZ&quot;,
+&quot;year&quot;:   2008,
+&quot;ave_dti&quot;: 37.963,
+&quot;ave_ltv&quot;:  72.55,
+&quot;ave_cltv&quot;:  73.25,
+&quot;ave_fico&quot;: 743.47,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
 &quot;WI&quot;: {
@@ -5420,15 +5430,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 732.65,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
-&quot;MO&quot;: {
- &quot;state&quot;: &quot;MO&quot;,
-&quot;year&quot;:   2008,
-&quot;ave_dti&quot;: 35.787,
-&quot;ave_ltv&quot;: 76.397,
-&quot;ave_cltv&quot;: 77.456,
-&quot;ave_fico&quot;: 742.18,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
 &quot;GA&quot;: {
  &quot;state&quot;: &quot;GA&quot;,
 &quot;year&quot;:   2008,
@@ -5437,19 +5438,19 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 78.141,
 &quot;ave_fico&quot;: 738.34,
 &quot;fillKey&quot;: &quot;(725,739]&quot; 
+},
+&quot;MO&quot;: {
+ &quot;state&quot;: &quot;MO&quot;,
+&quot;year&quot;:   2008,
+&quot;ave_dti&quot;: 35.787,
+&quot;ave_ltv&quot;: 76.397,
+&quot;ave_cltv&quot;: 77.456,
+&quot;ave_fico&quot;: 742.18,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
 } 
 },
 &quot;2009&quot;: {
- &quot;ID&quot;: {
- &quot;state&quot;: &quot;ID&quot;,
-&quot;year&quot;:   2009,
-&quot;ave_dti&quot;: 33.332,
-&quot;ave_ltv&quot;: 69.352,
-&quot;ave_cltv&quot;: 70.169,
-&quot;ave_fico&quot;:  760.3,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
-&quot;VA&quot;: {
+ &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
 &quot;year&quot;:   2009,
 &quot;ave_dti&quot;: 32.787,
@@ -5466,6 +5467,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 67.597,
 &quot;ave_fico&quot;: 766.39,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;ID&quot;: {
+ &quot;state&quot;: &quot;ID&quot;,
+&quot;year&quot;:   2009,
+&quot;ave_dti&quot;: 33.332,
+&quot;ave_ltv&quot;: 69.352,
+&quot;ave_cltv&quot;: 70.169,
+&quot;ave_fico&quot;:  760.3,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
 &quot;NV&quot;: {
  &quot;state&quot;: &quot;NV&quot;,
@@ -5827,15 +5837,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 760.67,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;NJ&quot;: {
- &quot;state&quot;: &quot;NJ&quot;,
-&quot;year&quot;:   2009,
-&quot;ave_dti&quot;: 35.569,
-&quot;ave_ltv&quot;: 65.324,
-&quot;ave_cltv&quot;:  66.32,
-&quot;ave_fico&quot;:    758,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
 &quot;TX&quot;: {
  &quot;state&quot;: &quot;TX&quot;,
 &quot;year&quot;:   2009,
@@ -5843,6 +5844,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 74.049,
 &quot;ave_cltv&quot;: 75.141,
 &quot;ave_fico&quot;: 754.31,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;NJ&quot;: {
+ &quot;state&quot;: &quot;NJ&quot;,
+&quot;year&quot;:   2009,
+&quot;ave_dti&quot;: 35.569,
+&quot;ave_ltv&quot;: 65.324,
+&quot;ave_cltv&quot;:  66.32,
+&quot;ave_fico&quot;:    758,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
 &quot;MN&quot;: {
@@ -5908,15 +5918,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 761.78,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;MO&quot;: {
- &quot;state&quot;: &quot;MO&quot;,
-&quot;year&quot;:   2009,
-&quot;ave_dti&quot;: 31.458,
-&quot;ave_ltv&quot;: 71.744,
-&quot;ave_cltv&quot;: 72.868,
-&quot;ave_fico&quot;: 763.26,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;GA&quot;: {
  &quot;state&quot;: &quot;GA&quot;,
 &quot;year&quot;:   2009,
@@ -5924,6 +5925,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;:   70.6,
 &quot;ave_cltv&quot;: 72.029,
 &quot;ave_fico&quot;: 763.16,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;MO&quot;: {
+ &quot;state&quot;: &quot;MO&quot;,
+&quot;year&quot;:   2009,
+&quot;ave_dti&quot;: 31.458,
+&quot;ave_ltv&quot;: 71.744,
+&quot;ave_cltv&quot;: 72.868,
+&quot;ave_fico&quot;: 763.26,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 } 
 },
@@ -5955,15 +5965,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 766.31,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;GA&quot;: {
- &quot;state&quot;: &quot;GA&quot;,
-&quot;year&quot;:   2010,
-&quot;ave_dti&quot;: 31.187,
-&quot;ave_ltv&quot;:  72.95,
-&quot;ave_cltv&quot;: 73.953,
-&quot;ave_fico&quot;: 765.12,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;MO&quot;: {
  &quot;state&quot;: &quot;MO&quot;,
 &quot;year&quot;:   2010,
@@ -5971,6 +5972,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 72.935,
 &quot;ave_cltv&quot;: 74.063,
 &quot;ave_fico&quot;: 766.01,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;GA&quot;: {
+ &quot;state&quot;: &quot;GA&quot;,
+&quot;year&quot;:   2010,
+&quot;ave_dti&quot;: 31.187,
+&quot;ave_ltv&quot;:  72.95,
+&quot;ave_cltv&quot;: 73.953,
+&quot;ave_fico&quot;: 765.12,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;ID&quot;: {
@@ -6063,15 +6073,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 759.63,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
-&quot;HI&quot;: {
- &quot;state&quot;: &quot;HI&quot;,
-&quot;year&quot;:   2010,
-&quot;ave_dti&quot;: 34.315,
-&quot;ave_ltv&quot;: 61.751,
-&quot;ave_cltv&quot;: 62.443,
-&quot;ave_fico&quot;: 769.54,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;AZ&quot;: {
  &quot;state&quot;: &quot;AZ&quot;,
 &quot;year&quot;:   2010,
@@ -6079,6 +6080,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 71.622,
 &quot;ave_cltv&quot;: 72.158,
 &quot;ave_fico&quot;: 770.75,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;HI&quot;: {
+ &quot;state&quot;: &quot;HI&quot;,
+&quot;year&quot;:   2010,
+&quot;ave_dti&quot;: 34.315,
+&quot;ave_ltv&quot;: 61.751,
+&quot;ave_cltv&quot;: 62.443,
+&quot;ave_fico&quot;: 769.54,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;WI&quot;: {
@@ -6144,15 +6154,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 766.64,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;NH&quot;: {
- &quot;state&quot;: &quot;NH&quot;,
-&quot;year&quot;:   2010,
-&quot;ave_dti&quot;: 33.213,
-&quot;ave_ltv&quot;:  69.88,
-&quot;ave_cltv&quot;: 71.029,
-&quot;ave_fico&quot;: 766.26,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;AK&quot;: {
  &quot;state&quot;: &quot;AK&quot;,
 &quot;year&quot;:   2010,
@@ -6161,6 +6162,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 73.418,
 &quot;ave_fico&quot;: 755.07,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;NH&quot;: {
+ &quot;state&quot;: &quot;NH&quot;,
+&quot;year&quot;:   2010,
+&quot;ave_dti&quot;: 33.213,
+&quot;ave_ltv&quot;:  69.88,
+&quot;ave_cltv&quot;: 71.029,
+&quot;ave_fico&quot;: 766.26,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;IA&quot;: {
  &quot;state&quot;: &quot;IA&quot;,
@@ -6333,15 +6343,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 753.01,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
-&quot;WA&quot;: {
- &quot;state&quot;: &quot;WA&quot;,
-&quot;year&quot;:   2010,
-&quot;ave_dti&quot;: 32.598,
-&quot;ave_ltv&quot;: 68.475,
-&quot;ave_cltv&quot;: 69.522,
-&quot;ave_fico&quot;: 767.98,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;PR&quot;: {
  &quot;state&quot;: &quot;PR&quot;,
 &quot;year&quot;:   2010,
@@ -6350,6 +6351,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 68.279,
 &quot;ave_fico&quot;: 744.03,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;WA&quot;: {
+ &quot;state&quot;: &quot;WA&quot;,
+&quot;year&quot;:   2010,
+&quot;ave_dti&quot;: 32.598,
+&quot;ave_ltv&quot;: 68.475,
+&quot;ave_cltv&quot;: 69.522,
+&quot;ave_fico&quot;: 767.98,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;UT&quot;: {
  &quot;state&quot;: &quot;UT&quot;,
@@ -6360,15 +6370,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 765.83,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;TX&quot;: {
- &quot;state&quot;: &quot;TX&quot;,
-&quot;year&quot;:   2010,
-&quot;ave_dti&quot;: 32.584,
-&quot;ave_ltv&quot;: 74.884,
-&quot;ave_cltv&quot;: 76.001,
-&quot;ave_fico&quot;: 758.37,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
 &quot;NJ&quot;: {
  &quot;state&quot;: &quot;NJ&quot;,
 &quot;year&quot;:   2010,
@@ -6377,6 +6378,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;:  68.59,
 &quot;ave_fico&quot;: 762.76,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;TX&quot;: {
+ &quot;state&quot;: &quot;TX&quot;,
+&quot;year&quot;:   2010,
+&quot;ave_dti&quot;: 32.584,
+&quot;ave_ltv&quot;: 74.884,
+&quot;ave_cltv&quot;: 76.001,
+&quot;ave_fico&quot;: 758.37,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
 &quot;MN&quot;: {
  &quot;state&quot;: &quot;MN&quot;,
@@ -6443,15 +6453,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 765.72,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
-&quot;GA&quot;: {
- &quot;state&quot;: &quot;GA&quot;,
-&quot;year&quot;:   2011,
-&quot;ave_dti&quot;: 31.885,
-&quot;ave_ltv&quot;: 75.985,
-&quot;ave_cltv&quot;: 76.851,
-&quot;ave_fico&quot;: 763.04,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;MO&quot;: {
  &quot;state&quot;: &quot;MO&quot;,
 &quot;year&quot;:   2011,
@@ -6459,6 +6460,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 75.587,
 &quot;ave_cltv&quot;: 76.518,
 &quot;ave_fico&quot;: 762.81,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
+&quot;GA&quot;: {
+ &quot;state&quot;: &quot;GA&quot;,
+&quot;year&quot;:   2011,
+&quot;ave_dti&quot;: 31.885,
+&quot;ave_ltv&quot;: 75.985,
+&quot;ave_cltv&quot;: 76.851,
+&quot;ave_fico&quot;: 763.04,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;OR&quot;: {
@@ -6821,15 +6831,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 752.45,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
-&quot;WA&quot;: {
- &quot;state&quot;: &quot;WA&quot;,
-&quot;year&quot;:   2011,
-&quot;ave_dti&quot;: 33.007,
-&quot;ave_ltv&quot;: 71.562,
-&quot;ave_cltv&quot;:  72.46,
-&quot;ave_fico&quot;: 767.71,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;PR&quot;: {
  &quot;state&quot;: &quot;PR&quot;,
 &quot;year&quot;:   2011,
@@ -6838,6 +6839,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 70.551,
 &quot;ave_fico&quot;: 747.31,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;WA&quot;: {
+ &quot;state&quot;: &quot;WA&quot;,
+&quot;year&quot;:   2011,
+&quot;ave_dti&quot;: 33.007,
+&quot;ave_ltv&quot;: 71.562,
+&quot;ave_cltv&quot;:  72.46,
+&quot;ave_fico&quot;: 767.71,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;UT&quot;: {
  &quot;state&quot;: &quot;UT&quot;,
@@ -6949,6 +6959,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 766.58,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
+&quot;OR&quot;: {
+ &quot;state&quot;: &quot;OR&quot;,
+&quot;year&quot;:   2012,
+&quot;ave_dti&quot;: 31.544,
+&quot;ave_ltv&quot;: 72.469,
+&quot;ave_cltv&quot;: 73.243,
+&quot;ave_fico&quot;: 773.34,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
+},
 &quot;VA&quot;: {
  &quot;state&quot;: &quot;VA&quot;,
 &quot;year&quot;:   2012,
@@ -6965,15 +6984,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 77.942,
 &quot;ave_cltv&quot;: 78.551,
 &quot;ave_fico&quot;:  764.7,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
-&quot;OR&quot;: {
- &quot;state&quot;: &quot;OR&quot;,
-&quot;year&quot;:   2012,
-&quot;ave_dti&quot;: 31.544,
-&quot;ave_ltv&quot;: 72.469,
-&quot;ave_cltv&quot;: 73.243,
-&quot;ave_fico&quot;: 773.34,
 &quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;NV&quot;: {
@@ -7437,15 +7447,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 759.15,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
-&quot;VA&quot;: {
- &quot;state&quot;: &quot;VA&quot;,
-&quot;year&quot;:   2013,
-&quot;ave_dti&quot;: 32.008,
-&quot;ave_ltv&quot;: 74.332,
-&quot;ave_cltv&quot;: 75.282,
-&quot;ave_fico&quot;: 764.18,
-&quot;fillKey&quot;: &quot;(761,774]&quot; 
-},
 &quot;OR&quot;: {
  &quot;state&quot;: &quot;OR&quot;,
 &quot;year&quot;:   2013,
@@ -7463,6 +7464,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 81.106,
 &quot;ave_fico&quot;: 757.03,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;VA&quot;: {
+ &quot;state&quot;: &quot;VA&quot;,
+&quot;year&quot;:   2013,
+&quot;ave_dti&quot;: 32.008,
+&quot;ave_ltv&quot;: 74.332,
+&quot;ave_cltv&quot;: 75.282,
+&quot;ave_fico&quot;: 764.18,
+&quot;fillKey&quot;: &quot;(761,774]&quot; 
 },
 &quot;NV&quot;: {
  &quot;state&quot;: &quot;NV&quot;,
@@ -7608,15 +7618,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 758.22,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
-&quot;NH&quot;: {
- &quot;state&quot;: &quot;NH&quot;,
-&quot;year&quot;:   2013,
-&quot;ave_dti&quot;: 33.764,
-&quot;ave_ltv&quot;: 76.691,
-&quot;ave_cltv&quot;: 77.266,
-&quot;ave_fico&quot;: 759.12,
-&quot;fillKey&quot;: &quot;(739,761]&quot; 
-},
 &quot;AK&quot;: {
  &quot;state&quot;: &quot;AK&quot;,
 &quot;year&quot;:   2013,
@@ -7624,6 +7625,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_ltv&quot;: 76.909,
 &quot;ave_cltv&quot;: 77.119,
 &quot;ave_fico&quot;: 752.16,
+&quot;fillKey&quot;: &quot;(739,761]&quot; 
+},
+&quot;NH&quot;: {
+ &quot;state&quot;: &quot;NH&quot;,
+&quot;year&quot;:   2013,
+&quot;ave_dti&quot;: 33.764,
+&quot;ave_ltv&quot;: 76.691,
+&quot;ave_cltv&quot;: 77.266,
+&quot;ave_fico&quot;: 759.12,
 &quot;fillKey&quot;: &quot;(739,761]&quot; 
 },
 &quot;IA&quot;: {
@@ -8405,15 +8415,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 718.08,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;NH&quot;: {
- &quot;state&quot;: &quot;NH&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;: 34.678,
-&quot;ave_ltv&quot;: 77.392,
-&quot;ave_cltv&quot;: 74.337,
-&quot;ave_fico&quot;: 718.27,
-&quot;fillKey&quot;: &quot;(718,725]&quot; 
-},
 &quot;AK&quot;: {
  &quot;state&quot;: &quot;AK&quot;,
 &quot;year&quot;:   1999,
@@ -8422,6 +8423,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 77.246,
 &quot;ave_fico&quot;: 707.36,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;NH&quot;: {
+ &quot;state&quot;: &quot;NH&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;: 34.678,
+&quot;ave_ltv&quot;: 77.392,
+&quot;ave_cltv&quot;: 74.337,
+&quot;ave_fico&quot;: 718.27,
+&quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
 &quot;IA&quot;: {
  &quot;state&quot;: &quot;IA&quot;,
@@ -8549,15 +8559,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;:  707.3,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 },
-&quot;GU&quot;: {
- &quot;state&quot;: &quot;GU&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;:     38,
-&quot;ave_ltv&quot;:     80,
-&quot;ave_cltv&quot;:     80,
-&quot;ave_fico&quot;:    675,
-&quot;fillKey&quot;: null 
-},
 &quot;ND&quot;: {
  &quot;state&quot;: &quot;ND&quot;,
 &quot;year&quot;:   1999,
@@ -8566,6 +8567,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;:     94,
 &quot;ave_fico&quot;: 717.23,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;GU&quot;: {
+ &quot;state&quot;: &quot;GU&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;:     38,
+&quot;ave_ltv&quot;:     80,
+&quot;ave_cltv&quot;:     80,
+&quot;ave_fico&quot;:    675,
+&quot;fillKey&quot;: null 
 },
 &quot;OK&quot;: {
  &quot;state&quot;: &quot;OK&quot;,
@@ -8810,15 +8820,6 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_fico&quot;: 723.47,
 &quot;fillKey&quot;: &quot;(718,725]&quot; 
 },
-&quot;HI&quot;: {
- &quot;state&quot;: &quot;HI&quot;,
-&quot;year&quot;:   1999,
-&quot;ave_dti&quot;: 37.991,
-&quot;ave_ltv&quot;: 80.286,
-&quot;ave_cltv&quot;: 76.407,
-&quot;ave_fico&quot;: 734.64,
-&quot;fillKey&quot;: &quot;(725,739]&quot; 
-},
 &quot;AZ&quot;: {
  &quot;state&quot;: &quot;AZ&quot;,
 &quot;year&quot;:   1999,
@@ -8827,6 +8828,15 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;ave_cltv&quot;: 81.324,
 &quot;ave_fico&quot;: 717.19,
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
+},
+&quot;HI&quot;: {
+ &quot;state&quot;: &quot;HI&quot;,
+&quot;year&quot;:   1999,
+&quot;ave_dti&quot;: 37.991,
+&quot;ave_ltv&quot;: 80.286,
+&quot;ave_cltv&quot;: 76.407,
+&quot;ave_fico&quot;: 734.64,
+&quot;fillKey&quot;: &quot;(725,739]&quot; 
 },
 &quot;WI&quot;: {
  &quot;state&quot;: &quot;WI&quot;,
@@ -8856,27 +8866,27 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
 &quot;fillKey&quot;: &quot;(675,718]&quot; 
 } 
 },
-&quot;id&quot;: &quot;chart17fb34cbde8c&quot; 
+&quot;id&quot;: &quot;chart4fba5ee19845&quot; 
 }
-  chartParams.element = document.getElementById('chart17fb34cbde8c')
+  chartParams.element = document.getElementById('chart4fba5ee19845')
   
   
-  var mapchart17fb34cbde8c = new Datamap(chartParams);
+  var mapchart4fba5ee19845 = new Datamap(chartParams);
   
   
     
   // draw a bubble map if specified
   if (chartParams.bubbles) {
     var bubbles = chartParams.bubbles
-    mapchart17fb34cbde8c.bubbles(bubbles)
+    mapchart4fba5ee19845.bubbles(bubbles)
   }
   
   if (chartParams.labels){
-    mapchart17fb34cbde8c.labels()
+    mapchart4fba5ee19845.labels()
   }
   
   if (chartParams.legend){
-    mapchart17fb34cbde8c.legend()
+    mapchart4fba5ee19845.legend()
   }
   
   setProjection = function( element, options ) {
@@ -8901,7 +8911,7 @@ fico.map$<span class="kw">show</span>(<span class="st">&#39;iframesrc&#39;</span
     
     &lt;script&gt;&lt;/script&gt;    
   &lt;/body&gt;
-&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  datamaps  " id="iframe-chart17fb34cbde8c">
+&lt;/html&gt; " scrolling="no" frameBorder="0" seamless class="rChart  datamaps  " id="iframe-chart4fba5ee19845">
 </iframe>
 <style>iframe.rChart{ width: 100%; height: 400px;}</style>
 
@@ -8945,7 +8955,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-spark-context.Rmd",
 "text": null
 },
 "download": null,
